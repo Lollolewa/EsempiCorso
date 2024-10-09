@@ -5,6 +5,6 @@ public class Start {
         System.out.println("testing github");
         System.out.println("Aggiunto da Alessia");
         System.out.println("Aggiunto da CiccioGamer89");
-        System.out.println("ciao");
+        System.out.println("test");
     }
 }
