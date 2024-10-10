@@ -20,4 +20,4 @@ public abstract class Person {
     public void chat(){
         System.out.println("Faccio due chiacchiere.");
     }
-}
+}// Ciao Matteo!
