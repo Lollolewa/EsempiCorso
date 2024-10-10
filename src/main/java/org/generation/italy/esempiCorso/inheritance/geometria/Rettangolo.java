@@ -5,8 +5,7 @@ public class Rettangolo extends Forma{
     //un invocazione al costruttore di default della classe madre
     public Rettangolo(int altezza ,int base) {
         super( altezza, base);
-        this.base = base;
-        this.altezza = altezza;
+
     }
     @Override
     public int calcolaArea(){
