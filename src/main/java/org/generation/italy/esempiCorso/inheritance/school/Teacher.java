@@ -31,10 +31,14 @@ public class Teacher extends Employee{
 
     @Override // override riprende il metodo della classe padre (il metodo del padre deve vere lo stesso nome
      // della classe padre, quindi lo sovrascrive)
-
     // la @ di override serve per obbligare il compilatore a verificare se esista veramente un metodo con lo stesso nome
     // nella superclasse
     public String toString(){
-        return String.format("%sInsegno: %s da %d anni", super.toString(), subject, yearOfService);
+        return String.format("%sInsegno: %s da %d anni.%nStipendio annuale: %d %nStipendio mensile: %d%n", super.toString(), subject, yearOfService, getAnnualSalary(), monthlySalary);
+    }
+
+    @Override
+    public void doWork(int hours){
+        System.out.println("Spiego java per " + hours + " ore.");
     }
 }
