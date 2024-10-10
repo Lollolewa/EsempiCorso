@@ -1,6 +1,6 @@
 package org.generation.italy.esempiCorso.inheritance.school;
 
-public class Personnel extends Employee {
+public class  Personnel extends Employee {
 
     private String role;
     private int bonus = 0;
@@ -9,6 +9,12 @@ public class Personnel extends Employee {
         super(name, surname, age, monthlySalary, nMonth);
         this.bonus = bonus;
         this.role = role;
+    }
+
+
+    @Override
+    public void doWork(int h) {
+
     }
 
     @Override

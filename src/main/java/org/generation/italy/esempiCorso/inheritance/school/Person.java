@@ -1,5 +1,7 @@
 package org.generation.italy.esempiCorso.inheritance.school;
 
+public abstract class Person {
+
     protected String name, surname;
     protected int age;
 
@@ -8,6 +10,9 @@ package org.generation.italy.esempiCorso.inheritance.school;
         this.surname = surname;
         this.age = age;
     }
+
+    @Override
     public String toString(){
+        return String.format("Ciao sono %s %s e ho %d anni.",name,surname,age);
     }
 }

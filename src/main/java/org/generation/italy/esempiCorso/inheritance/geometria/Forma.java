@@ -1,6 +1,6 @@
 package org.generation.italy.esempiCorso.inheritance.geometria;
 
-public class Forma {
+public abstract class Forma {
     protected int base, altezza;
 
     public Forma(int base, int altezza) {

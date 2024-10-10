@@ -9,7 +9,7 @@ public abstract class Employee extends Person {
         this.monthlySalary = monthlySalary;
         this.nMonth = nMonth;
     }
-
+    public abstract void doWork(int h);
     public abstract int getAnnualSalary();
 
 }
