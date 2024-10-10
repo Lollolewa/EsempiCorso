@@ -10,7 +10,6 @@ public class Start {
         Personnel bidello = new Personnel("Bobby", "Rocket", 67, 1500, 14, 200, "Bidello");
 
         System.out.println(teacher.toString());
-
         System.out.println("\n");
         System.out.println(bidello.toString());
 
