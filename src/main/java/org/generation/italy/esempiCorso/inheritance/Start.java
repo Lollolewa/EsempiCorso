@@ -1,9 +1,14 @@
 package org.generation.italy.esempiCorso.inheritance;
 
+import org.generation.italy.esempiCorso.inheritance.school.Teacher;
+
 public class Start {
     public static void main(String[] args){
-        System.out.println("testing github");
-        System.out.println("Aggiunto da Alessia");
-        System.out.println("Branch Andrea Macellaro La Franca");
+
+        Teacher teacher = new Teacher("Michael", "Johnson", 35,"Math",9);
+
+        System.out.println(teacher.toString());
+
     }
+
 }
