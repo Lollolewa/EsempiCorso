@@ -11,5 +11,7 @@ public class Geometra {
         System.out.println(recto.toString());
 
 
+
+
     }
 }
