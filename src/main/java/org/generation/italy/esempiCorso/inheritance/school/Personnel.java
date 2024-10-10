@@ -2,9 +2,9 @@ package org.generation.italy.esempiCorso.inheritance.school;
 
 public class Personnel extends Employee {
     protected String role;
-    protected int bonus;
+    protected double bonus;
 
-    public Personnel (String name, String surname, int age,  double monthlySalary, int nMonths, String role, int bonus) {
+    public Personnel (String name, String surname, int age, double monthlySalary, int nMonths, String role, double bonus) {
         super(name, surname, age, monthlySalary, nMonths);
         this.role = role;
         this.bonus = bonus;

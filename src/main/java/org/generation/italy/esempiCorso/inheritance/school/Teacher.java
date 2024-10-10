@@ -6,12 +6,16 @@ public class Teacher extends Employee{
 
     public Teacher(String name, String surname, int age, double monthlySalary, int nMonths, String subject, int yearOfService){
         super(name, surname, age, monthlySalary, nMonths);
-        this.subject=subject;
-        this.yearOfService=yearOfService;
+        this.subject = subject;
+        this.yearOfService = yearOfService;
     }
     @Override
     public double getAnnualSalary() {
-        return super.getAnnualSalary() + yearOfService >= 10 ? 500: 0;
+        double annualSalary = super.getAnnualSalary();
+        if (yearOfService >= 10) {
+            annualSalary += 500;
+        }
+        return annualSalary;
     }
     @Override
     public String toString() {

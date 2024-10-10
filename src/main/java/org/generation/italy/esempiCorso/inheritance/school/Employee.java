@@ -1,6 +1,6 @@
 package org.generation.italy.esempiCorso.inheritance.school;
 
-public class Employee extends Person{
+public abstract class Employee extends Person{
     protected double monthlySalary;
     protected int nMonths;
 
@@ -17,6 +17,7 @@ public class Employee extends Person{
     }
     public double getAnnualSalary () {
         return monthlySalary * (double)nMonths;
+
     }
 
 }
