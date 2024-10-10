@@ -8,6 +8,5 @@ public class mainRunner {
 
         System.out.println(triangle.calcolaArea());
         System.out.println(rectangle.calcolaArea());
-
     }
 }

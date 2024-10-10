@@ -8,6 +8,6 @@ public class Triangolo extends Forma{
 
     @Override
     public int calcolaArea() {
-        return super.calcolaArea() + base*altezza/2;
+        return base*altezza/2;
     }
 }
