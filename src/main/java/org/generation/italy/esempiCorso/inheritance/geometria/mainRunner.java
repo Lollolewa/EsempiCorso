@@ -1,6 +1,6 @@
 package org.generation.italy.esempiCorso.inheritance.geometria;
 
-public class main {
+public class mainRunner {
     public static void main(String[] args) {
 
         Triangolo triangle = new Triangolo(3,2);
