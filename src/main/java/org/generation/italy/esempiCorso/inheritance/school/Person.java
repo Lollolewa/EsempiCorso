@@ -17,5 +17,4 @@ public class Person {
     public String toString() {
         return "Ciao sono " + name + " " + surname + ", ho " + age + " anni.";
     }
-
 }

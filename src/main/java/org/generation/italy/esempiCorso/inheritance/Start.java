@@ -12,7 +12,5 @@ public class Start {
                             // tutti gli oggetti è come se avessero quindi extends Object
 
         System.out.println(teacher.toString());
-
-
     }
 }
