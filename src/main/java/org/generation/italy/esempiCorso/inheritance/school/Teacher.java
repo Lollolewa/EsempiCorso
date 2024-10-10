@@ -33,4 +33,15 @@ public class Teacher extends Employee{
 
     }
 
+    @Override
+    public void eat(){
+        System.out.println("mangio un panino");
+    }
+
+    public void teach(){}
+
+    @Override
+    public void doWork(int hours){
+        System.out.println(("Spiego java"));
+    }
 }

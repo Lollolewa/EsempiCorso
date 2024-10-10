@@ -1,7 +1,7 @@
 package org.generation.italy.esempiCorso.inheritance.school;
 
-public class Employee extends Person{
-
+public abstract class Employee extends Person{
+//una sorta di classe stampino, che non può generare oggetti ma è semplicemente un modello
     protected int monthlySalary;
     protected int nMonth;
 
@@ -18,5 +18,7 @@ public class Employee extends Person{
     public String toString(){
         return super.toString() + "Prendo " + monthlySalary + " al mese per " + nMonth + " mesi.";
     }
+
+    public abstract void doWork(int hours); // metodo astratto, non ha le graffe
 
 }

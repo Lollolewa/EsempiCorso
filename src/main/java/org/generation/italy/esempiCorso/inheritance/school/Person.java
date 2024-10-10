@@ -1,6 +1,6 @@
 package org.generation.italy.esempiCorso.inheritance.school;
 
-public class Person {
+public abstract class Person {
     //le classi servono per creare oggetti e altre classi
     //protected è la keyword per far accedere le sottoclassi alla variabile
     //ha anche visibilità di package ma non è public
@@ -17,6 +17,14 @@ public class Person {
         return "ciao sono " + name + " " + surname + " ed ho " + age + " anni.";
     }
 
+
+    public void eat(){
+        System.out.println("Mangio qualcosa");
+    }
+
+    public void chat(){
+        System.out.println("Faccio due chiacchiere");
+    }
 
 
 

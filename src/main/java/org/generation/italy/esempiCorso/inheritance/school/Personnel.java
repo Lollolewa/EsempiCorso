@@ -19,4 +19,9 @@ public class Personnel extends Employee{
     public String toString(){
         return super.toString() + "Sono un " + role + "e all'anno prendo " + getAnnualSalary() + " per via del bonus di " + bonus + " euro.";
     }
+
+    @Override
+    public void doWork(int hours){
+        System.out.println(("Uso excel"));
+    }
 }
