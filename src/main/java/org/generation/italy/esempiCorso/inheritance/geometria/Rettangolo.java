@@ -8,6 +8,6 @@ public class Rettangolo extends Forma{
 
     @Override
     public int calcolaArea() {
-        return super.calcolaArea() + base * altezza;
+        return base * altezza;
     }
 }
