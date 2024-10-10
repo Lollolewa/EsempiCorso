@@ -13,6 +13,6 @@ public class Person {
 
     @Override
     public String toString(){
-        return String.format("Ciao sono %s %s e ho %d anni", name,surname,age);
+        return String.format("Ciao sono %s %s e ho %d anni.", name,surname,age);
     }
 }
