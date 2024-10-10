@@ -9,6 +9,11 @@ public class Forma {
         this.altezza = altezza;
     }
     public int calcolaArea(){
+        return 0;
+    }
 
+    @Override
+    public String toString(){
+        return "Forma con base " + base + " e altezza " + altezza;
     }
 }
