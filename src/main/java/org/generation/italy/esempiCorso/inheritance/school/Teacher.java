@@ -1,21 +1,28 @@
 package org.generation.italy.esempiCorso.inheritance.school;
 
-//ereditarietà è il rapposrto più stretto tra classi (is_a)
-public class Teacher extends Person {
-    //teacher è una sottoclasse/sottotipo di una person (supertipo/superclasse) la sottoclasse eredita le propietà e i metodi della superclasse, i metodi restano privati, non sono direttamente raggiungibili
+public class Teacher extends Employee{
 
     private String subject;
-    private int yearsOfService;
+    private int yearOfService;
 
-    public Teacher(String name, String surname, int age, String subject, int yearsOfService) {
-        super(name, surname, age);
+    public Teacher(String name, String surname, int age, String subject, int yearOfService, int monthltySalary, int nMonth){
+        super(name,surname,age,monthltySalary,nMonth);
         this.subject = subject;
-        this.yearsOfService = yearsOfService;
-
+        this.yearOfService = yearOfService;
     }
-    @Override //riprende il metodo della superclasse e lo sovrascrive (padre e madre) quindi fa ereditare gli attributi di Person
-    public String toString(){       //riesco a richiamare il to String della classe estesa quindi di Person
-        return super.toString() + " Insegno " + subject + " da " + yearsOfService;
+
+    @Override
+    public int getAnnualSalary(){
+        if(yearOfService>10){
+            return monthlySalary*nMonth+500;
+        } else {
+            return monthlySalary*nMonth;
+        }
+    }
+
+    @Override //riprende il metodo della superclasse e lo sovrascrive
+    public String toString(){
+        return super.toString()+ " Insegno "+subject+" da "+yearOfService+" anni"+" \nStipendio: $"+getAnnualSalary();
     }
 
 }

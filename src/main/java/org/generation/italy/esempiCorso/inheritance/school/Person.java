@@ -1,8 +1,7 @@
 package org.generation.italy.esempiCorso.inheritance.school;
 
 public class Person {
-    //le classi servono per creare oggetti e altre classi
-    //protected viene usata per far ereditare alle classi figlie le sue propietà e funzioni
+
     protected String name, surname;
     protected int age;
 
@@ -11,8 +10,9 @@ public class Person {
         this.surname = surname;
         this.age = age;
     }
+
+    @Override
     public String toString(){
-        return "ciao sono " + name + " " + surname + "ed ho " + age;
+        return String.format("Ciao sono %s %s e ho %d anni", name,surname,age);
     }
-    //insegnati, sudenti, amministrazione che hanno propietà diverse, partendo da una classe base possiamo creare varie altre
 }
