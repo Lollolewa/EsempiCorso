@@ -1,7 +1,6 @@
 package org.generation.italy.esempiCorso.inheritance; // bestBranch
 
 import org.generation.italy.esempiCorso.inheritance.school.Teacher;
-import org.generation.italy.esempiCorso.inheritance.geometria.*;
 
 public class Start {
     public static void main(String[] args){
