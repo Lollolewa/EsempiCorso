@@ -1,20 +1,16 @@
 package org.generation.italy.esempiCorso.inheritance.school;
 
-public class Employee extends Person{
-    protected int monthSalary, nMonths;
+public abstract class Employee extends Person {
 
-    public Employee(String name, String surname, int age, int monthSalary, int nMonth) {
+    protected int monthlySalary, nMonth;
+
+    public Employee(String name, String surname, int age, int monthlySalary, int nMonth) {
         super(name, surname, age);
-        this.monthSalary = monthSalary;
-        this.nMonths = nMonth;
+        this.monthlySalary = monthlySalary;
+        this.nMonth = nMonth;
     }
-
-    public int getAnnualSalary() {
-        return monthSalary * nMonths;
+    public int getAnnualSalary(){
+        return monthlySalary*nMonth;
     }
-    @Override
-    public String toString() {
-        return String.format("%sGuadagno mensile e' di %d per %d mensilita'%n", super.toString(), monthSalary, nMonths);
-
-    }
+    public abstract void doWork(int hours);//metodo generale polimorfico astratto
 }
