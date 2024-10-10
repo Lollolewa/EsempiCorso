@@ -19,4 +19,11 @@ public class Personnel extends Employee {
     public String toString(){
         return super.toString()+" Ruolo: "+role+" \nStipendio: $"+getAnnualSalary();
     }
+    public void doAdministration(){
+
+    }
+    @Override
+    public void doWork(int hours){
+        System.out.println("Uso excel");
+    }
 }

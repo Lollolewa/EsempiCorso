@@ -1,6 +1,6 @@
 package org.generation.italy.esempiCorso.inheritance.school;
 
-public class Employee extends Person {
+public abstract class Employee extends Person {
 
     protected int monthlySalary, nMonth;
 
@@ -12,4 +12,5 @@ public class Employee extends Person {
     public int getAnnualSalary(){
         return monthlySalary*nMonth;
     }
+    public abstract void doWork(int hours);//metodo generale polimorfico astratto
 }

@@ -22,4 +22,15 @@ public class Teacher extends Employee{
     public String toString(){
         return super.toString()+ " Insegno "+subject+" da "+yearOfService+" anni"+" \nStipendio: $"+getAnnualSalary();
     }
+    public void teach(){
+
+    }
+    @Override
+    public void eat(){
+        System.out.println("Magno un panino de corsa perché i miei studenti mi aspettano");
+    }
+    @Override
+    public void doWork(int hours){
+        System.out.println("Spiego Java");
+    }
 }
