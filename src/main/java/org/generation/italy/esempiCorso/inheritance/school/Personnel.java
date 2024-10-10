@@ -10,7 +10,6 @@ public class Personnel extends Employee {
         this.bonus = bonus;
         this.role = role;
     }
-
     @Override
     public int getAnnualSalary(){
         return monthlySalary*nMonth+bonus;
@@ -20,5 +19,4 @@ public class Personnel extends Employee {
     public String toString(){
         return super.toString()+" Ruolo: "+role+" \nStipendio: $"+getAnnualSalary();
     }
-
 }

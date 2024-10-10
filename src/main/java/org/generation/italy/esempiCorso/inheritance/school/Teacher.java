@@ -10,7 +10,6 @@ public class Teacher extends Employee{
         this.subject = subject;
         this.yearOfService = yearOfService;
     }
-
     @Override
     public int getAnnualSalary(){
         if(yearOfService>10){
@@ -19,10 +18,8 @@ public class Teacher extends Employee{
             return monthlySalary*nMonth;
         }
     }
-
     @Override //riprende il metodo della superclasse e lo sovrascrive
     public String toString(){
         return super.toString()+ " Insegno "+subject+" da "+yearOfService+" anni"+" \nStipendio: $"+getAnnualSalary();
     }
-
 }

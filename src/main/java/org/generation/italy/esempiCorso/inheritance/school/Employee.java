@@ -9,9 +9,7 @@ public class Employee extends Person {
         this.monthlySalary = monthlySalary;
         this.nMonth = nMonth;
     }
-
     public int getAnnualSalary(){
         return monthlySalary*nMonth;
     }
-
 }

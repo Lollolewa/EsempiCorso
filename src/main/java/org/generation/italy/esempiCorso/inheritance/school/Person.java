@@ -10,7 +10,6 @@ public class Person {
         this.surname = surname;
         this.age = age;
     }
-
     @Override
     public String toString(){
         return String.format("Ciao sono %s %s e ho %d anni", name,surname,age);
