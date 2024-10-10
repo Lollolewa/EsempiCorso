@@ -16,7 +16,7 @@ public abstract class Employee extends Person{
     }
 
     public String toString(){
-        return super.toString() + "Prendo " + monthlySalary + " al mese per " + nMonth + " mesi.";
+        return super.toString() + "Prendo " + monthlySalary + " al mese per " + nMonth + " mesi. ";
     }
 
     public abstract void doWork(int hours); // metodo astratto, non ha le graffe
