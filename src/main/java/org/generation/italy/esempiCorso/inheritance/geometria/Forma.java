@@ -7,7 +7,16 @@ public class Forma {
         this.base = base;
         this.altezza = altezza;
     }
+
+
+    public int calcolaArea(){
+        return 0;
+    }
+
+}
+
     public double calcolaArea() {
         return 0;
     }
 }
+
