@@ -13,11 +13,7 @@ public class Teacher extends Employee{
 
     @Override
     public int getAnnualSalary(){
-        if(yearOfService>10){
-            return monthlySalary*nMonth+500;
-        } else {
-            return monthlySalary*nMonth;
-        }
+       return yearOfService>10 ? monthlySalary*nMonth+500 : monthlySalary*nMonth;
     }
 
     @Override //riprende il metodo della superclasse e lo sovrascrive
@@ -26,3 +22,4 @@ public class Teacher extends Employee{
     }
 
 }
+
