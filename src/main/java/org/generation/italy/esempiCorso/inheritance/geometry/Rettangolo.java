@@ -13,6 +13,6 @@ public class Rettangolo extends Forma{
     @Override
     public String toString() {
         int area = calculateArea();
-        return "la tua area è: " + area;
+        return super.toString() + area;
     }
 }

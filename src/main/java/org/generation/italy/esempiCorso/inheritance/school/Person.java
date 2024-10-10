@@ -15,7 +15,4 @@ public class Person {
     public String toString(){
         return "ciao sono " + name + " " + surname + " ed ho " + age + " anni.";
     }
-    //insegnanti, studenti, amministrazione sono persone che hanno proprietà diverse
-    //posso creare nuove classi a partire da una classe base (in questo caso Person)
-
 }
