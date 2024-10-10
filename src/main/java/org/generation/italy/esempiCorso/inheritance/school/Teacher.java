@@ -1,27 +1,40 @@
 package org.generation.italy.esempiCorso.inheritance.school;
+// l'ereditarietà è il rapporto piu stretto possibile tra le classi, quindi un problema alla classe madre potrebbe
+// dare problemi anche alle classi figlie e nipoti, crendo un effetto domino di problemi tra classi
 
-//ereditarietà è il rapporto più stretto tra le classi, cambiando qualcosa nella madre, lo cambi anche nelle figlie e nelle loro figlie e nelle loro figlie
+// quindi è un'arma a doppio taglio perchè se abusato troppo, con modifiche future alla classe madre, toccherebbe
+// modificare tutte le sottoclassi multiple
 
-public class Teacher extends Person{
-    //teacher è una sottoclasse/sottotipo di person ( supertipo/superclasse);
-    //la sottoclasse eredita le proprietà e i metodi della superclasse;
-    //le variabili restano PRIVATE, perciò non sono direttamente raggiungibili
-    //Di conseguenza la sottoclasse eredita il metodo, può usarlo, ma non accede direttamente alla variabile;
+public class Teacher extends Employee{
+    // extends Person indica che sia un sottotipo o sottoclasse di Person
+    // la sottoclasse eredita tutte le proprietà e i metodi della classe
+    // i metodi restano privati se erano privati, quindi la classe figlia eredita le variabili ma non direttamente
+    // accessibili (se private), quindi in quel caso eredita il getVaribile
 
-    //esiste una keyword che mantiene le variabili private ma le rende visibili alle sottoclassi
     private String subject;
     private int yearOfService;
 
-    public Teacher(String name, String surname, int age, String subject, int yearOfService) {
-        //this non funziona, si utilizza un'altra keyword -> super (una superclasse per ogni classe)
-        super(name, surname, age); //richiami il costruttore della superclasse, ho creato così una person.
+    public Teacher(String name, String surname, int age, String subject, int yearOfService, int monthlySalary, int nMonths){
+        super(name, surname, age, monthlySalary, nMonths); // con super richiami il costruttore di Person, creo una persona
         this.subject = subject;
         this.yearOfService = yearOfService;
     }
 
+    public int getYearOfService() {
+        return yearOfService;
+    }
 
-    @Override //riprende il metodo della superclasse e lo sovrascrive. Ci aiuta anche nel caso in cui sbagliassimo a scrivere il nome del metodo
-    public String toString() {
-        return super.toString() + " Insegno " + subject + " da " + yearOfService + " anni.";
+    @Override
+    public int getAnnualSalary(){
+        return yearOfService>10 ? super.getAnnualSalary()+500 : super.getAnnualSalary();
+    }
+
+    @Override // override riprende il metodo della classe padre (il metodo del padre deve vere lo stesso nome
+     // della classe padre, quindi lo sovrascrive)
+
+    // la @ di override serve per obbligare il compilatore a verificare se esista veramente un metodo con lo stesso nome
+    // nella superclasse
+    public String toString(){
+        return String.format("%sInsegno: %s da %d anni", super.toString(), subject, yearOfService);
     }
 }
