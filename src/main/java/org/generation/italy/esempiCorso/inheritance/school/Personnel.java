@@ -16,7 +16,12 @@ public class Personnel extends Employee{
     }
 
     @Override
-    public String toString() {
-        return super.toString() + String.format("Stipendio annuale: %d %nStipendio mensile: %d", getAnnualSalary(), monthlySalary);
+    public String toString(){
+        return String.format("%sStipendio annuale: %d %nStipendio mensile: %d%n", super.toString(), getAnnualSalary(), monthlySalary);
+    }
+
+    @Override
+    public void doWork(int hours) {
+        System.out.println("Spiego java per " + hours + " ore.");
     }
 }

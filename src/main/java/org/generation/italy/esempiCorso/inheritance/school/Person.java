@@ -1,6 +1,6 @@
 package org.generation.italy.esempiCorso.inheritance.school;
 
-public class Person {
+public abstract class Person {
     // le classi servono per creare oggetti e altre classi
     protected String name, surname;
     protected int age;
