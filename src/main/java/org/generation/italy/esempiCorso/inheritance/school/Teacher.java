@@ -1,16 +1,28 @@
 package org.generation.italy.esempiCorso.inheritance.school;
 
-public class Teacher extends Person{
-    private String subject;
-    private int yos;
+public class Teacher extends Employee{
 
-    public Teacher(String name, String surname, int age, String subject, int yos) {
-        super(name, surname, age);
+    private String subject;
+    private int yearOfService;
+
+    public Teacher(String name, String surname, int age, String subject, int yearOfService, int monthltySalary, int nMonth){
+        super(name,surname,age,monthltySalary,nMonth);
         this.subject = subject;
-        this.yos = yos;
+        this.yearOfService = yearOfService;
     }
+
     @Override
-    public String toString() {
-        return super.toString() + " Ed insegno " + subject + " da " + yos + " anni!";
+    public int getAnnualSalary(){
+        if(yearOfService>10){
+            return monthlySalary*nMonth+500;
+        } else {
+            return monthlySalary*nMonth;
+        }
     }
+
+    @Override //riprende il metodo della superclasse e lo sovrascrive
+    public String toString(){
+        return super.toString()+ " Insegno "+subject+" da "+yearOfService+" anni"+" \nStipendio: $"+getAnnualSalary();
+    }
+
 }
