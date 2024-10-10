@@ -1,6 +1,6 @@
 package org.generation.italy.esempiCorso.inheritance.school;
-
-public class Employee extends Person{
+//non voglio creare oggetti impiegato
+public abstract class Employee extends Person{
     protected double monthlySalary;
     protected int nMonths;
 
@@ -19,4 +19,6 @@ public class Employee extends Person{
         return monthlySalary * (double)nMonths;
     }
 
+    //metodo astratto per inizializzare un metodo che verrà implementato dalle sottoclassi
+    public abstract void doWork(int hours);
 }
