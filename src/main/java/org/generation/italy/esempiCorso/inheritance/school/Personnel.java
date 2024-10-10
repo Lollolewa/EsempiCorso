@@ -18,7 +18,7 @@ public class Personnel extends Employee {
 
     @Override
     public String toString(){
-        return super.toString()+" Ruolo: "+role+" \nStipendio: $"+getAnnualSalary();
+        return super.toString()+"\nRuolo: "+role+" \nStipendio: $"+getAnnualSalary();
     }
 
 }
