@@ -18,7 +18,7 @@ public class Teacher extends Employee{
 
     @Override //riprende il metodo della superclasse e lo sovrascrive
     public String toString(){
-        return super.toString()+ " Insegno "+subject+" da "+yearOfService+" anni"+" \nStipendio: $"+getAnnualSalary();
+        return super.toString()+ "\nInsegno "+subject+" da "+yearOfService+" anni"+" \nStipendio: $"+getAnnualSalary();
     }
 
 }
