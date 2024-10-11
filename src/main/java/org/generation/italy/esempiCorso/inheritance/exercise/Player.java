@@ -2,7 +2,7 @@ package org.generation.italy.esempiCorso.inheritance.exercise;
 
 import java.time.LocalDate;
 
-public class Player {
+public abstract class Player {
     protected String name, surname, userName, password;
     protected boolean isLogged;
     protected LocalDate startDate;
@@ -16,13 +16,13 @@ public class Player {
         this.startDate = startDate;
     }
 
-    public boolean login(String userName, String password){
-        if (this.userName.equals(userName) && this.password.equals(password)){
+    public void login(){
             isLogged = true;
-        }
+            System.out.println("Hai effettuato il login");
     }
     public void logout(){
-
+        isLogged = false;
+        System.out.println("Hai effettuato il logout");
     }
 }
 // Voglio rappresentare un gioco testuale in cui vari personaggi di un mondo fantasy possano combattere tra di loro
