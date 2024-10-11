@@ -1,7 +1,6 @@
 package org.generation.italy.esempiCorso.inheritance.exercise;
 
 import java.time.LocalDate;
-import java.util.Scanner;
 import java.time.format.DateTimeFormatter;
 
 public class Player {
