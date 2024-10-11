@@ -14,3 +14,4 @@ public abstract class Employee extends Person {
     }
     public abstract void doWork(int hours);//metodo generale polimorfico astratto
 }
+//
