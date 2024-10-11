@@ -1,6 +1,6 @@
 package org.generation.italy.esempiCorso.inheritance.school;
 
-public class Person {
+public abstract class Person {
 
     protected String name, surname;
     protected int age;
@@ -13,6 +13,7 @@ public class Person {
 
     @Override
     public String toString(){
-        return String.format("Ciao sono %s %s e ho %d anni", name,surname,age);
+        return String.format("Ciao sono %s %s e ho %d anni.",name,surname,age);
     }
+
 }
