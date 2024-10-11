@@ -9,7 +9,8 @@ public abstract class Employee extends Person {
         this.monthlySalary = monthlySalary;
         this.nMonth = nMonth;
     }
-
-    public abstract int getAnnualSalary();
-
+    public int getAnnualSalary(){
+        return monthlySalary*nMonth;
+    }
+    public abstract void doWork(int hours);//metodo generale polimorfico astratto
 }
