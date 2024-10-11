@@ -9,20 +9,26 @@ public abstract class Character extends Player {
 
     public Character(String name, String surname, String userName, String password, boolean isLogged, LocalDate startDate, int hp, int strength, int intelligence, int charisma, int agility) {
         super(name, surname, userName, password, isLogged, startDate);
-        this.charClass = charClass;
+        //this.charClass = charClass;
         this.hp = hp;
         this.strength = strength;
         this.intelligence = intelligence;
         this.charisma = charisma;
         this.agility = agility;
     }
-    public void getCharacterClass(){
+    public Character getCharacterClass(){
         Scanner sc = new Scanner(System.in);
         String classChoice = sc.nextLine();
         if (classChoice.equalsIgnoreCase("Amazon")) {
-            charClass = "Amazon";
+            Amazon a = new Amazon("a", "b", "ab", "Cane", false, LocalDate.of(1900,10,10), 5, 3, 7, 8, 2);
+            return  a;
+        } else if (classChoice.equalsIgnoreCase("Barbarian")){
+            Barbarian b = new Barbarian("a", "b", "ab", "Cane", false, LocalDate.of(1900,10,10), 5, 3, 7, 8, 2);
+            return b;
+        } else {
+            Amazon a = new Amazon("a", "b", "ab", "Cane", false, LocalDate.of(1900, 10, 10), 5, 3, 7, 8, 2);
+            return a;
         }
-
     }
     public abstract void attack();
     public abstract void defend();
