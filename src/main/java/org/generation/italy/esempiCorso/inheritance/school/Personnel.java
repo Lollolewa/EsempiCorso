@@ -1,27 +1,29 @@
 package org.generation.italy.esempiCorso.inheritance.school;
 
-public class Personnel extends Employee{
+public class Personnel extends Employee {
+
     private String role;
-    private int bonus;
+    private int bonus = 0;
 
-    public Personnel(String name, String surname, int age,int monthSalary, int nMonths, String role, int bonus){
-        super(name, surname, age,monthSalary, nMonths);
-        this.role = role;
+    public Personnel(String name, String surname, int age, int monthlySalary, int nMonth, int bonus, String role) {
+        super(name, surname, age, monthlySalary, nMonth);
         this.bonus = bonus;
+        this.role = role;
     }
-
     @Override
     public int getAnnualSalary(){
-        return super.getAnnualSalary() + bonus;
+        return monthlySalary*nMonth+bonus;
     }
 
     @Override
     public String toString(){
-        return super.toString() + "\n" + "Il mio ruolo è " + role + " e ho diritto ad un bonus di " + bonus + " euro.";
+        return super.toString()+" Ruolo: "+role+" \nStipendio: $"+getAnnualSalary();
     }
+    public void doAdministration(){
 
+    }
     @Override
-    public void doWork(int hours) {
-        System.out.println("Lavoro su excel per " + hours + " ore");
+    public void doWork(int hours){
+        System.out.println("Uso excel");
     }
 }

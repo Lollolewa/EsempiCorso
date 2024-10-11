@@ -1,16 +1,15 @@
 package org.generation.italy.esempiCorso.inheritance.geometria;
 
 public class Forma {
-    protected double base, altezza;
+    protected int base, altezza;
 
-    public Forma(double base, double altezza) {
+    public Forma(int base, int altezza) {
         this.base = base;
         this.altezza = altezza;
     }
 
-    public double calcolaArea(){
-        double area = base * altezza;
-        return calcolaArea();
+    public int calcolaArea(){
+        return 0;
     }
 
 }

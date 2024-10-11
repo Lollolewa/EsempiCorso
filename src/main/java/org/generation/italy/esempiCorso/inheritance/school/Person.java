@@ -1,21 +1,23 @@
 package org.generation.italy.esempiCorso.inheritance.school;
-//le classi servono per creare oggetti e altre classi
+
 public abstract class Person {
-// con abstact non è più possibile creare oggetti in questa classe
-    //protected è la keyword per far accedere le sottoclassi alla variabile
-    //ha anche visibilità di package
+
     protected String name, surname;
     protected int age;
 
     public Person(String name, String surname, int age){
-        this.name=name;
-        this.surname=surname;
-        this.age=age;
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
     }
+    @Override
     public String toString(){
-        return "ciao sono " + name + " " + surname + " ed ho " + age + " anni.";
+        return String.format("Ciao sono %s %s e ho %d anni", name,surname,age);
     }
-    //insegnanti, studenti, amministrazione sono persone che hanno proprietà diverse
-    //posso creare nuove classi a partire da una classe base (in questo caso Person)
-
+    public void eat(){
+        System.out.println("Me magno 'na carbonara");
+    }
+    public void chat(){
+        System.out.println("Faccio due chiacchiere.");
+    }
 }
