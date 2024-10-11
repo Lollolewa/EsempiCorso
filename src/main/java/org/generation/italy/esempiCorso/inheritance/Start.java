@@ -47,17 +47,20 @@ public class Start {
         q.eat();
         q.chat();
     }
-    public static void makeIntervalForAll(Person[]ps){
+    public static void makeIntervalForAll(Person[] ps){
         for(int i = 0; i<ps.length; i++){ //in questo array ci può essere più di un tipo
             ps[i].eat();
             ps[i].chat();
         }
         // S: principio di responsabilità Singola (ogni classe deve avere una sola responsabilità)
-        //   primo motivo: diventa una classe grassa
-        //   secondo motivo: quando vai a modificarla cambia tutto quello che viene dopo
-        //   terzo motivo: dividere et impera (così si lavora più facilmente in più persone)
-        // O: Open-Closed, il codice che scriviamo dovrebbe essere chiuso alla modifica ma allungabile
-        // L:
+        //      1: diventa una classe grassa
+        //      2: quando vai a modificarla cambia tutto quello che viene dopo
+        //      3: dividere et impera (così si lavora più facilmente in più persone)
+        // O: Open-closed;
+        //      il codice che scriviamo dovrebbe essere chiuso alla modifica ma allungabile
+        // L: Liskov sostitution principle
+        //      se le struttura di un programma è corretta dovrebbe essere sempre possibile sostituire
+        //      una figlia con un'altra senza che il programma vada in errore.
     }
     public void startWorkDay(Employee e){
         e.chat();
