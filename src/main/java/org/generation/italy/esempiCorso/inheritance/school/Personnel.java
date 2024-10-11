@@ -19,4 +19,9 @@ public class Personnel extends Employee{
     public String toString(){
         return super.toString() + "\n" + "Il mio ruolo è " + role + " e ho diritto ad un bonus di " + bonus + " euro.";
     }
+
+    @Override
+    public void doWork(int hours) {
+        System.out.println("Lavoro su excel per " + hours + " ore");
+    }
 }

@@ -1,5 +1,6 @@
 package org.generation.italy.esempiCorso.inheritance;
 
+import org.generation.italy.esempiCorso.inheritance.school.Person;
 import org.generation.italy.esempiCorso.inheritance.school.Personnel;
 import org.generation.italy.esempiCorso.inheritance.school.Teacher;
 
@@ -10,6 +11,8 @@ public class Start {
 
         Personnel personnel = new Personnel("Vik", "Shn", 24, 2000, 13, "Insegnante", 500);
         System.out.println(personnel);
+
+        //Person p = new Person("gabriele","sabatini",24);
 
     }
 }

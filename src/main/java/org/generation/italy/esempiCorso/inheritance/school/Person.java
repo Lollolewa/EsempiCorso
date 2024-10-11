@@ -1,7 +1,7 @@
 package org.generation.italy.esempiCorso.inheritance.school;
 //le classi servono per creare oggetti e altre classi
-public class Person {
-
+public abstract class Person {
+// con abstact non è più possibile creare oggetti in questa classe
     //protected è la keyword per far accedere le sottoclassi alla variabile
     //ha anche visibilità di package
     protected String name, surname;

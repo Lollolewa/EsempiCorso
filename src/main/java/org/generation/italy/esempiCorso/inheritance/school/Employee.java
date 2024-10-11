@@ -1,6 +1,7 @@
 package org.generation.italy.esempiCorso.inheritance.school;
 
-public class Employee extends Person{
+public abstract class Employee extends Person{
+    //non sempre, le classi astratte avranno dei metodi astratti
     protected int monthSalary, nMonths;
 
     public Employee(String name, String surname, int age, int monthSalary, int nMonths){
@@ -16,5 +17,5 @@ public class Employee extends Person{
     public String toString(){
         return super.toString() + "\n" + "Il mio guadagno mensile è di " + monthSalary + " per " + nMonths + " mensilità.";
     }
-
+    public abstract void doWork(int hours);
 }

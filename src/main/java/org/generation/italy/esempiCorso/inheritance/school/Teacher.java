@@ -27,4 +27,9 @@ public class Teacher extends Employee {
         return super.toString() + "\n" + "Insegno " + subject + " da " + yearOfService + " anni.";
     }
 
+    @Override
+    public void doWork(int hours) {
+        System.out.println("Spiego java per " + hours + " ore");
+    }
+
 }
