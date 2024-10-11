@@ -1,21 +1,15 @@
 package org.generation.italy.esempiCorso.inheritance.game;
 
-import java.net.PasswordAuthentication;
 import java.time.LocalDate;
 
 public abstract class Character extends Player{
 
+    public Character(String username, String name, String lastName, LocalDate doc, String password, boolean isLogged) {
+        super(username, name, lastName, doc, password, isLogged);
+    }
+
     //STATS
     private int str, intel, dex, hp, chr;
-
-    public Character(String username, String name, String lastName, LocalDate doc, PasswordAuthentication password, boolean isLogged, int str, int intel, int dex, int hp, int chr) {
-        super(username, name, lastName, doc, password, isLogged);
-        this.str = str;
-        this.intel = intel;
-        this.dex = dex;
-        this.hp = hp;
-        this.chr = chr;
-    }
 
     //GETTERS
     public void setStr(int str) {
@@ -60,14 +54,14 @@ public abstract class Character extends Player{
     }
 
 
-    public abstract void getCharachterClass();
+    public abstract String getCharachterClass();
 
-    public abstract void attack();
+    public abstract int attack(Character x);
 
-    public abstract void defend();
+    public abstract void defend(Character x);
 
-    public abstract void flee();
+    public abstract boolean flee();
 
-    public abstract void ultimate();
+    public abstract void ultimate(Character y);
 
 }
