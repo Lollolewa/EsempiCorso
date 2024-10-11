@@ -1,16 +1,15 @@
 package org.generation.italy.esempiCorso.inheritance.game;
 
-import java.net.PasswordAuthentication;
 import java.time.LocalDate;
 
 public abstract class Player {
 
     protected String username, name, lastName;
     protected LocalDate doc;
-    protected PasswordAuthentication password;
+    protected String password;
     protected boolean isLogged;
 
-    public Player(String username, String name, String lastName, LocalDate doc, PasswordAuthentication password, boolean isLogged) {
+    public Player(String username, String name, String lastName, LocalDate doc, String password, boolean isLogged) {
         this.username = username;
         this.name = name;
         this.lastName = lastName;
@@ -19,7 +18,7 @@ public abstract class Player {
         this.isLogged = isLogged;
     }
 
-    public void login(String username, PasswordAuthentication password){
+    public void login(String username, String password){
 
         if (this.username.equals(username) && this.password.equals(password)){
             isLogged = true;
