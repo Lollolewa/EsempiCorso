@@ -3,6 +3,8 @@ package org.generation.italy.esempiCorso.inheritance;
 import org.generation.italy.esempiCorso.inheritance.school.Personnel;
 import org.generation.italy.esempiCorso.inheritance.school.Teacher;
 
+import java.util.Arrays;
+
 public class Start {
     public static void main(String[] args){
 
@@ -12,6 +14,11 @@ public class Start {
         System.out.println(teacher.toString());
         System.out.println("\n");
         System.out.println(bidello.toString());
+
+        System.out.println("\n\n");
+
+        String[] arrayDiRocket = {"\uD83D\uDE80,\uD83D\uDE80,\uD83D\uDE80,\uD83D\uDE80,\uD83D\uDE80,\uD83D\uDE80,\uD83D\uDE80,\uD83D\uDE80,\uD83D\uDE80,\uD83D\uDE80"};
+        System.out.println(Arrays.toString(arrayDiRocket));
 
     }
 
