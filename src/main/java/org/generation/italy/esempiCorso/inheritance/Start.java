@@ -1,9 +1,6 @@
 package org.generation.italy.esempiCorso.inheritance;
 
-import org.generation.italy.esempiCorso.inheritance.school.Employee;
-import org.generation.italy.esempiCorso.inheritance.school.Person;
-import org.generation.italy.esempiCorso.inheritance.school.Personnel;
-import org.generation.italy.esempiCorso.inheritance.school.Teacher;
+import org.generation.italy.esempiCorso.inheritance.school.*;
 
 public class Start {
     public static void main(String[] args){
@@ -53,10 +50,14 @@ public class Start {
 
     public void startWorkDay(Employee e){
         e.chat();
-        e.doWork(3);
+        if(e.getClass() != Stagista.class){ // violazione del principio di Liskov
+            e.doWork(3); // dovrei riuscire a eseguire questo metodo senza dovermi preoccupare di quale figlia ci va dentro
+        }
         e.eat();
         e.chat();
-        e.doWork(3);
+        if(e.getClass() != Stagista.class){
+            e.doWork(3);
+        }
 
     }
 }
