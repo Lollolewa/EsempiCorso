@@ -4,8 +4,8 @@ import java.time.LocalDate;
 
 public abstract class Character extends Player{
 
-    public Character(String username, String name, String lastName, LocalDate doc, String password, boolean isLogged) {
-        super(username, name, lastName, doc, password, isLogged);
+    public Character(String username, String name, String lastName, LocalDate doc, String password) {
+        super(username, name, lastName, doc, password);
     }
 
     //STATS
@@ -54,14 +54,15 @@ public abstract class Character extends Player{
     }
 
 
-    public abstract String getCharachterClass();
+
+    public abstract String getCharacterClass();
 
     public abstract int attack(Character x);
 
-    public abstract void defend(Character x);
+    public abstract int defend(Character x);
 
     public abstract boolean flee();
 
-    public abstract void ultimate(Character y);
+    public abstract int ultimate(Character y);
 
 }
