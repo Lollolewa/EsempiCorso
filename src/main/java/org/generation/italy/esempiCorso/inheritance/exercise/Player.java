@@ -46,7 +46,7 @@ public class Player {
 
     public void login(){
             isLogged = true;
-            System.out.println("Hai effettuato il login");
+            System.out.println("Hai effettuato il login con successo");
     }
     public void logout(){
         isLogged = false;

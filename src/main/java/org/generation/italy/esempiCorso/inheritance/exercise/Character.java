@@ -16,24 +16,14 @@ public abstract class Character extends Player {
         this.charisma = charisma;
         this.agility = agility;
     }
-    public Character getCharacterClass(){
-        Scanner sc = new Scanner(System.in);
-        String classChoice = sc.nextLine();
-        if (classChoice.equalsIgnoreCase("Amazon")) {
-            Amazon a = new Amazon("a", "b", "ab", "Cane", false, LocalDate.of(1900,10,10), 5, 3, 7, 8, 2);
-            return  a;
-        } else if (classChoice.equalsIgnoreCase("Barbarian")){
-            Barbarian b = new Barbarian("a", "b", "ab", "Cane", false, LocalDate.of(1900,10,10), 5, 3, 7, 8, 2);
-            return b;
-        } else {
-            Amazon a = new Amazon("a", "b", "ab", "Cane", false, LocalDate.of(1900, 10, 10), 5, 3, 7, 8, 2);
-            return a;
-        }
-    }
+
     public abstract void attack();
     public abstract void defend();
     public void flee(){
         System.out.println("Mi sto cagando addosso, aiutoooooo \nVaffanculo, ciao\nDatemi un water!!1!1");
+    }
+    public String toString() {
+        return super.toString() + String.format("Hp: %d %nStrength: %d %nIntelligence: %d %nCharisma: %d %nAgility: %d %n", hp, strength, intelligence, charisma, agility);
     }
 }
 // La classe player viene estesa da una classe Character
