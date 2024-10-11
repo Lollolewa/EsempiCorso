@@ -2,57 +2,58 @@ package org.generation.italy.esempiCorso.inheritance.game.characters;
 
 import org.generation.italy.esempiCorso.inheritance.game.Character;
 
+import java.net.PasswordAuthentication;
 import java.time.LocalDate;
 
-public class Paladin extends Character {
+public class Mage extends Character {
 
-    public Paladin(String username, String name, String lastName, LocalDate doc, String password, boolean isLogged) {
+    public Mage(String username, String name, String lastName, LocalDate doc, String password, boolean isLogged, int str, int intel, int dex, int hp, int chr) {
         super(username, name, lastName, doc, password, isLogged);
     }
 
-    //SET PALADIN STATS
+    //SET MAGE STATS
     @Override
     public void setHp(int hp) {
-        super.setHp(200);
+        super.setHp(100);
     }
 
     @Override
     public void setStr(int str) {
-        super.setStr(13);
+        super.setStr(8);
     }
 
     @Override
     public void setDex(int dex) {
-        super.setDex(13);
+        super.setDex(9);
     }
 
     @Override
     public void setIntel(int intel) {
-        super.setIntel(11);
+        super.setIntel(20);
     }
 
     @Override
     public void setChr(int chr) {
-        super.setChr(17);
+        super.setChr(10);
     }
 
-    //PALADIN ULTIMATE - HEAL
+    //MAGE ULTIMATE - FIREBALL
     @Override
-    public void ultimate(Character y) {
+    public void ultimate(Character x) {
         int hp = getHp();
-        hp += (int) ((getChr()+getIntel())*0.7);
+        hp -= (int) getIntel()*4;
         setHp(hp);
     }
 
     //BASE ACTIONS
     @Override
     public String getCharachterClass() {
-        return "You are a paladin!";
+        return "You are a mage!";
     }
 
     @Override
     public int attack(Character x) {
-        return getStr()+getChr()/2;
+        return getIntel()+getChr()/2;
     }
 
     @Override
@@ -64,7 +65,7 @@ public class Paladin extends Character {
 
     @Override
     public boolean flee() {
-        int randomIntInRange = (int) (Math.random() * .5);
+        int randomIntInRange = (int) (Math.random() * .7);
         if(getHp()<=10 && randomIntInRange == 0){
             System.out.println("You're lucky, you managed to flee with only "+getHp()+"HP.");
             return true;
@@ -74,5 +75,4 @@ public class Paladin extends Character {
             return false;
         }
     }
-
 }
