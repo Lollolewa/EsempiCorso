@@ -6,47 +6,29 @@ import java.time.LocalDate;
 
 public class Paladin extends Character {
 
-    public Paladin(String username, String name, String lastName, LocalDate doc, String password, boolean isLogged) {
-        super(username, name, lastName, doc, password, isLogged);
-    }
+    public Paladin(String username, String name, String lastName, LocalDate doc, String password) {
+        super(username, name, lastName, doc, password);
 
-    //SET PALADIN STATS
-    @Override
-    public void setHp(int hp) {
-        super.setHp(200);
-    }
-
-    @Override
-    public void setStr(int str) {
-        super.setStr(13);
-    }
-
-    @Override
-    public void setDex(int dex) {
-        super.setDex(13);
-    }
-
-    @Override
-    public void setIntel(int intel) {
-        super.setIntel(11);
-    }
-
-    @Override
-    public void setChr(int chr) {
-        super.setChr(17);
+        //SET PALADIN STATS
+        setHp(200);
+        setStr(13);
+        setDex(13);
+        setIntel(11);
+        setChr(17);
     }
 
     //PALADIN ULTIMATE - HEAL
     @Override
-    public void ultimate(Character y) {
+    public int ultimate(Character y) {
         int hp = getHp();
         hp += (int) ((getChr()+getIntel())*0.7);
         setHp(hp);
+        return getHp();
     }
 
     //BASE ACTIONS
     @Override
-    public String getCharachterClass() {
+    public String getCharacterClass() {
         return "You are a paladin!";
     }
 
@@ -56,10 +38,11 @@ public class Paladin extends Character {
     }
 
     @Override
-    public void defend(Character x) {
+    public int defend(Character x) {
         int hp = getHp();
         int dmgTaken = ((attack(x)-getDex())/2);
         setHp(hp-dmgTaken);
+        return getHp();
     }
 
     @Override

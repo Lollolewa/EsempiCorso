@@ -2,52 +2,33 @@ package org.generation.italy.esempiCorso.inheritance.game.characters;
 
 import org.generation.italy.esempiCorso.inheritance.game.Character;
 
-import java.net.PasswordAuthentication;
 import java.time.LocalDate;
 
 public class Mage extends Character {
 
-    public Mage(String username, String name, String lastName, LocalDate doc, String password, boolean isLogged, int str, int intel, int dex, int hp, int chr) {
-        super(username, name, lastName, doc, password, isLogged);
-    }
+    public Mage(String username, String name, String lastName, LocalDate doc, String password) {
+        super(username, name, lastName, doc, password);
 
-    //SET MAGE STATS
-    @Override
-    public void setHp(int hp) {
-        super.setHp(100);
-    }
-
-    @Override
-    public void setStr(int str) {
-        super.setStr(8);
-    }
-
-    @Override
-    public void setDex(int dex) {
-        super.setDex(9);
-    }
-
-    @Override
-    public void setIntel(int intel) {
-        super.setIntel(20);
-    }
-
-    @Override
-    public void setChr(int chr) {
-        super.setChr(10);
+        //SET MAGE STATS
+        setHp(100);
+        setStr(8);
+        setDex(9);
+        setIntel(20);
+        setChr(10);
     }
 
     //MAGE ULTIMATE - FIREBALL
     @Override
-    public void ultimate(Character x) {
+    public int ultimate(Character x) {
         int hp = getHp();
         hp -= (int) getIntel()*4;
         setHp(hp);
+        return getHp();
     }
 
     //BASE ACTIONS
     @Override
-    public String getCharachterClass() {
+    public String getCharacterClass() {
         return "You are a mage!";
     }
 
@@ -57,10 +38,11 @@ public class Mage extends Character {
     }
 
     @Override
-    public void defend(Character x) {
+    public int defend(Character x) {
         int hp = getHp();
         int dmgTaken = ((attack(x)-getDex())/2);
         setHp(hp-dmgTaken);
+        return getHp();
     }
 
     @Override
