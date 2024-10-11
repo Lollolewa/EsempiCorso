@@ -4,12 +4,12 @@ import java.time.LocalDate;
 
 public abstract class Character extends Player{
 
+    //STATS
+    private int str, intel, dex, hp, chr;
+
     public Character(String username, String name, String lastName, LocalDate doc, String password) {
         super(username, name, lastName, doc, password);
     }
-
-    //STATS
-    private int str, intel, dex, hp, chr;
 
     //GETTERS
     public void setStr(int str) {

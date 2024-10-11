@@ -12,23 +12,22 @@ public class Arcade {
 
         Scanner sc = new Scanner(System.in);
 
-        Character p1 = new Paladin("BobbyRocket", "Bobby", "Rocket", LocalDate.of(2020, 5, 2), "pippo");
-        Character p2 = new Mage("tommynasa", "Tommy", "nasa", LocalDate.of(2020, 5, 2), "pippo");
+        Character paladino = new Paladin("BobbyRocket", "Bobby", "Rocket", LocalDate.of(2020, 5, 2), "pippo");
+        Character mago = new Mage("tommynasa", "Tommy", "nasa", LocalDate.of(2020, 5, 2), "pippo");
 
 
-        System.out.println(p1.getCharacterClass());
+        System.out.println(paladino.getCharacterClass());
 
-        System.out.println(p2.attack(p1));
+        System.out.println(mago.attack(paladino));
+        System.out.println(paladino.defend(mago));
+        System.out.println(mago.ultimate(paladino));
+        System.out.println(mago.ultimate(paladino));
 
-        System.out.println(p1.defend(p2));
+        System.out.println(paladino.getHp());
+        System.out.println(mago.getHp());
 
-        System.out.println(p1.ultimate(p1));
-
-
-
-
-//        p1.login();
-        p1.logout();
+        paladino.login();
+        paladino.logout();
 
 
 

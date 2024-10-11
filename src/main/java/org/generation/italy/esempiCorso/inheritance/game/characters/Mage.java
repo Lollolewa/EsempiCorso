@@ -20,10 +20,11 @@ public class Mage extends Character {
     //MAGE ULTIMATE - FIREBALL
     @Override
     public int ultimate(Character x) {
-        int hp = getHp();
-        hp -= (int) getIntel()*4;
-        setHp(hp);
-        return getHp();
+        int hp = x.getHp();
+        hp -= getIntel()*4;
+        int dmg = x.getHp()-hp;
+        x.setHp(hp);
+        return dmg;
     }
 
     //BASE ACTIONS
@@ -58,3 +59,5 @@ public class Mage extends Character {
         }
     }
 }
+
+
