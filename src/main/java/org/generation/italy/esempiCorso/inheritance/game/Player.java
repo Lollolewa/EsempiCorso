@@ -18,6 +18,10 @@ public abstract class Player {
         this.password = password;
     }
 
+    //BOT CONSTRUCTOR
+    public Player(){
+    }
+
     public void login(){
         Scanner sc = new Scanner(System.in);
         this.isLogged = false;
