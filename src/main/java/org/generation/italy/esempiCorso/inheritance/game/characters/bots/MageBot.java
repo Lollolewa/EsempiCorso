@@ -1,35 +1,24 @@
-package org.generation.italy.esempiCorso.inheritance.game.characters;
+package org.generation.italy.esempiCorso.inheritance.game.characters.bots;
 
 import org.generation.italy.esempiCorso.inheritance.game.Character;
-import org.generation.italy.esempiCorso.inheritance.game.characters.bots.MageBot;
+import org.generation.italy.esempiCorso.inheritance.game.characters.Mage;
 
 import java.time.LocalDate;
 
-public class Mage extends Character {
+public class MageBot extends Mage{
 
-    public Mage(String username, String name, String lastName, LocalDate doc, String password) {
-        super(username, name, lastName, doc, password);
-
-        //SET MAGE STATS
+    public MageBot() {
+        //SET MAGE BOT STATS
         setHp(100);
         setStr(8);
         setDex(9);
         setIntel(20);
         setChr(10);
     }
-
-    public Mage(){
-        setHp(100);
-        setStr(8);
-        setDex(9);
-        setIntel(20);
-        setChr(10);
-    }
-
 
     //MAGE ULTIMATE - FIREBALL
     @Override
-    public int ultimate(Character x) {
+    public int ultimate(org.generation.italy.esempiCorso.inheritance.game.Character x) {
         int hp = x.getHp();
         hp -= getIntel()*4;
         int dmg = x.getHp()-hp;
@@ -40,7 +29,7 @@ public class Mage extends Character {
     //BASE ACTIONS
     @Override
     public String getCharacterClass() {
-        return "You are a mage!";
+        return "You are a bot mage!";
     }
 
     @Override
@@ -69,5 +58,3 @@ public class Mage extends Character {
         }
     }
 }
-
-
