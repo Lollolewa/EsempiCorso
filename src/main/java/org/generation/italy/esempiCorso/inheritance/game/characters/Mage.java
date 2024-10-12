@@ -26,7 +26,6 @@ public class Mage extends Character {
         setChr(10);
     }
 
-
     //MAGE ULTIMATE - FIREBALL
     @Override
     public int ultimate(Character x) {

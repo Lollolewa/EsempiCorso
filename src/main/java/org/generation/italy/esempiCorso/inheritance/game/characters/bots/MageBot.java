@@ -33,7 +33,7 @@ public class MageBot extends Mage{
     }
 
     @Override
-    public int attack(Character x) {
+    public int attack(org.generation.italy.esempiCorso.inheritance.game.Character x) {
         return getIntel()+getChr()/2;
     }
 

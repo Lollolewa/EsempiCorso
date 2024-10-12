@@ -3,6 +3,7 @@ package org.generation.italy.esempiCorso.inheritance.game;
 import org.generation.italy.esempiCorso.inheritance.game.characters.Mage;
 import org.generation.italy.esempiCorso.inheritance.game.characters.Paladin;
 import org.generation.italy.esempiCorso.inheritance.game.characters.bots.MageBot;
+import org.generation.italy.esempiCorso.inheritance.game.characters.bots.PaladinBot;
 
 import java.time.LocalDate;
 import java.util.Scanner;
@@ -16,6 +17,7 @@ public class Arcade {
         Character paladino = new Paladin("BobbyRocket", "Bobby", "Rocket", LocalDate.of(2020, 5, 2), "pippo");
         Character mago = new Mage("tommynasa", "Tommy", "nasa", LocalDate.of(2020, 5, 2), "pippo");
         Character bot = new MageBot();
+        Character botp = new PaladinBot();
 
 //        System.out.println(paladino.getCharacterClass());
 //
@@ -31,22 +33,11 @@ public class Arcade {
 //        paladino.logout();
         System.out.println(bot.getCharacterClass());
 
-        System.out.println(mago.attack(bot));
-        System.out.println(bot.defend(mago));
-        System.out.println(bot.getHp());
+        System.out.println(bot.attack(botp));
 
-        System.out.println(bot.attack(mago));
-        System.out.println(mago.ultimate(bot));
-        System.out.println(bot.defend(mago));
-        System.out.println(bot.getHp());
 
-        System.out.println(mago.attack(bot));
-        System.out.println(mago.attack(bot));
-        System.out.println(mago.attack(bot));
-        System.out.println(bot.attack(mago));
-
-        System.out.println(mago.getHp());
         System.out.println(bot.getHp());
+        System.out.println(botp.getHp());
 
 
 
