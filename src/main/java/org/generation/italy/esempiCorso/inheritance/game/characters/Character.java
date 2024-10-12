@@ -1,8 +1,11 @@
-package org.generation.italy.esempiCorso.inheritance.game;
+package org.generation.italy.esempiCorso.inheritance.game.characters;
+
+import org.generation.italy.esempiCorso.inheritance.game.Player;
+import org.generation.italy.esempiCorso.inheritance.game.bots.Bot;
 
 import java.time.LocalDate;
 
-public abstract class Character extends Player{
+public abstract class Character extends Player {
 
     //STATS
     private int str;
@@ -65,12 +68,14 @@ public abstract class Character extends Player{
 
     public abstract String getCharacterClass();
 
-    public abstract int attack(Character x);
+    public abstract int attack(Bot y);
 
-    public abstract int defend(Character x);
+    public abstract int defend(Bot y);
 
     public abstract boolean flee();
 
-    public abstract int ultimate(Character y);
+    public abstract int ultimate(Bot y);
+
+    public abstract int ultimate(Character x);
 
 }

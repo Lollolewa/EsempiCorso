@@ -1,14 +1,12 @@
-package org.generation.italy.esempiCorso.inheritance.game.characters.bots;
+package org.generation.italy.esempiCorso.inheritance.game.bots;
 
-import org.generation.italy.esempiCorso.inheritance.game.Character;
-import org.generation.italy.esempiCorso.inheritance.game.characters.Paladin;
+import org.generation.italy.esempiCorso.inheritance.game.characters.Character;
 
-import java.time.LocalDate;
-
-public class PaladinBot extends Paladin {
+public class PaladinBot extends Bot {
 
     public PaladinBot() {
-        //SET PALADIN STATS
+        //SET PALADIN BOT STATS
+        setBotLevel(1);
         setHp(200);
         setStr(13);
         setDex(13);
@@ -18,21 +16,25 @@ public class PaladinBot extends Paladin {
 
     //PALADIN ULTIMATE - HEAL
     @Override
-    public int ultimate(org.generation.italy.esempiCorso.inheritance.game.Character y) {
+    public int ultimate(Bot y) {
         int hp = getHp();
         hp += (int) ((getChr()+getIntel())*0.7);
         setHp(hp);
         return getHp();
     }
+    @Override
+    public int ultimate(Character x) {
+        return 0;
+    }
 
     //BASE ACTIONS
     @Override
-    public String getCharacterClass() {
-        return "You are a paladin!";
+    public String getBotClass() {
+        return "You are a bot paladin!";
     }
 
     @Override
-    public int attack(org.generation.italy.esempiCorso.inheritance.game.Character x) {
+    public int attack(Character x) {
         return getStr()+getChr()/2;
     }
 
@@ -48,11 +50,10 @@ public class PaladinBot extends Paladin {
     public boolean flee() {
         int randomIntInRange = (int) (Math.random() * .5);
         if(getHp()<=10 && randomIntInRange == 0){
-            System.out.println("You're lucky, you managed to flee with only "+getHp()+"HP.");
+            System.out.println("The enemy managed to escape with only "+getHp()+"HP.");
             return true;
 
         }else {
-            System.out.println("You chose to keep fighting until death!");
             return false;
         }
     }

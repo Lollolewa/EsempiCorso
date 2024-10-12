@@ -1,6 +1,6 @@
 package org.generation.italy.esempiCorso.inheritance.game.characters;
 
-import org.generation.italy.esempiCorso.inheritance.game.Character;
+import org.generation.italy.esempiCorso.inheritance.game.bots.Bot;
 
 import java.time.LocalDate;
 
@@ -17,17 +17,17 @@ public class Paladin extends Character {
         setChr(17);
     }
 
-    public Paladin(){
-
-    }
-
     //PALADIN ULTIMATE - HEAL
     @Override
-    public int ultimate(Character y) {
+    public int ultimate(Character x) {
         int hp = getHp();
         hp += (int) ((getChr()+getIntel())*0.7);
         setHp(hp);
         return getHp();
+    }
+    @Override
+    public int ultimate(Bot y) {
+        return 0;
     }
 
     //BASE ACTIONS
@@ -37,14 +37,14 @@ public class Paladin extends Character {
     }
 
     @Override
-    public int attack(Character x) {
+    public int attack(Bot y) {
         return getStr()+getChr()/2;
     }
 
     @Override
-    public int defend(Character x) {
+    public int defend(Bot y) {
         int hp = getHp();
-        int dmgTaken = ((attack(x)-getDex())/2);
+        int dmgTaken = ((attack(y)-getDex())/2);
         setHp(hp-dmgTaken);
         return getHp();
     }
