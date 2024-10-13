@@ -1,7 +1,4 @@
-package org.generation.italy.esempiCorso.inheritance;
-
-import org.generation.italy.esempiCorso.inheritance.school.Personnel;
-import org.generation.italy.esempiCorso.inheritance.school.Teacher;
+package org.generation.italy.esempiCorso.inheritance.school;
 
 import java.util.Arrays;
 
