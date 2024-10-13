@@ -8,10 +8,11 @@ public class Fight {
     public static void main(String[] args){
         Player player1 = new Player("Riccardo", "Rossi", "Lothar","Ciaociao", LocalDate.of(2022,12,25), true);
         Player player2 = new Player("Dario", "Verdi","Riku", "xdxd",LocalDate.of(2022,12,22), true);
-        Character character1 = new Paladin(player1.nome,player1.cognome, player1.nomePersonaggio, player1.password,player1.dataInizio,player1.isLogged, false, false, 35,25,20,30,250," ");
-        Character character2 = new Amazon(player2.nome,player2.cognome, player2.nomePersonaggio, player2.password,player2.dataInizio,player2.isLogged, false, false, 35,25,20,30,250," ");
+        Character character1 = new Paladin(player1.nome,player1.cognome, player1.nomePersonaggio, player1.password,player1.dataInizio,player1.isLogged, false, false, 35,25,20,30,250," ", false);
+        Character character2 = new Amazon(player2.nome,player2.cognome, player2.nomePersonaggio, player2.password,player2.dataInizio,player2.isLogged, false, false, 35,25,20,30,250," ", false);
         boolean isP1Logged = player1.login("Lothar","Ciaociao");
         boolean isP2Logged = player2.login("Riku","xdxd");
+        delay();
 
         while(isP1Logged && isP2Logged && !character1.dies && !character2.dies && !character1.runsAway && !character2.runsAway){
 
@@ -29,10 +30,14 @@ public class Fight {
 
             character1.isDead();
             character2.isDead();
+            delay();
+            character1.hasWon(character1,character2);
+
             double randomNum = ThreadLocalRandom.current().nextInt(0, 9 + 1);
             //System.out.println(randomNum);
-            if (randomNum <= 2) { //20% di possibilità (2/10)
+            if (randomNum <= 2) { //20% di probabilità (2/10)
                 character2.scappa();
+                character1.hasWon(character1,character2);
                 break;  //metto il break perchè altrimenti continua ad eseguire il resto del blocco di codice finchè non ricontrolla la condizione
             }
             boolean rand_bool2 = ThreadLocalRandom.current().nextBoolean(); //booleano random
@@ -48,13 +53,19 @@ public class Fight {
 
             character1.isDead();
             character2.isDead();
+            delay();
+            character1.hasWon(character2,character1);
 
             double randomNum2 = ThreadLocalRandom.current().nextInt(0, 9 + 1);
             //System.out.println(randomNum2);
-            if (randomNum2 <= 2) { //20% di possibilità (2/10)
+            if (randomNum2 <= 2) { //20% di probabilità (2/10)
                 character1.scappa();
+                character2.hasWon(character2,character1);
             }
         }
+        delay();
+        player1.logout();
+        player2.logout();
     }
     public static void delay () {
         try {

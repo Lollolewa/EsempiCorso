@@ -6,8 +6,8 @@ public class Rogue extends Character{
     public Rogue(String nome, String cognome, String nomePersonaggio, String password,
                  LocalDate dataInizio, boolean isLogged, boolean dies, boolean runsAway,
                  double forza, double intelligenza, double carisma, double agilita,
-                 double puntiVita, String name) {
-        super(nome, cognome, nomePersonaggio, password, dataInizio, isLogged, dies, runsAway, forza, intelligenza, carisma, agilita, puntiVita, name);
+                 double puntiVita, String name, boolean hasWon) {
+        super(nome, cognome, nomePersonaggio, password, dataInizio, isLogged, dies, runsAway, forza, intelligenza, carisma, agilita, puntiVita, name, hasWon);
     }
 
     @Override
@@ -43,6 +43,12 @@ public class Rogue extends Character{
         double nuovaInt = defender.agilita*0.06;
         defender.agilita = nuovaInt;
         System.out.println(nomePersonaggio + " incrementa la sua agilità di " + nuovaInt);
+    }
+    public void hasWon(Character character, Character enemy) {
+        if (enemy.dies || enemy.runsAway) {
+            character.hasWon = true;
+            System.out.println(character.nomePersonaggio + " ha vinto!");
+        }
     }
     public static void delay () {
         try {
