@@ -1,6 +1,7 @@
 package org.generation.italy.esempiCorso.inheritance.game.bots;
 
-import org.generation.italy.esempiCorso.inheritance.game.characters.Character;
+import org.generation.italy.esempiCorso.inheritance.game.Bot;
+import org.generation.italy.esempiCorso.inheritance.game.Character;
 
 public class PaladinBot extends Bot {
 
@@ -30,7 +31,7 @@ public class PaladinBot extends Bot {
     //BASE ACTIONS
     @Override
     public String getBotClass() {
-        return "You are a bot paladin!";
+        return "You are a paladin bot!";
     }
 
     @Override

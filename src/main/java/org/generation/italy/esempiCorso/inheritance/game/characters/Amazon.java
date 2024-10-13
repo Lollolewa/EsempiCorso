@@ -1,10 +1,11 @@
 package org.generation.italy.esempiCorso.inheritance.game.characters;
 
-import org.generation.italy.esempiCorso.inheritance.game.bots.Bot;
+import org.generation.italy.esempiCorso.inheritance.game.Character;
+import org.generation.italy.esempiCorso.inheritance.game.Bot;
 
 import java.time.LocalDate;
 
-public class Amazon extends Character {
+public class Amazon extends org.generation.italy.esempiCorso.inheritance.game.Character {
 
     public Amazon(String username, String name, String lastName, LocalDate doc, String password) {
         super(username, name, lastName, doc, password);
@@ -39,7 +40,7 @@ public class Amazon extends Character {
     //BASE ACTIONS
     @Override
     public String getCharacterClass() {
-        return "You are a mage!";
+        return "You are an amazon!";
     }
 
     @Override

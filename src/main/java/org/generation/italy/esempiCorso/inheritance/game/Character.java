@@ -1,7 +1,4 @@
-package org.generation.italy.esempiCorso.inheritance.game.characters;
-
-import org.generation.italy.esempiCorso.inheritance.game.Player;
-import org.generation.italy.esempiCorso.inheritance.game.bots.Bot;
+package org.generation.italy.esempiCorso.inheritance.game;
 
 import java.time.LocalDate;
 
@@ -16,10 +13,6 @@ public abstract class Character extends Player {
 
     public Character(String username, String name, String lastName, LocalDate doc, String password) {
         super(username, name, lastName, doc, password);
-    }
-
-    //BOT CONSTRUCTOR
-    public Character(){
     }
 
     //SETTERS
@@ -64,8 +57,7 @@ public abstract class Character extends Player {
         return chr;
     }
 
-
-
+    //ABSTRACT DEFAULT METHODS
     public abstract String getCharacterClass();
 
     public abstract int attack(Bot x);

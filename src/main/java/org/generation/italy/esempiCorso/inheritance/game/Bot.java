@@ -1,6 +1,4 @@
-package org.generation.italy.esempiCorso.inheritance.game.bots;
-
-import org.generation.italy.esempiCorso.inheritance.game.characters.Character;
+package org.generation.italy.esempiCorso.inheritance.game;
 
 public abstract class Bot {
 

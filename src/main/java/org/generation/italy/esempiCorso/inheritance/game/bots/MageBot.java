@@ -1,8 +1,9 @@
 package org.generation.italy.esempiCorso.inheritance.game.bots;
 
-import org.generation.italy.esempiCorso.inheritance.game.characters.Character;
+import org.generation.italy.esempiCorso.inheritance.game.Bot;
+import org.generation.italy.esempiCorso.inheritance.game.Character;
 
-public class MageBot extends Bot{
+public class MageBot extends Bot {
 
     public MageBot() {
         //SET MAGE BOT STATS
@@ -32,7 +33,7 @@ public class MageBot extends Bot{
     //BASE ACTIONS
     @Override
     public String getBotClass() {
-        return "You are a bot mage!";
+        return "You are a mage bot!";
     }
 
     @Override

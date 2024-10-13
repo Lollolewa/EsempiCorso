@@ -1,9 +1,7 @@
 package org.generation.italy.esempiCorso.inheritance.game.bots;
 
-import org.generation.italy.esempiCorso.inheritance.game.characters.Amazon;
-import org.generation.italy.esempiCorso.inheritance.game.characters.Character;
-
-import java.time.LocalDate;
+import org.generation.italy.esempiCorso.inheritance.game.Bot;
+import org.generation.italy.esempiCorso.inheritance.game.Character;
 
 public class AmazonBot extends Bot {
 
@@ -34,7 +32,7 @@ public class AmazonBot extends Bot {
     //BASE ACTIONS
     @Override
     public String getBotClass() {
-        return "You are a mage!";
+        return "You are an amazon Bot!";
     }
 
     @Override
@@ -54,11 +52,10 @@ public class AmazonBot extends Bot {
     public boolean flee() {
         int randomIntInRange = (int) (Math.random() * .7);
         if(getHp()<=10 && randomIntInRange == 0){
-            System.out.println("You're lucky, you managed to flee with only "+getHp()+"HP.");
+            System.out.println("The enemy managed to escape with only "+getHp()+"HP.");
             return true;
 
         }else {
-            System.out.println("You chose to keep fighting until death!");
             return false;
         }
     }
