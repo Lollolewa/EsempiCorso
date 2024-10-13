@@ -1,21 +1,20 @@
 package org.generation.italy.esempiCorso.inheritance.game;
 
-import java.time.LocalDate;
+public abstract class Bot {
 
-public abstract class Character extends Player {
-
-    //STATS
+    //BOT STATS
+    private int botLevel;
     private int str;
     private int intel;
     private int dex;
     private int hp;
     private int chr;
 
-    public Character(String username, String name, String lastName, LocalDate doc, String password) {
-        super(username, name, lastName, doc, password);
+    //SETTERS
+    public void setBotLevel(int botLevel) {
+        this.botLevel = botLevel;
     }
 
-    //SETTERS
     public void setStr(int str) {
         this.str = str;
     }
@@ -37,6 +36,10 @@ public abstract class Character extends Player {
     }
 
     //GETTERS
+    public int getBotLevel() {
+        return botLevel;
+    }
+
     public int getStr() {
         return str;
     }
@@ -57,17 +60,17 @@ public abstract class Character extends Player {
         return chr;
     }
 
-    //ABSTRACT DEFAULT METHODS
-    public abstract String getCharacterClass();
+    //ABSTRACT BOT METHODS
+    public abstract String getBotClass();
 
-    public abstract int attack(Bot x);
+    public abstract int attack(Character x);
 
-    public abstract int defend(Bot x);
+    public abstract int defend(Character x);
 
     public abstract boolean flee();
 
-    public abstract int ultimate(Bot x);
-
     public abstract int ultimate(Character x);
+
+    public abstract int ultimate(Bot x);
 
 }

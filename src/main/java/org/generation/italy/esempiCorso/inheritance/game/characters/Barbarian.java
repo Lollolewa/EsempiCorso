@@ -5,27 +5,24 @@ import org.generation.italy.esempiCorso.inheritance.game.Bot;
 
 import java.time.LocalDate;
 
-public class Paladin extends org.generation.italy.esempiCorso.inheritance.game.Character {
-
-    public Paladin(String username, String name, String lastName, LocalDate doc, String password) {
+public class Barbarian extends org.generation.italy.esempiCorso.inheritance.game.Character {
+    public Barbarian(String username, String name, String lastName, LocalDate doc, String password) {
         super(username, name, lastName, doc, password);
-
-        //SET PALADIN STATS
-        setHp(200);
-        setStr(13);
-        setDex(13);
-        setIntel(11);
-        setChr(17);
+        //SET BARBARIAN STATS
+        setHp(150);
+        setStr(20);
+        setDex(10);
+        setIntel(5);
+        setChr(5);
     }
 
-    //PALADIN ULTIMATE - HEAL
+    //BARBARIAN ULTIMATE - BERSERK
     @Override
     public int ultimate(Character x) {
-        int hp = getHp();
-        hp += (int) ((getChr()+getIntel())*0.7);
-        setHp(hp);
-        return getHp();
+        setStr(30);
+        return getStr()+getDex()/2;
     }
+
     @Override
     public int ultimate(Bot x) {
         return 0;
@@ -34,12 +31,12 @@ public class Paladin extends org.generation.italy.esempiCorso.inheritance.game.C
     //BASE ACTIONS
     @Override
     public String getCharacterClass() {
-        return "You are a paladin!";
+        return "You are a barbarian!";
     }
 
     @Override
     public int attack(Bot x) {
-        return getStr()+getChr()/2;
+        return getStr()+getDex()/2;
     }
 
     @Override
@@ -52,7 +49,7 @@ public class Paladin extends org.generation.italy.esempiCorso.inheritance.game.C
 
     @Override
     public boolean flee() {
-        int randomIntInRange = (int) (Math.random() * .5);
+        int randomIntInRange = (int) (Math.random() * .7);
         if(getHp()<=10 && randomIntInRange == 0){
             System.out.println("You're lucky, you managed to flee with only "+getHp()+"HP.");
             return true;
@@ -62,5 +59,5 @@ public class Paladin extends org.generation.italy.esempiCorso.inheritance.game.C
             return false;
         }
     }
-
 }
+

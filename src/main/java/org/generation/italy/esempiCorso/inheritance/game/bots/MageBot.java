@@ -1,14 +1,13 @@
-package org.generation.italy.esempiCorso.inheritance.game.characters.bots;
+package org.generation.italy.esempiCorso.inheritance.game.bots;
 
+import org.generation.italy.esempiCorso.inheritance.game.Bot;
 import org.generation.italy.esempiCorso.inheritance.game.Character;
-import org.generation.italy.esempiCorso.inheritance.game.characters.Mage;
 
-import java.time.LocalDate;
-
-public class MageBot extends Mage{
+public class MageBot extends Bot {
 
     public MageBot() {
         //SET MAGE BOT STATS
+        setBotLevel(1);
         setHp(100);
         setStr(8);
         setDex(9);
@@ -18,7 +17,7 @@ public class MageBot extends Mage{
 
     //MAGE ULTIMATE - FIREBALL
     @Override
-    public int ultimate(org.generation.italy.esempiCorso.inheritance.game.Character x) {
+    public int ultimate(Character x) {
         int hp = x.getHp();
         hp -= getIntel()*4;
         int dmg = x.getHp()-hp;
@@ -26,10 +25,15 @@ public class MageBot extends Mage{
         return dmg;
     }
 
+    @Override
+    public int ultimate(Bot y) {
+        return 0;
+    }
+
     //BASE ACTIONS
     @Override
-    public String getCharacterClass() {
-        return "You are a bot mage!";
+    public String getBotClass() {
+        return "You are a mage bot!";
     }
 
     @Override
@@ -49,11 +53,10 @@ public class MageBot extends Mage{
     public boolean flee() {
         int randomIntInRange = (int) (Math.random() * .7);
         if(getHp()<=10 && randomIntInRange == 0){
-            System.out.println("You're lucky, you managed to flee with only "+getHp()+"HP.");
+            System.out.println("The enemy managed to escape with only "+getHp()+"HP.");
             return true;
 
         }else {
-            System.out.println("You chose to keep fighting until death!");
             return false;
         }
     }
