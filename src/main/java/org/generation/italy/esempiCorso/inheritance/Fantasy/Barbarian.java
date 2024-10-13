@@ -2,18 +2,18 @@ package org.generation.italy.esempiCorso.inheritance.Fantasy;
 
 import java.time.LocalDate;
 
-public class Paladin extends Character {
-
-    public Paladin(String nome, String cognome, String nomePersonaggio, String password, LocalDate dataInizio, boolean isLogged, boolean dies,
-                   boolean runsAway, double forza, double intelligenza, double carisma, double agilita, double puntiVita, String name) {
+public class Barbarian extends Character{
+    public Barbarian(String nome, String cognome, String nomePersonaggio, String password, LocalDate dataInizio,
+                     boolean isLogged, boolean dies, boolean runsAway, double forza, double intelligenza, double carisma,
+                     double agilita, double puntiVita, String name) {
         super(nome, cognome, nomePersonaggio, password, dataInizio, isLogged, dies, runsAway, forza, intelligenza, carisma, agilita, puntiVita, name);
     }
 
     @Override
     public void attaccoSpeciale(Character target, Character attacker){
-        double cura = attacker.puntiVita*0.3;
-        attacker.puntiVita += cura;
-        System.out.println(nomePersonaggio + " usa l'attacco speciale, e si cura di " + cura + "!");
+        System.out.println(nomePersonaggio + " usa l'attacco speciale Berserk!");
+        target.puntiVita -= attacker.forza*2;
+        attacker.puntiVita = attacker.puntiVita*0.2;
     }
 
     @Override
@@ -28,8 +28,8 @@ public class Paladin extends Character {
         delay();
         double beforeAttack = defender.puntiVita;
         double enemysStrength = enemy.forza;
-        defender.puntiVita -= enemy.forza*0.7;
-        System.out.println(enemy.nomePersonaggio + " ha tolto " + enemysStrength + " su " + beforeAttack + " punti vita di " + defender.nomePersonaggio + ".");
+        defender.puntiVita -= defender.forza;
+        System.out.println(enemy.nomePersonaggio + " ha tolto " + enemysStrength + " su " + beforeAttack + " punti vita rimasti a " + defender.nomePersonaggio + ".");
     }
     public static void delay () {
         try {
