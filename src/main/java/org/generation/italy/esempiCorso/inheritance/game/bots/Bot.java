@@ -73,6 +73,6 @@ public abstract class Bot {
 
     public abstract int ultimate(Character x);
 
-    public abstract int ultimate(Bot y);
+    public abstract int ultimate(Bot x);
 
 }

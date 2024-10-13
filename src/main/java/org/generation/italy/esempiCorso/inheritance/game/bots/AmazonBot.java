@@ -1,48 +1,49 @@
-package org.generation.italy.esempiCorso.inheritance.game.characters;
+package org.generation.italy.esempiCorso.inheritance.game.bots;
 
-import org.generation.italy.esempiCorso.inheritance.game.bots.Bot;
+import org.generation.italy.esempiCorso.inheritance.game.characters.Amazon;
+import org.generation.italy.esempiCorso.inheritance.game.characters.Character;
 
 import java.time.LocalDate;
 
-public class Mage extends Character {
+public class AmazonBot extends Bot {
 
-    public Mage(String username, String name, String lastName, LocalDate doc, String password) {
-        super(username, name, lastName, doc, password);
-        //SET MAGE STATS
-        setHp(100);
-        setStr(8);
-        setDex(9);
-        setIntel(20);
-        setChr(10);
+    public AmazonBot() {
+        setBotLevel(1);
+        setHp(120);
+        setStr(9);
+        setDex(18);
+        setIntel(14);
+        setChr(20);
     }
 
-    //MAGE ULTIMATE - FIREBALL
+    //AMAZON ULTIMATE - CASTRATION
     @Override
-    public int ultimate(Bot x) {
+    public int ultimate(Character x) {
         int hp = x.getHp();
-        hp -= getIntel()*4;
+        hp = 0;
         int dmg = x.getHp()-hp;
         x.setHp(hp);
         return dmg;
     }
+
     @Override
-    public int ultimate(Character x) {
+    public int ultimate(Bot y) {
         return 0;
     }
 
     //BASE ACTIONS
     @Override
-    public String getCharacterClass() {
+    public String getBotClass() {
         return "You are a mage!";
     }
 
     @Override
-    public int attack(Bot x) {
+    public int attack(Character x) {
         return getIntel()+getChr()/2;
     }
 
     @Override
-    public int defend(Bot x) {
+    public int defend(Character x) {
         int hp = getHp();
         int dmgTaken = ((attack(x)-getDex())/2);
         setHp(hp-dmgTaken);

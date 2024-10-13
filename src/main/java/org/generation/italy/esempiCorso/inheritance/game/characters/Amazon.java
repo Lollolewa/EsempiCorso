@@ -4,41 +4,47 @@ import org.generation.italy.esempiCorso.inheritance.game.bots.Bot;
 
 import java.time.LocalDate;
 
-public class Paladin extends Character {
+public class Amazon extends Character {
 
-    public Paladin(String username, String name, String lastName, LocalDate doc, String password) {
+    public Amazon(String username, String name, String lastName, LocalDate doc, String password) {
         super(username, name, lastName, doc, password);
-
-        //SET PALADIN STATS
-        setHp(200);
-        setStr(13);
-        setDex(13);
-        setIntel(11);
-        setChr(17);
+        //SET AMAZON STATS
+        setHp(120);
+        setStr(9);
+        setDex(18);
+        setIntel(14);
+        setChr(20);
     }
 
-    //PALADIN ULTIMATE - HEAL
-    @Override
-    public int ultimate(Character x) {
-        int hp = getHp();
-        hp += (int) ((getChr()+getIntel())*0.7);
-        setHp(hp);
-        return getHp();
-    }
+    //AMAZON ULTIMATE - CASTRATION
     @Override
     public int ultimate(Bot x) {
+        int dmg = 0;
+        if (x != x) {
+            int hp = x.getHp();
+            hp = 0;
+            dmg = x.getHp()-hp;
+            x.setHp(hp);
+            return dmg;
+        } else {
+            return dmg;
+        }
+
+    }
+    @Override
+    public int ultimate(Character x) {
         return 0;
     }
 
     //BASE ACTIONS
     @Override
     public String getCharacterClass() {
-        return "You are a paladin!";
+        return "You are a mage!";
     }
 
     @Override
     public int attack(Bot x) {
-        return getStr()+getChr()/2;
+        return getIntel()+getChr()/2;
     }
 
     @Override
@@ -51,7 +57,7 @@ public class Paladin extends Character {
 
     @Override
     public boolean flee() {
-        int randomIntInRange = (int) (Math.random() * .5);
+        int randomIntInRange = (int) (Math.random() * .7);
         if(getHp()<=10 && randomIntInRange == 0){
             System.out.println("You're lucky, you managed to flee with only "+getHp()+"HP.");
             return true;
@@ -61,5 +67,6 @@ public class Paladin extends Character {
             return false;
         }
     }
-
 }
+
+

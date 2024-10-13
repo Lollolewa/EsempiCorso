@@ -68,13 +68,13 @@ public abstract class Character extends Player {
 
     public abstract String getCharacterClass();
 
-    public abstract int attack(Bot y);
+    public abstract int attack(Bot x);
 
-    public abstract int defend(Bot y);
+    public abstract int defend(Bot x);
 
     public abstract boolean flee();
 
-    public abstract int ultimate(Bot y);
+    public abstract int ultimate(Bot x);
 
     public abstract int ultimate(Character x);
 
