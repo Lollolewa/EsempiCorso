@@ -29,7 +29,7 @@ public class Player {
     }
     public void logout(){
         isLogged = false;
-        System.out.println("Logout effettuato.");
+        System.out.println(nomePersonaggio + ": Logout effettuato.");
     }
     public void setCharacter(Character character) {
         this.character = character;

@@ -35,7 +35,7 @@ public class Fight {
 
             double randomNum = ThreadLocalRandom.current().nextInt(0, 9 + 1);
             //System.out.println(randomNum);
-            if (randomNum <= 2) { //20% di probabilità (2/10)
+            if (randomNum <= 2 && !character1.hasWon) { //20% di probabilità (2/10)
                 character2.scappa();
                 character1.hasWon(character1,character2);
                 break;  //metto il break perchè altrimenti continua ad eseguire il resto del blocco di codice finchè non ricontrolla la condizione
@@ -54,11 +54,11 @@ public class Fight {
             character1.isDead();
             character2.isDead();
             delay();
-            character1.hasWon(character2,character1);
+            character2.hasWon(character2,character1);
 
             double randomNum2 = ThreadLocalRandom.current().nextInt(0, 9 + 1);
             //System.out.println(randomNum2);
-            if (randomNum2 <= 2) { //20% di probabilità (2/10)
+            if (randomNum2 <= 2 && !character2.hasWon) { //20% di probabilità (2/10)
                 character1.scappa();
                 character2.hasWon(character2,character1);
             }
