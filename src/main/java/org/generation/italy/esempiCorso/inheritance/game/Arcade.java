@@ -9,7 +9,7 @@ public class Arcade {
 
       Player p1 = new Paladin("BobbyRocket", "Bobby", "Rocket", LocalDate.of(2020, 05, 02), "pippo", true);
 
-
+    System.out.println(p1.toString());
 
     }
 }
