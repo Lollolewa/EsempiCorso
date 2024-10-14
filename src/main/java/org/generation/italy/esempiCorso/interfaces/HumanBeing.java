@@ -1,13 +1,15 @@
 package org.generation.italy.esempiCorso.interfaces;
 
-public interface HumanBeing {
-    static final int maxAge = 120;
-    //default public static final
-    void speak();
-    //visibilita' sempre public_ sottotinteso, idem abstract
+ interface  HumanBeing {
+  public static final int maxAge = 120;
+   //default public static final
+    //final = costante
+    //static =
+    public abstract void speak();
+     //visibilita' sempre public_ sottotinteso, idem abstract
     //no metodi privati
 
-    void eat();
-    void work(int hours);
+    public abstract void eat();
+    public abstract void work(int hours);
 
 }
