@@ -3,7 +3,7 @@ package org.generation.italy.esempiCorso.interfaces;
 public class Circle {
     private double radius;
     //variabile statica = dipende dalla classe, non dagli oggetti,
-    //esiste una sola variabile radius
+    //.esiste una sola variabile radius
      private final static double maxRadius=1000;
      private static int counter = 0;
 
@@ -22,7 +22,7 @@ public class Circle {
        // Math m2 = new Math();
        // double r = m1.sin(10);
        // double r2 = m2.sin(10);
-        double x = Math.sin(10);
+        double x = Math.sin(20);
     }
 
 
