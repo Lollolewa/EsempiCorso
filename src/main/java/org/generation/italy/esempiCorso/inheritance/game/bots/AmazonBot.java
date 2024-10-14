@@ -59,6 +59,7 @@ public class AmazonBot extends Bot {
             return false;
         }
     }
+
 }
 
 
