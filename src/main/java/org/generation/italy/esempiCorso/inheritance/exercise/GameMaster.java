@@ -30,31 +30,7 @@ public class GameMaster {
             }
         } while (!p1.userName.equals(usName) || !p1.password.equals(pw));
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         //logout
-
-
-
-
-
-
 
     sc.close();
     }
@@ -75,7 +51,7 @@ public class GameMaster {
         sc.nextLine();
     }
 
-    /*
+
     public static Character getCharacterClass(Player p){
         Scanner sc = new Scanner(System.in);
         String classChoice;
@@ -103,6 +79,5 @@ public class GameMaster {
         } while (!classChoice.equalsIgnoreCase("Amazon") && !classChoice.equalsIgnoreCase("Barbarian") && !classChoice.equalsIgnoreCase("Mage") && !classChoice.equalsIgnoreCase("Paladin") && !classChoice.equalsIgnoreCase("Rogue"));
         return null;
     }
-    */
 }
 
