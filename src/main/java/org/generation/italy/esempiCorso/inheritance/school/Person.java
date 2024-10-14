@@ -1,23 +1,20 @@
 package org.generation.italy.esempiCorso.inheritance.school;
 
-public abstract class Person {
-
+public class Person {
+    // le classi servono per creare oggetti e altre classi
     protected String name, surname;
     protected int age;
+
+    // protected viene vista dalle classi figlie (ereditarietà), ha anche visibilità di package (ma non è public)
 
     public Person(String name, String surname, int age){
         this.name = name;
         this.surname = surname;
         this.age = age;
     }
-    @Override
+
     public String toString(){
-        return String.format("Ciao sono %s %s e ho %d anni", name,surname,age);
+        return String.format("Nome: %s %nCognome: %s %nEta': %d %n%n", name, surname, age);
     }
-    public void eat(){
-        System.out.println("Me magno 'na carbonara");
-    }
-    public void chat(){
-        System.out.println("Faccio due chiacchiere.");
-    }
+    //
 }
