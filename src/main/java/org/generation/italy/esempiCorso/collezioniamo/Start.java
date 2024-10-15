@@ -31,7 +31,7 @@ public class Start {
         }
 
         List<Prodotto> listLink = new LinkedList<>();
-        listLink.add(new Prodotto("pane", 4));
+            listLink.add(new Prodotto("pane", 4));
         // il prodotto viene wrappato dentro un altro oggetto
         // il nuovo oggetto conterrà l'oggetto in questione + 2 reference; una all'oggetto precedente, una al successivo
         // prodotto1 <-> prodotto2 <-> prodotto3

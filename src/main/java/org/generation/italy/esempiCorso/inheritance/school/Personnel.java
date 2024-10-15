@@ -22,7 +22,6 @@ public class Personnel extends Employee {
     public void doAdministration(){
 
     }
-    @Override
     public void doWork(int hours){
         System.out.println("Uso excel");
     }
