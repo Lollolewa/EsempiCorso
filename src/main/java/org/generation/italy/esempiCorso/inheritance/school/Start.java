@@ -1,5 +1,6 @@
 package org.generation.italy.esempiCorso.inheritance.school;
 
+<<<<<<<< HEAD:src/main/java/org/generation/italy/esempiCorso/inheritance/school/Start.java
 import java.util.Arrays;
 
 public class Start {
@@ -17,6 +18,11 @@ public class Start {
         String[] arrayDiRocket = {"\uD83D\uDE80,\uD83D\uDE80,\uD83D\uDE80,\uD83D\uDE80,\uD83D\uDE80,\uD83D\uDE80,\uD83D\uDE80,\uD83D\uDE80,\uD83D\uDE80,\uD83D\uDE80"};
         System.out.println(Arrays.toString(arrayDiRocket));
 
+========
+public class Start {
+    public static void main(String[] args){
+        System.out.println("testing github");
+        System.out.println("Aggiunto da Alessia");
+>>>>>>>> PietroMarinari:src/main/java/org/generation/italy/esempiCorso/inheritance/Start.java
     }
-
 }
