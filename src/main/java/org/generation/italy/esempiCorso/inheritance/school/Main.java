@@ -35,6 +35,11 @@ public class Main {
     }
     //commento nerd: one reference to role them all
     public static void makeInterval(Person q){
+        //virtual machine fa questo in automatico
+        //if(q.getClass()== Teacher.class){
+        //  Teacher t = (Teacher) q;
+        //  t.eat();
+        //}
         q.eat();
         q.chat();
     }
@@ -43,18 +48,21 @@ public class Main {
             ps[i].eat();
             ps[i].chat();
         }
-        // S: principio di responsabilità singole(ogni classe deve avere una sola responsabilità
+        // S: principio di responsabilità singole(ogni classe deve avere una sola responsabilità)
         //1.motivo diventa una classe grassa
-        //2.motivo quando modifichi la classe cambia anche tutto quello che viene dopo
+        //2.motivo quando modifichi la classe cambia anche tutto quello che viene dopo(probabile bug)
         // O: open.closed (il codice deve essere aperto all'estensione ma chiuso alla modifica
         // (rendere possiibile aumentare le funzioni del programma, modificare il meno possibile il codice già esistente)
-        // L:
+        // L: principio di Liskov, se la struttura del programma è corretta deve essere sempre possibile sostituire una figlia con un'altra senza interruzioni del programma
         // I:
         // D:
     }
     public static void startWorkDay(Employee e){
         e.chat();
-        e.doWork(3);
+        if(e.getClass()!= Stagista.class){
+            e.doWork(3);
+        } //violazione del principio
+        // e.doWork(3); lo stagista non lavora
         e.eat();
         e.chat();
         e.doWork(3);
