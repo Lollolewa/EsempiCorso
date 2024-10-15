@@ -1,45 +1,43 @@
 package org.generation.italy.esempiCorso.inheritance.game.characters;
 
-import org.generation.italy.esempiCorso.inheritance.game.Character;
 import org.generation.italy.esempiCorso.inheritance.game.Bot;
+import org.generation.italy.esempiCorso.inheritance.game.Character;
 
 import java.time.LocalDate;
 
-public class Paladin extends org.generation.italy.esempiCorso.inheritance.game.Character {
+public class Rogue extends Character {
 
-    public Paladin(String username, String name, String lastName, LocalDate doc, String password) {
+    public Rogue(String username, String name, String lastName, LocalDate doc, String password) {
         super(username, name, lastName, doc, password);
-
-        //SET PALADIN STATS
-        setHp(200);
-        setStr(13);
-        setDex(13);
-        setIntel(11);
-        setChr(17);
+        //SET ROGUE STATS
+        setHp(110);
+        setStr(9);
+        setDex(17);
+        setIntel(18);
+        setChr(9);
     }
 
-    //PALADIN ULTIMATE - HEAL
-    @Override
-    public int ultimate(Character x) {
-        int hp = getHp();
-        hp += (int) ((getChr()+getIntel())*0.7);
-        setHp(hp);
-        return getHp();
-    }
+    //ROGUE ULTIMATE - STEAL
     @Override
     public int ultimate(Bot x) {
+        int stealStr = x.getStr() - 3;
+        x.setStr(stealStr);
+        return getStr() - stealStr;
+    }
+    @Override
+    public int ultimate(Character x) {
         return 0;
     }
 
     //BASE ACTIONS
     @Override
     public String getCharacterClass() {
-        return "You are a paladin!";
+        return "You are a rogue!";
     }
 
     @Override
     public int attack(Bot x) {
-        return getStr()+getChr()/2;
+        return getDex()+getChr()/2;
     }
 
     @Override
@@ -52,7 +50,7 @@ public class Paladin extends org.generation.italy.esempiCorso.inheritance.game.C
 
     @Override
     public boolean flee() {
-        int randomIntInRange = (int) (Math.random() * .5);
+        int randomIntInRange = (int) (Math.random() * .7);
         if(getHp()<=10 && randomIntInRange == 0){
             System.out.println("You're lucky, you managed to flee with only "+getHp()+"HP.");
             return true;
@@ -62,5 +60,4 @@ public class Paladin extends org.generation.italy.esempiCorso.inheritance.game.C
             return false;
         }
     }
-
 }
