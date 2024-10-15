@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.Scanner;
 
 public class GameMaster {
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Player p1 = new Player();
         playerCreation(p1);
         System.out.println(p1.toString());
@@ -52,5 +52,5 @@ public class GameMaster {
             }
         } while (!classChoice.equalsIgnoreCase("Amazon") && !classChoice.equalsIgnoreCase("Barbarian") && !classChoice.equalsIgnoreCase("Mage") && !classChoice.equalsIgnoreCase("Paladin") && !classChoice.equalsIgnoreCase("Rogue"));
 
-    }
+    }*/
 }
