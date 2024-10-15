@@ -61,6 +61,7 @@ public class Start {
 
 
         //--------------------------------------------------------------------
+
         //Set:
         //Il set non è una lista, è un insieme di elementi però non è ordinato e non ammette duplicati.
 
@@ -87,11 +88,22 @@ public class Start {
         }
 
         Set<Prodotto> prodotti = new HashSet<>();
-        prodotti.add(new Prodotto("Pane", 1));
-        prodotti.add(new Prodotto("Pane", 1));
 
-        System.out.println(prodotti.size()); //puntano a indirizzi diversi, quindi java non li vede come oggetti uguali, pur avendo le
+        Prodotto p1 = new Prodotto("Pane", 1);
+        Prodotto p2 = new Prodotto("Pane", 1);
+        prodotti.add(p1);
+        prodotti.add(p2);
+        System.out.println("Size: " + prodotti.size()); //puntano a indirizzi diversi, quindi java non li vede come oggetti uguali, pur avendo le
                                             // variabili identiche;
+        boolean r = p1.equals(p2); //il punto equals "base" controlla che se gli indirizzi sono uguali o meno, perciò ritorna comunque false
+                                  // nonostante i prodotti, essenzialmente, siano uguali (hanno contenuto informativo uguale;
+                                 // per risolvere il problema, si va all'interno della classe dell'oggetto e si overrida il metodo equals
+        System.out.println(".equals = " + r); //aggiustando il .equals stamperà true, ma il size darà ancora 2 invece di 1.
+
+
+
+
+        //-------------------------------------------------------------------------------------------------------------
 
         //se due oggetti hanno contenuto informativo uguale, ovvero hanno i valori delle variabili identici,
         //non è detto che siano lo stesso oggetto.
@@ -130,9 +142,13 @@ public class Start {
         String st2 = new String("Pippo");
         System.out.println(st1==st2); //in questo caso stamperà false.
 
-        Prodotto p1 = new Prodotto("Bicicletta", 100);
-        Prodotto p2 = new Prodotto("Bicicletta", 100);
+        Prodotto prd1 = new Prodotto("Bicicletta", 100);
+        Prodotto prd2 = new Prodotto("Bicicletta", 100);
         System.out.println(p1==p2); //stampa false perchè paragona i due indirizzi degli oggetti, non il contenuto;
+
+
+
+        //-------------------------------------------------------------------------------------------------------------
 
         //Iterable > Collection > List > ArrayList, LinkedList;
         //Arraylist e LinkedList implementano List, che implementa collection che implementa iterable (che è la collection "madre");
@@ -144,7 +160,7 @@ public class Start {
         //è importante quindi essere più generali possibile ma sempre in base a cosa dobbiamo fare con quel determinato elemento (in questo caso un arraylist)
         //o con quel determinato metodo
 
-        List<String> result = findStartingWithS(List.of("casa", "cipolla", "scopa", "scuola", "lombrico", "suola"));
+        List<String> result = findStartingWithS(List.of("casa", "cipolla", "scopa", "Scuola", "lombrico", "suola", "Sium"));
 
         System.out.println(result);
     }
@@ -154,7 +170,7 @@ public class Start {
 
         List<String> paroleRitorno = new ArrayList<>();
         for(String parola : stringhe) {
-            if(parola.charAt(0) == 's') {
+            if(parola.charAt(0) == 's' || parola.charAt(0) == 'S') {
                 paroleRitorno.add(parola);
             }
         }
