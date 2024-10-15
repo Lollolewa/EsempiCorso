@@ -7,13 +7,7 @@ public class Triangolo extends Forma{
     }
 
     @Override
-    public int calcolaArea(){
-        int area = base*altezza/2;
-        return area;
-    }
-
-    @Override
-    public String toString(){
-        return String.format("Il triangolo con base: %d e altezza: %d %nHa un area di: %d", base,altezza, calcolaArea());
+    public int calcolaArea() {
+        return base*altezza/2;
     }
 }
