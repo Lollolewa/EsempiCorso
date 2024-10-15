@@ -13,7 +13,9 @@ public class Barbarian extends Character {
     public void defend(){
 
     }
-    public void Berserk(){
-
+    public void berserk(){
+        if (hp < (hp/10)) {
+            strength += strength*50/100;
+        }
     }
 }

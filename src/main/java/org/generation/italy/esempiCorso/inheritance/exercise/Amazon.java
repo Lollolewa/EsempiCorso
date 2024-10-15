@@ -15,7 +15,10 @@ public class Amazon extends Character {
     public void defend(){
 
     }
-    public void Castrate(){
-
+    public void castrate(){
+        System.out.println(name + ": I...");
+        //attesa
+        System.out.println("Really don't like balls...");
+        //p2 è stato castrato. Malus?
     }
 }

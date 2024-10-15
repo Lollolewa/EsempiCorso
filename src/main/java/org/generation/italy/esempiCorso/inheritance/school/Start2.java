@@ -1,11 +1,6 @@
-package org.generation.italy.esempiCorso.inheritance;
+package org.generation.italy.esempiCorso.inheritance.school;
 
-import org.generation.italy.esempiCorso.inheritance.school.Employee;
-import org.generation.italy.esempiCorso.inheritance.school.Person;
-import org.generation.italy.esempiCorso.inheritance.school.Personnel;
-import org.generation.italy.esempiCorso.inheritance.school.Teacher;
-
-public class Start {
+public class Start2 {
     public static void main(String[] args){
 
         Teacher teacher = new Teacher("Michael", "Johnson", 35,"Math",11, 2500, 14);

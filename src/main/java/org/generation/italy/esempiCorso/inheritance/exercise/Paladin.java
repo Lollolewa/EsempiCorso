@@ -13,7 +13,7 @@ public class Paladin extends Character {
     public void defend(){
 
     }
-    public void Heal(){
-
+    public void heal(){
+        hp += hp*50/100;
     }
 }

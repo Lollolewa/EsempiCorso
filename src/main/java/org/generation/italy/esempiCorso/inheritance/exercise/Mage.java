@@ -14,7 +14,7 @@ public class Mage extends Character{
     public void defend(){
 
     }
-    public void Berserk(){
+    public void fireball(){
 
     }
 }

@@ -30,7 +30,23 @@ public class GameMaster {
             }
         } while (!p1.userName.equals(usName) || !p1.password.equals(pw));
 
+        //menù
 
+//        System.out.println("Scegli cosa vuoi fare: \n"             +
+//                            "Combattere con un amico\n"            +
+//                            "Combattere contro il pc\n"            +
+//                            "Logout\n"                 );
+//        String choice = sc.nextLine();
+//        if(choice.equalsIgnoreCase("Combattere con un amico")) {
+//            return gameplay; //crea nuovo pg e combatti?
+//        } else if (choice.equalsIgnoreCase("Combattere contro il pc")) {
+//            return gameplay con pc;
+//        } else if (choice.equalsIgnoreCase("Logout")) {
+//            return p1.logout();
+//        }
+
+
+        //gameplay
 
 
 
