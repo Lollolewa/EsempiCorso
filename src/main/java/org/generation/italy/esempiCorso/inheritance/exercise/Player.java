@@ -1,20 +1,20 @@
 package org.generation.italy.esempiCorso.inheritance.exercise;
 
 import java.time.LocalDate;
+import java.util.Scanner;
 
 public class Player {
     protected String nome, cognome, nomePersonaggio, password;
     protected LocalDate dataInizio;
     protected boolean isLogged;
-    protected Character character;
-
-    public Player(String nome, String cognome, String nomePersonaggio, String password, LocalDate dataInizio, boolean isLogged) {
+    Scanner sc = new Scanner(System.in);
+    public Player(String nome, String cognome, String nomePersonaggio, String password) {
         this.nome = nome;
         this.cognome = cognome;
         this.nomePersonaggio = nomePersonaggio;
         this.password = password;
-        this.dataInizio = dataInizio;
-        this.isLogged = isLogged;
+        this.dataInizio = LocalDate.now();
+        this.isLogged = false;
     }
     public void login(String nomePersonaggio, String password){
         if(this.nomePersonaggio.equalsIgnoreCase(nomePersonaggio) && this.password.equalsIgnoreCase(password)){
@@ -29,22 +29,5 @@ public class Player {
         isLogged = false;
         System.out.println("Logout effettuato");
     }
-    public void setCharacter(Character character) {
-        this.character = character;
-        System.out.println(character.getName() + " è stato assegnato a " + name + " " + cognome);
-    }
-
-    public Character getCharacter() {
-        return character;
-    }
-    public void setCharacter(Character character) {
-        this.character = character;
-        System.out.println(character.getName() + " è stato assegnato a " + name + " " + cognome);
-        this.character = character.getName();
-    }
-    //public void setCharacter(Character character) {
-       // this.character = character;
-        //System.out.println(character.getName() + " è stato assegnato a " + nome + " " + cognome);
-    //}
 
 }
