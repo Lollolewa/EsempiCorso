@@ -46,13 +46,14 @@ public class iteriamo {
         //ciò dovrebbe dare false, ma invece non lo fa perchè quando crei una stringa noi creamo una cella di memoria specifica a cui tutti le stringhe future con gli stessi caratteri punteranno;
         //in poche parole su Java non è possibile modificare stringhe, perche creandone una appunto andiamo ad allocarla ad una specifica cella di memoria,
         //e quando la modifichiamo semplicemente cambiamo l'indiritto della stringa da noi creata;
+
         Prodotto uno = new Prodotto("topo", 5);
+        Prodotto due =new Prodotto("topo",5);
+        Boolean grr = uno.equals(due); //la funzione equals, che viene eredita da "object" non fa altro che confrontare le reference, non va bene per verificare se 2 oggetti sono uguali;
+        System.out.println(grr);        //se vogliamo che la funzione .equals verifichi come vogliamo noi, ovvero in questo caso 2 oggetti prodotto sono uguali se hanno lo stesso prezzo e descrizione;
         System.out.println(uno.inutile());
         System.out.println(prodotti.get(0).inutile());
-
-
-
-
-
+        System.out.println(uno.equals(due)); //ora la funzione equal, con le ovverride fatte nella funzione, fa il suo lavoro come si deve! GG;
     }
+
 }
