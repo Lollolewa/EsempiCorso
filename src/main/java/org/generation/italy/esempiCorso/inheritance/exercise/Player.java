@@ -1,11 +1,17 @@
 package org.generation.italy.esempiCorso.inheritance.exercise;
 
 import java.time.LocalDate;
+import java.util.Scanner;
+import java.time.format.DateTimeFormatter;
 
 public class Player {
     protected String name, surname, userName, password;
     protected boolean isLogged;
     protected LocalDate startDate;
+
+    public Player(){
+
+    }
 
     public Player(String name, String surname, String userName, String password, boolean isLogged, LocalDate startDate) {
         this.name = name;
@@ -16,13 +22,42 @@ public class Player {
         this.startDate = startDate;
     }
 
-    public boolean login(String userName, String password){
-        if (this.userName.equals(userName) && this.password.equals(password)){
+    /*
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    public void setLogged(boolean logged) {
+        isLogged = logged;
+    }
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+    */
+
+
+
+    public void login(){
             isLogged = true;
-        }
+            System.out.println("Hai effettuato il login");
     }
     public void logout(){
-
+        isLogged = false;
+        System.out.println("Hai effettuato il logout");
+    }
+    @Override
+    public String toString(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String a = startDate.format(formatter);
+        return String.format("Nome: %s%nCognome: %s%nUsername: %s%nData creazione player: %s%n", name, surname, userName, a);
     }
 }
 // Voglio rappresentare un gioco testuale in cui vari personaggi di un mondo fantasy possano combattere tra di loro
@@ -52,7 +87,7 @@ public class Player {
 // Il programma fa combattere i personaggi
 // Funziona così; fight: metodo che prende in input 2 Character,
 // ciclo while che va avanti finchè un giocatore muore o scappa
-// durante il ciclo ogni giocatore può fare 2 azione (attacca o difendi)
+// durante il ciclo ogni giocatore può fare 2 azioni (attacca o difendi)
 // 1 iterazione su 5 il character può usare la sua abilità speciale
 
 
