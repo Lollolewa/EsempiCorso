@@ -1,11 +1,5 @@
-package org.generation.italy.esempiCorso.inheritance;
+package org.generation.italy.esempiCorso.inheritance.school;
 
-
-import org.generation.italy.esempiCorso.inheritance.school.Employee;
-import org.generation.italy.esempiCorso.inheritance.school.Person;
-import org.generation.italy.esempiCorso.inheritance.school.Personnel;
-
-import org.generation.italy.esempiCorso.inheritance.school.Teacher;
 
 public class Start {
     public static void main(String[] args){
@@ -45,7 +39,6 @@ public class Start {
         p.eat();
         p.chat();
     }
-    // commento nerd: one rocket to rule them all🚀
     public static void makeInterval(Person q){
         q.eat();
         q.chat();
@@ -69,7 +62,7 @@ public class Start {
         e.chat();
         e.doWork(3);
 
-       Teacher teacher = new Teacher("Riccardo","Audano",18, "programmazione", 18);
+       Teacher teacher = new Teacher("Michael", "Johnson", 35,"Math",11, 2500, 14);
        System.out.println(teacher.toString()); //tutti gli oggetti creati derivano dalla super classe object
 
 

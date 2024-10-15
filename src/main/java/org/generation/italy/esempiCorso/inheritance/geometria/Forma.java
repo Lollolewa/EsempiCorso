@@ -8,15 +8,9 @@ public class Forma {
         this.altezza = altezza;
     }
 
-
     public int calcolaArea(){
         return 0;
     }
 
-}
-
-    public double calcolaArea() {
-        return 0;
-    }
 }
 
