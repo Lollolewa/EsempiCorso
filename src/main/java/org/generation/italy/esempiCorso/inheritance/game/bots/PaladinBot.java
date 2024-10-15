@@ -1,16 +1,13 @@
-package org.generation.italy.esempiCorso.inheritance.game.characters;
+package org.generation.italy.esempiCorso.inheritance.game.bots;
 
-import org.generation.italy.esempiCorso.inheritance.game.Character;
 import org.generation.italy.esempiCorso.inheritance.game.Bot;
+import org.generation.italy.esempiCorso.inheritance.game.Character;
 
-import java.time.LocalDate;
+public class PaladinBot extends Bot {
 
-public class Paladin extends org.generation.italy.esempiCorso.inheritance.game.Character {
-
-    public Paladin(String username, String name, String lastName, LocalDate doc, String password) {
-        super(username, name, lastName, doc, password);
-
-        //SET PALADIN STATS
+    public PaladinBot() {
+        //SET PALADIN BOT STATS
+        setBotLevel(1);
         setHp(200);
         setStr(13);
         setDex(13);
@@ -20,30 +17,30 @@ public class Paladin extends org.generation.italy.esempiCorso.inheritance.game.C
 
     //PALADIN ULTIMATE - HEAL
     @Override
-    public int ultimate(Character x) {
+    public int ultimate(Bot y) {
         int hp = getHp();
         hp += (int) ((getChr()+getIntel())*0.7);
         setHp(hp);
         return getHp();
     }
     @Override
-    public int ultimate(Bot x) {
+    public int ultimate(Character x) {
         return 0;
     }
 
     //BASE ACTIONS
     @Override
-    public String getCharacterClass() {
-        return "You are a paladin!";
+    public String getBotClass() {
+        return "You are a paladin bot!";
     }
 
     @Override
-    public int attack(Bot x) {
+    public int attack(Character x) {
         return getStr()+getChr()/2;
     }
 
     @Override
-    public int defend(Bot x) {
+    public int defend(Character x) {
         int hp = getHp();
         int dmgTaken = ((attack(x)-getDex())/2);
         setHp(hp-dmgTaken);
@@ -54,13 +51,13 @@ public class Paladin extends org.generation.italy.esempiCorso.inheritance.game.C
     public boolean flee() {
         int randomIntInRange = (int) (Math.random() * .5);
         if(getHp()<=10 && randomIntInRange == 0){
-            System.out.println("You're lucky, you managed to flee with only "+getHp()+"HP.");
+            System.out.println("The enemy managed to escape with only "+getHp()+"HP.");
             return true;
 
         }else {
-            System.out.println("You chose to keep fighting until death!");
             return false;
         }
     }
 
 }
+

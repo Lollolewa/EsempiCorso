@@ -1,6 +1,7 @@
 package org.generation.italy.esempiCorso.inheritance.game;
 
 import java.time.LocalDate;
+import java.util.Scanner;
 
 public abstract class Player {
 
@@ -9,23 +10,32 @@ public abstract class Player {
     protected String password;
     protected boolean isLogged;
 
-    public Player(String username, String name, String lastName, LocalDate doc, String password, boolean isLogged) {
+    public Player(String username, String name, String lastName, LocalDate doc, String password) {
         this.username = username;
         this.name = name;
         this.lastName = lastName;
         this.doc = doc;
         this.password = password;
-        this.isLogged = isLogged;
     }
 
-    public void login(String username, String password){
+    //BOT CONSTRUCTOR
+    public Player(){
+    }
 
-        if (this.username.equals(username) && this.password.equals(password)){
-            isLogged = true;
-            System.out.println("Welcome back!");
-        } else {
-            isLogged = false;
-            System.out.println("Wrong username or password.");
+    public void login(){
+        Scanner sc = new Scanner(System.in);
+        this.isLogged = false;
+        while (!isLogged) {
+            System.out.print("Insert username: ");
+            String username = sc.nextLine();
+            System.out.print("Insert password: ");
+            String password = sc.nextLine();
+            if (this.username.equals(username) && this.password.equals(password)) {
+                isLogged = true;
+                System.out.println("Welcome back!");
+            } else {
+                System.out.println("Wrong username or password.");
+            }
         }
 
     }

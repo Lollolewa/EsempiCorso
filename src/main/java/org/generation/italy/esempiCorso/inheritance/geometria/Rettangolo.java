@@ -7,13 +7,7 @@ public class Rettangolo extends Forma{
     }
 
     @Override
-    public int calcolaArea(){
-        int area = base*altezza;
-        return area;
-    }
-
-    @Override
-    public String toString(){
-        return String.format("Il rettangolo con base: %d e altezza: %d %nHa un area di: %d", base,altezza, calcolaArea());
+    public int calcolaArea() {
+        return base * altezza;
     }
 }
