@@ -8,8 +8,8 @@ public class Barbarian extends Character {
     private boolean canDefend = true;
 
     public Barbarian(String nome, String cognome, String nomePersonaggio, String password, LocalDate dataIscrizione, boolean isLogged, int puntiVita,
-                  int forza, int intelligenza, int carisma, int agilità, String nomeClasse, boolean isDefending, int maxHP){
-        super(nome, cognome, nomePersonaggio, password, dataIscrizione, isLogged, puntiVita, forza, intelligenza, carisma, agilità, nomeClasse, false,
+                  int forza, int intelligenza, int carisma, int agilita, String nomeClasse, boolean isDefending, int maxHP){
+        super(nome, cognome, nomePersonaggio, password, dataIscrizione, isLogged, puntiVita, forza, intelligenza, carisma, agilita, nomeClasse, false,
                 maxHP, 0);
     }
 
