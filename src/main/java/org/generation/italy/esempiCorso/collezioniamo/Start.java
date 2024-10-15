@@ -1,9 +1,6 @@
 package org.generation.italy.esempiCorso.collezioniamo;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class Start {
     public static void main(String[] args) {
@@ -15,6 +12,8 @@ public class Start {
         List<String> nomiClasse = new ArrayList<>();
         nomiClasse.add("Pino");
         nomiClasse.add("Lina");
+
+        List<Integer> numeri = new ArrayList<>();
 
         // nomiClasse.remove(1);
         // nomiClasse.remove("Lina");
@@ -31,6 +30,32 @@ public class Start {
             System.out.println(s);  // printami s
         }
 
-        List<String> listLink = new LinkedList<>();
+        List<Prodotto> listLink = new LinkedList<>();
+        listLink.add(new Prodotto("pane", 4));
+        // il prodotto viene wrappato dentro un altro oggetto
+        // il nuovo oggetto conterrà l'oggetto in questione + 2 reference; una all'oggetto precedente, una al successivo
+        // prodotto1 <-> prodotto2 <-> prodotto3
+        //
+        // prodotto1[null, prodotto1, rprodotto2]
+        // prodotto 2[rprodotto1, prodotto2, rprodotto3]
+        // prodotto 3[rprodotto2, prodotto3, null]
+
+        // set:
+        // insieme di elementi non ordinato e non ammette duplicati
+
+        Set<Integer> numSet = new HashSet<>();
+        numSet.add(19);
+        numSet.add(20);
+        numSet.add(19); // questo verrà ignorato perchè i Set non ammettono duplicati
+
+        Set<Prodotto> prodotti = new HashSet<>();
+        prodotti.add(new Prodotto("pane", 4));
+        prodotti.add(new Prodotto("pane", 4));
+
+        System.out.println(prodotti.size()); // qui stampa 2 perchè nonostanti i due oggetti abbiano lo stesso contenuto
+                                             // sono comunque e oggetti diversi con 2 reference diverse
+        String s1 = "Pippo";
+        String s2 = "Pippo";
+        System.out.println(s1 == s2);
     }
 }
