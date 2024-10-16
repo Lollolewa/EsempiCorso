@@ -8,7 +8,6 @@ public class Appartamento extends Casa {
         this.codiceEnergetico = codiceEnergetico;
     }
 
-    // Implementazione del metodo costoCasa
     @Override
     public double costoCasa() {
         return (superficie * 1500) + (numeroStanze * codiceEnergetico);

@@ -11,12 +11,10 @@ public class Archivio {
         appartamenti = new ArrayList<>();
     }
 
-    // Metodo per aggiungere una villa
     public void aggiungiVilla(Villa villa) {
         ville.add(villa);
     }
 
-    // Metodo per aggiungere un appartamento
     public void aggiungiAppartamento(Appartamento appartamento) {
         appartamenti.add(appartamento);
     }
@@ -26,7 +24,6 @@ public class Archivio {
         double sommaCosti = 0;
         int count = 0;
 
-        // Considera le ville
         for (Villa villa : ville) {
             if (villa.superficie > n) {
                 sommaCosti += villa.costoCasa();
@@ -34,7 +31,6 @@ public class Archivio {
             }
         }
 
-        // Considera gli appartamenti
         for (Appartamento appartamento : appartamenti) {
             if (appartamento.superficie > n) {
                 sommaCosti += appartamento.costoCasa();
@@ -42,12 +38,10 @@ public class Archivio {
             }
         }
 
-        // Se non ci sono case che superano la superficie n, ritorna 0
         if (count == 0) {
             return 0;
         }
 
-        // Calcola la media
         return sommaCosti / count;
     }
 }
