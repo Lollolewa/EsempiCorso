@@ -25,7 +25,12 @@ public class Prodotto {
     @Override
     public boolean equals(Object o) {
         System.out.println("Ho chiamato .equals");
-        if(o == null || o.getClass() != Prodotto.class) {
+        if(this == o) //controlla se i puntatori puntano alla stessa cosa
+            return true;
+        if(o == null) //controlla se il puntatore o sta puntando a nulla
+            return false;
+
+        if(o == null || o.getClass() != Prodotto.class) { //controllo che la classe di o non sia nulla e che non sia diversa da Prodotto;
             return false;
         }
         Prodotto other = (Prodotto) o;
