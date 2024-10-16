@@ -17,7 +17,7 @@ public class Personnel extends Employee {
 
     @Override
     public String toString(){
-        return super.toString()+" Ruolo: "+role+" \nStipendio: $"+getAnnualSalary();
+        return super.toString()+"\nRuolo: "+role+" \nStipendio: $"+getAnnualSalary();
     }
     public void doAdministration(){
 
@@ -27,3 +27,4 @@ public class Personnel extends Employee {
         System.out.println("Uso excel");
     }
 }
+//
