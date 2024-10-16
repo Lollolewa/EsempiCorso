@@ -1,7 +1,5 @@
-package org.generation.italy.esempiCorso.collezioniamo;
+package org.generation.italy.esempiCorso.collezioniamo.exercises.prodotto;
 
-import java.sql.Array;
-import java.sql.SQLOutput;
 import java.util.*;
 
 public class Start {

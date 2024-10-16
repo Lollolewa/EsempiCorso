@@ -1,4 +1,4 @@
-package org.generation.italy.esempiCorso.collezioniamo;
+package org.generation.italy.esempiCorso.collezioniamo.exercises.prodotto;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package org.generation.italy.esempiCorso.collezioniamo;
+package org.generation.italy.esempiCorso.collezioniamo.exercises.prodotto;
 
 public class Prodotto {
     String nome;

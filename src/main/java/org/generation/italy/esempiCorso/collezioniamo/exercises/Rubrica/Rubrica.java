@@ -1,4 +1,4 @@
-package org.generation.italy.esempiCorso.collezioniamo.exercises;
+package org.generation.italy.esempiCorso.collezioniamo.exercises.Rubrica;
 
 import java.util.*;
 
