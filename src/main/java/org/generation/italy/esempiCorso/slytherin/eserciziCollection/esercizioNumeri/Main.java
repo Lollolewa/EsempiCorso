@@ -10,5 +10,8 @@ public class Main {
         System.out.println(r.toString());
         r.rimuoviKontatto("Pietro", "Marinari");
         System.out.println(r.toString());
+        System.out.println(r.Kerca("aa", "Celletti"));
+        System.out.println(r.Kerca("samuele", "celletti"));
+
     }
 }

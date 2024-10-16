@@ -1,7 +1,7 @@
 package org.generation.italy.esempiCorso.slytherin.eserciziCollection.esercizioNumeri;
 
 public class Contatto {
-    public String nome, cognome, number;
+    private String nome, cognome, number;
 
     public Contatto(String nome, String cognome, String number){
         this.nome = nome;

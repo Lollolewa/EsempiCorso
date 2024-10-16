@@ -21,17 +21,18 @@ public class Rubrica{
 
 
     public String Kerca(String nome, String cognome){
-        for(Contatto cont : contatti){
-            if(cont.nome.equalsIgnoreCase(nome) && cont.cognome.equalsIgnoreCase(cognome)){
-                return cont.number;
+        String numero = null;
+        for (Contatto contatto : contatti) {
+            if (contatto.getNome().equalsIgnoreCase(nome) && contatto.getCognome().equalsIgnoreCase(cognome)) {
+                numero = contatto.getNumber();
             }
         }
-        return null;
+        return numero;
     }
 
     @Override
     public String toString() {
-        String s = "Lista contatti\n";
+        String s = "=========================\nLista contatti\n=========================\n";
         for(Contatto cont : contatti){
             s +=  cont.toString();
             s += "\n\n";
