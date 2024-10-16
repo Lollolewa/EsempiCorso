@@ -7,7 +7,7 @@ public class Forma {
         this.base = base;
         this.altezza = altezza;
     }
-    public int calcolaArea(int base, int altezza){
+    public int calcolaArea(){
         return 0;
     }
 
