@@ -25,7 +25,7 @@ public class Teacher extends Employee{
     public void teach(){
 
     }
-    @Override
+//    @Override
     public void eat(){
         System.out.println("Magno un panino de corsa perché i miei studenti mi aspettano");
     }
@@ -34,3 +34,4 @@ public class Teacher extends Employee{
         System.out.println("Spiego Java");
     }
 }
+//
