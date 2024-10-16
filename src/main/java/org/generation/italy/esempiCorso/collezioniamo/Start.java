@@ -30,8 +30,8 @@ public class Start {
 //        }
 
         Set<Prodotto> prodotti = new HashSet<>();
-        prodotti.add(new Prodotto("pane", 1));
-        prodotti.add(new Prodotto("pane", 1));
+     //   prodotti.add(new Prodotto("pane", 1));
+     //   prodotti.add(new Prodotto("pane", 1));
 
         Prodotto p1 = new Prodotto("pane", 1);
         Prodotto p2 = new Prodotto("pane", 1);

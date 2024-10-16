@@ -1,22 +1,17 @@
 package org.generation.italy.esempiCorso.hufflePuff.eserciziCollection.rubricaLista;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Rubrica {
-    private List<Contatto> rubrica;
-
-    public Rubrica(List<Contatto> rubrica) {
-        this.rubrica = rubrica;
-    }
+    List<Contatto> rubrica = new ArrayList<>();
 
     public void aggiungiContatto(String nome, String cognome, String numero) {
-        Contatto contatto = new Contatto(nome, cognome, numero);
-        rubrica.add(contatto);
+        rubrica.add(new Contatto(nome, cognome, numero));
     }
 
     public void rimuoviContatto(String nome, String cognome) {
-        Contatto contatto = new Contatto(nome, cognome, cerca(nome, cognome));
-        rubrica.remove(contatto);
+        rubrica.remove(new Contatto(nome, cognome, cerca(nome, cognome)));
     }
 
     public String cerca(String nome, String cognome) {
