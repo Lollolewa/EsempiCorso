@@ -1,4 +1,4 @@
-package org.generation.italy.esempiCorso.Slytherin.exercises.OperaDArte.Case;
+package org.generation.italy.esempiCorso.Slytherin.eserciziCollection.OperaDArte.Case;
 
 import java.util.ArrayList;
 import java.util.List;
