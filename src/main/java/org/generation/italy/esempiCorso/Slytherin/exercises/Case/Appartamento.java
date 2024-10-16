@@ -1,4 +1,4 @@
-package org.generation.italy.esempiCorso.Slytherin.exercises.OperaDArte.Case;
+package org.generation.italy.esempiCorso.Slytherin.exercises.Case;
 
 public class Appartamento extends Casa{
     int energyCode;
