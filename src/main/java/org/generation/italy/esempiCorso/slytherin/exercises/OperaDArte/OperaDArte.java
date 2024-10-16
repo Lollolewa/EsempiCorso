@@ -1,4 +1,4 @@
-package org.generation.italy.esempiCorso.Slytherin.exercises.OperaDArte;
+package org.generation.italy.esempiCorso.slytherin.exercises.OperaDArte;
 
 public abstract class OperaDArte {
     public String titolo;

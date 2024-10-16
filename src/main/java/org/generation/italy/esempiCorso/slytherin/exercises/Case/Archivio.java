@@ -1,4 +1,4 @@
-package org.generation.italy.esempiCorso.Slytherin.exercises.Case;
+package org.generation.italy.esempiCorso.slytherin.exercises.Case;
 
 import java.util.ArrayList;
 import java.util.List;

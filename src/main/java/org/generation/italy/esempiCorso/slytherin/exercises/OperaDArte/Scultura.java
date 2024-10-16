@@ -1,4 +1,4 @@
-package org.generation.italy.esempiCorso.Slytherin.exercises.OperaDArte;
+package org.generation.italy.esempiCorso.slytherin.exercises.OperaDArte;
 
 public class Scultura extends OperaDArte {
     int altezza;
