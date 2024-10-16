@@ -20,9 +20,9 @@ public class Start {
 
         String lina = nomiClasse.get(1);
 
-        for (int i = 0; i < nomiClasse.size(); i ++) {
-            System.out.println(nomiClasse.get(i));
-        }
+//        for (int i = 0; i < nomiClasse.size(); i ++) {
+//            System.out.println(nomiClasse.get(i));
+//        }
 
         // for each:
         // sulla sinistra ho il singolo elemento che sto scorrendo || sulla destra ho il nome della mia collezione
@@ -57,5 +57,17 @@ public class Start {
         String s1 = "Pippo";
         String s2 = "Pippo";
         System.out.println(s1 == s2);
+
+        List<String> result = findStartingWithS(List.of("Mario", "johnny", "cane", "gatto", "Spook", "Sara", "sogno"));
+        System.out.println(result);
+    }
+    public static List<String> findStartingWithS (Collection<String> stringhe) {
+        List<String> wordsOutput = new ArrayList<>();
+        for (String parola : stringhe){
+            if (parola.charAt(0) == 's' || parola.charAt(0) == 'S') {
+                wordsOutput.add(parola);
+            }
+        }
+        return wordsOutput;
     }
 }
