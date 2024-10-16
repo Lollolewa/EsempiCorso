@@ -59,10 +59,12 @@ public class Start {
         numbers.add(19);
         //stampa 2 oggetti perchè non ammette due duplicati
 
+        Prodotto p1 = new Prodotto("pane",1);
+        Prodotto p2 = new Prodotto("pane",1);
 
         Set<Prodotto> prodotti = new HashSet<>();
-        prodotti.add(new Prodotto("pane",1));
-        prodotti.add(new Prodotto("pane",1));
+        prodotti.add(p1);
+        prodotti.add(p2);
         System.out.println(prodotti.size());
         //stampa 2 perchè hai creato due prodotti, due oggetti diversi che puntano a due indirizzi diversi
         //se due oggetti hanno lo stesso contenuto informatico, il valore delle due variabili è identico, non è detto che siano lo stesso oggetto, SPOILER NON LO SONO
@@ -87,11 +89,17 @@ public class Start {
 
         //quando si crea una stringa non si mette il new perchè la vm cerca di risparmiare memoria , vuole una sola stringa puntata da tutte le references necessarie
 
-        Prodotto p1 = new Prodotto("bicicletta", 100);
-        Prodotto p2 = new Prodotto("bicicletta", 100);
-        System.out.println(p1==p2); //questo stampa false perchè stai paragonando le referenc
+        Prodotto p3 = new Prodotto("bicicletta", 100);
+        Prodotto p4 = new Prodotto("bicicletta", 100);
+        System.out.println(p3==p4); //questo stampa false perchè stai paragonando le referenc
 
         List<String> result = findStartingWithS(List.of("casa","cipolla","scopa","lombrico"));
+
+        boolean r = p1.equals(p2); //metodo equals ereditato da Classe Object
+        System.out.println(r); //stampa false perchè confronta le references
+        //== confronta le reference, .equals pure se non fai override
+        //due oggetti uguali devono per forza avere HashCode uguali,
+        // due oggetti per cui equals da true hanno anche stesso HashCode
     }
 
     //Ignorance is Bliss->
