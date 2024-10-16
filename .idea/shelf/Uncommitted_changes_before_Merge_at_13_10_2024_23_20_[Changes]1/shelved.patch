@@ -1,0 +1,218 @@
+Index: src/main/java/org/generation/italy/esempiCorso/inheritance/game/characters/Paladin.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.generation.italy.esempiCorso.inheritance.game.characters;\r\n\r\nimport org.generation.italy.esempiCorso.inheritance.game.Character;\r\n\r\nimport java.time.LocalDate;\r\n\r\npublic class Paladin extends Character {\r\n\r\n    public Paladin(String username, String name, String lastName, LocalDate doc, String password) {\r\n        super(username, name, lastName, doc, password);\r\n\r\n        //SET PALADIN STATS\r\n        setHp(200);\r\n        setStr(13);\r\n        setDex(13);\r\n        setIntel(11);\r\n        setChr(17);\r\n    }\r\n\r\n    public Paladin(){\r\n\r\n    }\r\n\r\n    //PALADIN ULTIMATE - HEAL\r\n    @Override\r\n    public int ultimate(Character y) {\r\n        int hp = getHp();\r\n        hp += (int) ((getChr()+getIntel())*0.7);\r\n        setHp(hp);\r\n        return getHp();\r\n    }\r\n\r\n    //BASE ACTIONS\r\n    @Override\r\n    public String getCharacterClass() {\r\n        return \"You are a paladin!\";\r\n    }\r\n\r\n    @Override\r\n    public int attack(Character x) {\r\n        return getStr()+getChr()/2;\r\n    }\r\n\r\n    @Override\r\n    public int defend(Character x) {\r\n        int hp = getHp();\r\n        int dmgTaken = ((attack(x)-getDex())/2);\r\n        setHp(hp-dmgTaken);\r\n        return getHp();\r\n    }\r\n\r\n    @Override\r\n    public boolean flee() {\r\n        int randomIntInRange = (int) (Math.random() * .5);\r\n        if(getHp()<=10 && randomIntInRange == 0){\r\n            System.out.println(\"You're lucky, you managed to flee with only \"+getHp()+\"HP.\");\r\n            return true;\r\n\r\n        }else {\r\n            System.out.println(\"You chose to keep fighting until death!\");\r\n            return false;\r\n        }\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/org/generation/italy/esempiCorso/inheritance/game/characters/Paladin.java b/src/main/java/org/generation/italy/esempiCorso/inheritance/game/characters/Paladin.java
+--- a/src/main/java/org/generation/italy/esempiCorso/inheritance/game/characters/Paladin.java	(revision baeb9fb92a68f2e0efbfb8483fda2148169291ce)
++++ b/src/main/java/org/generation/italy/esempiCorso/inheritance/game/characters/Paladin.java	(date 1728854408669)
+@@ -61,5 +61,8 @@
+             return false;
+         }
+     }
+-
++    @Override
++    public String getName(){
++        return "il Paladino";
++    }
+ }
+Index: src/main/java/org/generation/italy/esempiCorso/inheritance/game/Arcade.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.generation.italy.esempiCorso.inheritance.game;\r\n\r\nimport org.generation.italy.esempiCorso.inheritance.game.characters.Mage;\r\nimport org.generation.italy.esempiCorso.inheritance.game.characters.Paladin;\r\nimport org.generation.italy.esempiCorso.inheritance.game.characters.bots.MageBot;\r\n\r\nimport java.time.LocalDate;\r\nimport java.util.Scanner;\r\n\r\npublic class Arcade {\r\n    public static void main(String[] args) {\r\n\r\n\r\n        Scanner sc = new Scanner(System.in);\r\n\r\n        Character paladino = new Paladin(\"BobbyRocket\", \"Bobby\", \"Rocket\", LocalDate.of(2020, 5, 2), \"pippo\");\r\n        Character mago = new Mage(\"tommynasa\", \"Tommy\", \"nasa\", LocalDate.of(2020, 5, 2), \"pippo\");\r\n        Character bot = new MageBot();\r\n\r\n//        System.out.println(paladino.getCharacterClass());\r\n//\r\n//        System.out.println(mago.attack(paladino));\r\n//        System.out.println(paladino.defend(mago));\r\n//        System.out.println(mago.ultimate(paladino));\r\n//        System.out.println(mago.ultimate(paladino));\r\n//\r\n//        System.out.println(paladino.getHp());\r\n//        System.out.println(mago.getHp());\r\n//\r\n//        paladino.login();\r\n//        paladino.logout();\r\n        System.out.println(bot.getCharacterClass());\r\n\r\n        System.out.println(mago.attack(bot));\r\n        System.out.println(bot.defend(mago));\r\n        System.out.println(bot.getHp());\r\n\r\n        System.out.println(bot.attack(mago));\r\n        System.out.println(mago.ultimate(bot));\r\n        System.out.println(bot.defend(mago));\r\n        System.out.println(bot.getHp());\r\n\r\n        System.out.println(mago.attack(bot));\r\n        System.out.println(mago.attack(bot));\r\n        System.out.println(mago.attack(bot));\r\n        System.out.println(bot.attack(mago));\r\n\r\n        System.out.println(mago.getHp());\r\n        System.out.println(bot.getHp());\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/org/generation/italy/esempiCorso/inheritance/game/Arcade.java b/src/main/java/org/generation/italy/esempiCorso/inheritance/game/Arcade.java
+--- a/src/main/java/org/generation/italy/esempiCorso/inheritance/game/Arcade.java	(revision baeb9fb92a68f2e0efbfb8483fda2148169291ce)
++++ b/src/main/java/org/generation/italy/esempiCorso/inheritance/game/Arcade.java	(date 1728854408665)
+@@ -3,6 +3,7 @@
+ import org.generation.italy.esempiCorso.inheritance.game.characters.Mage;
+ import org.generation.italy.esempiCorso.inheritance.game.characters.Paladin;
+ import org.generation.italy.esempiCorso.inheritance.game.characters.bots.MageBot;
++import org.generation.italy.esempiCorso.inheritance.game.characters.bots.PaladinBot;
+ 
+ import java.time.LocalDate;
+ import java.util.Scanner;
+@@ -13,41 +14,67 @@
+ 
+         Scanner sc = new Scanner(System.in);
+ 
+-        Character paladino = new Paladin("BobbyRocket", "Bobby", "Rocket", LocalDate.of(2020, 5, 2), "pippo");
+-        Character mago = new Mage("tommynasa", "Tommy", "nasa", LocalDate.of(2020, 5, 2), "pippo");
+-        Character bot = new MageBot();
++        Character p1 = new Paladin("BobbyRocket", "Bobby", "Rocket", LocalDate.of(2020, 5, 2), "pippo");
++        Character p2 = new Mage("tommynasa", "Tommy", "nasa", LocalDate.of(2020, 5, 2), "pippo");
++        PaladinBot bot1 = new PaladinBot();
++        MageBot bot2 = new MageBot();
++
++        System.out.println("Seleziona chi su quale accaount voi accedere ed effettua il login:");
++        System.out.println("1: BobbyRocket");
++        System.out.println("2: tommynasa");
++        int choiceP = sc.nextInt();
++        Character player = (choiceP ==1) ? p1 : p2; //operazione ternaria per decidere su quale account loggare.
++        player.login();
++        System.out.println("Seleziona un nemico per combattere:");
++        System.out.println("1: PaladinBot");
++        System.out.println("2: MageBot");
++        int choice = sc.nextInt();
++        Character enemy = (choice == 1) ? bot1 : bot2; //operazione ternario per scegliere chi combattere, in questo caso ok perchè sono solo 2 nemici fra cui scegliere, nel caso poi da vedere e implementare per dare più scelte.
+ 
+-//        System.out.println(paladino.getCharacterClass());
+-//
+-//        System.out.println(mago.attack(paladino));
+-//        System.out.println(paladino.defend(mago));
+-//        System.out.println(mago.ultimate(paladino));
+-//        System.out.println(mago.ultimate(paladino));
+-//
+-//        System.out.println(paladino.getHp());
+-//        System.out.println(mago.getHp());
+-//
+-//        paladino.login();
+-//        paladino.logout();
+-        System.out.println(bot.getCharacterClass());
++        // Ciclo che permette che una volta scelto il giocatore e il nemico li fa combattere;
++        while (player.isAlive() && enemy.isAlive()) {
++            System.out.println("\n" + player.getName() + " (Salute: " + player.getHp() + ") vs " + enemy.getName() + " (Salute: " + enemy.getHp() + ")");
++            System.out.println("Cosa vuoi fare? (1: Attacca, 2: Scappa, 3: Mossa finale)");
+ 
+-        System.out.println(mago.attack(bot));
+-        System.out.println(bot.defend(mago));
+-        System.out.println(bot.getHp());
++            int action = sc.nextInt();
+ 
+-        System.out.println(bot.attack(mago));
+-        System.out.println(mago.ultimate(bot));
+-        System.out.println(bot.defend(mago));
+-        System.out.println(bot.getHp());
++            switch (action) { //con lo switch permettiamo di volta in volta di far scegliere al giocatore che mossa fare
++                case 1: // Attacca
++                    enemy.defend(player);
++                    System.out.println(enemy.getName() + " ha subito danno!");
++                    break;
++
++                case 2: // Scappa
++                    System.out.println(player.getName() + " scappa dal combattimento!");
++                    sc.close();
++                    return;
++
++                case 3: // Mossa finale
++                    System.out.println(player.getName() + " usa una mossa finale!");
++                    player.ultimate(enemy); // Assicurati di avere un metodo per la mossa finale
++                    break;
++
++                default:
++                    System.out.println("Scelta non valida.");
++            }
+ 
+-        System.out.println(mago.attack(bot));
+-        System.out.println(mago.attack(bot));
+-        System.out.println(mago.attack(bot));
+-        System.out.println(bot.attack(mago));
++            // Controlla se il nemico è ancora in vita e nel caso lo sia il giocatore subisce l'attacco;
++            if (enemy.isAlive()) {
++                player.defend(enemy);
++                System.out.println(player.getName() + " ha subito danno!");
++            }
++        }
+ 
+-        System.out.println(mago.getHp());
+-        System.out.println(bot.getHp());
++        // Verifica chi ha vinto
++        if (!player.isAlive()) {
++            System.out.println("Sei stato sconfitto!");
++        } else {
++            System.out.println("Hai vinto!");
++        }
+ 
++        sc.close();
++    }
++}
+ 
+ 
+ 
+@@ -55,5 +82,10 @@
+ 
+ 
+ 
+-    }
+-}
++
++
++
++
++
++
++
+Index: src/main/java/org/generation/italy/esempiCorso/inheritance/game/Character.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.generation.italy.esempiCorso.inheritance.game;\r\n\r\nimport java.time.LocalDate;\r\n\r\npublic abstract class Character extends Player{\r\n\r\n    //STATS\r\n    private int str;\r\n    private int intel;\r\n    private int dex;\r\n    private int hp;\r\n    private int chr;\r\n\r\n    public Character(String username, String name, String lastName, LocalDate doc, String password) {\r\n        super(username, name, lastName, doc, password);\r\n    }\r\n\r\n    //BOT CONSTRUCTOR\r\n    public Character(){\r\n    }\r\n\r\n    //SETTERS\r\n    public void setStr(int str) {\r\n        this.str = str;\r\n    }\r\n\r\n    public void setIntel(int intel) {\r\n        this.intel = intel;\r\n    }\r\n\r\n    public void setDex(int dex) {\r\n        this.dex = dex;\r\n    }\r\n\r\n    public void setHp(int hp) {\r\n        this.hp = hp;\r\n    }\r\n\r\n    public void setChr(int chr) {\r\n        this.chr = chr;\r\n    }\r\n\r\n    //GETTERS\r\n    public int getStr() {\r\n        return str;\r\n    }\r\n\r\n    public int getIntel() {\r\n        return intel;\r\n    }\r\n\r\n    public int getDex() {\r\n        return dex;\r\n    }\r\n\r\n    public int getHp() {\r\n        return hp;\r\n    }\r\n\r\n    public int getChr() {\r\n        return chr;\r\n    }\r\n\r\n\r\n\r\n    public abstract String getCharacterClass();\r\n\r\n    public abstract int attack(Character x);\r\n\r\n    public abstract int defend(Character x);\r\n\r\n    public abstract boolean flee();\r\n\r\n    public abstract int ultimate(Character y);\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/org/generation/italy/esempiCorso/inheritance/game/Character.java b/src/main/java/org/generation/italy/esempiCorso/inheritance/game/Character.java
+--- a/src/main/java/org/generation/italy/esempiCorso/inheritance/game/Character.java	(revision baeb9fb92a68f2e0efbfb8483fda2148169291ce)
++++ b/src/main/java/org/generation/italy/esempiCorso/inheritance/game/Character.java	(date 1728854408665)
+@@ -73,4 +73,16 @@
+ 
+     public abstract int ultimate(Character y);
+ 
++    public boolean isAlive() {
++        hp = getHp();
++        if (hp < 0) {
++            return false;
++        }
++        return true;
++    }
++
++    public abstract String getName();
++
++
++
+ }
+Index: src/main/java/org/generation/italy/esempiCorso/inheritance/school/Teacher.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.generation.italy.esempiCorso.inheritance.school;\r\n\r\npublic class Teacher extends Employee{\r\n\r\n    private String subject;\r\n    private int yearOfService;\r\n\r\n    public Teacher(String name, String surname, int age, String subject, int yearOfService, int monthltySalary, int nMonth){\r\n        super(name,surname,age,monthltySalary,nMonth);\r\n        this.subject = subject;\r\n        this.yearOfService = yearOfService;\r\n    }\r\n    @Override\r\n    public int getAnnualSalary(){\r\n        if(yearOfService>10){\r\n            return monthlySalary*nMonth+500;\r\n        } else {\r\n            return monthlySalary*nMonth;\r\n        }\r\n    }\r\n    @Override //riprende il metodo della superclasse e lo sovrascrive\r\n    public String toString(){\r\n        return super.toString()+ \" Insegno \"+subject+\" da \"+yearOfService+\" anni\"+\" \\nStipendio: $\"+getAnnualSalary();\r\n    }\r\n    public void teach(){\r\n\r\n    }\r\n    @Override\r\n    public void eat(){\r\n        System.out.println(\"Magno un panino de corsa perché i miei studenti mi aspettano\");\r\n    }\r\n    @Override\r\n    public void doWork(int hours){\r\n        System.out.println(\"Spiego Java\");\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/org/generation/italy/esempiCorso/inheritance/school/Teacher.java b/src/main/java/org/generation/italy/esempiCorso/inheritance/school/Teacher.java
+--- a/src/main/java/org/generation/italy/esempiCorso/inheritance/school/Teacher.java	(revision baeb9fb92a68f2e0efbfb8483fda2148169291ce)
++++ b/src/main/java/org/generation/italy/esempiCorso/inheritance/school/Teacher.java	(date 1728854408669)
+@@ -24,10 +24,6 @@
+     }
+     public void teach(){
+ 
+-    }
+-    @Override
+-    public void eat(){
+-        System.out.println("Magno un panino de corsa perché i miei studenti mi aspettano");
+     }
+     @Override
+     public void doWork(int hours){
+Index: src/main/java/org/generation/italy/esempiCorso/inheritance/game/characters/Mage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.generation.italy.esempiCorso.inheritance.game.characters;\r\n\r\nimport org.generation.italy.esempiCorso.inheritance.game.Character;\r\nimport org.generation.italy.esempiCorso.inheritance.game.characters.bots.MageBot;\r\n\r\nimport java.time.LocalDate;\r\n\r\npublic class Mage extends Character {\r\n\r\n    public Mage(String username, String name, String lastName, LocalDate doc, String password) {\r\n        super(username, name, lastName, doc, password);\r\n\r\n        //SET MAGE STATS\r\n        setHp(100);\r\n        setStr(8);\r\n        setDex(9);\r\n        setIntel(20);\r\n        setChr(10);\r\n    }\r\n\r\n    public Mage(){\r\n        setHp(100);\r\n        setStr(8);\r\n        setDex(9);\r\n        setIntel(20);\r\n        setChr(10);\r\n    }\r\n\r\n\r\n    //MAGE ULTIMATE - FIREBALL\r\n    @Override\r\n    public int ultimate(Character x) {\r\n        int hp = x.getHp();\r\n        hp -= getIntel()*4;\r\n        int dmg = x.getHp()-hp;\r\n        x.setHp(hp);\r\n        return dmg;\r\n    }\r\n\r\n    //BASE ACTIONS\r\n    @Override\r\n    public String getCharacterClass() {\r\n        return \"You are a mage!\";\r\n    }\r\n\r\n    @Override\r\n    public int attack(Character x) {\r\n        return getIntel()+getChr()/2;\r\n    }\r\n\r\n    @Override\r\n    public int defend(Character x) {\r\n        int hp = getHp();\r\n        int dmgTaken = ((attack(x)-getDex())/2);\r\n        setHp(hp-dmgTaken);\r\n        return getHp();\r\n    }\r\n\r\n    @Override\r\n    public boolean flee() {\r\n        int randomIntInRange = (int) (Math.random() * .7);\r\n        if(getHp()<=10 && randomIntInRange == 0){\r\n            System.out.println(\"You're lucky, you managed to flee with only \"+getHp()+\"HP.\");\r\n            return true;\r\n\r\n        }else {\r\n            System.out.println(\"You chose to keep fighting until death!\");\r\n            return false;\r\n        }\r\n    }\r\n}\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/org/generation/italy/esempiCorso/inheritance/game/characters/Mage.java b/src/main/java/org/generation/italy/esempiCorso/inheritance/game/characters/Mage.java
+--- a/src/main/java/org/generation/italy/esempiCorso/inheritance/game/characters/Mage.java	(revision baeb9fb92a68f2e0efbfb8483fda2148169291ce)
++++ b/src/main/java/org/generation/italy/esempiCorso/inheritance/game/characters/Mage.java	(date 1728854408665)
+@@ -68,6 +68,11 @@
+             return false;
+         }
+     }
++    @Override
++    public String getName(){
++        return "il Mago";
++    }
++
+ }
+ 
+ 

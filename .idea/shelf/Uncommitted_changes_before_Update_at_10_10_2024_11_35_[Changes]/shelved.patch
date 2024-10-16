@@ -1,0 +1,79 @@
+Index: src/main/java/org/generation/italy/esempiCorso/inheritance/Start.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.generation.italy.esempiCorso.inheritance;\r\n\r\npublic class Start {\r\n    public static void main(String[] args){\r\n        System.out.println(\"testing github\");\r\n        System.out.println(\"Aggiunto da Alessia\");\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/org/generation/italy/esempiCorso/inheritance/Start.java b/src/main/java/org/generation/italy/esempiCorso/inheritance/Start.java
+--- a/src/main/java/org/generation/italy/esempiCorso/inheritance/Start.java	(revision b374fb132ef53e6d959bb84727e82a60b2e5c889)
++++ b/src/main/java/org/generation/italy/esempiCorso/inheritance/Start.java	(date 1728550391748)
+@@ -1,8 +1,10 @@
+ package org.generation.italy.esempiCorso.inheritance;
+ 
++import org.generation.italy.esempiCorso.inheritance.school.Teacher;
++
+ public class Start {
+     public static void main(String[] args){
+-        System.out.println("testing github");
+-        System.out.println("Aggiunto da Alessia");
++        Teacher teacher = new Teacher("Riccardo","Audano", 18, "Programmazione", 25 );
++        System.out.println(teacher.toString());
+     }
+ }
+Index: src/main/java/org/generation/italy/esempiCorso/inheritance/school/Person.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/org/generation/italy/esempiCorso/inheritance/school/Person.java b/src/main/java/org/generation/italy/esempiCorso/inheritance/school/Person.java
+new file mode 100644
+--- /dev/null	(date 1728550563843)
++++ b/src/main/java/org/generation/italy/esempiCorso/inheritance/school/Person.java	(date 1728550563843)
+@@ -0,0 +1,16 @@
++package org.generation.italy.esempiCorso.inheritance.school;
++
++public class Person {
++    protected String name, surname;
++    protected int age;
++//con protected le classi figlie possono vedere le variabili ed è come se fossero private per tutto il resto;
++    public Person(String name, String surname, int age) {
++        this.name = name;
++        this.surname = surname;
++        this.age = age;
++    }
++    //posso creare una classe partendo da una classe gia esistente;
++    public String toString (){
++        return "ciao sono " + name + " " + surname + " e ho " + age + " anni";
++    }
++}
+Index: src/main/java/org/generation/italy/esempiCorso/inheritance/school/Teacher.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/org/generation/italy/esempiCorso/inheritance/school/Teacher.java b/src/main/java/org/generation/italy/esempiCorso/inheritance/school/Teacher.java
+new file mode 100644
+--- /dev/null	(date 1728550563837)
++++ b/src/main/java/org/generation/italy/esempiCorso/inheritance/school/Teacher.java	(date 1728550563837)
+@@ -0,0 +1,20 @@
++package org.generation.italy.esempiCorso.inheritance.school;
++//l'ereditarietà è il rapporto più stretto fra classi (Is_a, teacher is a person? si!);
++public class Teacher extends Person {
++    //teacher è la sottoclasse di Person, mentre Person è la sua super tipo/super classe; Le variabili se private, nelle sottoclassi rimangono tali e ci si deve accedere tramite una funzione.
++    //ovviamente esiste una Key word che ci permette di vedere le variabili private, a discrezione del programmatore (protected);
++    private String subject;
++    private int yearsOfService;
++
++    public Teacher(String name, String surname, int age, String subject, int yearsOfService) {
++        super(name, surname, age); //sa che il super si riferisce alla superclasse che sto estendendo non posso usare this. per i parametri della superclasse; Richiamo il costruttore della super classe per generare questi parametri;
++        this.subject = subject;
++        this.yearsOfService = yearsOfService;
++    }
++
++    //stesso identico metodo della classe padre, semplicemente lo vado a riprendere con la @; Non obbligatorio da fare:
++    @Override
++    public String toString() {
++        return super.toString() + " e insegno " +subject+ " da "+ yearsOfService + " anni";
++    }
++}
