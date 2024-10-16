@@ -1,4 +1,4 @@
-package org.generation.italy.esempiCorso.Slytherin.exercises.OperaDArte.Case;
+package org.generation.italy.esempiCorso.Slytherin.eserciziCollection.OperaDArte.Case;
 
 public abstract class Casa {
     protected int surface, roomNum;

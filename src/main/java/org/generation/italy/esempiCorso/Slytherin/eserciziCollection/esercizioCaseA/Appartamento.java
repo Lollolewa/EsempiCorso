@@ -1,4 +1,4 @@
-package org.generation.italy.esempiCorso.Slytherin.esercizioCaseA;
+package org.generation.italy.esempiCorso.Slytherin.eserciziCollection.esercizioCaseA;
 
 // Appartamento oltre ad avere le sue proprietà, avrà anche quelle di Casa
 public class Appartamento extends Casa{
