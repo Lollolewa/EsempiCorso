@@ -1,4 +1,4 @@
-package org.generation.italy.esempiCorso.inheritance;
+package org.generation.italy.esempiCorso.inheritance.esercize;
 
 import org.generation.italy.esempiCorso.inheritance.school.Personnel;
 import org.generation.italy.esempiCorso.inheritance.school.Teacher;
