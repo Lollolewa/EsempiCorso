@@ -2,6 +2,7 @@ package org.generation.italy.esempiCorso.inheritance.contatto;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Rubrica {
     //Liste -> insieme di elementi di dimensione variabile,
@@ -31,6 +32,14 @@ public class Rubrica {
             }
         }
         return nt;
+    }
+    public Optional<String> cercaContattoOptional(String nome,String cognome){
+
+        for (Contatto c: contatti){
+            if (c.getNome().equals(nome) && c.getCognome().equals(cognome)){
+                return Optional.of(c.getNumeroTelefono()); //ritorno optional farcito
+            }
+        }
     }
 
     @Override
