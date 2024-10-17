@@ -18,17 +18,5 @@ public class Fight {
 
         // potremmo cambiare reference dell'oggetto a cui punta player1, da player passa a character
 
-        while(!muore || !scappa){
-            if()
-
-
-
-
-        }
-
-
-
-
-
     }
 }
