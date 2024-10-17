@@ -25,6 +25,25 @@ public class Start {
         System.out.println(pair1.equals(pair2));
         System.out.println(pair1.getFirst());
         System.out.println(pair2.getFirst());
+
+        Analyzer<String> analyzer = new Analyzer<>(words);
+        String max = analyzer.getMaxElement();
+        System.out.println(max);
+
+        List<Integer> numbers = new ArrayList<>();
+        numbers.add(1);
+        numbers.add(2);
+        numbers.add(3);
+        Analyzer<Integer> analyzerNumbers = new Analyzer<>(numbers);
+        int maxNumber = analyzerNumbers.getMaxElement();
+        System.out.println(maxNumber);
+        analyzerNumbers.sort();
+        System.out.println(analyzerNumbers.getElements());
+
+        int[] ns = {1,2,3,4,5};
+        MaxMin<Integer> minMax = getMinAndMax(ns);
+        System.out.println("Minimo: "+ getMinAndMax().getMin() + ", massimo "+ getMinAndMax()
+
     }
     public static void doSomethingWithList(List x){
         x.add("ciccio");
@@ -37,5 +56,18 @@ public class Start {
         x.add("rocket");
         String result = x.get(0);
         //x.add(Integer.valueOf(2));
+    }
+    public static MaxMin <Integer> getMinAndMax(int[] numbers){
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+        for(int number : numbers){
+            if (number < min){
+                min = number;
+            }
+            if (number > max){
+                max = number;
+            }
+        }
+        return new MaxMin<>(min,max);
     }
 }
