@@ -32,5 +32,5 @@ public class Start { // classi che si specializzano a lavorare con altri classi,
         x.add("Pippo");
         String s = x.getFirst();
         //x.add(Integer.valueOf(2));
-    }//banana
+    } // banana
 }
