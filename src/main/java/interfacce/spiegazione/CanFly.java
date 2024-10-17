@@ -1,4 +1,4 @@
-package interfacce;
+package interfacce.spiegazione;
 
 public interface CanFly {
     int maxHeight = 1000;

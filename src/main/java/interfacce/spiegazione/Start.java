@@ -1,4 +1,4 @@
-package interfacce;
+package interfacce.spiegazione;
 
 public class Start {
     public static void main(String[] args) {

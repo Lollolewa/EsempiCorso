@@ -1,4 +1,4 @@
-package org.generation.italy.esempiCorso.interfaces;
+package org.generation.italy.esempiCorso.interfaces.explanation;
 
 public class SuperHero extends Eater implements HumanBeing, FlyObject {
              //prima le classi, poi interfacce

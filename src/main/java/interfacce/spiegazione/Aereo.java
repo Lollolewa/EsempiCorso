@@ -1,4 +1,4 @@
-package interfacce;
+package interfacce.spiegazione;
 
 public class Aereo implements  CanFly{
 

@@ -1,4 +1,4 @@
-package org.generation.italy.esempiCorso.interfaces;
+package org.generation.italy.esempiCorso.interfaces.explanation;
 
  interface  HumanBeing {
   public static final int maxAge = 120;

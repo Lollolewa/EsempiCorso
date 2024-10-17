@@ -1,4 +1,4 @@
-package org.generation.italy.esempiCorso.interfaces;
+package org.generation.italy.esempiCorso.interfaces.explanation;
 
 public  class Accountant implements HumanBeing{
 //posso implementare piu' interfacce

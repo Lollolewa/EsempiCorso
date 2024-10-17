@@ -1,4 +1,4 @@
-package interfacce;
+package interfacce.spiegazione;
 
 public class Supereroe extends Persona implements CanFly{
     int maxFly;
