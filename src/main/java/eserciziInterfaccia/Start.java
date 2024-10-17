@@ -10,9 +10,16 @@ import java.util.List;
 
 public class Start {
     public static void main(String[] args) {
-        List<OperaArte> opere = new ArrayList<>();
-        opere.add(new Quadro("David", "Donatello", 1999, 2000, true));
-        System.out.println(opere);
 
+        GestioneQuadriImpl quadri = new GestioneQuadriImpl();
+
+        Quadro op = new Quadro("primo","io",2024,4000,true);
+        Quadro op1 = new Quadro("secondo","tu",2014,4000,false);
+
+        quadri.aggiungi(op);
+        quadri.aggiungi(op1);
+//        quadri.cercaPerAnno(2010);
+        quadri.cercaPerNome("primo");
+//        System.out.println(op.toString());
     }
 }
