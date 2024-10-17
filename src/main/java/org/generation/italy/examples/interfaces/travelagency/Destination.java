@@ -65,4 +65,8 @@ public class Destination {
     public void setSuggestedRestaurants(List<String> suggestedRestaurants) {
         this.suggestedRestaurants = suggestedRestaurants;
     }
+    @Override
+    public String toString() {
+        return "Attrazione: " + attractionName + ", Luogo: " + stayLocation;
+    }
 }
