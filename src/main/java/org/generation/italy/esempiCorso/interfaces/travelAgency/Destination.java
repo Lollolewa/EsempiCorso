@@ -62,6 +62,7 @@ public class Destination {
         for (String s : suggestedActivities){
             temp += "-" + s + ",\n";
         }
+        temp += "Ristoranti consigliati: \n";
         for (String s : suggestedResturants){
             temp += "-" + s + ",\n";
         }

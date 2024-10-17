@@ -66,6 +66,8 @@ public class Voyage {
         for (Destination d : destinationList) {
             temp += d.toString();
         }
-        return temp += String.format("ID: %d%nPrezzo %f%nData di inizio: %s%nData di fine %s%nCategoria %s%n", id, price, startDate.format(formatter), endDate.format(formatter), categories);
+        return temp += String.format("==============================%n" +
+                "ID: %d%nPrezzo %f%nData di inizio: %s%nData di fine %s%nCategoria %s%n"
+                , id, price, startDate.format(formatter), endDate.format(formatter), categories);
     }
 }
