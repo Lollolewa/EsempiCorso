@@ -1,6 +1,6 @@
 package eserciziInterfaccia;
 
-public abstract class OperaArte {
+public abstract class OperaArte{
     protected String nome, autore;
     protected int anno, costo;
     public OperaArte(String nome, String autore, int anno, int costo){
@@ -24,5 +24,10 @@ public abstract class OperaArte {
 
     public int getCosto() {
         return costo;
+    }
+
+    @Override
+    public String toString() {
+        return "Nome: " + nome + ", Autore: " + autore + ", Anno: " + anno + ", Costo: " + costo;
     }
 }
