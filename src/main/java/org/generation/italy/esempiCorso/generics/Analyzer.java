@@ -9,22 +9,22 @@ public class Analyzer <E extends Comparable<E>> {
     private List<E> elements;
 
     public Analyzer(List<E> elements) {
+        this.elements = new ArrayList<>(elements); //dentro i < > ci va il tipo - shallowcopy, questo serve per evitare che gli elementi della lista siano modificati da altre classi
         //this.elements = null;
-        //this.elements.add(e); //aggiungo un elemento
+        //this.elements.add(e);
         //this.elements[0] = this.elements[1];
-//        E x = this.elements.get(3);
-//        x.modify();
+        //E x = this.elements.get(3);
+        //x.modify(🚀);
+    }
+    public E getMaxElement(){
+        return Collections.max(elements);
+    }
 
-        this.elements = new ArrayList<>(elements);//dentro le paratesi diamantate non ha necessità di specificare il tipo di nuovo, è già stato dichiarato prima <E> quindi sarebbe ridondante perchè il compilatore lo sa
-    }
-        //questa è una shallow-copy, cioè ci sono gli stessi oggetti che puntano a quelli dell'ArrayList
-    public List<E> getElements() {
-        return elements;
-    }
     public void sort(){
         Collections.sort(elements);
     }
-    public E getMaxElement(){
-       return Collections.max(elements);
+
+    public List<E> getElements(){
+        return elements;
     }
 }
