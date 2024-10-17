@@ -1,9 +1,12 @@
 package org.generation.italy.esempiCorso.interfaces.travelAgency;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class Voyage {
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
     private List<Destination> destinationList;
     private int id;
     private double price;
@@ -57,4 +60,12 @@ public class Voyage {
         this.categories = categories;
     }
 
+    @Override
+    public String toString(){
+        String temp = "";
+        for (Destination d : destinationList) {
+            temp += d.toString();
+        }
+        return temp += String.format("ID: %d%nPrezzo %f%nData di inizio: %s%nData di fine %s%nCategoria %s%n", id, price, startDate.format(formatter), endDate.format(formatter), categories);
+    }
 }

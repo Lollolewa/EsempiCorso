@@ -55,4 +55,16 @@ public class Destination {
     public void setSuggestedResturants(List<String> suggestedResturants) {
         this.suggestedResturants = suggestedResturants;
     }
+
+    @Override
+    public String toString(){
+        String temp = String.format("Nome: %s%nDescrizione: %s%nSistemazione: %s%nNumero di giorni: %d%nAttività consigliate: %n", name, description, accomodation, daysNum);
+        for (String s : suggestedActivities){
+            temp += "-" + s + ",\n";
+        }
+        for (String s : suggestedResturants){
+            temp += "-" + s + ",\n";
+        }
+        return temp + "\n";
+    }
 }

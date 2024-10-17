@@ -8,6 +8,6 @@ public interface AbstractVoyageRepository {
     boolean delete(int id);
     Collection<Voyage> findActiveVoyages();
     Collection<Voyage> findByDestinationName(String destinationName);
-    Collection<Voyage> findActiveVoyagesByWord(String word);
+    Collection<Voyage> findActiveVoyagesByKeyWord(String word);
     Collection<Voyage> findByCategoryAndDuration(Category c, int duration);
 }
