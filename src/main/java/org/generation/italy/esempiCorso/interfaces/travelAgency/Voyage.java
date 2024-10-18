@@ -21,15 +21,11 @@ public class Voyage {
         this.endDate = endDate;
         this.categories = categories;
     }
-
     public List<Destination> getDestinationList() {
         return destinationList;
     }
     public int getId() {
         return id;
-    }
-    public double getPrice() {
-        return price;
     }
     public LocalDate getStartDate() {
         return startDate;
@@ -40,26 +36,6 @@ public class Voyage {
     public Category getCategories() {
         return categories;
     }
-
-    public void setDestinationList(List<Destination> destinationList) {
-        this.destinationList = destinationList;
-    }
-    public void setId(int id) {
-        this.id = id;
-    }
-    public void setPrice(double price) {
-        this.price = price;
-    }
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
-    public void setCategories(Category categories) {
-        this.categories = categories;
-    }
-
     @Override
     public String toString(){
         String temp = "";

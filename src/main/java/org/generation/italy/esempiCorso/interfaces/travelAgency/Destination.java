@@ -21,40 +21,6 @@ public class Destination {
     public String getName() {
         return name;
     }
-    public String getDescription() {
-        return description;
-    }
-    public String getAccomodation() {
-        return accomodation;
-    }
-    public int getDaysNum() {
-        return daysNum;
-    }
-    public List<String> getSuggestedActivities() {
-        return suggestedActivities;
-    }
-    public List<String> getSuggestedResturants() {
-        return suggestedResturants;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-    public void setDescription(String description) {
-        this.description = description;
-    }
-    public void setAccomodation(String accomodation) {
-        this.accomodation = accomodation;
-    }
-    public void setDaysNum(int daysNum) {
-        this.daysNum = daysNum;
-    }
-    public void setSuggestedActivities(List<String> suggestedActivities) {
-        this.suggestedActivities = suggestedActivities;
-    }
-    public void setSuggestedResturants(List<String> suggestedResturants) {
-        this.suggestedResturants = suggestedResturants;
-    }
 
     @Override
     public String toString(){
