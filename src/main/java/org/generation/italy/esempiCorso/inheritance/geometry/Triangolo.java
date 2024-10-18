@@ -1,5 +1,7 @@
 package org.generation.italy.esempiCorso.inheritance.geometry;
 
+import org.generation.italy.esempiCorso.inheritance.geometria.Forma;
+
 public class Triangolo extends Forma {
 
 

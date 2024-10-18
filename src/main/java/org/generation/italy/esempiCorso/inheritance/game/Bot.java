@@ -73,4 +73,13 @@ public abstract class Bot {
 
     public abstract int ultimate(Bot x);
 
+    public boolean isAlive() {
+        hp = getHp();
+        if (hp < 0) {
+            return false;
+        }
+        return true;
+    }
+
+
 }
