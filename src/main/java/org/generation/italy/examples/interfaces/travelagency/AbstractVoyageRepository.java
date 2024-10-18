@@ -9,7 +9,7 @@ public interface AbstractVoyageRepository {
 
     boolean delete(int id);
 
-    void findActiveVoyages();
+    void findActiveBundles();
 
     Collection<Voyage> findByDestinationName(String destinationName);
 

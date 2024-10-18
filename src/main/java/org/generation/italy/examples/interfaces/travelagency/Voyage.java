@@ -1,7 +1,6 @@
 package org.generation.italy.examples.interfaces.travelagency;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 public class Voyage {
@@ -14,10 +13,6 @@ public class Voyage {
 
     public int getDuration() {
         return duration;
-    }
-
-    public void setDuration(int duration) {
-        this.duration = duration;
     }
 
     public Voyage(List<Destination> destinations, Category categories, int id, int price, LocalDate startingDate, LocalDate endingDate, String description, int duration) {
@@ -35,24 +30,12 @@ public class Voyage {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public List<Destination> getDestinations() {
         return destinations;
     }
 
-    public void setDestinations(List<Destination> destinations) {
-        this.destinations = destinations;
-    }
-
     public Category getCategories() {
         return categories;
-    }
-
-    public void setCategories(Category categories) {
-        this.categories = categories;
     }
 
     public int getId() {
@@ -65,31 +48,6 @@ public class Voyage {
 
     public int getPrice() {
         return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public LocalDate getStartingDate() {
-        return startingDate;
-    }
-
-    public void setStartingDate(LocalDate startingDate) {
-        this.startingDate = startingDate;
-    }
-
-    public LocalDate getEndingDate() {
-        return endingDate;
-    }
-
-    public void setEndingDate(LocalDate endingDate) {
-        this.endingDate = endingDate;
-    }
-
-
-    public Destination[] getsuggestedActivities() {
-        return getsuggestedActivities();
     }
 }
 

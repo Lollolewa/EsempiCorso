@@ -9,7 +9,6 @@ public class VoyageRepository implements AbstractVoyageRepository {
 
     private List<Voyage> voyages = new ArrayList<>();
 
-
     @Override
     public void add(Voyage v) { //metodo per aggiungere dei Voyage in VoyageRepository(VR);
         voyages.add(v);
@@ -26,22 +25,19 @@ public class VoyageRepository implements AbstractVoyageRepository {
         return false;
     }
 
-
-
     @Override
-    public void findActiveVoyages() { //stampa a schermo i pacchetti di viaggio disponibili;
+    public void findActiveBundles() { //stampa a schermo i pacchetti di viaggio disponibili;
             for (Voyage v : voyages) {
+                System.out.println("Il prezzo e'"+ v.getPrice());
                 System.out.println("Pacchetto di viaggio ID: " + v.getId());
                 System.out.println("Categoria di viaggio: " + v.getCategories());
+                System.out.println("Descrizione: " + v.getDescription());
                 for (Destination location : v.getDestinations()) {
                     System.out.println(location);
                 }
                 System.out.println(); // Separatore tra pacchetti perchè sennò li stampava tutti attaccati e faceva pena;
             }
         }
-
-
-
 
     @Override
     public Collection<Voyage> findByDestinationName(String destinationName) {
