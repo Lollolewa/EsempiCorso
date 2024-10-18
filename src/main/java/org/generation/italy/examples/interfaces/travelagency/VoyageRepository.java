@@ -3,6 +3,7 @@ package org.generation.italy.examples.interfaces.travelagency;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Scanner;
 
 public class VoyageRepository implements AbstractVoyageRepository {
 
@@ -56,16 +57,56 @@ public class VoyageRepository implements AbstractVoyageRepository {
     }
     @Override
     public Collection<Voyage> findActiveVoyagesByWord(String word) {
-        return List.of();
+        List<Voyage> matchWord = new ArrayList<>();
+        for(Voyage v : voyages){
+           if(v.getDescription().contains(word)|| v.getDestinations().contains(word)){
+               matchWord.add(v);
+           }
+        }
+        return matchWord;
     }
 
     @Override
-    public Collection<Voyage> findByCategoriesAndDuration(Category c, int duration) {
-        return List.of();
+    public Collection<Voyage> findByCategoriesAndDuration(int duration) {
+        System.out.println("Scegli una categoria di viaggio!Inserisci:\n1)Luxury\n2)Comfort\n3)Budget\n4)Backpacker");
+        Category c = null;
+        Scanner sc= new Scanner(System.in);
+        int s=0;
+        do {
+            s=sc.nextInt();
+            if(s==1){
+                c = Category.LUXURY;
+                break;
+            }
+            else if(s==2){
+                c = Category.COMFORT;
+                break;
+            }
+            else if(s==3){
+                c = Category.BUDGET;
+                break;
+            }
+            else if(s==4){
+                c = Category.BACKPACKER;
+                break;
+            }
+            else {
+                System.out.println("Scelta non valida");
+            }
+        }while(s>=0);
+        List<Voyage> lv = new ArrayList<>();
+        for(Voyage v : voyages){
+            if(v.getCategories().equals(c) && v.getDuration() == duration){
+                lv.add(v);
+            }
+        }
+        return lv;
     }
-
-
 }
+
+
+
+
 
 
 

@@ -15,6 +15,6 @@ public interface AbstractVoyageRepository {
 
     Collection<Voyage> findActiveVoyagesByWord(String word);
 
-    Collection<Voyage> findByCategoriesAndDuration(Category c, int duration);
+    Collection<Voyage> findByCategoriesAndDuration(int duration);
 
 }
