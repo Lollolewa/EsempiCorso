@@ -2,18 +2,18 @@ package org.generation.italy.esempiCorso.inheritance.geometria;
 
 public class Rettangolo extends Forma{
 
-    public Rettangolo(int base, int altezza) {
+    //costruttore con super
+    public Rettangolo(int base, int altezza){
         super(base, altezza);
     }
 
-    @Override
-    public int calcolaArea(){
-        int area = base*altezza;
-        return area;
+
+    public int calcolaArea(int base, int altezza) {
+        return (base*altezza)/2;
     }
 
     @Override
     public String toString(){
-        return String.format("Il rettangolo con base: %d e altezza: %d %nHa un area di: %d", base,altezza, calcolaArea());
+        return String.format("%sRettangolo e' uguale a %d.", super.toString(), calcolaArea(base, altezza));
     }
 }

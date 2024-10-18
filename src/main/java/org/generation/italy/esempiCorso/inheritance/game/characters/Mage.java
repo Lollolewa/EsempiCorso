@@ -62,6 +62,7 @@ public class Mage extends org.generation.italy.esempiCorso.inheritance.game.Char
             return false;
         }
     }
+
 }
 
 

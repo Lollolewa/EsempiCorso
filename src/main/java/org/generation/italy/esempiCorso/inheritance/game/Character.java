@@ -70,4 +70,14 @@ public abstract class Character extends Player {
 
     public abstract int ultimate(Character x);
 
+    public boolean isAlive() {
+        hp = getHp();
+        if (hp < 0) {
+            return false;
+        }
+        return true;
+    }
+
+
+
 }
