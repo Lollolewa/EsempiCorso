@@ -31,17 +31,13 @@ public class Player {
     }
     public void setCharacter(Character character) {
         this.character = character;
-        System.out.println(character.getName() + " è stato assegnato a " + name + " " + cognome);
+        System.out.println(character.getName() + " è stato assegnato a " + character.getName() + " " + cognome);
     }
 
     public Character getCharacter() {
         return character;
     }
-    public void setCharacter(Character character) {
-        this.character = character;
-        System.out.println(character.getName() + " è stato assegnato a " + name + " " + cognome);
-        this.character = character.getName();
-    }
+
     //public void setCharacter(Character character) {
        // this.character = character;
         //System.out.println(character.getName() + " è stato assegnato a " + nome + " " + cognome);
