@@ -67,7 +67,7 @@ public class Voyage {
             temp += d.toString();
         }
         return temp += String.format("==============================%n" +
-                "ID: %d%nPrezzo %f%nData di inizio: %s%nData di fine %s%nCategoria %s%n"
+                "ID: %d%nPrezzo %f%nData di inizio: %s%nData di fine %s%nCategoria %s%n==============================%n%n%n"
                 , id, price, startDate.format(formatter), endDate.format(formatter), categories);
     }
 }
