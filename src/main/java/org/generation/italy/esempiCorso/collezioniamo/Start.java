@@ -21,14 +21,22 @@ public class Start {
         for (String s : saluti) {
             System.out.println(s);
         }
-
+        Prodotto p1 = new Prodotto("Biscotti", 2);
+        Prodotto p2 = new Prodotto("Biscotti", 2);
         // HashSet di prodotti
         Set<Prodotto> prodotti = new HashSet<>();
-        prodotti.add(new Prodotto("Pane", 2));
-        prodotti.add(new Prodotto("Pane", 2)); // Questo non verrà aggiunto, poiché gli oggetti sono distinti
+        prodotti.add(p1);
+        prodotti.add(p2); // Questo non verrà aggiunto, poiché gli oggetti sono distinti
         System.out.println("Dimensione del Set di prodotti: " + prodotti.size());
+        boolean r = p1.equals(p2);
+        System.out.println(r);
+        Prodotto p3 = p1;
+        System.out.println(p3.equals(p1)); // true perché i due oggetti sono lo stesso (sono lo stesso oggetto)
+        System.out.println(p1.equals(p2));
+        System.out.println(p1.hashCode());
+        System.out.println(p2.hashCode());
+        System.out.println(p3.hashCode());
 
-        // Stampa i prodotti
         for (Prodotto prodotto : prodotti) {
             System.out.println(prodotto);
         }

@@ -13,13 +13,28 @@ class Prodotto {
         this.nome = nome;
         this.costo = costo;
     }
-
     public int getCosto() {
         return costo;
     }
 
     @Override
-    public String toString() {
-        return String.format("Prodotto{nome='%s', costo=%d}", nome, costo);
+    public boolean equals(Object obj) {
+        System.out.println("Ho chiamato equals");
+        if(obj == null || obj.getClass() != Prodotto.class){
+            return false;
+        }
+        Prodotto other= (Prodotto)obj;
+        if(this.nome == null){
+            if(other.nome == null){
+                return costo== other.costo;
+            }
+            return false;
+        }
+        return this.nome.equals(other.nome) && (this.costo== other.costo);
+    }
+    @Override
+    public int hashCode() {
+        System.out.println("Ho chiamato hashCode");
+        return (nome != null? nome.hashCode() : 1) + costo;
     }
 }

@@ -25,4 +25,5 @@ public class Iteriamo {
 
         System.out.println("Costo totale: " + costoTotale);
     }
+
 }
