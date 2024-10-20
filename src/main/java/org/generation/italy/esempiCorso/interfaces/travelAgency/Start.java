@@ -6,6 +6,3 @@ public class Start {
         uI.begin();
     }
 }
-
-// mancano vari controlli sull'input dei vari scanner e il metodo che aggiunge un viaggio, resto funge
-// il metodo remove in VoyagerRepository l'ho copiato da Pam, non ho capito bene come funzioni
