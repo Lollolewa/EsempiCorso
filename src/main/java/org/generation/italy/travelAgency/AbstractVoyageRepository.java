@@ -1,6 +1,7 @@
 package org.generation.italy.travelAgency;
 
 import java.util.Collection;
+import java.util.List;
 
 public interface AbstractVoyageRepository {
 
@@ -11,4 +12,6 @@ public interface AbstractVoyageRepository {
     Collection<Voyage> findActiveVoyagesByWord(String word);
     Collection<Voyage> findByCategoryAndDuration(Category c, int duration);
 
+
+    List<Integer> findVoyagesById(int id);
 }

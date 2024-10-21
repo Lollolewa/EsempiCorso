@@ -38,7 +38,7 @@ public class Contatto
     public boolean equals(Object obj){
         if(this == obj) // siamo lo stesso oggetto?
             return true;
-        if(obj == null)
+        if(obj == null) //la reference in input punta al nulla?
             return false;
         if(obj.getClass() != this.getClass()) // abbiamo classi diverse?
             return false;
