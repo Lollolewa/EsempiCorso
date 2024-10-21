@@ -1,4 +1,4 @@
-package org.generation.italy.esempiCorso.interfaces;
+package org.generation.italy.esempiCorso.interfaces.explanation;
 
 import org.generation.italy.esempiCorso.utilities.StringUtilities;
 

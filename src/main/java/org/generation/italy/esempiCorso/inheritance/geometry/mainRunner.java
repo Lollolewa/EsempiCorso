@@ -1,4 +1,4 @@
-package org.generation.italy.esempiCorso.inheritance.geometria;
+package org.generation.italy.esempiCorso.inheritance.geometry;
 
 public class mainRunner {
     public static void main(String[] args) {
