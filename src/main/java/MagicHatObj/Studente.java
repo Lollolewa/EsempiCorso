@@ -12,8 +12,18 @@ public class Studente {
         this.nome = nome;
         this.cognome = cognome;
         this.preferenza = preferenza;
-
-
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public String getCognome() {
+        return cognome;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Nome: %s %s, preferenza: %s,", nome, cognome, preferenza);
+    }
 }
