@@ -16,7 +16,7 @@ public class UserInterface {
         repository.create(new Voyage(List.of(
                 new Destination("ROMA", "roma", "Hotel Roma", 10, List.of("Mangiare", "Girare"), List.of("Ristorante Roma", "Ristorante Lazio")),
                 new Destination("PARIGI", "Francia", "Hotel Parigi", 10, List.of("Mangiare", "Girare"), List.of("Ristorante Parigi", "Ristorante France"))),
-                1001, 3000.00, LocalDate.of(2024, 10, 18), Category.luxury));
+                1001, 3000.00, LocalDate.of(2024, 11, 1), Category.luxury));
 
         System.out.println("""
                 Welcome to the travel agency. What would you like to do?

@@ -38,7 +38,7 @@ public class VoyageRepository implements AbstractVoyageRepository {
         LocalDate today = LocalDate.now();
         Collection<Voyage> activeVoyages = new ArrayList<>();
         for (Voyage v : voyages) {
-            if (v.getStartDate().isBefore(today) || v.getStartDate().isEqual(today)) {
+            if (v.getStartDate().isAfter(today) || v.getStartDate().isEqual(today)) {
                 activeVoyages.add(v);
             }
         }
