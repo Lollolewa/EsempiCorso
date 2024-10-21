@@ -1,41 +1,43 @@
 package org.generation.italy.esempiCorso.generics;
 
-import com.sun.jdi.IntegerValue;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class Start {
     public static void main(String[] args) {
-        // generics sono state aggiunte in seguito//🚀🚀
-        // classi generics 90% sono strutture dati
-        List names = new ArrayList();
-        names.add("pippo");
-        names.add(Integer.valueOf(4));
-        names.add(4); //Integer.valueOf automaticamente
-        doSomethingWithList(names);
+        List names = new ArrayList<>(); // list of names
+        names.add("Pippo"); // aggiunta una stringa
+        names.add(Integer.valueOf(25)); // aggiunta una integer
+        names.add(5); // aggiunta una integer
+        doSomethingWithList(names); // do something with names
 
-        List<String> words = new ArrayList<>();
-        words.add("topolino");
-        //words.add(Integer.valueOf(2));
-        String y = words.get(0);
-        doSomethingWithList(words);
-        Pair<String,Integer> pair1 = new Pair<>("rocket",3);
-        Pair<Integer, String> pair2 = new Pair<>(3,"rocket");
-        System.out.println(pair1.equals(pair2));
-        System.out.println(pair1.getFirst());
+        List<String> parole = new ArrayList<>();
+        parole.add("Ciao"); // aggiunta una stringa
+        // parole.add(Integer.valueOf(2)); // Non è possibile aggiungere un Integer alla lista di parole
+        // parole.get(0);  Non è possibile eseguire il metodo get() su un Integer. C'è un'eccezione ClassCastException.
+        String y = parole.get(0); //
+        doSomethingWithList(parole);
+        Pair<String, Integer> pair = new Pair<>("Ciao", 25);
+        Pair<Integer, String> pair2 = new Pair<>(25, "Ciao");
+        System.out.println(pair.equals(pair2));
+        System.out.println(pair.getFirst());
         System.out.println(pair2.getFirst());
     }
     public static void doSomethingWithList(List x){
-        x.add("ciccio");
+        x.add("Pluto"); //
         Object z = x.get(0);
         System.out.println(z);
         String s = (String) x.get(0);
-        //x.add(new StringBuilder());
+        x.add(new StringBuilder());
     }
     public static void doSomethingWithGenericList(List<String> x){
-        x.add("rocket");
-        String result = x.get(0);
-        //x.add(Integer.valueOf(2));
+        x.add("Pluto");
+        String s = x.get(0);
+        System.out.println(s);
+        // x.add(Integer.valueOf(2)); // Non è possibile aggiungere un Integer alla lista di parole
     }
 }
+// Generics sono state aggiunte nel Java 5 per consentire a tipi generici.
+// Le classi generiche permettono di creare tipi parametrici che possono contenere elementi di diversi tipi.
+// Sono strutture dati.
+// Type erasure è un processo automatico che viene eseguito durante la compilazione del codice Java, che trasforma i tipi generici in tipi non generici.

@@ -4,12 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Iteriamo {
-    //voglio fare una lista della spesa
-
     public static void main(String[] args) {
-        List<Prodotto> prod = new ArrayList<>();
-        prod.add(new Prodotto("farina", 1));
-        Prodotto p = new Prodotto("latte",5);
-        p.aCaso();
+        // Facciamo una lista
+        List<Prodotto> prodotti = new ArrayList<>();
+
+        // Aggiungiamo Prodotti
+        prodotti.add(new Prodotto("Farina", 1));
+        prodotti.add(new Prodotto("Pomodoro", 2));
+        prodotti.add(new Prodotto("Mozzarella", 3));
+
+        System.out.println("Numero di prodotti nella lista: " + prodotti.size()); // Vedere lunghezza della lista
+
+        // Calcolo del costo totale
+        int costoTotale = 0;
+
+        for (Prodotto p : prodotti) {
+            costoTotale += p.getCosto(); // Usa il metodo getCosto per ottenere il costo
+            System.out.println(p); // Stampa dettagli del prodotto
+        }
+
+        System.out.println("Costo totale: " + costoTotale);
     }
+
 }
