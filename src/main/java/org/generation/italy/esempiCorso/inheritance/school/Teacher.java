@@ -17,6 +17,7 @@ public class Teacher extends Employee{
     @Override
     public double getAnnualSalary() {
         return super.getAnnualSalary() + yearOfService >= 10 ? 500: 0;
+
     }
 
     @Override //riprende il metodo della superclasse e lo sovrascrive, non necessario
