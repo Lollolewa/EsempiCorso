@@ -4,61 +4,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Destination {
-    private String city, description, housing;
-    int days;
-    List<String> advisedActivity = new ArrayList<>();
-    List<String> advisedRestaurant = new ArrayList<>();
+    private String attractionName, description, stayLocation;
+    private int nDays,nprezzo;
+    private List<String> suggestedActivities = new ArrayList<>();
+    private List<String> suggestedRestaurants = new ArrayList<>();
 
-
-
-    public Destination(String city, String description, String housing, int days, List<String> advisedActivity, List<String> advisedRestourant) {
-        this.city = city;
+    public Destination(String attractionName, String description, String stayLocation, int nDays, List<String> suggestedActivities, List<String> suggestedRestaurants, int nprezzo) {
+        this.attractionName = attractionName;
         this.description = description;
-        this.housing = housing;
-        this.days = days;
-        //this.advisedActivity = advisedActivity;
-        this.advisedRestaurant = advisedRestourant;
-    }
-
-
-
-
-
-
-    public String getCity() {
-        return city;
+        this.stayLocation = stayLocation;
+        this.nDays = nDays;
+        this.suggestedActivities = suggestedActivities;
+        this.suggestedRestaurants = suggestedRestaurants;
+        this.nprezzo= nprezzo;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public String getHousing() {
-        return housing;
+    public String getAttractionName() {
+        return attractionName;
     }
 
-    public int getDays() {
-        return days;
+    public int getPrezzo() {
+        return nprezzo;
     }
-
-    public List<String> getAdvisedActivity() {
-        return advisedActivity;
-    }
-
-    public List<String> getAdvisedRestourant() {
-        return advisedRestaurant;
-    }
-
     @Override
     public String toString() {
-        return "Destination{" +
-                "city='" + city + '\'' +
-                ", description='" + description + '\'' +
-                ", housing='" + housing + '\'' +
-                ", days=" + days +
-                ", advisedActivity=" + advisedActivity +
-                ", advisedRestaurant=" + advisedRestaurant +
-                '}';
+        return "Attrazione: " + attractionName + ", Luogo: " + stayLocation;
     }
 }
-

@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Start {
-    public static void main (String[] args){
+    public static void main(String[] args) {
+
         UserInterface ui = new UserInterface();
+
         ui.begin();
         List<String> advisedActivity = new ArrayList<>();
         advisedActivity.add("Torre Eiffel");
@@ -29,3 +31,4 @@ public class Start {
     }
 
 }
+

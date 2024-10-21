@@ -1,9 +1,6 @@
 package org.generation.italy.esempiCorso.collection;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Start {
     public static void main(String[] args) {
@@ -19,7 +16,7 @@ public class Start {
         nomiClasse.add("Pino");
         nomiClasse.add("Lino");
         nomiClasse.add("Gino");
-        nomiClasse.add("Tino");
+        nomiClasse.add("Tinos");
 //        nomiClasse.remove(1); //remove sia per indice che per oggetto.
 
 //        List<String> names = List.of("Pino","Gino"); //non modificabile
@@ -61,7 +58,7 @@ public class Start {
 
         Set<Prodotto> prodotti = new HashSet<>();
 
-        prodotti.add(new Prodotto("Pane",22));
+        prodotti.add((new Prodotto("Pane",22)));
 
         String s1 = "pippo";
         String s2 = "pippo";
@@ -71,8 +68,19 @@ public class Start {
         Prodotto p2 = new Prodotto("Bicicletta",100);
         System.out.println(p1==p2);
 
-
-
+        List<String> result = findS(nomiClasse);
 
     }
+
+    public static List<String> findS (Iterable<String> stringhe){
+        List<String> parolaRitorno = new ArrayList<>();
+        for(String s : stringhe)        {
+            if (s.charAt(0)=='s'){
+                parolaRitorno.add(s);
+            }
+        } return  parolaRitorno;
+    }
+
+
+
 }
