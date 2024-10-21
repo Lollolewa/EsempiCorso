@@ -80,21 +80,34 @@ public class UserInterface {
     }
 
     private void createTrip(Scanner scanner) {
-        String cityOfDestination, description, restaurant, otherRestaurant, hotelName, otherActivities;
+        String cityOfDestination, description, hotelName, otherActivities;
         int stayDays;
         List<Destination> destinations = new ArrayList<>();
-        List<String> activities = new ArrayList<>();
-        List<String> restaurants = new ArrayList<>();
         Voyage voyage;
 
         System.out.println("Welcome to Travel Agency");
 
+        String addMoreDestinations;
         do {
+
             cityOfDestination = getNonEmptyInput(scanner, "Enter the city of destination").toUpperCase().trim();
             description = getNonEmptyInput(scanner, "Enter the description of the destination");
-            restaurant = getNonEmptyInput(scanner, "Enter the restaurant name");
-            restaurants.add(restaurant);
-            otherRestaurant = getNonEmptyInput(scanner, "Do you want to add more restaurants? (y/n)");
+
+            List<String> restaurants = new ArrayList<>();
+            String addMoreRestaurants;
+            do {
+                String restaurant = getNonEmptyInput(scanner, "Enter the restaurant name");
+                restaurants.add(restaurant);
+                addMoreRestaurants = getNonEmptyInput(scanner, "Do you want to add more restaurants? (y/n)");
+            } while (addMoreRestaurants.equalsIgnoreCase("y"));
+
+            List<String> activities = new ArrayList<>();
+            String addMoreActivities;
+            do {
+                otherActivities = getNonEmptyInput(scanner, "Enter the other activities");
+                activities.add(otherActivities);
+                addMoreActivities = getNonEmptyInput(scanner, "Do you want to add more activities? (y/n)");
+            } while (addMoreActivities.equalsIgnoreCase("y"));
 
             hotelName = getNonEmptyInput(scanner, "Enter the hotel name");
             stayDays = getValidIntegerInput(scanner, "How many days do you want to stay?", 1, Integer.MAX_VALUE);
@@ -102,15 +115,10 @@ public class UserInterface {
             Destination newDestination = new Destination(cityOfDestination, description, hotelName, stayDays, activities, restaurants);
             destinations.add(newDestination);
 
-            do {
-                otherActivities = getNonEmptyInput(scanner, "Enter the other activities");
-                activities.add(otherActivities);
-                otherActivities = getNonEmptyInput(scanner, "Do you want to add more other activities? (y/n)");
-            } while (otherActivities.equalsIgnoreCase("y"));
+            addMoreDestinations = getNonEmptyInput(scanner, "Do you want to enter more destinations? (y/n)");
+        } while (addMoreDestinations.equalsIgnoreCase("y"));
 
-            otherRestaurant = getNonEmptyInput(scanner, "Do you want to enter more destinations? (y/n)");
-        } while (otherRestaurant.equalsIgnoreCase("y"));
-
+        // Continue with creating the voyage
         int id = getUniqueVoyageId(scanner);
         double price = getValidDoubleInput(scanner, "Enter the budget", 0.0, Double.MAX_VALUE);
         LocalDate startLocalDate = getFutureDate(scanner);
@@ -121,7 +129,6 @@ public class UserInterface {
         System.out.println("Voyage with ID " + id + " has been created.");
         System.out.println("Voyage: " + voyage);
     }
-
     private String getNonEmptyInput(Scanner scanner, String prompt) {
         String input;
         do {
