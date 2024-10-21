@@ -1,5 +1,5 @@
 package org.generation.italy.esempiCorso.griffindor.eserciziCollection.travelAgency;
-
+// commento per test git
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,9 +14,45 @@ public class UserInterface {
         int choice;
 
         repository.create(new Voyage(List.of(
-                new Destination("ROMA", "roma", "Hotel Roma", 10, List.of("Mangiare", "Girare"), List.of("Ristorante Roma", "Ristorante Lazio")),
-                new Destination("PARIGI", "Francia", "Hotel Parigi", 10, List.of("Mangiare", "Girare"), List.of("Ristorante Parigi", "Ristorante France"))),
-                1001, 3000.00, LocalDate.of(2024, 10, 18), Category.luxury));
+                new Destination("TOKYO", "Japan", "Park Hyatt Tokyo", 8, List.of("Anime Tour", "Sumo Wrestling"), List.of("Sukiyabashi Jiro", "Narisawa")),
+                new Destination("KYOTO", "Japan", "The Ritz-Carlton Kyoto", 6, List.of("Temple Visit", "Tea Ceremony"), List.of("Kikunoi", "Hyotei"))),
+                1003, 5500.00, LocalDate.of(2024, 12, 20), Category.luxury));
+
+        repository.create(new Voyage(List.of(
+                new Destination("NEW YORK", "USA", "The Plaza", 6, List.of("Broadway Show", "Central Park Walk"), List.of("Per Se", "Le Bernardin")),
+                new Destination("MIAMI", "USA", "Fontainebleau", 5, List.of("Beach Day", "Art Deco Tour"), List.of("Joe's Stone Crab", "Zuma"))),
+                1004, 4000.00, LocalDate.of(2025, 3, 10), Category.luxury));
+
+        repository.create(new Voyage(List.of(
+                new Destination("BARCELONA", "Spain", "W Barcelona", 5, List.of("Sagrada Familia Tour", "Tapas Crawl"), List.of("Tickets", "Lasarte")),
+                new Destination("MADRID", "Spain", "The Westin Palace", 4, List.of("Prado Museum Visit", "Flamenco Show"), List.of("DiverXO", "Coque"))),
+                1005, 3500.00, LocalDate.of(2025, 12, 5), Category.comfort));
+
+        repository.create(new Voyage(List.of(
+                new Destination("PARIS", "France", "Ritz Paris", 7, List.of("Eiffel Tower Tour", "Louvre Visit"), List.of("L'Arpège", "Guy Savoy")),
+                new Destination("NICE", "France", "Hotel Negresco", 5, List.of("Beach Day", "Old Town Walk"), List.of("La Vague d'Or", "Le Chantecler"))),
+                1006, 6000.00, LocalDate.of(2024, 11, 15), Category.luxury));
+
+        repository.create(new Voyage(List.of(
+                new Destination("ROME", "Italy", "Hotel Eden", 6, List.of("Colosseum Tour", "Vatican Visit"), List.of("La Pergola", "Il Pagliaccio")),
+                new Destination("FLORENCE", "Italy", "Four Seasons Hotel Firenze", 4, List.of("Uffizi Gallery", "Duomo Climb"), List.of("Enoteca Pinchiorri", "La Bottega del Buon Caffè"))),
+                1007, 4500.00, LocalDate.of(2025, 2, 1), Category.backpacker));
+
+        repository.create(new Voyage(List.of(
+                new Destination("SYDNEY", "Australia", "Park Hyatt Sydney", 8, List.of("Opera House Tour", "Bondi Beach Visit"), List.of("Quay", "Tetsuya's")),
+                new Destination("MELBOURNE", "Australia", "Crown Towers", 5, List.of("Great Ocean Road Trip", "Street Art Tour"), List.of("Attica", "Vue de Monde"))),
+                1008, 7000.00, LocalDate.of(2025, 2, 20), Category.luxury));
+
+        repository.create(new Voyage(List.of(
+                new Destination("BANGKOK", "Thailand", "Mandarin Oriental", 5, List.of("Grand Palace Tour", "Floating Market Visit"), List.of("Nahm", "Gaggan Anand")),
+                new Destination("PHUKET", "Thailand", "Amanpuri", 6, List.of("Island Hopping", "Old Town Walk"), List.of("Raya", "One Chun"))),
+                1009, 3800.00, LocalDate.of(2024, 11, 10), Category.backpacker));
+
+        repository.create(new Voyage(List.of(
+                new Destination("MARRAKECH", "Morocco", "La Mamounia", 6, List.of("Medina Tour", "Camel Ride"), List.of("La Grande Table Marocaine", "Nomad")),
+                new Destination("FES", "Morocco", "Riad Fes", 4, List.of("Tannery Visit", "Ceramic Workshop"), List.of("Nur", "Café Clock"))),
+                1010, 3200.00, LocalDate.of(2025, 4, 5), Category.budget));
+
 
         System.out.println("""
                 Welcome to the travel agency. What would you like to do?
@@ -80,21 +116,34 @@ public class UserInterface {
     }
 
     private void createTrip(Scanner scanner) {
-        String cityOfDestination, description, restaurant, otherRestaurant, hotelName, otherActivities;
+        String cityOfDestination, description, hotelName, otherActivities;
         int stayDays;
         List<Destination> destinations = new ArrayList<>();
-        List<String> activities = new ArrayList<>();
-        List<String> restaurants = new ArrayList<>();
         Voyage voyage;
 
         System.out.println("Welcome to Travel Agency");
 
+        String addMoreDestinations;
         do {
+
             cityOfDestination = getNonEmptyInput(scanner, "Enter the city of destination").toUpperCase().trim();
             description = getNonEmptyInput(scanner, "Enter the description of the destination");
-            restaurant = getNonEmptyInput(scanner, "Enter the restaurant name");
-            restaurants.add(restaurant);
-            otherRestaurant = getNonEmptyInput(scanner, "Do you want to add more restaurants? (y/n)");
+
+            List<String> restaurants = new ArrayList<>();
+            String addMoreRestaurants;
+            do {
+                String restaurant = getNonEmptyInput(scanner, "Enter the restaurant name");
+                restaurants.add(restaurant);
+                addMoreRestaurants = getNonEmptyInput(scanner, "Do you want to add more restaurants? (y/n)");
+            } while (addMoreRestaurants.equalsIgnoreCase("y"));
+
+            List<String> activities = new ArrayList<>();
+            String addMoreActivities;
+            do {
+                otherActivities = getNonEmptyInput(scanner, "Enter the other activities");
+                activities.add(otherActivities);
+                addMoreActivities = getNonEmptyInput(scanner, "Do you want to add more activities? (y/n)");
+            } while (addMoreActivities.equalsIgnoreCase("y"));
 
             hotelName = getNonEmptyInput(scanner, "Enter the hotel name");
             stayDays = getValidIntegerInput(scanner, "How many days do you want to stay?", 1, Integer.MAX_VALUE);
@@ -102,15 +151,10 @@ public class UserInterface {
             Destination newDestination = new Destination(cityOfDestination, description, hotelName, stayDays, activities, restaurants);
             destinations.add(newDestination);
 
-            do {
-                otherActivities = getNonEmptyInput(scanner, "Enter the other activities");
-                activities.add(otherActivities);
-                otherActivities = getNonEmptyInput(scanner, "Do you want to add more other activities? (y/n)");
-            } while (otherActivities.equalsIgnoreCase("y"));
+            addMoreDestinations = getNonEmptyInput(scanner, "Do you want to enter more destinations? (y/n)");
+        } while (addMoreDestinations.equalsIgnoreCase("y"));
 
-            otherRestaurant = getNonEmptyInput(scanner, "Do you want to enter more destinations? (y/n)");
-        } while (otherRestaurant.equalsIgnoreCase("y"));
-
+        // Continue with creating the voyage
         int id = getUniqueVoyageId(scanner);
         double price = getValidDoubleInput(scanner, "Enter the budget", 0.0, Double.MAX_VALUE);
         LocalDate startLocalDate = getFutureDate(scanner);
@@ -121,7 +165,6 @@ public class UserInterface {
         System.out.println("Voyage with ID " + id + " has been created.");
         System.out.println("Voyage: " + voyage);
     }
-
     private String getNonEmptyInput(Scanner scanner, String prompt) {
         String input;
         do {

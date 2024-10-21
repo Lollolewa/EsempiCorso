@@ -21,21 +21,5 @@ public class Exceptions {
     private static int divide(int numero1, int numero2) {
         return numero1 / numero2;
     }
-    // Cosa abbiamo fatto qui sopra?
-    // Creiamo una classe Exceptions con un metodo main che simula un' operazione di divisione.
-
-// PrintStackTrace viene visualizzato solo se un'eccezione viene sollevata nel try-catch.
-//        try (BufferedReader br = new BufferedReader(new FileReader("file.txt"))) { //
-//            String line;
-//            while ((line = br.readLine()) != null) {
-//                System.out.println(line);
-//            }
-//        } catch (
-//                IOException e) {
-//            e.printStackTrace();
-//
-// In questo caso, nelle tonde del try, viene dichiarato un oggetto che implementa l'interfaccia AutoCloseable (ad esempio un BufferedReader).
-// Quando il blocco try termina, la risorsa viene chiusa automaticamente, anche in caso di eccezione.
-
 }
 

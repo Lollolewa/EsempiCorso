@@ -7,7 +7,7 @@ public class Persona {
     // Costruttore
     public Persona(String nome, int eta) {
         if (eta < 0) {
-            throw new IllegalArgumentException("L'età non può essere negativa!");
+            throw new IllegalArgumentException("L'età non può essere negativa!"); // throw exception a runtime se l'età è negativa'
         }
         this.nome = nome;
         this.eta = eta;

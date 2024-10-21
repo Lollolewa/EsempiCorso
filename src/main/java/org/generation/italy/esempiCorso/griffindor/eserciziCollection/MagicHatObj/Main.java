@@ -36,7 +36,6 @@ public class Main {
 
         // Crea un'istanza della classe MagicHat passando la lista di studenti
         MagicHat magicHat = new MagicHat(students);
-
         // Assegna gli studenti alle case
         magicHat.assignStudents();
 
@@ -48,6 +47,9 @@ public class Main {
                 System.out.println("  - " + student);  // Stampa i dettagli dello studente
             }
             System.out.println();  // Stampa una riga vuota per separare i gruppi
+            // Uso un ciclo per stampare in modo da stampare i risultati nel modo più pulito possibile
+            // in modo da non avere le parentesi nella stringa stampata
+
         }
     }
 }
