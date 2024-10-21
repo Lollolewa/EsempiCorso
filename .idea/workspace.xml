@@ -6,11 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="2c62f88b-eea0-4ccf-aba1-a155fa02e9f0" name="Changes" comment="Agenzia viaggio RockeClaw">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/interfaces/travelagency/AbstractVoyageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/interfaces/travelagency/AbstractVoyageRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/interfaces/travelagency/Destination.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/interfaces/travelagency/Destination.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/interfaces/travelagency/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/interfaces/travelagency/UserInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/interfaces/travelagency/Voyage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/interfaces/travelagency/Voyage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/interfaces/travelagency/VoyageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/examples/interfaces/travelagency/VoyageRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +52,7 @@
     &quot;Application.Start.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;JoshuaCastellani&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
@@ -102,7 +98,15 @@
       <option name="project" value="LOCAL" />
       <updated>1729260806667</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Agenzia viaggio RockeClaw">
+      <option name="closed" value="true" />
+      <created>1729519323658</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1729519323658</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
