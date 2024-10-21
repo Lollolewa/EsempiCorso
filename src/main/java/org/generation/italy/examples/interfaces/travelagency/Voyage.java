@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Voyage {
     private List<Destination> destinations;
-    private Category  categories; //inizializzazione enum dentro un oggetto;
+    private Category category; //inizializzazione enum dentro un oggetto;
     private int id, price,duration;
     private LocalDate startingDate;
     private LocalDate endingDate;
@@ -15,9 +15,9 @@ public class Voyage {
         return duration;
     }
 
-    public Voyage(List<Destination> destinations, Category categories, int id, int price, LocalDate startingDate, LocalDate endingDate, String description, int duration) {
+    public Voyage(List<Destination> destinations, Category category, int id, int price, LocalDate startingDate, LocalDate endingDate, String description, int duration) {
         this.destinations = destinations;
-        this.categories = categories;
+        this.category = category;
         this.id = id;
         this.price = calcolaPrezzoTotale();
         this.startingDate = startingDate;
@@ -30,12 +30,16 @@ public class Voyage {
         return description;
     }
 
+    public LocalDate getStartingDate() {
+        return startingDate;
+    }
+
     public List<Destination> getDestinations() {
         return destinations;
     }
 
-    public Category getCategories() {
-        return categories;
+    public Category getCategory() {
+        return category;
     }
 
     public int getId() {
@@ -58,6 +62,19 @@ public class Voyage {
             totale += destination.getPrezzo();
         }
         return totale;
+    }
+    public boolean anyDestinationContains(String word){
+//        int x = 3;
+//        var y = 3;
+//        int z;
+        // var w; //var va sempre inizializzato
+        //var r = new HashSet<List<String>>();
+        for(var d: destinations){
+            if(d.getAttractionName().contains(word)){
+                return true;
+            }
+        }
+        return false;
     }
 }
 

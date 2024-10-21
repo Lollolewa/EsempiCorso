@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class UserInterface {
 
     private AbstractVoyageRepository repository = new VoyageRepository();
-
+    private Scanner sc = new Scanner(System.in);
     public void begin(){
         System.out.println("Ben venuto all'agenzia di viaggio Rocketclaw! Dove potrai trovare solo viaggi spaziali!");
         Destination parigi = new Destination("Parigi", "Famosa per la torre e il mondiale 2006", "Hotel baguette",
@@ -89,9 +89,9 @@ public class UserInterface {
         repository.add(japanAdventure);
         List<Destination> possibleDestination= new ArrayList<>(List.of(parigi,roma,newYork,tokyo));
         int scelta = 1;
-        while (scelta!=0){
-            Scanner sc = new Scanner(System.in);
-            System.out.println("Selezionare un numero da 1 a 7 per: \n1) Guarda tutti i bundle di viaggi al momento. \n2) Cerca un viaggio in base alla destinazione desiderata. " +
+
+        while (true){
+            System.out.println("Selezionare un numero da 1 a 7 per: \n1) Guarda tutti i bundle di viaggi al momento \n2) Cerca un viaggio in base alla destinazione desiderata " +
                         "\n3) Cerca viaggi attivi tramite attività o località di interesse \n4) Trova il tuo viaggio in base alla data \n5) Cancella un pacchetto tramite ID " +
                         "\n6)Trova il tuo viaggio in base al numero di destinazioni \n7)Creare un pacchetto personalizzato \n0)Termina e chiudi" );
             scelta = sc.nextInt();
@@ -100,56 +100,32 @@ public class UserInterface {
             case 0:
                 System.exit(0);
             case 1:
-                repository.findActiveBundles();
+                printVoyages(repository.findActiveBundles());
                 break;
             case 2:
                 System.out.println("Inserisci una localita': ");
-
-                Collection<Voyage> viaggi = repository.findByDestinationName(sc.nextLine());
-                for (Voyage t : viaggi) {
-                    System.out.println("Pacchetto di viaggio ID: " + t.getId());
-                    for (Destination location : t.getDestinations()) {
-                        System.out.println(location);
-                    }
-                    System.out.println();
-                }
+                var viaggi = repository.findByDestinationName(sc.nextLine());
+                printVoyages(viaggi);
                 break;
             case 3:
                 System.out.println("Inserisci una parola chiave per trovare un viaggio: ");
-                Collection<Voyage> viaggi2 = repository.findActiveVoyagesByWord(sc.nextLine());
-                for (Voyage t : viaggi2) {
-                    System.out.println("Pacchetto di viaggio ID: " + t.getId());
-                    for (Destination location : t.getDestinations()) {
-                        System.out.println(location);
-                    }
-                    System.out.println();
-                }
+                var viaggi2 = repository.findActiveVoyagesByWord(sc.nextLine());
+                printVoyages(viaggi2);
                 break;
             case 4:
-                System.out.println("Inserisci la durata del viaggio");
-                Collection<Voyage> viaggi3 = repository.findByCategoriesAndDuration(sc.nextInt());
-                for (Voyage t : viaggi3) {
-                    System.out.println("Pacchetto di viaggio ID: " + t.getId());
-                    for (Destination location : t.getDestinations()) {
-                        System.out.println(location);
-                    }
-                    System.out.println();
-                }
+                int n= getInt("Inserisci la durata del viaggio");
+                Category target = getCategory();
+                var viaggi3 = repository.findByCategoriesAndDuration(target,n);
+                printVoyages(viaggi3);
                 break;
             case 5:
-                repository.delete(sc.nextInt());
+                repository.delete(getInt("Insrisci iD del viaggio che voi cancellare: "));
                 break;
             case 6:
                 System.out.println(("inserisci il numero di destinazioni minimo che vuoi nel tuo pacchetto"));
-                int n = sc.nextInt();
-                Collection<Voyage> viaggi4 = repository.findVoyageByNumberOfDestination(n);
-                for (Voyage t : viaggi4) {
-                    System.out.println("Pacchetto di viaggio ID: " + t.getId());
-                    for (Destination location : t.getDestinations()) {
-                        System.out.println(location);
-                    }
-                    System.out.println();
-                }
+                int m = sc.nextInt();
+                var viaggi4 = repository.findVoyageByNumberOfDestination(m);
+                printVoyages(viaggi4);
                 break;
             case 7:
                 System.out.println("Ecco le liste delle destinazioni disponibili; poi creare il tuo pacchetto di viaggio personale aggiungendo una destinazione alla volta fino ad un massimo di 3 destinazioni! Stai attento alle date!");
@@ -159,8 +135,8 @@ public class UserInterface {
                 }
 
                 while (destinazioniSelezionate.size() < 3) {
-                    System.out.println("Inserisci il numero della destinazione da aggiungere (o 0 per terminare):");
-                    int numero = sc.nextInt();
+
+                    int numero = getInt("Inserisci il numero della destinazione da aggiungere (o 0 per terminare):");
 
                     if (numero == 0) {
                         break;
@@ -178,14 +154,10 @@ public class UserInterface {
                         System.out.println(d.toString());
                     }
                 }
+                Category categoria = getCategory();
 
+                int id = getInt("Inserisci l'ID del viaggio personalizzato per memorizzare il tuo pacchetto:");
 
-                System.out.println("Inserisci la categoria del viaggio (BUDGET, LUXURY, BACKPACKER,BACKPACKER):");
-                String categoriaInput = sc.next().toUpperCase();
-                Category categoria = Category.valueOf(categoriaInput);
-
-                System.out.println("Inserisci l'ID del viaggio personalizzato per memorizzare il tuo pacchetto:");
-                int id = sc.nextInt();
 
                 System.out.println("Prezzo calcolato!");
                 int prezzo = 0;
@@ -194,13 +166,12 @@ public class UserInterface {
                 }
 
                 System.out.println("Inserisci la data di partenza (YYYY-MM-DD):");
-                LocalDate dataPartenza = LocalDate.parse(sc.next());
+                LocalDate dataPartenza = LocalDate.parse(sc.nextLine());
 
                 System.out.println("Inserisci la data di ritorno (YYYY-MM-DD):");
-                LocalDate dataRitorno = LocalDate.parse(sc.next());
+                LocalDate dataRitorno = LocalDate.parse(sc.nextLine());
 
                 System.out.println("Inserisci una descrizione del viaggio personalizzata affinché possa racchiudere al meglio la tua esperienza di viaggio ideale:");
-                sc.nextLine();
                 String descrizione = sc.nextLine();
 
 
@@ -218,5 +189,25 @@ public class UserInterface {
                 break;
             }
         }
+    }
+    public void printVoyages(Collection<Voyage> viaggi){
+        for (Voyage t : viaggi) {
+            System.out.println("Pacchetto di viaggio ID: " + t.getId());
+            for (Destination location : t.getDestinations()) {
+                System.out.println(location);
+            }
+            System.out.println();
+        }
+    }
+    private Category getCategory(){
+        System.out.print("Inserisci la categoria del viaggio (BUDGET, LUXURY, BACKPACKER,BACKPACKER):");
+        String line = sc.nextLine().toUpperCase();
+        return Category.valueOf(line);
+    }
+    private int getInt(String prompt){
+        System.out.println(prompt + ":");
+        int n = sc.nextInt();
+        sc.nextLine();
+        return n;
     }
 }

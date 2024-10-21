@@ -6,9 +6,9 @@ import java.util.Collection;
 public interface AbstractVoyageRepository {
     void add(Voyage v);
     boolean delete(int id);
-    void findActiveBundles();
+    Collection<Voyage> findActiveBundles();
     Collection<Voyage> findByDestinationName(String destinationName);
     Collection<Voyage> findActiveVoyagesByWord(String word);
-    Collection<Voyage> findByCategoriesAndDuration(int duration);
+    Collection<Voyage> findByCategoriesAndDuration(Category c,int duration);
     Collection<Voyage> findVoyageByNumberOfDestination(int n);
 }
