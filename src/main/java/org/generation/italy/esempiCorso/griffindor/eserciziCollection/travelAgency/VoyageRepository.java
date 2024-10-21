@@ -1,9 +1,7 @@
 package org.generation.italy.esempiCorso.griffindor.eserciziCollection.travelAgency;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 public class VoyageRepository implements AbstractVoyageRepository {
 
@@ -36,18 +34,19 @@ public class VoyageRepository implements AbstractVoyageRepository {
     @Override
     public Collection<Voyage> findActiveVoyages() {
         LocalDate today = LocalDate.now();
-        Collection<Voyage> activeVoyages = new ArrayList<>();
+        List<Voyage> activeVoyages = new ArrayList<>();
         for (Voyage v : voyages) {
             if (v.getStartDate().isAfter(today) || v.getStartDate().isEqual(today)) {
                 activeVoyages.add(v);
             }
         }
+        Collections.sort(activeVoyages);
         return activeVoyages;
     }
 
     @Override
     public Collection<Voyage> findVoyagesByDestination(String destination) {
-        Collection<Voyage> voyagesByDestination = new ArrayList<>();
+        List<Voyage> voyagesByDestination = new ArrayList<>();
         for (Voyage v : voyages) {
             for (Destination d : v.getDestinations()) {
                 if (d.getCity().equalsIgnoreCase(destination)) {
@@ -56,12 +55,14 @@ public class VoyageRepository implements AbstractVoyageRepository {
                 }
             }
         }
+        Comparator<Voyage> cv = new VoyageComparatorByDestination();
+        Collections.sort(voyagesByDestination, cv);
         return voyagesByDestination;
     }
 
     @Override
     public Collection<Voyage> findActiveVoyagesByWord(String word) {
-        Collection<Voyage> voyagesByWord = new ArrayList<>();
+        List<Voyage> voyagesByWord = new ArrayList<>();
         for (Voyage v : voyages) {
             boolean containsWord = false;
             for (Destination d : v.getDestinations()) {
@@ -75,6 +76,7 @@ public class VoyageRepository implements AbstractVoyageRepository {
                 voyagesByWord.add(v);
             }
         }
+        Collections.sort(voyagesByWord, new VoyageComparatorByDate());
         return voyagesByWord;
     }
 
