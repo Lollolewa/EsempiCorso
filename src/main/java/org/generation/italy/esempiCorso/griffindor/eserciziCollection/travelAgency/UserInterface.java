@@ -14,9 +14,45 @@ public class UserInterface {
         int choice;
 
         repository.create(new Voyage(List.of(
-                new Destination("ROMA", "roma", "Hotel Roma", 10, List.of("Mangiare", "Girare"), List.of("Ristorante Roma", "Ristorante Lazio")),
-                new Destination("PARIGI", "Francia", "Hotel Parigi", 10, List.of("Mangiare", "Girare"), List.of("Ristorante Parigi", "Ristorante France"))),
-                1001, 3000.00, LocalDate.of(2024, 11, 1), Category.luxury));
+                new Destination("TOKYO", "Japan", "Park Hyatt Tokyo", 8, List.of("Anime Tour", "Sumo Wrestling"), List.of("Sukiyabashi Jiro", "Narisawa")),
+                new Destination("KYOTO", "Japan", "The Ritz-Carlton Kyoto", 6, List.of("Temple Visit", "Tea Ceremony"), List.of("Kikunoi", "Hyotei"))),
+                1003, 5500.00, LocalDate.of(2024, 12, 20), Category.luxury));
+
+        repository.create(new Voyage(List.of(
+                new Destination("NEW YORK", "USA", "The Plaza", 6, List.of("Broadway Show", "Central Park Walk"), List.of("Per Se", "Le Bernardin")),
+                new Destination("MIAMI", "USA", "Fontainebleau", 5, List.of("Beach Day", "Art Deco Tour"), List.of("Joe's Stone Crab", "Zuma"))),
+                1004, 4000.00, LocalDate.of(2025, 3, 10), Category.luxury));
+
+        repository.create(new Voyage(List.of(
+                new Destination("BARCELONA", "Spain", "W Barcelona", 5, List.of("Sagrada Familia Tour", "Tapas Crawl"), List.of("Tickets", "Lasarte")),
+                new Destination("MADRID", "Spain", "The Westin Palace", 4, List.of("Prado Museum Visit", "Flamenco Show"), List.of("DiverXO", "Coque"))),
+                1005, 3500.00, LocalDate.of(2025, 12, 5), Category.comfort));
+
+        repository.create(new Voyage(List.of(
+                new Destination("PARIS", "France", "Ritz Paris", 7, List.of("Eiffel Tower Tour", "Louvre Visit"), List.of("L'Arpège", "Guy Savoy")),
+                new Destination("NICE", "France", "Hotel Negresco", 5, List.of("Beach Day", "Old Town Walk"), List.of("La Vague d'Or", "Le Chantecler"))),
+                1006, 6000.00, LocalDate.of(2024, 11, 15), Category.luxury));
+
+        repository.create(new Voyage(List.of(
+                new Destination("ROME", "Italy", "Hotel Eden", 6, List.of("Colosseum Tour", "Vatican Visit"), List.of("La Pergola", "Il Pagliaccio")),
+                new Destination("FLORENCE", "Italy", "Four Seasons Hotel Firenze", 4, List.of("Uffizi Gallery", "Duomo Climb"), List.of("Enoteca Pinchiorri", "La Bottega del Buon Caffè"))),
+                1007, 4500.00, LocalDate.of(2025, 2, 1), Category.backpacker));
+
+        repository.create(new Voyage(List.of(
+                new Destination("SYDNEY", "Australia", "Park Hyatt Sydney", 8, List.of("Opera House Tour", "Bondi Beach Visit"), List.of("Quay", "Tetsuya's")),
+                new Destination("MELBOURNE", "Australia", "Crown Towers", 5, List.of("Great Ocean Road Trip", "Street Art Tour"), List.of("Attica", "Vue de Monde"))),
+                1008, 7000.00, LocalDate.of(2025, 2, 20), Category.luxury));
+
+        repository.create(new Voyage(List.of(
+                new Destination("BANGKOK", "Thailand", "Mandarin Oriental", 5, List.of("Grand Palace Tour", "Floating Market Visit"), List.of("Nahm", "Gaggan Anand")),
+                new Destination("PHUKET", "Thailand", "Amanpuri", 6, List.of("Island Hopping", "Old Town Walk"), List.of("Raya", "One Chun"))),
+                1009, 3800.00, LocalDate.of(2024, 11, 10), Category.backpacker));
+
+        repository.create(new Voyage(List.of(
+                new Destination("MARRAKECH", "Morocco", "La Mamounia", 6, List.of("Medina Tour", "Camel Ride"), List.of("La Grande Table Marocaine", "Nomad")),
+                new Destination("FES", "Morocco", "Riad Fes", 4, List.of("Tannery Visit", "Ceramic Workshop"), List.of("Nur", "Café Clock"))),
+                1010, 3200.00, LocalDate.of(2025, 4, 5), Category.budget));
+
 
         System.out.println("""
                 Welcome to the travel agency. What would you like to do?

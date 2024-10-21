@@ -78,7 +78,6 @@ public class VoyageRepository implements AbstractVoyageRepository {
         return voyagesByWord;
     }
 
-
     @Override
     public Collection<Voyage> findCategoriesAndDestinations(Category c, int destination) {
         Collection<Voyage> categoriesAndDuration = new ArrayList<>();
