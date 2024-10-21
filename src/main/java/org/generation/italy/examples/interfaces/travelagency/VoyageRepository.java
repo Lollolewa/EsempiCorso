@@ -98,6 +98,17 @@ public class VoyageRepository implements AbstractVoyageRepository {
         }
         return lv;
     }
+    @Override
+    public Collection<Voyage> findVoyageByNumberOfDestination(int n){
+        List<Voyage> matchNumber = new ArrayList<>();
+        for(Voyage v : voyages){
+            if(v.getLength()>=n){
+                matchNumber.add(v);
+            }
+        }
+        return matchNumber;
+
+    }
 }
 
 

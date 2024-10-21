@@ -19,7 +19,7 @@ public class Voyage {
         this.destinations = destinations;
         this.categories = categories;
         this.id = id;
-        this.price = price;
+        this.price = calcolaPrezzoTotale();
         this.startingDate = startingDate;
         this.endingDate = endingDate;
         this.description = description;
@@ -48,6 +48,16 @@ public class Voyage {
 
     public int getPrice() {
         return price;
+    }
+    public int getLength() {
+        return destinations.size();
+    }
+    private int calcolaPrezzoTotale() {
+        int totale = 0;
+        for (Destination destination : destinations) {
+            totale += destination.getPrezzo();
+        }
+        return totale;
     }
 }
 
