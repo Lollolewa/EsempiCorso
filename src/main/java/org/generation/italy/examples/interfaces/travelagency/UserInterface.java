@@ -93,10 +93,12 @@ public class UserInterface {
             Scanner sc = new Scanner(System.in);
             System.out.println("Selezionare un numero da 1 a 7 per: \n1) Guarda tutti i bundle di viaggi al momento. \n2) Cerca un viaggio in base alla destinazione desiderata. " +
                         "\n3) Cerca viaggi attivi tramite attività o località di interesse \n4) Trova il tuo viaggio in base alla data \n5) Cancella un pacchetto tramite ID " +
-                        "\n6)Trova il tuo viaggio in base al numero di destinazioni \n7)Creare un pacchetto personalizzato");
+                        "\n6)Trova il tuo viaggio in base al numero di destinazioni \n7)Creare un pacchetto personalizzato \n0)Termina e chiudi" );
             scelta = sc.nextInt();
             sc.nextLine();
         switch(scelta) {
+            case 0:
+                System.exit(0);
             case 1:
                 repository.findActiveBundles();
                 break;
@@ -182,7 +184,7 @@ public class UserInterface {
                 String categoriaInput = sc.next().toUpperCase();
                 Category categoria = Category.valueOf(categoriaInput);
 
-                System.out.println("Inserisci l'ID del viaggio:");
+                System.out.println("Inserisci l'ID del viaggio personalizzato per memorizzare il tuo pacchetto:");
                 int id = sc.nextInt();
 
                 System.out.println("Prezzo calcolato!");
@@ -197,7 +199,7 @@ public class UserInterface {
                 System.out.println("Inserisci la data di ritorno (YYYY-MM-DD):");
                 LocalDate dataRitorno = LocalDate.parse(sc.next());
 
-                System.out.println("Inserisci una descrizione del viaggio personalizzata:");
+                System.out.println("Inserisci una descrizione del viaggio personalizzata affinché possa racchiudere al meglio la tua esperienza di viaggio ideale:");
                 sc.nextLine();
                 String descrizione = sc.nextLine();
 
@@ -207,7 +209,7 @@ public class UserInterface {
 
                 repository.add(nuovoVoyage);
 
-                System.out.println("Pacchetto di viaggio creato con successo! Ti aspettiamo in agenzia per discutere e concretizzare un itinerario di viaggio!");
+                System.out.println("Pacchetto di viaggio creato con successo! Ti aspettiamo in agenzia per discutere e concretizzare un itinerario di viaggio! Grazie per aver scelto il RAZZO!");
                 break;
 
 
