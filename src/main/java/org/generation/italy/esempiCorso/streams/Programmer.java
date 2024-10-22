@@ -20,6 +20,10 @@ public class Programmer {
         this.languages = new ArrayList<>();
     }
 
+    public String getSurname() {
+        return surname;
+    }
+
     public boolean isMale() {
         return male;
     }
@@ -34,6 +38,9 @@ public class Programmer {
     }
     public boolean isSalaryBiggerThan(double salary) {
         return this.salary >=salary;
+    }
+    public int getAge(){
+        return this.birthdate.until(LocalDate.now()).getYears();
     }
 
     @Override
