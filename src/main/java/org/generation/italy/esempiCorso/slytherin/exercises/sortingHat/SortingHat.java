@@ -17,8 +17,13 @@ public class SortingHat {
     }
 
     public void askSetPreference(Student s) {
-        System.out.println(s.getName() + ", hai una preferenza?");
-        String answer = sc.nextLine();
+        String answer;
+        System.out.println("Benvenuti al sorteggio del Cappello Parlante!");
+        do{
+            System.out.println(s.getName() + ", hai una preferenza? ('si' o 'no')");
+            answer = sc.nextLine();
+        }while(answer == null || !answer.equalsIgnoreCase("si") && !answer.equalsIgnoreCase("no"));
+
         if(answer.equalsIgnoreCase("si")) {
             System.out.println("Qual'è la tua preferenza?");
             String preference = sc.nextLine();

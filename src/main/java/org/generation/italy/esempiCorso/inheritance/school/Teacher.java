@@ -41,4 +41,8 @@ public class Teacher extends Employee{
     public void doWork(int hours){
         System.out.println("Spiego java per " + hours + " ore.");
     }
+
+    public void teach() {
+
+    }
 }

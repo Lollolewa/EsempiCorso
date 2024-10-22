@@ -1,4 +1,4 @@
-package org.generation.italy.esempiCorso.griffindor.eserciziCollection.travelAgency;
+package org.generation.italy.esempiCorso.slytherin.exercises.travelAgency;
 
 public class Start {
     public static void main(String[] args) {
