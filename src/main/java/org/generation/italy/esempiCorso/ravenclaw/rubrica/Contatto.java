@@ -1,16 +1,16 @@
 package org.generation.italy.esempiCorso.ravenclaw.rubrica;
 
+import javax.xml.namespace.QName;
+
 public class Contatto {
+    protected  String nome, cognome, numeroTelefono;
 
-    private String nome, cognome, nTelefono;
-
-    public Contatto(String nome, String cognome, String nTelefono) {
+    public Contatto(String nome, String cognome, String numeroTelefono) {
         this.nome = nome;
         this.cognome = cognome;
-        this.nTelefono = nTelefono;
+        this.numeroTelefono = numeroTelefono;
     }
 
-    //GETTER & SETTERS
     public String getNome() {
         return nome;
     }
@@ -27,15 +27,17 @@ public class Contatto {
         this.cognome = cognome;
     }
 
-    public String getnTelefono() {
-        return nTelefono;
+    public String getNumeroTelefono() {
+        return numeroTelefono;
     }
 
-    public void setnTelefono(String nTelefono) {
-        this.nTelefono = nTelefono;
+    public void setNumeroTelefono(String numeroTelefono) {
+        this.numeroTelefono = numeroTelefono;
     }
 
-    public String toString(){
-        return String.format("Nome: %s %nCognome: %s %nTelefono: %s%n",nome,cognome,nTelefono);
+    @Override
+    public String toString() {
+        return nome + " " + cognome + " " + numeroTelefono;
     }
 }
+

@@ -1,25 +1,22 @@
 package org.generation.italy.esempiCorso.generics;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
-public class Analyzer<E extends Comparable<E>> {
-
+public class Analyzer <E extends Comparable<E>> {
     private List<E> elements;
 
     public Analyzer(List<E> elements) {
-        this.elements = new ArrayList<>(elements);
-//        E x = this.elements.get(3);
-//        x.modify();
+        this.elements = new ArrayList<>(elements); //dentro i < > ci va il tipo - shallowcopy, questo serve per evitare che gli elementi della lista siano modificati da altre classi
+        //this.elements = null;
+        //this.elements.add(e);
+        //this.elements[0] = this.elements[1];
+        //E x = this.elements.get(3);
+        //x.modify(🚀);
     }
-
-    public List<E> getElements() {
-        return elements;
-    }
-
-    public E getMax(){
+    public E getMaxElement(){
         return Collections.max(elements);
     }
 
@@ -27,5 +24,7 @@ public class Analyzer<E extends Comparable<E>> {
         Collections.sort(elements);
     }
 
-
+    public List<E> getElements(){
+        return elements;
+    }
 }
