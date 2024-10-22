@@ -1,4 +1,4 @@
-package org.generation.italy.examples.interfaces;
+package org.generation.italy.esempiCorso.interfaces;
 
 public class Prodotto {
     String nome;

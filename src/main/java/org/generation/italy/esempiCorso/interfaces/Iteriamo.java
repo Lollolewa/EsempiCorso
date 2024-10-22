@@ -1,4 +1,4 @@
-package org.generation.italy.examples.interfaces;
+package org.generation.italy.esempiCorso.interfaces;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

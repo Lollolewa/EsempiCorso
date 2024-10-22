@@ -1,4 +1,4 @@
-package org.generation.italy.examples.interfaces.travelagency;
+package org.generation.italy.esempiCorso.ravenclaw.travelagency;
 
 import java.util.Collection;
 
