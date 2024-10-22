@@ -6,30 +6,31 @@ import java.util.List;
 
 public class ProgrammerRepository {
     private List<Programmer> programmers = List.of(
-
-            new Programmer("Cristoforo", "Colombo", true, LocalDate.of(1980, 10, 15), 10000, List.of("Java", "C++")),
-            new Programmer("Natasha", "Carrara", false, LocalDate.of(1987, 12, 22), 12000, List.of("C#", "Python")),
-            new Programmer("Alice", "Lanza", false, LocalDate.of(1981, 1, 13), 11000, List.of("JavaScript", "PHP", "Python")),
-            new Programmer("Pietro", "Marinari", true, LocalDate.of(1999, 5, 6), 21000, List.of("JavaScript", "PHP")),
-            new Programmer("Naruto", "Uzumaki", true, LocalDate.of(1995, 5, 5), 30000, List.of("C#", "Python"))
+            new Programmer("Mario", "Rossi", true, LocalDate.of(1980, 6, 12), 1700, List.of("java", "javascript", "python")),
+            new Programmer("Maria", "Verdi", false, LocalDate.of(1985, 6, 12), 1700, List.of("java", "ruby")),
+            new Programmer("Pietro", "Marinari", true, LocalDate.of(2001, 6, 12), 1300, List.of("java")),
+            new Programmer("Marco", "DeRossi", true, LocalDate.of(1975, 6, 12), 2000, List.of("java", "ruby")),
+            new Programmer("Franca", "Pappa", false, LocalDate.of(1988, 6, 12), 1700, List.of("java", "ruby", "c"))
     );
 
-    public List<Programmer> findFemales() {
-        List<Programmer> females = new ArrayList<>();
-        for(Programmer programmer : programmers) {
-            if(!programmer.isMale()){
-                females.add(programmer);
+    public List<Programmer> findFemales(){
+        List<Programmer> femalesProgrammers = new ArrayList<>();
+        for (Programmer p: programmers) {
+            if (!p.isMale()) {
+                femalesProgrammers.add(p);
             }
         }
-        return females;
+        return femalesProgrammers;
     }
-
-    public List<Programmer> findFemalesWithStreams() {
-        var ps = programmers.stream(); //assegno tramite var la lista in uno stream (dichiarato nella Collection)
-        // un oggetto di una classe che implementa un'interfaccia viene implementato tramite la lambda
-        // l'interfaccia usata dalla lambda deve avere solo un metodo astratto, quindi nelle lambda non posso implementare interfacce con più metodi astratti
-
-        ProgrammerFilterBySex pFS = new ProgrammerFilterBySex();
-        ps.filter(pFS);
+    public List<Programmer> findFemalesWithStreams(){
+//        var ps = programmers.stream();
+//        ProgrammerFilterBySex pFS = new ProgrammerFilterBySex();
+//        var z = ps.filter(p -> !p.isMale());
+//        var result = z.toList();
+//        return result;
+        return programmers.stream().filter(Programmer::isFemale).toList();
+    }
+    public List<Programmer> findBySalaryGreaterThan(double salary) {
+        return programmers.stream().filter(p -> p.getSalary() > salary).toList();
     }
 }

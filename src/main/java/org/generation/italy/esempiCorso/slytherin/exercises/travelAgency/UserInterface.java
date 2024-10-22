@@ -2,6 +2,7 @@ package org.generation.italy.esempiCorso.slytherin.exercises.travelAgency;
 // commento per test git
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Scanner;
 
@@ -35,11 +36,12 @@ public class UserInterface {
 
         repository.create(new Voyage(List.of(
                 new Destination("ROME", "Italy", "Hotel Eden", 6, List.of("Colosseum Tour", "Vatican Visit"), List.of("La Pergola", "Il Pagliaccio")),
-                new Destination("FLORENCE", "Italy", "Four Seasons Hotel Firenze", 4, List.of("Uffizi Gallery", "Duomo Climb"), List.of("Enoteca Pinchiorri", "La Bottega del Buon Caffè"))),
+                new Destination("FLORENCE", "Italy", "Four Seasons Hotel Firenze", 4, List.of("Uffizi Gallery", "Duomo Climb"), List.of("Enoteca Pinchiorri", "La Bottega del Buon Caffè")),
+                new Destination("MILAN", "Italy", "Four Seasons Hotel Firenze", 4, List.of("Uffizi Gallery", "Duomo Climb"), List.of("Enoteca Pinchiorri", "La Bottega del Buon Caffè"))),
                 1007, 4500.00, LocalDate.of(2025, 2, 1), Category.backpacker));
 
         repository.create(new Voyage(List.of(
-                new Destination("SYDNEY", "Australia", "Park Hyatt Sydney", 8, List.of("Opera House Tour", "Bondi Beach Visit"), List.of("Quay", "Tetsuya's")),
+                new Destination("ROME", "Australia", "Park Hyatt Sydney", 8, List.of("Opera House Tour", "Bondi Beach Visit"), List.of("Quay", "Tetsuya's")),
                 new Destination("MELBOURNE", "Australia", "Crown Towers", 5, List.of("Great Ocean Road Trip", "Street Art Tour"), List.of("Attica", "Vue de Monde"))),
                 1008, 7000.00, LocalDate.of(2025, 2, 20), Category.luxury));
 
@@ -77,7 +79,8 @@ public class UserInterface {
                     cancelTrip(scanner);
                     break;
                 case 3:
-                    System.out.println(repository.findActiveVoyages());
+                    for (Voyage v: repository.findActiveVoyages())
+                        System.out.println(v);
                     break;
                 case 4:
                     viewVoyagesByDestination(scanner);
@@ -246,7 +249,7 @@ public class UserInterface {
     private void viewVoyagesByDestination(Scanner scanner) {
         System.out.println("Which destination are you interested in?");
         String dest = scanner.nextLine();
-        System.out.println(repository.findVoyagesByDestination(dest));
+        showVoyages(repository.findVoyagesByDestination(dest));
     }
 
     private void searchActiveVoyagesByWord(Scanner scanner) {
@@ -267,5 +270,11 @@ public class UserInterface {
             category = getValidIntegerInput(scanner, "Enter the category (1. luxury, 2. comfort, 3. budget, 4. backpacker)", 1, 4);
         } while (category < 1 || category > 4);
         return Category.fromInteger(category);
+    }
+
+    private void showVoyages (Collection<Voyage> vs){
+        for (Voyage v : vs){
+            System.out.println(v);
+        }
     }
 }

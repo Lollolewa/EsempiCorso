@@ -1,9 +1,7 @@
 package org.generation.italy.esempiCorso.slytherin.exercises.travelAgency;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 public class VoyageRepository implements AbstractVoyageRepository {
 
@@ -36,18 +34,19 @@ public class VoyageRepository implements AbstractVoyageRepository {
     @Override
     public Collection<Voyage> findActiveVoyages() {
         LocalDate today = LocalDate.now();
-        Collection<Voyage> activeVoyages = new ArrayList<>();
+        List<Voyage> activeVoyages = new ArrayList<>();
         for (Voyage v : voyages) {
             if (v.getStartDate().isAfter(today) || v.getStartDate().isEqual(today)) {
                 activeVoyages.add(v);
             }
         }
+        Collections.sort(activeVoyages);
         return activeVoyages;
     }
 
     @Override
     public Collection<Voyage> findVoyagesByDestination(String destination) {
-        Collection<Voyage> voyagesByDestination = new ArrayList<>();
+        List<Voyage> voyagesByDestination = new ArrayList<>();
         for (Voyage v : voyages) {
             for (Destination d : v.getDestinations()) {
                 if (d.getCity().equalsIgnoreCase(destination)) {
@@ -56,12 +55,20 @@ public class VoyageRepository implements AbstractVoyageRepository {
                 }
             }
         }
+        Comparator<Voyage> cv = new VoyageComparatorByDestination();
+//        Collections.sort(voyagesByDestination, cv);
+//        il secondo parametro del metodo sort sarà comunque un oggette di una classe che implementa l'interfaccia Comparator<Voyage>
+//        Collections.sort(voyagesByDestination, (v1, v2) -> v1.getDestinations().size() - v2.getDestinations().size()); // lambda expression
+//        Collections.sort(voyagesByDestination, Comparator.comparingInt(v -> v.getDestinations().size()));
+//        Collections.sort(voyagesByDestination, Comparator.comparingInt(v -> v.getDestinationsSize()));
+        voyagesByDestination.sort(Comparator.comparingInt(Voyage::getDestinationsSize)); // method reference
+        voyagesByDestination.sort(VoyageRepository::compareStatic);
         return voyagesByDestination;
     }
 
     @Override
     public Collection<Voyage> findActiveVoyagesByWord(String word) {
-        Collection<Voyage> voyagesByWord = new ArrayList<>();
+        List<Voyage> voyagesByWord = new ArrayList<>();
         for (Voyage v : voyages) {
             boolean containsWord = false;
             for (Destination d : v.getDestinations()) {
@@ -75,6 +82,7 @@ public class VoyageRepository implements AbstractVoyageRepository {
                 voyagesByWord.add(v);
             }
         }
+        Collections.sort(voyagesByWord, new VoyageComparatorByDate());
         return voyagesByWord;
     }
 
@@ -94,5 +102,13 @@ public class VoyageRepository implements AbstractVoyageRepository {
         return "VoyageRepository{" +
                 "voyages=" + voyages +
                 '}';
+    }
+
+    public int compare(Voyage v1, Voyage v2) {
+        return v1.getDestinationsSize() - v2.getDestinationsSize();
+    }
+
+    public static int compareStatic(Voyage v1, Voyage v2){
+        return v1.getDestinationsSize() - v2.getDestinationsSize();
     }
 }
