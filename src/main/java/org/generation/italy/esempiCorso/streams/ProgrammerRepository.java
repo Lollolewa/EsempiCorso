@@ -1,8 +1,7 @@
 package org.generation.italy.esempiCorso.streams;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class ProgrammerRepository {
     private List<Programmer> programmers = List.of(
@@ -32,5 +31,34 @@ public class ProgrammerRepository {
     }
     public List<Programmer> findBySalaryGreaterThan(double salary) {
         return programmers.stream().filter(p -> p.getSalary() > salary).toList();
+    }
+    public List<Programmer> findByAgeGreaterThan(int age){
+        return programmers.stream().filter(p -> p.getAge() > age).toList();
+    }
+    public double findTotalMaleSalary(){
+       return programmers.stream().filter(Programmer::isMale)
+                                  .mapToDouble(Programmer::getSalary)
+                                  .sum();
+    }
+    public List<String> findMaleSurnames(){  //map sostituisce il programmatore con il suo cognome
+      return programmers.stream().filter(Programmer::isMale)
+                                 .map(Programmer::getSurname)
+                                 .distinct()
+                                 .toList();
+    }
+    //una booleana che ritorna true quando lo stipendio massimo di una female è minore del minimo stipendio di un male
+    public boolean justiceIsMade(){
+//        Optional<Programmer> optPM = programmers.stream().filter(Programmer::isMale).min((p1, p2) ->Double.compare(p1.getSalary(), p2.getSalary()));
+//        Optional<Programmer> optPF = programmers.stream().filter(Programmer::isFemale).max((p1, p2) ->Double.compare(p1.getSalary(), p2.getSalary()));
+//        if(optPM.isPresent() && optPF.isPresent()){
+//            return optPM.get().getSalary() > optPF.get().getSalary();
+//        }
+//        return false;
+        OptionalDouble optMSal = programmers.stream().filter(Programmer::isMale).mapToDouble(Programmer::getSalary).min();
+        OptionalDouble optFSal = programmers.stream().filter(Programmer::isFemale).mapToDouble(Programmer::getSalary).max();
+        if(optMSal.isPresent() && optFSal.isPresent()){
+            return optMSal.getAsDouble() > optFSal.getAsDouble();
+        }
+        return false;
     }
 }
