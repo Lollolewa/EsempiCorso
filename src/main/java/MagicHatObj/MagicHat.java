@@ -19,8 +19,9 @@ public class MagicHat extends Casata {
         this.slytherin = new Casata(NomiCasate.SLYTHERIN,casata);
         this.hufflepuff = new Casata(NomiCasate.HUFFLEPUFF,casata);
         this.ravenclaw = new Casata(NomiCasate.RAVENCLAW,casata);
-        this.allStudents = Arrays.asList(new Studente("Mirko","Risuleo",nomeCasate.),"KarenRusso", "SalvatoreTavella", "AlessiaPallavera", "PierluigiMicozzi", "EleonoraSiciliano", "GianlucaPricopie", "MiryamMassa", "PamelaMilanese", "EjranMustafoski", "AndreaMacellaro", "AlessandroMassa", "PietroMarinari", "AlessandroStelitano", "StefanoPuro", "LucreziaLauri", "MarioPeccio", "LorenzoMasci", "DaniloVulpiani", "CarlottaPisano", "IliesChikhaoui", "SamueleCelletti", "GabrieleSabatini", "JoshuaCastellani", "MacaliRoberto", "LorenzoSalvatori", "MarcoFalconetti", "LucaGalimberti", "MatteoFratti");
+
     }
 
 
 }
+//KarenRusso", "SalvatoreTavella", "AlessiaPallavera", "PierluigiMicozzi", "EleonoraSiciliano", "GianlucaPricopie", "MiryamMassa", "PamelaMilanese", "EjranMustafoski", "AndreaMacellaro", "AlessandroMassa", "PietroMarinari", "AlessandroStelitano", "StefanoPuro", "LucreziaLauri", "MarioPeccio", "LorenzoMasci", "DaniloVulpiani", "CarlottaPisano", "IliesChikhaoui", "SamueleCelletti", "GabrieleSabatini", "JoshuaCastellani", "MacaliRoberto", "LorenzoSalvatori", "MarcoFalconetti", "LucaGalimberti", "MatteoFratti");
