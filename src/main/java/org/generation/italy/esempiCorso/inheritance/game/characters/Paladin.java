@@ -1,70 +1,66 @@
 package org.generation.italy.esempiCorso.inheritance.game.characters;
 
 import org.generation.italy.esempiCorso.inheritance.game.Character;
+import org.generation.italy.esempiCorso.inheritance.game.Bot;
 
-import java.net.PasswordAuthentication;
 import java.time.LocalDate;
 
-public class Paladin extends Character {
+public class Paladin extends org.generation.italy.esempiCorso.inheritance.game.Character {
 
-    public Paladin(String username, String name, String lastName, LocalDate doc, PasswordAuthentication password, boolean isLogged, int str, int intel, int dex, int hp, int chr) {
-        super(username, name, lastName, doc, password, isLogged, str, intel, dex, hp, chr);
+    public Paladin(String username, String name, String lastName, LocalDate doc, String password) {
+        super(username, name, lastName, doc, password);
+
+        //SET PALADIN STATS
+        setHp(200);
+        setStr(13);
+        setDex(13);
+        setIntel(11);
+        setChr(17);
     }
 
-    //SET PALADIN STATS
+    //PALADIN ULTIMATE - HEAL
     @Override
-    public void setHp(int hp) {
-        super.setHp(200);
-    }
-
-    @Override
-    public void setStr(int str) {
-        super.setStr(13);
-    }
-
-    @Override
-    public void setDex(int dex) {
-        super.setDex(10);
-    }
-
-    @Override
-    public void setIntel(int intel) {
-        super.setIntel(11);
-    }
-
-    @Override
-    public void setChr(int chr) {
-        super.setChr(17);
-    }
-
-    //ULTIMATE
-    @Override
-    public void ultimate() {
+    public int ultimate(Character x) {
         int hp = getHp();
-        hp += (getChr()+getIntel())*0.7;
+        hp += (int) ((getChr()+getIntel())*0.7);
         setHp(hp);
+        return getHp();
+    }
+    @Override
+    public int ultimate(Bot x) {
+        return 0;
     }
 
     //BASE ACTIONS
     @Override
-    public void getCharachterClass() {
-
+    public String getCharacterClass() {
+        return "You are a paladin!";
     }
 
     @Override
-    public void attack() {
-        int dmg = getStr()+getChr()/2;
+    public int attack(Bot x) {
+        return getStr()+getChr()/2;
     }
 
     @Override
-    public void defend() {
-
+    public int defend(Bot x) {
+        int hp = getHp();
+        int dmgTaken = ((attack(x)-getDex())/2);
+        setHp(hp-dmgTaken);
+        return getHp();
     }
 
     @Override
-    public void flee() {
+    public boolean flee() {
+        int randomIntInRange = (int) (Math.random() * .5);
+        if(getHp()<=10 && randomIntInRange == 0){
+            System.out.println("You're lucky, you managed to flee with only "+getHp()+"HP.");
+            return true;
 
+        }else {
+            System.out.println("You chose to keep fighting until death!");
+            return false;
+        }
     }
-
 
 }

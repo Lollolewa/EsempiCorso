@@ -1,7 +1,6 @@
 package org.generation.italy.esempiCorso.inheritance.school;
 
 public class Personnel extends Employee {
-
     private String role;
     private int bonus = 0;
 
@@ -22,7 +21,6 @@ public class Personnel extends Employee {
     public void doAdministration(){
 
     }
-    @Override
     public void doWork(int hours){
         System.out.println("Uso excel");
     }

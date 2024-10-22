@@ -1,23 +1,21 @@
 package org.generation.italy.esempiCorso.inheritance.game;
 
-import java.net.PasswordAuthentication;
 import java.time.LocalDate;
 
-public abstract class Character extends Player{
+public abstract class Character extends Player {
 
     //STATS
-    private int str, intel, dex, hp, chr;
+    private int str;
+    private int intel;
+    private int dex;
+    private int hp;
+    private int chr;
 
-    public Character(String username, String name, String lastName, LocalDate doc, PasswordAuthentication password, boolean isLogged, int str, int intel, int dex, int hp, int chr) {
-        super(username, name, lastName, doc, password, isLogged);
-        this.str = str;
-        this.intel = intel;
-        this.dex = dex;
-        this.hp = hp;
-        this.chr = chr;
+    public Character(String username, String name, String lastName, LocalDate doc, String password) {
+        super(username, name, lastName, doc, password);
     }
 
-    //GETTERS
+    //SETTERS
     public void setStr(int str) {
         this.str = str;
     }
@@ -38,7 +36,7 @@ public abstract class Character extends Player{
         this.chr = chr;
     }
 
-    //SETTERS
+    //GETTERS
     public int getStr() {
         return str;
     }
@@ -59,15 +57,27 @@ public abstract class Character extends Player{
         return chr;
     }
 
+    //ABSTRACT DEFAULT METHODS
+    public abstract String getCharacterClass();
 
-    public abstract void getCharachterClass();
+    public abstract int attack(Bot x);
 
-    public abstract void attack();
+    public abstract int defend(Bot x);
 
-    public abstract void defend();
+    public abstract boolean flee();
 
-    public abstract void flee();
+    public abstract int ultimate(Bot x);
 
-    public abstract void ultimate();
+    public abstract int ultimate(Character x);
+
+    public boolean isAlive() {
+        hp = getHp();
+        if (hp < 0) {
+            return false;
+        }
+        return true;
+    }
+
+
 
 }
