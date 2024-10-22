@@ -33,7 +33,7 @@ public class VoyageRepository implements AbstractVoyageRepository{
 
         this.voyages.add(v1);
         this.voyages.add(v2);
-
+        this.voyages.add(v1);
 
     }
 
@@ -67,16 +67,16 @@ public class VoyageRepository implements AbstractVoyageRepository{
 
     @Override
     public Collection<Voyage> findActiveVoyages() {
-        Collection<Voyage> activeVoyages = voyages.stream().filter(v -> v.getStartDate().isAfter(LocalDate.now())).toList();
-        return activeVoyages;
-
-//        Collection<Voyage> activeVoyages = new ArrayList<>();
-//        for(Voyage voyage : voyages) {
-//            if(voyage.getStartDate().isAfter(LocalDate.now())) {
-//                voyages.add(voyage);
-//            }
-//        }
+//        Collection<Voyage> activeVoyages = voyages.stream().filter(v -> v.getStartDate().isAfter(LocalDate.now())).toList();
 //        return activeVoyages;
+
+        Collection<Voyage> activeVoyages = new ArrayList<>();
+        for(Voyage voyage : voyages) {
+            if(voyage.getStartDate().isAfter(LocalDate.now()) || voyage.getStartDate().isEqual(LocalDate.now())) {
+                activeVoyages.add(voyage);
+            }
+        }
+        return activeVoyages;
     }
     //ok
 

@@ -68,8 +68,8 @@ public class UserInterfaces {
                 if (repository.findByCategoryAndDuration(category, duration).isEmpty()) {
                     System.out.println("Non abbiamo trovato nessuna offerta disponibile in base ai criteri di ricerca");
                     System.out.println("Vuoi fare una nuova ricerca? Rispondi si o no");
-                    String yorn = sc.nextLine();
-                    if(yorn.equalsIgnoreCase("no")){
+                    String yOrN = sc.nextLine();
+                    if(yOrN.equalsIgnoreCase("no")){
                         condition = true;
                     }
                 } else {
