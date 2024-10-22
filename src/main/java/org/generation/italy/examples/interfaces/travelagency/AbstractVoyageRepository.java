@@ -4,17 +4,11 @@ import java.util.Collection;
 
 
 public interface AbstractVoyageRepository {
-
-    void create(Voyage v);
-
+    void add(Voyage v);
     boolean delete(int id);
-
-    Collection<Voyage> findActiveVoyages();
-
+    Collection<Voyage> findActiveBundles();
     Collection<Voyage> findByDestinationName(String destinationName);
-
     Collection<Voyage> findActiveVoyagesByWord(String word);
-
-    Collection<Voyage> findByCategoriesAndDuration(Category c, int duration);
-
+    Collection<Voyage> findByCategoriesAndDuration(Category c,int duration);
+    Collection<Voyage> findVoyageByNumberOfDestination(int n);
 }

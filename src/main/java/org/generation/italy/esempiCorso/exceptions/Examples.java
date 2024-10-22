@@ -11,7 +11,7 @@ public class Examples {
 //        System.out.println(nums[4]);
 //        System.out.println("buonasera");
 
-        // gli oggetti che inizializzo nelle tonde devono appartenere a una classa che implementa l interfaccia Autoclosable
+      // gli oggetti che inizializzo nelle tonde devono appartenere a una classa che implementa l interfaccia Autoclosable
 //        try(FileInputStream fis = new FileInputStream("nonEsisto.txt");) {
 //
 //            System.out.println("il file esiste");
@@ -34,7 +34,7 @@ public class Examples {
 ////            }
 ////        }
 //
-        System.out.println("inizio main");
+     System.out.println("inizio main");
         try {
             function1();
         } catch (FileNotFoundException e) {
@@ -64,3 +64,21 @@ public class Examples {
         System.out.println("fine f3");
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

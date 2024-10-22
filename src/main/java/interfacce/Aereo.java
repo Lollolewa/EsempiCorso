@@ -1,8 +1,9 @@
 package interfacce;
 
-public class Aereo implements CanFly {
+public class Aereo implements CanFly{
     @Override
     public boolean fly() {
-        return false;
+        System.out.println("L'aereo può volare");
+        return true;
     }
 }

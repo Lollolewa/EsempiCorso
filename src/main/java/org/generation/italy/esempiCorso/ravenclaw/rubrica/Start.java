@@ -1,13 +1,13 @@
 package org.generation.italy.esempiCorso.ravenclaw.rubrica;
 
-import java.util.List;
-
 public class Start {
     public static void main(String[] args) {
-        Rubrica r = new Rubrica();
-        r.addContatto("narco","rossi","34235233");
+        Rubrica rubrica = new Rubrica();
+        rubrica.aggiungiContatto("Mario", "Rossi", "0123456789");
+        System.out.println(rubrica.toString());
 
-        System.out.println(r.toString());
-        r.rimuoviContatto("narco","rossi");
+        rubrica.rimuoviContatto("Maria", "Rossa", "0123456789");
+        rubrica.cercaContatto("Mario", "Rossi", "0123456789");
+        rubrica.aggiungiContatto("Maria", "Rossa", "0123456789");
     }
 }
