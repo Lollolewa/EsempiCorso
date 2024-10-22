@@ -1,5 +1,7 @@
 package org.generation.italy.esempiCorso.inheritance.exercise;
 
+import org.generation.italy.esempiCorso.inheritance.Exercise.Player;
+
 import java.time.LocalDate;
 
 public class Fight {
