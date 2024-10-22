@@ -1,4 +1,4 @@
-package org.generation.italy.examples.interfaces.travelagency;
+package org.generation.italy.examples.interfaces.travelagencymio;
 
 public class Start {
     public static void main(String[] args) {

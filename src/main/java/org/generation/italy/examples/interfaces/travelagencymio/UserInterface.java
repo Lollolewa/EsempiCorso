@@ -1,4 +1,4 @@
-package org.generation.italy.examples.interfaces.travelagency;
+package org.generation.italy.examples.interfaces.travelagencymio;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
