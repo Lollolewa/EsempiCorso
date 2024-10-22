@@ -1,4 +1,4 @@
-package org.generation.italy.esempiCorso.inheritance.exercise;
+package org.generation.italy.esempiCorso.inheritance.Fantasy;
 
 import java.time.LocalDate;
 
@@ -16,14 +16,16 @@ public class Player {
         this.dataInizio = dataInizio;
         this.isLogged = isLogged;
     }
-    public void login(String nomePersonaggio, String password){
+    public boolean login(String nomePersonaggio, String password){
         if(this.nomePersonaggio.equalsIgnoreCase(nomePersonaggio) && this.password.equalsIgnoreCase(password)){
+            System.out.println("Login effettuato con successo.");
             isLogged = true;
-            System.out.println(" Login effettuato con successo: ");
         }
         else {
-            System.out.println(" Nome pg o password errati");
+            System.out.println("Nome o password errati, riprovare.");
+            isLogged = false;
         }
+        return isLogged;
     }
     public void logout(){
         isLogged = false;
@@ -31,16 +33,6 @@ public class Player {
     }
     public void setCharacter(Character character) {
         this.character = character;
-        System.out.println(character.getName() + " è stato assegnato a " + character.getName() + " " + cognome);
+        System.out.println(character.name + " è stato assegnato a " + nome + " " + cognome);
     }
-
-    public Character getCharacter() {
-        return character;
-    }
-
-    //public void setCharacter(Character character) {
-       // this.character = character;
-        //System.out.println(character.getName() + " è stato assegnato a " + nome + " " + cognome);
-    //}
-
 }

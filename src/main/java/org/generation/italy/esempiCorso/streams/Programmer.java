@@ -5,38 +5,35 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Programmer {
-    String name,surname;
-    boolean male;
-    LocalDate birthdate;
-    double salary;
-    List<String> lenguages;
+    private String name, surname;
+    private boolean male;
+    private LocalDate birthdate;
+    private double salary;
+    private List<String> languages;
 
-    public Programmer(String name, String surname, boolean male, LocalDate birthdate, double salary, List<String> lenguages) {
+    public Programmer(String name, String surname, boolean male, LocalDate birthdate, double salary, List<String> languages){
         this.name = name;
         this.surname = surname;
         this.male = male;
         this.birthdate = birthdate;
         this.salary = salary;
-        this.lenguages = new ArrayList<>();
-    }
-
-    public LocalDate getBirthdate() {
-        return birthdate;
-    }
-
-    public double getSalary() {
-        return salary;
+        this.languages = new ArrayList<>();
     }
 
     public boolean isMale() {
         return male;
     }
-    public boolean isFemale(){
-
-     return !isMale();
+    public boolean isFemale() {
+        return !isMale();
     }
-    public boolean isSalaryBiggerThan(double salary){
-    return 
+    public LocalDate getBirthdate() {
+        return birthdate;
+    }
+    public double getSalary() {
+        return salary;
+    }
+    public boolean isSalaryBiggerThan(double salary) {
+        return this.salary >=salary;
     }
 
     @Override
@@ -47,7 +44,7 @@ public class Programmer {
                 ", male=" + male +
                 ", birthdate=" + birthdate +
                 ", salary=" + salary +
-                ", lenguages=" + lenguages +
+                ", languages=" + languages +
                 '}';
     }
 }
