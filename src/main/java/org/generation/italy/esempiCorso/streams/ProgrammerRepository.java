@@ -4,15 +4,17 @@ import java.time.LocalDate;
 import java.util.*;
 
 public class ProgrammerRepository {
+    private List<String> linguaggi = new ArrayList<>(List.of("java", "c++"));
     private List<Programmer> programmers = List.of(
             new Programmer("Mario", "Rossi", true, LocalDate.of(1980, 6, 12), 1700, List.of("java", "javascript", "python")),
-            new Programmer("Maria", "Verdi", false, LocalDate.of(1985, 6, 12), 1700, List.of("java", "ruby")),
+            new Programmer("Maria", "Verdi", false, LocalDate.of(1985, 6, 12), 1700, List.of("java")),
             new Programmer("Pietro", "Marinari", true, LocalDate.of(2001, 6, 12), 1300, List.of("java")),
-            new Programmer("Marco", "DeRossi", true, LocalDate.of(1975, 6, 12), 2000, List.of("java", "ruby")),
-            new Programmer("Franca", "Pappa", false, LocalDate.of(1988, 6, 12), 1700, List.of("java", "ruby", "c"))
+            new Programmer("Marco", "DeRossi", true, LocalDate.of(1975, 6, 12), 2000, List.of("java")),
+            new Programmer("Franca", "Pappa", false, LocalDate.of(1988, 6, 12), 1700, List.of("java", "c"))
     );
 
     public List<Programmer> findFemales(){
+        //linguaggi.clear();
         List<Programmer> femalesProgrammers = new ArrayList<>();
         for (Programmer p: programmers) {
             if (!p.isMale()) {
@@ -61,4 +63,9 @@ public class ProgrammerRepository {
         }
         return false;
     }
+    //dobbiamo stampare tutti i programmatori in ordine decrescente per numero di linguaggi conosciuti
+    public void printProgrammersByLangueges(){
+        programmers.stream().sorted(Comparator.comparingInt(Programmer::getNumLanguages)).forEach(System.out::println);
+    }
+
 }
