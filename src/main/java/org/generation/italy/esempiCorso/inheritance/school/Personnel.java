@@ -1,7 +1,6 @@
 package org.generation.italy.esempiCorso.inheritance.school;
 
 public class Personnel extends Employee {
-
     private String role;
     private int bonus = 0;
 
