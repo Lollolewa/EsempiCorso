@@ -33,4 +33,47 @@ public class ProgrammerRepository {
     public List<Programmer> findBySalaryGreaterThan(double salary) {
         return programmers.stream().filter(p -> p.getSalary() > salary).toList();
     }
+
+    public List<Programmer> findByAgeGreaterThan(int age) {
+        return programmers.stream().filter(p -> p.getAge() > age).toList();
+    }
+
+    public double findTotalMaleSalary() {
+        return programmers.stream().filter(Programmer :: isMale)
+                                    .mapToDouble(Programmer::getSalary)
+                                    .sum();
+        // non posso fare uno stream di primitive, perchè gli generics lavorano con gli objects, non con le primitive
+        // mapToQualcosa rappresenta una trasformazione da uno stream di un tipo a uno stream di un altro tipo
+    }
+
+    public List<String> findMaleSurnames() {
+        return programmers.stream().filter(Programmer :: isMale)
+                                    .map(Programmer::getSurname)
+                                    .distinct()
+                                    .toList();
+    }
+
+    public boolean isJusticeIsMade(){
+//        var optPM = programmers.stream().filter(Programmer :: isMale)
+//                                    .min((p1,p2) -> Double.compare(p1.getSalary(), p2.getSalary()));
+//        var optPF = programmers.stream().filter(Programmer :: isFemale)
+//                                    .min((p1,p2) -> Double.compare(p1.getSalary(), p2.getSalary()));
+//        if(optPM.isEmpty() && optPF.isEmpty()){
+//            return false;
+//        } else {
+//            return optPM.get().getSalary() > optPF.get().getSalary();
+//        }
+        var optMSal =programmers.stream().filter(Programmer :: isMale).mapToDouble(Programmer::getSalary).min();
+        var optFSal = programmers.stream().filter(Programmer :: isFemale).mapToDouble(Programmer::getSalary).min();
+        if(optMSal.isEmpty() && optFSal.isEmpty()){
+            return false;
+        } else {
+            return optMSal.getAsDouble() > optFSal.getAsDouble();
+        }
+    }
+
+    //dobbiamo stampare tutti programmatori in ordine decrescente per numero di linguaggi conosciuti
+    public void printProgrammersByLanguages(){
+        programmers.stream().sorted((p1, p2) -> p1.getNumLanguages() - p2.getNumLanguages()).forEach(p -> System.out.println(p));
+    }
 }

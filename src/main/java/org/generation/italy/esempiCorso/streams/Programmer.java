@@ -30,6 +30,9 @@ public class Programmer {
     public double getSalary() {
         return salary;
     }
+    public int getNumLanguages(){
+        return languages.size();
+    }
 
     @Override
     public String toString() {
@@ -41,5 +44,13 @@ public class Programmer {
                 ", salary=" + salary +
                 ", languages=" + languages +
                 '}';
+    }
+
+    public boolean isFemale() { return !isMale(); }
+
+    public int getAge() { return this.birthdate.until(LocalDate.now()).getYears(); }
+
+    public String getSurname() {
+        return surname;
     }
 }
