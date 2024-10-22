@@ -3,7 +3,7 @@ package org.generation.italy.examples.interfaces.travelagency;
 import java.util.Collection;
 
 
-public interface AbstractVoyageRepository {
+public  interface AbstractVoyageRepository {
 
     void create(Voyage v);
 

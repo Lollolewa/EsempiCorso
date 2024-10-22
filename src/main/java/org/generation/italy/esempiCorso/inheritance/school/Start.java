@@ -1,4 +1,4 @@
-package org.generation.italy.esempiCorso.inheritance;
+package org.generation.italy.esempiCorso.inheritance.school;
 
 public class Start {
     public static void main(String[] args){
