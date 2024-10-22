@@ -7,7 +7,6 @@ public class Rettangolo extends Forma{
         super(base, altezza);
     }
 
-    @Override
     public int calcolaArea(int base, int altezza) {
         return (base*altezza)/2;
     }

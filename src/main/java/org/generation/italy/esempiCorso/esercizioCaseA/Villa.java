@@ -1,4 +1,4 @@
-package org.generation.italy.esempiCorso.slytherin.eserciziCollection.esercizioCaseA;
+package org.generation.italy.esempiCorso.esercizioCaseA;
 
 public class Villa extends Casa{
 
