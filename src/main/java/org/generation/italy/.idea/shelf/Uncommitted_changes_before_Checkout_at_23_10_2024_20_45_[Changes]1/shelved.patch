@@ -1,0 +1,1946 @@
+Index: examples/interfaces/travelagency/Destination.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.generation.italy.examples.interfaces.travelagency;\r\n\r\npublic class Destination {\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/examples/interfaces/travelagency/Destination.java b/examples/interfaces/travelagency/Destination.java
+--- a/examples/interfaces/travelagency/Destination.java	(revision 5b39bf6b679e4cc7bb493bea92df03bc89cbcb2d)
++++ b/examples/interfaces/travelagency/Destination.java	(date 1729541629966)
+@@ -1,4 +1,45 @@
+ package org.generation.italy.examples.interfaces.travelagency;
+ 
++import java.util.List;
++
+ public class Destination {
+-}
++    private String nameAttraction;
++    private String descrizione;
++    private int days;
++    private String nameHotel;
++    private List<String> attivity;
++    private List<String> restaurant;
++
++    public Destination(String nameAttraction, String descrizione, int days, String nameHotel, List<String> attivity, List<String> restaurant) {
++        this.nameAttraction = nameAttraction;
++        this.descrizione = descrizione;
++        this.days = days;
++        this.nameHotel = nameHotel;
++        this.attivity = attivity;
++        this.restaurant = restaurant;
++    }
++
++    public String getNameAttraction() {
++        return nameAttraction;
++    }
++
++    public String getDescrizione() {
++        return descrizione;
++    }
++
++    public int getDays() {
++        return days;
++    }
++
++    public String getNameHotel() {
++        return nameHotel;
++    }
++
++    public List<String> getAttivity() {
++        return attivity;
++    }
++
++    public List<String> getRestaurant() {
++        return restaurant;
++    }
++}
+\ No newline at end of file
+Index: examples/interfaces/travelagency/Category.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.generation.italy.examples.interfaces.travelagency;\r\n\r\npublic enum Category {\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/examples/interfaces/travelagency/Category.java b/examples/interfaces/travelagency/Category.java
+--- a/examples/interfaces/travelagency/Category.java	(revision 5b39bf6b679e4cc7bb493bea92df03bc89cbcb2d)
++++ b/examples/interfaces/travelagency/Category.java	(date 1729541101685)
+@@ -1,4 +1,6 @@
+ package org.generation.italy.examples.interfaces.travelagency;
+ 
+ public enum Category {
++    LUXURY,COMFORT,BUDGET,BUCKPACKER;
++
+ }
+Index: examples/interfaces/travelagency/UserInterface.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.generation.italy.examples.interfaces.travelagency;\r\n\r\npublic class UserInterface {\r\n    private AbstractVoyageRepository repository = new VoyageRepository();\r\n    public void begin(){}\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/examples/interfaces/travelagency/UserInterface.java b/examples/interfaces/travelagency/UserInterface.java
+--- a/examples/interfaces/travelagency/UserInterface.java	(revision 5b39bf6b679e4cc7bb493bea92df03bc89cbcb2d)
++++ b/examples/interfaces/travelagency/UserInterface.java	(date 1729546572857)
+@@ -1,7 +1,127 @@
+ package org.generation.italy.examples.interfaces.travelagency;
+ 
++import java.util.ArrayList;
++import java.util.List;
++import java.util.Locale;
++import java.util.Scanner;
++
+ public class UserInterface {
+     private AbstractVoyageRepository repository = new VoyageRepository();
+-    public void begin(){}
++    Scanner sc = new Scanner(System.in);
++
++
++    public void begin(){
++        int risposta;
++        sc.useLocale(Locale.US);
++        do{
++             System.out.println( """
++                Benvenuto nell'agenzia viaggi. Cosa vuoi fare?
++                1. Creare un viaggio
++                2. Cancellare un viaggio
++                3. Consultare la lista di tutte le offerte viaggio attive
++                4. Consultare la lista di tutte le offerte che sono relative a una data destinazione
++                5. Consultare la lista di tutte le offerte di viaggio attive che contengono nel nome una data parola
++                6. Consultare la lista di tutte le offerte di viaggio in una data categoria e con un numero di destinazioni
++                7. Uscire
++                """);
++
++             risposta = sc.nextInt();
++            sc.nextLine();
++            switch (risposta) {
++                case 1:
++                    createVoyage();
++                    break;
++                case 2:
++                    deleteVoyage();
++                    break;
++                case 3:
++                    showVoyages(repository.findActiveVoyages());
++                    break;
++                case 4:
++                    showVoyagesByDestination();//Consultare la lista di tutte le offerte che sono relative a una data destinazione
++                    break;
++                case 5:
++                    showVoyagesByWord();//5. Consultare la lista di tutte le offerte di viaggio attive che contengono nel nome una data parola \n
++                    break;
++                case 6:
++                    showVoyagesByCatAndDest();//"6. Consultare la lista di tutte le offerte di viaggio in una data categoria e con un numero di destinazioni\n
++                    break;
++                case 7:
++                    System.out.println("Grazie e arrivederci!");
++                    break;
++                default:
++                    System.out.println("Scelta non valida.");
+ 
++            }
++        }while (risposta != 7);
++    }
++    public void createVoyage() {
++        List<Destination> newDes = new ArrayList<>();
++        List<String> ristoranti = new ArrayList<>();
++        List<String> attivita = new ArrayList<>();
++        String altriRist, altreAtt, altreDes, risp;
++        Voyage v;
++        do {
++            do {
++                String name = getLine("Creiamo una destinazione. Inserisci il nome");
++
++                do {
++                    String rist = getLine("Inserisci il ristorante");
++                    ristoranti.add(rist);
++
++                    altriRist = getLine("Vuoi inserirne altri?");
++
++                } while (altriRist.equals("si"));
++
++                String descr = getLine("inserisci la descrizione.");
++
++                String nomeH = getLine("inserisci il nome della struttura in cui pernottare");
++
++                int giorni = getInt("Quanti giorni vuoi stare in questa destinazione?");
++
++                do {
++                    String att = getLine("Inserisci le attivita");
++                    attivita.add(att);
++
++                    altreAtt = getLine("Vuoi inserirne altri?");
++                } while (altreAtt.equals("si"));
++
++
++                altreDes = getLine("Vuoi inserire altre destinazioni? si/no");
++
++                Destination nuovaD = new Destination(name, ristoranti, descr, nomeH, giorni, attivita);
++                newDes.add(nuovaD);
++            } while (altreDes.equals("si"));
++
++            double price = getDouble("Inserisci il prezzo");
++
++
++            LocalDate partenza = getDate("Inserisci la data di partenza. YYYY-MM-DD");
++
++            int durataViaggio = 0;
++            for (Destination d : newDes) {
++                durataViaggio += d.getNumGiorni();
++            }
++
++            LocalDate ritorno = partenza.plusDays(durataViaggio);
++            System.out.println("La data di ritorno e': " + ritorno);
++
++            Category target = getCategoryFromUser();
++
++            v = new Voyage(newDes, price, partenza, ritorno, target);
++
++            risp = getLine("Vuoi creare un altro viaggio? si/no");
++        } while (risp.equals("si"));
++        repository.create(v);
++    }
++
++        private String getLine(String prompt) {
++            System.out.print(prompt + ">");
++            return sc.nextLine();
++
++        }
++
++
+ }
++
++
+Index: examples/interfaces/travelagency/VoyageRepository.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.generation.italy.examples.interfaces.travelagency;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.Collection;\r\nimport java.util.List;\r\n\r\npublic class VoyageRepository implements AbstractVoyageRepository{\r\n\r\n    private List<Voyage> voyages = new ArrayList<>();\r\n\r\n\r\n    @Override\r\n    public void create(Voyage v) {\r\n\r\n    }\r\n\r\n    @Override\r\n    public boolean delete(int id) {\r\n        return false;\r\n    }\r\n\r\n    @Override\r\n    public Collection<Voyage> findActiveVoyages() {\r\n        return List.of();\r\n    }\r\n\r\n    @Override\r\n    public Collection<Voyage> findByDestinationName(String destinationName) {\r\n        return List.of();\r\n    }\r\n\r\n    @Override\r\n    public Collection<Voyage> findActiveVoyagesByWord(String word) {\r\n        return List.of();\r\n    }\r\n\r\n    @Override\r\n    public Collection<Voyage> findByCategoriesAndDuration(Category c, int duration) {\r\n        return List.of();\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/examples/interfaces/travelagency/VoyageRepository.java b/examples/interfaces/travelagency/VoyageRepository.java
+--- a/examples/interfaces/travelagency/VoyageRepository.java	(revision 5b39bf6b679e4cc7bb493bea92df03bc89cbcb2d)
++++ b/examples/interfaces/travelagency/VoyageRepository.java	(date 1729544966654)
+@@ -1,5 +1,6 @@
+ package org.generation.italy.examples.interfaces.travelagency;
+ 
++import java.time.LocalDate;
+ import java.util.ArrayList;
+ import java.util.Collection;
+ import java.util.List;
+@@ -7,35 +8,69 @@
+ public class VoyageRepository implements AbstractVoyageRepository{
+ 
+     private List<Voyage> voyages = new ArrayList<>();
++    private static int id = 1;
+ 
+ 
+     @Override
+     public void create(Voyage v) {
++        v.setId(id++);
++        voyages.add(v);
+ 
+     }
+ 
+     @Override
+     public boolean delete(int id) {
++        for (Voyage v: voyages){
++            if(v.getId() == id){
++                voyages.remove(id);
++                return true;
++            }
++        }
+         return false;
+     }
+ 
+     @Override
+     public Collection<Voyage> findActiveVoyages() {
+-        return List.of();
++        Collection <Voyage> listaAttivaViaggi = new ArrayList<>();
++        LocalDate today = LocalDate.now();
++        for (Voyage v : voyages){
++            if (today.isEqual(v.getFirstDate())||today.isBefore(v.getFirstDate())){
++                listaAttivaViaggi.add(v);
++            }
++        }
++        return listaAttivaViaggi;
+     }
+ 
+     @Override
+     public Collection<Voyage> findByDestinationName(String destinationName) {
+-        return List.of();
++        Collection<Voyage> destinazioneTrovata = new ArrayList<>();
++        for (Voyage v : voyages){
++            if (voyages.contains(v.getDestinations())){
++                destinazioneTrovata.add(v);
++            }
++        }
++        return destinazioneTrovata;
+     }
+ 
+     @Override
+     public Collection<Voyage> findActiveVoyagesByWord(String word) {
+-        return List.of();
++        Collection<Voyage> parolaTrovata = new ArrayList<>();
++        for (Voyage v: voyages){
++            if (voyages.contains(word)){
++                parolaTrovata.add(v);
++            }
++        }
++        return parolaTrovata;
+     }
+ 
+     @Override
+-    public Collection<Voyage> findByCategoriesAndDuration(Category c, int duration) {
+-        return List.of();
++    public Collection<Voyage> findByCategoriesAndDuration(Category c, int destination) {
++        Collection<Voyage> categoriaTrovata = new ArrayList<>();
++        for (Voyage v : voyages){
++            if (v.getCategory().equals(c) && v.getDestinations().size() >= destination){
++                categoriaTrovata.add(v);
++            }
++        }
++        return categoriaTrovata;
+     }
+ }
+Index: examples/interfaces/travelagency/Voyage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.generation.italy.examples.interfaces.travelagency;\r\n\r\nimport java.util.List;\r\n\r\npublic class Voyage {\r\n    private List<Destination> destinations;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/examples/interfaces/travelagency/Voyage.java b/examples/interfaces/travelagency/Voyage.java
+--- a/examples/interfaces/travelagency/Voyage.java	(revision 5b39bf6b679e4cc7bb493bea92df03bc89cbcb2d)
++++ b/examples/interfaces/travelagency/Voyage.java	(date 1729544966644)
+@@ -1,7 +1,73 @@
+ package org.generation.italy.examples.interfaces.travelagency;
+-
++//composta da un id numerico che la identifica univocamente, un prezzo, una data di inizio e di fine,
++// da una categoria che le classifica per costo (luxury, comfort, budget e backpacker)
++import java.time.LocalDate;
+ import java.util.List;
+ 
+ public class Voyage {
+     private List<Destination> destinations;
++    private int id;
++    private double price;
++    private LocalDate firstDate;
++    private LocalDate lastDate;
++    private Category category;
++
++
++
++    public Voyage(List<Destination> destinations,double price,LocalDate firstDate,LocalDate lastDate,Category category){
++        this.destinations = destinations;
++        this.price = price;
++        this.firstDate=firstDate;
++        this.lastDate= lastDate;
++        this.category=category;
++    }
++
++
++    public List<Destination> getDestinations() {
++        return destinations;
++    }
++
++    public int getId() {
++        return id;
++    }
++
++    public void setDestinations(List<Destination> destinations) {
++        this.destinations = destinations;
++    }
++
++    public void setId(int id) {
++        this.id = id;
++    }
++
++    public void setPrice(double price) {
++        this.price = price;
++    }
++
++    public void setFirstDate(LocalDate firstDate) {
++        this.firstDate = firstDate;
++    }
++
++    public void setLastDate(LocalDate lastDate) {
++        this.lastDate = lastDate;
++    }
++
++    public void setCategory(Category category) {
++        this.category = category;
++    }
++
++    public double getPrice() {
++        return price;
++    }
++
++    public LocalDate getFirstDate() {
++        return firstDate;
++    }
++
++    public LocalDate getLastDate() {
++        return lastDate;
++    }
++
++    public Category getCategory() {
++        return category;
++    }
+ }
+Index: esempiCorso/inheritance/geometria/Triangolo.java
+===================================================================
+diff --git a/esempiCorso/inheritance/geometria/Triangolo.java b/esempiCorso/inheritance/geometria/Triangolo.java
+deleted file mode 100644
+--- a/esempiCorso/inheritance/geometria/Triangolo.java	(revision 5b39bf6b679e4cc7bb493bea92df03bc89cbcb2d)
++++ /dev/null	(revision 5b39bf6b679e4cc7bb493bea92df03bc89cbcb2d)
+@@ -1,12 +0,0 @@
+-package org.generation.italy.esempiCorso.inheritance.geometria;
+-
+-public class Triangolo extends Forma{
+-    public Triangolo(double base, double altezza){
+-        super(base, altezza);
+-    }
+-
+-    @Override
+-    public double calcolaArea() {
+-    return ((base * altezza) / 2);
+-    }
+-}
+Index: esempiCorso/inheritance/geometry/Triangolo.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/esempiCorso/inheritance/geometry/Triangolo.java b/esempiCorso/inheritance/geometry/Triangolo.java
+deleted file mode 100644
+--- a/esempiCorso/inheritance/geometry/Triangolo.java	(revision 5b39bf6b679e4cc7bb493bea92df03bc89cbcb2d)
++++ /dev/null	(revision 5b39bf6b679e4cc7bb493bea92df03bc89cbcb2d)
+@@ -1,16 +0,0 @@
+-package org.generation.italy.esempiCorso.inheritance.geometry;
+-
+-public class Triangolo extends Forma {
+-
+-
+-public Triangolo(int base,int altezza){
+-    super (base,altezza);
+-}
+-@Override
+-    public int calcolaArea() {
+-    int area = base*altezza/2;
+-    return area;
+-
+-}
+-}
+-
+Index: esempiCorso/inheritance/geometry/Rettangolo.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/esempiCorso/inheritance/geometry/Rettangolo.java b/esempiCorso/inheritance/geometry/Rettangolo.java
+deleted file mode 100644
+--- a/esempiCorso/inheritance/geometry/Rettangolo.java	(revision 5b39bf6b679e4cc7bb493bea92df03bc89cbcb2d)
++++ /dev/null	(revision 5b39bf6b679e4cc7bb493bea92df03bc89cbcb2d)
+@@ -1,13 +0,0 @@
+-package org.generation.italy.esempiCorso.inheritance.geometry;
+-
+-public class Rettangolo extends Forma{
+-
+-    public Rettangolo (int base, int altezza){
+-        super(base, altezza);
+-    }
+-    @Override
+-        public int calcolaArea(){
+-        int area = base * altezza;
+-        return area;
+-    }
+-}
+Index: esempiCorso/inheritance/geometry/Main.java
+===================================================================
+diff --git a/esempiCorso/inheritance/geometry/Main.java b/esempiCorso/inheritance/geometry/Main.java
+deleted file mode 100644
+--- a/esempiCorso/inheritance/geometry/Main.java	(revision 5b39bf6b679e4cc7bb493bea92df03bc89cbcb2d)
++++ /dev/null	(revision 5b39bf6b679e4cc7bb493bea92df03bc89cbcb2d)
+@@ -1,10 +0,0 @@
+-package org.generation.italy.esempiCorso.inheritance.geometria;
+-
+-public class Main {
+-    public static void main(String[] args) {
+-        Triangolo triangolo = new Triangolo(10, 20);
+-        System.out.println("L'area del triangolo è " + triangolo.calcolaArea());
+-        Rettangolo rettangolo = new Rettangolo(15, 25);
+-        System.out.println("L'area del rettangolo è " + rettangolo.calcolaArea());
+-    }
+-}
+Index: esempiCorso/inheritance/geometry/Forma.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/esempiCorso/inheritance/geometry/Forma.java b/esempiCorso/inheritance/geometry/Forma.java
+deleted file mode 100644
+--- a/esempiCorso/inheritance/geometry/Forma.java	(revision 5b39bf6b679e4cc7bb493bea92df03bc89cbcb2d)
++++ /dev/null	(revision 5b39bf6b679e4cc7bb493bea92df03bc89cbcb2d)
+@@ -1,16 +0,0 @@
+-package org.generation.italy.esempiCorso.inheritance.geometria;
+-
+-public class Forma {
+-    protected double base, altezza;
+-
+-    public Forma(double base, double altezza) {
+-        this.base = base;
+-        this.altezza = altezza;
+-    }
+-
+-    public double calcolaArea(){
+-        double area = base * altezza;
+-        return calcolaArea();
+-    }
+-
+-}
+Index: esempiCorso/inheritance/geometry/Avvio.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/esempiCorso/inheritance/geometry/Avvio.java b/esempiCorso/inheritance/geometry/Avvio.java
+deleted file mode 100644
+--- a/esempiCorso/inheritance/geometry/Avvio.java	(revision 5b39bf6b679e4cc7bb493bea92df03bc89cbcb2d)
++++ /dev/null	(revision 5b39bf6b679e4cc7bb493bea92df03bc89cbcb2d)
+@@ -1,11 +0,0 @@
+-package org.generation.italy.esempiCorso.inheritance.geometry;
+-
+-public class Avvio {
+-    public static void main(String[] args) {
+-       /* Triangolo t1 = new Triangolo(20,10);
+-        Rettangolo r1 = new Rettangolo(10,2);
+-
+-        System.out.println(t1.toString());
+-        System.out.println(r1.toString());*/
+-    }
+-}
+Index: esempiCorso/inheritance/geometria/Rettangolo.java
+===================================================================
+diff --git a/esempiCorso/inheritance/geometria/Rettangolo.java b/esempiCorso/inheritance/geometria/Rettangolo.java
+deleted file mode 100644
+--- a/esempiCorso/inheritance/geometria/Rettangolo.java	(revision 5b39bf6b679e4cc7bb493bea92df03bc89cbcb2d)
++++ /dev/null	(revision 5b39bf6b679e4cc7bb493bea92df03bc89cbcb2d)
+@@ -1,12 +0,0 @@
+-package org.generation.italy.esempiCorso.inheritance.geometria;
+-
+-public class Rettangolo extends Forma{
+-    public Rettangolo(double base, double altezza){
+-        super(base, altezza);
+-    }
+-
+-    @Override
+-    public double calcolaArea() {
+-        return base * altezza;
+-    }
+-}
+Index: eserciziLeetCode/.idea/modules.xml
+===================================================================
+diff --git a/eserciziLeetCode/.idea/modules.xml b/eserciziLeetCode/.idea/modules.xml
+new file mode 100644
+--- /dev/null	(date 1729261199336)
++++ b/eserciziLeetCode/.idea/modules.xml	(date 1729261199336)
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectModuleManager">
++    <modules>
++      <module fileurl="file://$PROJECT_DIR$/.idea/eserciziLeetCode.iml" filepath="$PROJECT_DIR$/.idea/eserciziLeetCode.iml" />
++    </modules>
++  </component>
++</project>
+\ No newline at end of file
+Index: eserciziLeetCode/.idea/uiDesigner.xml
+===================================================================
+diff --git a/eserciziLeetCode/.idea/uiDesigner.xml b/eserciziLeetCode/.idea/uiDesigner.xml
+new file mode 100644
+--- /dev/null	(date 1729261199352)
++++ b/eserciziLeetCode/.idea/uiDesigner.xml	(date 1729261199352)
+@@ -0,0 +1,124 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="Palette2">
++    <group name="Swing">
++      <item class="com.intellij.uiDesigner.HSpacer" tooltip-text="Horizontal Spacer" icon="/com/intellij/uiDesigner/icons/hspacer.svg" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="1" hsize-policy="6" anchor="0" fill="1" />
++      </item>
++      <item class="com.intellij.uiDesigner.VSpacer" tooltip-text="Vertical Spacer" icon="/com/intellij/uiDesigner/icons/vspacer.svg" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="1" anchor="0" fill="2" />
++      </item>
++      <item class="javax.swing.JPanel" icon="/com/intellij/uiDesigner/icons/panel.svg" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="3" />
++      </item>
++      <item class="javax.swing.JScrollPane" icon="/com/intellij/uiDesigner/icons/scrollPane.svg" removable="false" auto-create-binding="false" can-attach-label="true">
++        <default-constraints vsize-policy="7" hsize-policy="7" anchor="0" fill="3" />
++      </item>
++      <item class="javax.swing.JButton" icon="/com/intellij/uiDesigner/icons/button.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="3" anchor="0" fill="1" />
++        <initial-values>
++          <property name="text" value="Button" />
++        </initial-values>
++      </item>
++      <item class="javax.swing.JRadioButton" icon="/com/intellij/uiDesigner/icons/radioButton.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="3" anchor="8" fill="0" />
++        <initial-values>
++          <property name="text" value="RadioButton" />
++        </initial-values>
++      </item>
++      <item class="javax.swing.JCheckBox" icon="/com/intellij/uiDesigner/icons/checkBox.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="3" anchor="8" fill="0" />
++        <initial-values>
++          <property name="text" value="CheckBox" />
++        </initial-values>
++      </item>
++      <item class="javax.swing.JLabel" icon="/com/intellij/uiDesigner/icons/label.svg" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="0" anchor="8" fill="0" />
++        <initial-values>
++          <property name="text" value="Label" />
++        </initial-values>
++      </item>
++      <item class="javax.swing.JTextField" icon="/com/intellij/uiDesigner/icons/textField.svg" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1">
++          <preferred-size width="150" height="-1" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JPasswordField" icon="/com/intellij/uiDesigner/icons/passwordField.svg" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1">
++          <preferred-size width="150" height="-1" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JFormattedTextField" icon="/com/intellij/uiDesigner/icons/formattedTextField.svg" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1">
++          <preferred-size width="150" height="-1" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JTextArea" icon="/com/intellij/uiDesigner/icons/textArea.svg" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JTextPane" icon="/com/intellij/uiDesigner/icons/textPane.svg" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JEditorPane" icon="/com/intellij/uiDesigner/icons/editorPane.svg" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JComboBox" icon="/com/intellij/uiDesigner/icons/comboBox.svg" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="2" anchor="8" fill="1" />
++      </item>
++      <item class="javax.swing.JTable" icon="/com/intellij/uiDesigner/icons/table.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JList" icon="/com/intellij/uiDesigner/icons/list.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="2" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JTree" icon="/com/intellij/uiDesigner/icons/tree.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JTabbedPane" icon="/com/intellij/uiDesigner/icons/tabbedPane.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="3">
++          <preferred-size width="200" height="200" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JSplitPane" icon="/com/intellij/uiDesigner/icons/splitPane.svg" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="3">
++          <preferred-size width="200" height="200" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JSpinner" icon="/com/intellij/uiDesigner/icons/spinner.svg" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1" />
++      </item>
++      <item class="javax.swing.JSlider" icon="/com/intellij/uiDesigner/icons/slider.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1" />
++      </item>
++      <item class="javax.swing.JSeparator" icon="/com/intellij/uiDesigner/icons/separator.svg" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3" />
++      </item>
++      <item class="javax.swing.JProgressBar" icon="/com/intellij/uiDesigner/icons/progressbar.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="0" fill="1" />
++      </item>
++      <item class="javax.swing.JToolBar" icon="/com/intellij/uiDesigner/icons/toolbar.svg" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="0" fill="1">
++          <preferred-size width="-1" height="20" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JToolBar$Separator" icon="/com/intellij/uiDesigner/icons/toolbarSeparator.svg" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="0" anchor="0" fill="1" />
++      </item>
++      <item class="javax.swing.JScrollBar" icon="/com/intellij/uiDesigner/icons/scrollbar.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="0" anchor="0" fill="2" />
++      </item>
++    </group>
++  </component>
++</project>
+\ No newline at end of file
+Index: eserciziLeetCode/.idea/misc.xml
+===================================================================
+diff --git a/eserciziLeetCode/.idea/misc.xml b/eserciziLeetCode/.idea/misc.xml
+new file mode 100644
+--- /dev/null	(date 1729261199347)
++++ b/eserciziLeetCode/.idea/misc.xml	(date 1729261199347)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_23" default="true" project-jdk-name="23" project-jdk-type="JavaSDK">
++    <output url="file://$PROJECT_DIR$/out" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/vcs.xml
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+new file mode 100644
+--- /dev/null	(date 1729261648704)
++++ b/.idea/vcs.xml	(date 1729261648704)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$/../../../../../.." vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: eserciziLeetCode/Libri/Library.java
+===================================================================
+diff --git a/eserciziLeetCode/Libri/Library.java b/eserciziLeetCode/Libri/Library.java
+new file mode 100644
+--- /dev/null	(date 1729352161721)
++++ b/eserciziLeetCode/Libri/Library.java	(date 1729352161721)
+@@ -0,0 +1,52 @@
++package Libri;
++
++import java.util.ArrayList;
++import java.util.List;
++
++public class Library implements LibraryImpl {
++
++    List<Book> libri;
++
++
++    public Library() {
++        this.libri = new ArrayList<>(); // Inizializzazione della lista
++    }
++
++    @Override
++    public void aggiungiLibro(Book a) {
++        this.libri.add(a);
++
++    }
++
++    @Override
++    public boolean cercaLibro(String b) {
++        boolean trovato = false;
++        for (Book libro : libri) {
++            if (libro.getTitolo().equals(b) ) {
++                trovato =  true;
++                System.out.println("Libro trovato");
++                return trovato;
++            }
++
++        }
++        return false;
++
++    }
++
++    @Override
++    public void mostraLibro(String c) {
++        boolean trovato =  false;
++        for (Book libro : libri) {
++            if (libro.getTitolo().equalsIgnoreCase(c) || libro.getAutore().equalsIgnoreCase(c)) {
++                System.out.println("Ecco il libro che cercavi " + "\n" + "Titolo " + libro.getTitolo() +
++                        "\n" + "Autore: " + libro.getAutore() + "\n" + "anno di pubblicazione: " + libro.getAnnoPublic());
++                trovato = true;
++            }
++        }
++        if (!trovato){
++            System.out.println("Mi dispiace, non abbiamo trovato nessun libro con questo nome " + c);
++        }
++
++    }
++
++}
+\ No newline at end of file
+Index: eserciziLeetCode/Libri/Book.java
+===================================================================
+diff --git a/eserciziLeetCode/Libri/Book.java b/eserciziLeetCode/Libri/Book.java
+new file mode 100644
+--- /dev/null	(date 1729351038978)
++++ b/eserciziLeetCode/Libri/Book.java	(date 1729351038978)
+@@ -0,0 +1,45 @@
++package Libri;
++/*Crea un programma che gestisca una libreria. Il sistema deve permettere di:
++
++Aggiungere nuovi libri.
++Cercare un libro per titolo.
++Mostrare tutti i libri disponibili.
++Classi richieste:
++Book: rappresenta un libro con attributi come titolo, autore e anno di pubblicazione.
++        Library: gestisce una collezione di libri e implementa i metodi per aggiungere, cercare e mostrare libri.
++*/
++public class Book {
++    private String titolo;
++    private String autore;
++    private int annoPublic;
++
++    public Book(String titolo, String autore, int annoPublic) {
++        this.titolo = titolo;
++        this.autore = autore;
++        this.annoPublic = annoPublic;
++    }
++
++    public int getAnnoPublic() {
++        return annoPublic;
++    }
++
++    public void setAnnoPublic(int annoPublic) {
++        this.annoPublic = annoPublic;
++    }
++
++    public String getAutore() {
++        return autore;
++    }
++
++    public void setAutore(String autore) {
++        this.autore = autore;
++    }
++
++    public String getTitolo() {
++        return titolo;
++    }
++
++    public void setTitolo(String titolo) {
++        this.titolo = titolo;
++    }
++}
+Index: eserciziLeetCode/Libri/Start.java
+===================================================================
+diff --git a/eserciziLeetCode/Libri/Start.java b/eserciziLeetCode/Libri/Start.java
+new file mode 100644
+--- /dev/null	(date 1729352161738)
++++ b/eserciziLeetCode/Libri/Start.java	(date 1729352161738)
+@@ -0,0 +1,12 @@
++package Libri;
++
++public class Start {
++    public static void main(String[] args) {
++        Library libreria = new Library();
++        libreria.aggiungiLibro(new Book("Il nevischio","Gianluca",1997));
++        boolean libroDaCercare = libreria.cercaLibro("Il nevischio");
++        libreria.mostraLibro("il nevischio");
++
++
++    }
++}
+Index: eserciziLeetCode/Libri/LibraryImpl.java
+===================================================================
+diff --git a/eserciziLeetCode/Libri/LibraryImpl.java b/eserciziLeetCode/Libri/LibraryImpl.java
+new file mode 100644
+--- /dev/null	(date 1729352161754)
++++ b/eserciziLeetCode/Libri/LibraryImpl.java	(date 1729352161754)
+@@ -0,0 +1,8 @@
++package Libri;
++
++public interface LibraryImpl {
++
++    void aggiungiLibro(Book a);
++    boolean cercaLibro(String b);
++    void mostraLibro(String c);
++}
+Index: .idea/.gitignore
+===================================================================
+diff --git a/.idea/.gitignore b/.idea/.gitignore
+new file mode 100644
+--- /dev/null	(date 1729261552146)
++++ b/.idea/.gitignore	(date 1729261552146)
+@@ -0,0 +1,3 @@
++# Default ignored files
++/shelf/
++/workspace.xml
+Index: esempiCorso/streams/Book/Category.java
+===================================================================
+diff --git a/esempiCorso/streams/Book/Category.java b/esempiCorso/streams/Book/Category.java
+new file mode 100644
+--- /dev/null	(date 1729627410384)
++++ b/esempiCorso/streams/Book/Category.java	(date 1729627410384)
+@@ -0,0 +1,5 @@
++package Book;
++
++public enum Category {
++    ADVENTURE,SCIENCE_FICTION,NARRATIVE,CLASSICS,HORROR
++}
+Index: .idea/modules.xml
+===================================================================
+diff --git a/.idea/modules.xml b/.idea/modules.xml
+new file mode 100644
+--- /dev/null	(date 1729261648663)
++++ b/.idea/modules.xml	(date 1729261648663)
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectModuleManager">
++    <modules>
++      <module fileurl="file://$PROJECT_DIR$/italy.iml" filepath="$PROJECT_DIR$/italy.iml" />
++    </modules>
++  </component>
++</project>
+\ No newline at end of file
+Index: esempiCorso/streams/Book/Book.java
+===================================================================
+diff --git a/esempiCorso/streams/Book/Book.java b/esempiCorso/streams/Book/Book.java
+new file mode 100644
+--- /dev/null	(date 1729705307472)
++++ b/esempiCorso/streams/Book/Book.java	(date 1729705307472)
+@@ -0,0 +1,68 @@
++package Book;
++
++import java.time.LocalDate;
++import java.util.ArrayList;
++import java.util.List;
++
++public class Book {
++    private int idNum;
++    private String titolo;
++    private double peso;
++    private int numPage;
++    private double costo;
++    private LocalDate datePublication;
++    private Category category;
++    private List<Autore> listaAutore;
++    private String lingua;
++
++    public Book(int idNum, String titolo, double peso, int numPage, double costo, LocalDate datePublication, Category category, List<Autore> listaAutore, String lingua) {
++        this.idNum = idNum;
++        this.titolo = titolo;
++        this.peso = peso;
++        this.numPage = numPage;
++        this.costo = costo;
++        this.datePublication = datePublication;
++        this.category = category;
++        this.listaAutore= new ArrayList<>();
++        this.lingua = lingua;
++    }
++    public int maxBookByAuthor(){
++        return listaAutore.stream().mapToInt(Autore::getIdNumerico).max().orElse(0);
++    }
++
++    public int getIdNum() {
++        return idNum;
++    }
++
++    public String getTitolo() {
++        return titolo;
++    }
++
++    public double getPeso() {
++        return peso;
++    }
++
++    public int getNumPage() {
++        return numPage;
++    }
++
++    public double getCosto() {
++        return costo;
++    }
++
++    public LocalDate getDatePublication() {
++        return datePublication;
++    }
++
++    public Category getCategory() {
++        return category;
++    }
++
++    public List<Autore> getListaAutore() {
++        return listaAutore;
++    }
++
++    public String getLingua() {
++        return lingua;
++    }
++}
+Index: esempiCorso/streams/Book/Autore.java
+===================================================================
+diff --git a/esempiCorso/streams/Book/Autore.java b/esempiCorso/streams/Book/Autore.java
+new file mode 100644
+--- /dev/null	(date 1729704175542)
++++ b/esempiCorso/streams/Book/Autore.java	(date 1729704175542)
+@@ -0,0 +1,50 @@
++package Book;
++
++import java.time.LocalDate;
++
++public class Autore {
++    private int idNumerico;
++    private String name;
++    private String surname;
++    private LocalDate birthday;
++    private String nazionalita;
++    private String lingua;
++
++    public Autore(int idNumerico, String name, String surname, LocalDate birthday, String nazionalita, String lingua) {
++        this.idNumerico = idNumerico;
++        this.name = name;
++        this.surname = surname;
++        this.birthday = birthday;
++        this.nazionalita = nazionalita;
++        this.lingua = lingua;
++    }
++
++
++    public double getPage(){
++        return getPage();
++    }
++
++    public String getLingua() {
++        return lingua;
++    }
++
++    public String getNazionalita() {
++        return nazionalita;
++    }
++
++    public LocalDate getBirthday() {
++        return birthday;
++    }
++
++    public String getSurname() {
++        return surname;
++    }
++
++    public String getName() {
++        return name;
++    }
++
++    public static int getIdNumerico() {
++        return getIdNumerico();
++    }
++}
+Index: .idea/misc.xml
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+new file mode 100644
+--- /dev/null	(date 1729261648682)
++++ b/.idea/misc.xml	(date 1729261648682)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_23" default="true" project-jdk-name="23" project-jdk-type="JavaSDK">
++    <output url="file://$PROJECT_DIR$/out" />
++  </component>
++</project>
+\ No newline at end of file
+Index: esempiCorso/streams/Book/BookRepository.java
+===================================================================
+diff --git a/esempiCorso/streams/Book/BookRepository.java b/esempiCorso/streams/Book/BookRepository.java
+new file mode 100644
+--- /dev/null	(date 1729708970029)
++++ b/esempiCorso/streams/Book/BookRepository.java	(date 1729708970029)
+@@ -0,0 +1,86 @@
++package Book;
++
++import java.time.LocalDate;
++import java.util.Comparator;
++import java.util.List;
++import java.util.Scanner;
++import java.util.stream.Collectors;
++
++public class BookRepository {
++
++    private List<Book> libri = List.of(
++            new Book(1, "La Fame", 3.5, 1600, 25.00, LocalDate.of(1955, 6, 12), Category.HORROR,
++                    List.of(new Autore(1, "Marco", "Falconetti", LocalDate.of(1920, 8, 4), "Italiana", "Bene")), "discreto"),
++            new Book(2, "La morte", 1.5, 100, 50.00, LocalDate.of(1975, 6, 12), Category.NARRATIVE,
++                    List.of(new Autore(2, "Carlotta", "Pisano", LocalDate.of(1950, 8, 4), "Italiana", "Tedesco")), "Tedesco"),
++            new Book(3, "Il giardino segreto", 4.2, 300, 15.99, LocalDate.of(1911, 3, 15), Category.CLASSICS,
++                    List.of(new Autore(3, "Frances", "Hodgson Burnett", LocalDate.of(1849, 11, 24), "Inglese", "Inglese")), "Inglese"),
++            new Book(4, "1984", 4.7, 328, 12.50, LocalDate.of(1949, 6, 8), Category.ADVENTURE,
++                    List.of(new Autore(4, "George", "Orwell", LocalDate.of(1903, 6, 25), "Inglese", "Inglese")), "Inglese"),
++            new Book(5, "Il nome della rosa", 4.3, 512, 22.00, LocalDate.of(1980, 9, 1), Category.HORROR,
++                    List.of(new Autore(5, "Umberto", "Eco", LocalDate.of(1932, 1, 5), "Italiana", "Italiano")), "Italiano"),
++            new Book(6, "Cent'anni di solitudine", 4.5, 432, 18.50, LocalDate.of(1967, 5, 30), Category.NARRATIVE,
++                    List.of(new Autore(6, "Gabriel", "García Márquez", LocalDate.of(1927, 3, 6), "Colombiana", "Spagnolo")), "Spagnolo"),
++            new Book(7, "Il piccolo principe", 4.8, 96, 10.00, LocalDate.of(1943, 4, 6), Category.NARRATIVE,
++                    List.of(new Autore(7, "Antoine", "de Saint-Exupéry", LocalDate.of(1900, 6, 29), "Francese", "Francese")), "Francese")
++    );
++
++
++    public List<Book> findBookByCategory(Category c) {
++        return libri.stream().filter(l -> l.getCategory().equals(c)).toList();
++    }
++
++    public List<Book> findByTitleLikeAndPublishedBetween(String word, LocalDate start, LocalDate end) {
++
++        var bookDate = libri.stream().filter(l -> l.getDatePublication().isBefore(end) && l.getDatePublication().isAfter(start)).toList();
++        var bookWord = bookDate.stream().filter(l -> l.getTitolo().contains(word)).sorted(Comparator.comparingDouble(Book::getCosto)).toList();//lista che contiene libri per parola
++        return bookWord;
++    }
++
++    public double findAvgCostByLanguage(String language) { //average calcola la media
++        var libriInLingua = libri.stream().filter(l -> l.getLingua().contains(language)).toList();
++        return libriInLingua.isEmpty() ? 0 : libriInLingua.stream().mapToDouble(Book::getCosto).sum() / libriInLingua.size();
++
++    }
++
++    public List<Book> findByAuthorId(int id) {
++        return libri.stream().filter(l -> l.getListaAutore().stream().anyMatch(autore -> autore.getIdNumerico() == id)).toList();
++    }
++
++    public List<Book> findByNumAuthor(List<Autore> autores) {
++        return libri.stream().filter(l -> l.getListaAutore().size() > 1).sorted(Comparator.comparingInt((Book l) -> l.getListaAutore().size()).reversed()).toList();
++    }
++
++    public List<Autore> findAuthorByCategory(Category category) {
++        return libri.stream().filter(b -> b.getCategory().equals(category)).flatMap(b -> b.getListaAutore().stream())
++                .sorted(Comparator.comparing(Autore::getSurname).thenComparing(Autore::getName)).distinct().toList();
++    }
++
++    public double costoMedio(Book b, List<Book> libri) {
++        return libri.stream().mapToDouble(Book::getCosto).sum() / libri.size();
++
++    }
++
++    public int findPageWrittenByAuthoreById(int id) {
++        return libri.stream().filter(l -> l.getListaAutore().stream()
++                        .anyMatch(autore -> autore.getIdNumerico() == id))
++                .mapToInt(Book::getNumPage).sum();
++
++    }
++
++    public int findPageWrittenByCategory(Category category) {
++        return libri.stream().filter(l -> l.getCategory().equals(category)).mapToInt(Book::getNumPage).sum();
++    }
++
++    public double findBookWrittenByAuthorByLanguageFrancesce() {
++        return libri.stream().filter(l -> l.getListaAutore().stream().anyMatch(autore -> autore.getLingua().contains("Francese")))
++                .mapToDouble(Book::getCosto).sum();
++
++    }
++}
++
++        //dammi il numero totale di pagine che sono state scritte da un autore con un certo id//dammi il numeto totale di pagine che sono state scritte per una certa caterogia di pagine;
++    //dammi il valore medio del prezzo dei libri scritti da un autore che parla la lingua francese;
++        // dammi una funzione di un autore che ha scritto più libri e nel caso ci fosse un parimerito di un autore random 
++// 
++
+Index: .idea/uiDesigner.xml
+===================================================================
+diff --git a/.idea/uiDesigner.xml b/.idea/uiDesigner.xml
+new file mode 100644
+--- /dev/null	(date 1729262729937)
++++ b/.idea/uiDesigner.xml	(date 1729262729937)
+@@ -0,0 +1,124 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="Palette2">
++    <group name="Swing">
++      <item class="com.intellij.uiDesigner.HSpacer" tooltip-text="Horizontal Spacer" icon="/com/intellij/uiDesigner/icons/hspacer.svg" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="1" hsize-policy="6" anchor="0" fill="1" />
++      </item>
++      <item class="com.intellij.uiDesigner.VSpacer" tooltip-text="Vertical Spacer" icon="/com/intellij/uiDesigner/icons/vspacer.svg" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="1" anchor="0" fill="2" />
++      </item>
++      <item class="javax.swing.JPanel" icon="/com/intellij/uiDesigner/icons/panel.svg" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="3" />
++      </item>
++      <item class="javax.swing.JScrollPane" icon="/com/intellij/uiDesigner/icons/scrollPane.svg" removable="false" auto-create-binding="false" can-attach-label="true">
++        <default-constraints vsize-policy="7" hsize-policy="7" anchor="0" fill="3" />
++      </item>
++      <item class="javax.swing.JButton" icon="/com/intellij/uiDesigner/icons/button.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="3" anchor="0" fill="1" />
++        <initial-values>
++          <property name="text" value="Button" />
++        </initial-values>
++      </item>
++      <item class="javax.swing.JRadioButton" icon="/com/intellij/uiDesigner/icons/radioButton.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="3" anchor="8" fill="0" />
++        <initial-values>
++          <property name="text" value="RadioButton" />
++        </initial-values>
++      </item>
++      <item class="javax.swing.JCheckBox" icon="/com/intellij/uiDesigner/icons/checkBox.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="3" anchor="8" fill="0" />
++        <initial-values>
++          <property name="text" value="CheckBox" />
++        </initial-values>
++      </item>
++      <item class="javax.swing.JLabel" icon="/com/intellij/uiDesigner/icons/label.svg" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="0" anchor="8" fill="0" />
++        <initial-values>
++          <property name="text" value="Label" />
++        </initial-values>
++      </item>
++      <item class="javax.swing.JTextField" icon="/com/intellij/uiDesigner/icons/textField.svg" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1">
++          <preferred-size width="150" height="-1" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JPasswordField" icon="/com/intellij/uiDesigner/icons/passwordField.svg" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1">
++          <preferred-size width="150" height="-1" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JFormattedTextField" icon="/com/intellij/uiDesigner/icons/formattedTextField.svg" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1">
++          <preferred-size width="150" height="-1" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JTextArea" icon="/com/intellij/uiDesigner/icons/textArea.svg" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JTextPane" icon="/com/intellij/uiDesigner/icons/textPane.svg" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JEditorPane" icon="/com/intellij/uiDesigner/icons/editorPane.svg" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JComboBox" icon="/com/intellij/uiDesigner/icons/comboBox.svg" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="2" anchor="8" fill="1" />
++      </item>
++      <item class="javax.swing.JTable" icon="/com/intellij/uiDesigner/icons/table.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JList" icon="/com/intellij/uiDesigner/icons/list.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="2" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JTree" icon="/com/intellij/uiDesigner/icons/tree.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JTabbedPane" icon="/com/intellij/uiDesigner/icons/tabbedPane.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="3">
++          <preferred-size width="200" height="200" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JSplitPane" icon="/com/intellij/uiDesigner/icons/splitPane.svg" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="3">
++          <preferred-size width="200" height="200" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JSpinner" icon="/com/intellij/uiDesigner/icons/spinner.svg" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1" />
++      </item>
++      <item class="javax.swing.JSlider" icon="/com/intellij/uiDesigner/icons/slider.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1" />
++      </item>
++      <item class="javax.swing.JSeparator" icon="/com/intellij/uiDesigner/icons/separator.svg" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3" />
++      </item>
++      <item class="javax.swing.JProgressBar" icon="/com/intellij/uiDesigner/icons/progressbar.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="0" fill="1" />
++      </item>
++      <item class="javax.swing.JToolBar" icon="/com/intellij/uiDesigner/icons/toolbar.svg" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="0" fill="1">
++          <preferred-size width="-1" height="20" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JToolBar$Separator" icon="/com/intellij/uiDesigner/icons/toolbarSeparator.svg" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="0" anchor="0" fill="1" />
++      </item>
++      <item class="javax.swing.JScrollBar" icon="/com/intellij/uiDesigner/icons/scrollbar.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="0" anchor="0" fill="2" />
++      </item>
++    </group>
++  </component>
++</project>
+\ No newline at end of file
+Index: eserciziLeetCode/sommaDue/Registrazione.java
+===================================================================
+diff --git a/eserciziLeetCode/sommaDue/Registrazione.java b/eserciziLeetCode/sommaDue/Registrazione.java
+new file mode 100644
+--- /dev/null	(date 1729266911645)
++++ b/eserciziLeetCode/sommaDue/Registrazione.java	(date 1729266911645)
+@@ -0,0 +1,18 @@
++package sommaDue;
++//Esercizio: Gestione delle Eccezioni in un Sistema di Registrazione
++//Scrivi un programma che simuli un sistema di registrazione per un evento. Il programma deve chiedere all'utente di inserire la sua età
++// e il numero di posti che desidera prenotare. Devi gestire le seguenti condizioni:
++//
++//L'età deve essere un numero intero positivo. Se l'utente inserisce un valore non valido (ad esempio una stringa o un numero negativo),
++// deve essere mostrato un messaggio di errore.
++//Il numero di posti deve essere un intero positivo e non superiore a 5. Se l'utente inserisce un valore non valido, deve essere mostrato un messaggio di errore.
++//In ogni caso, il programma deve sempre stampare un messaggio finale che confermi la registrazione, anche se ci sono stati errori.
++public interface Registrazione {
++    void inserisciDati();
++    String toString();
++
++
++
++
++
++}
+Index: eserciziLeetCode/sommaDue/RegistrazioneImpl.java
+===================================================================
+diff --git a/eserciziLeetCode/sommaDue/RegistrazioneImpl.java b/eserciziLeetCode/sommaDue/RegistrazioneImpl.java
+new file mode 100644
+--- /dev/null	(date 1729267163187)
++++ b/eserciziLeetCode/sommaDue/RegistrazioneImpl.java	(date 1729267163187)
+@@ -0,0 +1,36 @@
++package sommaDue;
++
++import java.util.Scanner;
++
++public class RegistrazioneImpl implements Registrazione {
++    String nome;
++    int eta;
++    int numeroPrenotazioni;
++    Scanner scanner = new Scanner(System.in);
++
++    public void inserisciDati() {
++        System.out.println("Inserisci il tuo nome");
++        nome = scanner.nextLine();
++        System.out.println("Inserisci la tua eta");
++        try {
++            eta = Integer.parseInt(scanner.nextLine());
++            if(eta<0){
++                System.out.println("ERRORE, HAI INSERITO UN NUMERO MINORE DI 0");
++            }
++        } catch (NumberFormatException e) {
++            System.out.println("Errore: Hai inserito un numero sbagliato");
++        }
++        System.out.println("Quanti posti vuoi prenotare?");
++        try {
++            numeroPrenotazioni = Integer.parseInt(scanner.nextLine());
++
++            System.out.println("Perfetto, hai prenotato tot " + numeroPrenotazioni);
++        } catch (NumberFormatException e) {
++            System.out.println("REGISTRAZIONE FALLITA"+"\n" + "Errore: Hai inserito un numero di posti sbagliato");
++        }
++        System.out.format("Grazie per aver utilizzato il nostro sito per registrarti");
++
++    }
++
++}
++
+Index: esempiCorso/streams/Book/UserInterface.java
+===================================================================
+diff --git a/esempiCorso/streams/Book/UserInterface.java b/esempiCorso/streams/Book/UserInterface.java
+new file mode 100644
+--- /dev/null	(date 1729708970020)
++++ b/esempiCorso/streams/Book/UserInterface.java	(date 1729708970020)
+@@ -0,0 +1,61 @@
++package Book;
++
++import java.util.Scanner;
++//Creare una classe BookRepository che mantiene una lista di libri e permette di eserguire i seguenti metodi
++//un metodo che ritorna tutti i libri per una data categoria in input (intendo parametro di input del metodo, non input dall utente..)
++//ad esempio List<Book> findByCategory(Category target) {...}
++//un metodo che ritorna tutti i libri che hanno una data parola (in input) come parte del loro titolo e sono stati pubblicati entro una dato
++//range di date, ordinati per costo decrescente
++//List<Book> findByTitleLikeAndPublishedBetween(String word, LocalDate start, LocalDate end) {...}
++//un metodo che restituisce il costo medio per i libri scritti in una data lingua
++//double findAvgCostByLanguage(String language)
++//un metodo che restituisce tutti i libri scritti da un autore di cui viene dato l'id
++//List<Book> findByAuthorId(int id);
++//un metodo che restituisca la lista di tutti i libri che hanno piu'di un autore, ordinati per numero di autori decrescente
++//un metodo che resituisca la lista di tutti gli autori che hanno mai scritto libri in una data categoria. Gli autori devono essere ordinati per
++//cognome e nome alfabetico e devono apparire nella lista una sola volta.
++
++public class UserInterface {
++        BookRepository bookRepository = new BookRepository();
++        Scanner sc = new Scanner(System.in);
++        public void begin(){
++            System.out.println("""
++                               Benvenuto in la libreria
++                               Seleziona la funzione che vuoi eseguire
++                               1. Ritorna tutti i libri per una data categoria
++                               2. Ritorna tutti i libri con una data parola come parte del titolo
++                               3. Visualizza tutti i libri
++                               4. Esci
++                               Inserisci la tua scelta
++                               """);
++            int scelta = sc.nextInt();
++            switch (scelta){
++                case 1:
++                    System.out.println("""
++                        Che categoria vuoi visualizzare?
++                        1.ADVENTURE
++                        2.HORROR
++                        3.SCIENCE_FICTION
++                        4.NARRATIVE,CLASSICS
++                        """);
++                    int risposta = (Category) sc.nextInt();
++
++                    bookRepository.findBookByCategory(categoria);
++                    break;
++                case 2:
++                    bookRepository.deleteBook();
++                    break;
++                case 3:
++                    bookRepository.showAllBooks();
++                    break;
++                case 4:
++                    System.out.println("Arrivederci!");
++                    break;
++                default:
++                    System.out.println("Errore, scelta non valida");
++                    break;
++            }
++
++            }
++}
++
+Index: esempiCorso/collezioniamo/exercises/Contatto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.generation.italy.esempiCorso.collezioniamo.exercises;\r\n\r\npublic class Contatto\r\n{\r\n    private String nome, cognome, numeroTelefono;\r\n\r\n    public Contatto(String nome, String cognome, String numeroTelefono){\r\n        this.nome = nome;\r\n        this.cognome = cognome;\r\n        this.numeroTelefono = numeroTelefono;\r\n    }\r\n\r\n    public String getNome(){\r\n        return nome;\r\n    }\r\n\r\n    public void setNome(String nome){\r\n        this.nome = nome;\r\n    }\r\n\r\n    public String getCognome(){\r\n        return cognome;\r\n    }\r\n\r\n    public void setCognome(String cognome){\r\n        this.cognome = cognome;\r\n    }\r\n\r\n    public String getNumeroTelefono(){\r\n        return numeroTelefono;\r\n    }\r\n\r\n    public void setNumeroTelefono(String numeroTelefono){\r\n        this.numeroTelefono = numeroTelefono;\r\n    }\r\n\r\n    @Override\r\n    public boolean equals(Object obj){\r\n        if(this == obj) // siamo lo stesso oggetto?\r\n            return true;\r\n        if(obj == null)\r\n            return false;\r\n        if(obj.getClass() != this.getClass()) // abbiamo classi diverse?\r\n            return false;\r\n        Contatto other = (Contatto) obj; // castiamo, diciamo al compilatore fidati di me\r\n        return this.nome.equals(other.nome) && this.cognome.equals(other.cognome);\r\n    }\r\n    // ricordate che se due oggetti sono uguali hanno lo stesso hashCode\r\n    @Override\r\n    public int hashCode(){\r\n        return nome.hashCode() + 7 * cognome.hashCode();\r\n    }\r\n\r\n    public String toString(){\r\n        return nome + \" \" + cognome + \" \" + numeroTelefono;\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/esempiCorso/collezioniamo/exercises/Contatto.java b/esempiCorso/collezioniamo/exercises/Contatto.java
+--- a/esempiCorso/collezioniamo/exercises/Contatto.java	(revision 5b39bf6b679e4cc7bb493bea92df03bc89cbcb2d)
++++ b/esempiCorso/collezioniamo/exercises/Contatto.java	(date 1729525095667)
+@@ -55,4 +55,6 @@
+         return nome + " " + cognome + " " + numeroTelefono;
+     }
+ 
++    
++
+ }
+Index: esempiCorso/hufflePuff/eserciziCollection/Studente.java
+===================================================================
+diff --git a/esempiCorso/hufflePuff/eserciziCollection/Studente.java b/esempiCorso/hufflePuff/eserciziCollection/Studente.java
+new file mode 100644
+--- /dev/null	(date 1729454397598)
++++ b/esempiCorso/hufflePuff/eserciziCollection/Studente.java	(date 1729454397598)
+@@ -0,0 +1,30 @@
++package org.generation.italy.esempiCorso.hufflePuff.eserciziCollection;
++
++public class Studente {
++  /*  private String nome,cognome;
++    CasaHogwarts preferenza;
++
++    public Studente(String nome,String cognome,CasaHogwarts preferenza) {
++        this.nome = nome;
++        this.cognome = cognome;
++        this.preferenza = preferenza;
++    }
++    public String getNome() {
++        return nome;
++    }
++    public void setNome(String nome) {
++        this.nome = nome;
++    }
++    public CasaHogwarts getCognome() {
++        return cognome;
++    }
++    public void setCognome(String cognome) {
++        this.cognome = cognome;
++    }
++    public CasaHogwarts getPreferenza() {
++        return preferenza;
++    }
++    public void setPreferenza(String preferenza){
++        this.preferenza=preferenza;
++    */
++}
+Index: esempiCorso/hufflePuff/eserciziCollection/StudentRepository.java
+===================================================================
+diff --git a/esempiCorso/hufflePuff/eserciziCollection/StudentRepository.java b/esempiCorso/hufflePuff/eserciziCollection/StudentRepository.java
+new file mode 100644
+--- /dev/null	(date 1729431729183)
++++ b/esempiCorso/hufflePuff/eserciziCollection/StudentRepository.java	(date 1729431729183)
+@@ -0,0 +1,10 @@
++package org.generation.italy.esempiCorso.hufflePuff.eserciziCollection;
++
++import java.awt.*;
++import java.util.List;
++
++public interface StudentRepository {
++    void addStudent(Studente studente);
++    Studente findStudentByName(String name);
++    List<Studente> getAllStudents();
++}
+Index: esempiCorso/hufflePuff/eserciziCollection/Casata.java
+===================================================================
+diff --git a/esempiCorso/hufflePuff/eserciziCollection/Casata.java b/esempiCorso/hufflePuff/eserciziCollection/Casata.java
+new file mode 100644
+--- /dev/null	(date 1729433039912)
++++ b/esempiCorso/hufflePuff/eserciziCollection/Casata.java	(date 1729433039912)
+@@ -0,0 +1,25 @@
++package org.generation.italy.esempiCorso.hufflePuff.eserciziCollection;
++
++import java.util.ArrayList;
++import java.util.List;
++
++public class Casata {
++    private String nome;
++    private List<Studente> studenti;
++    protected final int MAX_NUMBER_HOUSES;
++
++
++    public Casata(String nome){
++        this.nome=nome;
++        this.studenti= new ArrayList<>();
++        this.MAX_NUMBER_HOUSES = CasaHogwarts.values().length;
++
++    }
++
++    public String getNome(){
++        return nome;
++    }
++
++
++
++}
+Index: esempiCorso/hufflePuff/eserciziCollection/StudentiImpl.java
+===================================================================
+diff --git a/esempiCorso/hufflePuff/eserciziCollection/StudentiImpl.java b/esempiCorso/hufflePuff/eserciziCollection/StudentiImpl.java
+new file mode 100644
+--- /dev/null	(date 1729432617682)
++++ b/esempiCorso/hufflePuff/eserciziCollection/StudentiImpl.java	(date 1729432617682)
+@@ -0,0 +1,22 @@
++package org.generation.italy.esempiCorso.hufflePuff.eserciziCollection;
++
++import java.util.List;
++
++public class StudentiImpl implements StudentRepository{
++    private List<Studente> listaStudenti;
++
++    @Override
++    public void addStudent(Studente studente) {
++
++    }
++
++    @Override
++    public Studente findStudentByName(String name) {
++        return null;
++    }
++
++    @Override
++    public List<Studente> getAllStudents() {
++        return List.of();
++    }
++}
+Index: esempiCorso/hufflePuff/eserciziCollection/CasaHogwarts.java
+===================================================================
+diff --git a/esempiCorso/hufflePuff/eserciziCollection/CasaHogwarts.java b/esempiCorso/hufflePuff/eserciziCollection/CasaHogwarts.java
+new file mode 100644
+--- /dev/null	(date 1729432016383)
++++ b/esempiCorso/hufflePuff/eserciziCollection/CasaHogwarts.java	(date 1729432016383)
+@@ -0,0 +1,8 @@
++package org.generation.italy.esempiCorso.hufflePuff.eserciziCollection;
++
++public enum CasaHogwarts {
++    GRYFFYNDOR,
++    HUFFLEPUFF,
++    RAVENCLAW,
++    SLYTHERIN
++}
+Index: esempiCorso/hufflePuff/eserciziCollection/MagicHat.java
+===================================================================
+diff --git a/esempiCorso/hufflePuff/eserciziCollection/MagicHat.java b/esempiCorso/hufflePuff/eserciziCollection/MagicHat.java
+new file mode 100644
+--- /dev/null	(date 1729454273027)
++++ b/esempiCorso/hufflePuff/eserciziCollection/MagicHat.java	(date 1729454273027)
+@@ -0,0 +1,5 @@
++package org.generation.italy.esempiCorso.hufflePuff.eserciziCollection;
++
++public class MagicHat {
++    //private List<Casata>
++}
+Index: esempiCorso/exceptions/Examples.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.generation.italy.esempiCorso.exceptions;\r\n\r\nimport java.io.FileInputStream;\r\nimport java.io.FileNotFoundException;\r\nimport java.io.IOException;\r\n\r\npublic class Examples {\r\n    public static void main(String[] args) {\r\n\r\n//        int[] nums = new int[4];\r\n//        System.out.println(nums[4]);\r\n//        System.out.println(\"buonasera\");\r\n\r\n      // gli oggetti che inizializzo nelle tonde devono appartenere a una classa che implementa l interfaccia Autoclosable\r\n//        try(FileInputStream fis = new FileInputStream(\"nonEsisto.txt\");) {\r\n//\r\n//            System.out.println(\"il file esiste\");\r\n//            System.out.println(fis.available());\r\n//\r\n//\r\n//        } catch (IOException e) {\r\n//            e.printStackTrace();\r\n//            System.out.println(\"problema di input output \" + e.getMessage());\r\n//\r\n//\r\n//        } finally {\r\n//              System.out.println(\"questo succedera' semppre\");\r\n////            try {\r\n////                if (fis != null) {\r\n////                    fis.close();\r\n////                }\r\n////            } catch (IOException e) {\r\n////                e.printStackTrace();\r\n////            }\r\n////        }\r\n//\r\n     System.out.println(\"inizio main\");\r\n        try {\r\n            function1();\r\n        } catch (FileNotFoundException e) {\r\n            throw new RuntimeException(e);\r\n        }\r\n        System.out.println(\"fine main\");\r\n\r\n    }\r\n\r\n    private static void function1() throws FileNotFoundException {\r\n        System.out.println(\"inizio f1\");\r\n        function2();\r\n        System.out.println(\"fine f1\");\r\n    }\r\n\r\n    private static void function2() throws FileNotFoundException {\r\n        System.out.println(\"inizio f2\");\r\n        function3();\r\n        System.out.println(\"fine f2\");\r\n    }\r\n\r\n    private static void function3() throws FileNotFoundException {\r\n        System.out.println(\"inizio f3\");\r\n\r\n        FileInputStream fis = new FileInputStream(\"nonEsisto.txt\");\r\n\r\n        System.out.println(\"fine f3\");\r\n    }\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/esempiCorso/exceptions/Examples.java b/esempiCorso/exceptions/Examples.java
+--- a/esempiCorso/exceptions/Examples.java	(revision 5b39bf6b679e4cc7bb493bea92df03bc89cbcb2d)
++++ b/esempiCorso/exceptions/Examples.java	(date 1729260719558)
+@@ -16,7 +16,7 @@
+ //
+ //            System.out.println("il file esiste");
+ //            System.out.println(fis.available());
+-//
++//3
+ //
+ //        } catch (IOException e) {
+ //            e.printStackTrace();
+Index: examples/interfaces/zoo/Cane.java
+===================================================================
+diff --git a/examples/interfaces/zoo/Cane.java b/examples/interfaces/zoo/Cane.java
+new file mode 100644
+--- /dev/null	(date 1729453920247)
++++ b/examples/interfaces/zoo/Cane.java	(date 1729453920247)
+@@ -0,0 +1,13 @@
++package org.generation.italy.examples.interfaces.zoo;
++
++public class Cane extends Animali {
++
++    public Cane(String nome) {
++        super(nome);
++    }
++
++    @Override
++    public String emettiSuono() {
++        return "IL mio verso è bau bau";
++    }
++}
+Index: examples/interfaces/zoo/Animali.java
+===================================================================
+diff --git a/examples/interfaces/zoo/Animali.java b/examples/interfaces/zoo/Animali.java
+new file mode 100644
+--- /dev/null	(date 1729453920264)
++++ b/examples/interfaces/zoo/Animali.java	(date 1729453920264)
+@@ -0,0 +1,12 @@
++package org.generation.italy.examples.interfaces.zoo;
++
++public abstract class Animali {
++    protected String nome;
++
++    public Animali(String nome) {
++        this.nome = nome;
++    }
++
++    public abstract String emettiSuono();
++}
++
+Index: examples/interfaces/zoo/Gatto.java
+===================================================================
+diff --git a/examples/interfaces/zoo/Gatto.java b/examples/interfaces/zoo/Gatto.java
+new file mode 100644
+--- /dev/null	(date 1729453920271)
++++ b/examples/interfaces/zoo/Gatto.java	(date 1729453920271)
+@@ -0,0 +1,13 @@
++package org.generation.italy.examples.interfaces.zoo;
++
++public class Gatto extends Animali{
++
++    public Gatto(String nome) {
++        super(nome);
++    }
++
++    @Override
++    public String emettiSuono() {
++        return "IL mio verso è miaooo";
++    }
++}
+Index: examples/interfaces/zoo/Mucca.java
+===================================================================
+diff --git a/examples/interfaces/zoo/Mucca.java b/examples/interfaces/zoo/Mucca.java
+new file mode 100644
+--- /dev/null	(date 1729453920257)
++++ b/examples/interfaces/zoo/Mucca.java	(date 1729453920257)
+@@ -0,0 +1,12 @@
++package org.generation.italy.examples.interfaces.zoo;
++
++public class Mucca extends Animali{
++    public Mucca(String nome) {
++        super(nome);
++    }
++
++    @Override
++    public String emettiSuono() {
++        return "Il mio verso è muu";
++    }
++}
+Index: examples/interfaces/zoo/Main.java
+===================================================================
+diff --git a/examples/interfaces/zoo/Main.java b/examples/interfaces/zoo/Main.java
+new file mode 100644
+--- /dev/null	(date 1729454255477)
++++ b/examples/interfaces/zoo/Main.java	(date 1729454255477)
+@@ -0,0 +1,14 @@
++package org.generation.italy.examples.interfaces.zoo;
++
++public class Main {
++    public static void main(String[] args) {
++
++        Zoo zoo = new Zoo();
++        zoo.aggiungiAnimale(new Mucca("Mucca"));
++        zoo.aggiungiAnimale(new Cane("Cane"));
++        zoo.aggiungiAnimale(new Gatto("Gatto"));
++
++        zoo.faSuono();
++
++    }
++}
+\ No newline at end of file
+Index: examples/interfaces/zoo/Zoo.java
+===================================================================
+diff --git a/examples/interfaces/zoo/Zoo.java b/examples/interfaces/zoo/Zoo.java
+new file mode 100644
+--- /dev/null	(date 1729454255487)
++++ b/examples/interfaces/zoo/Zoo.java	(date 1729454255487)
+@@ -0,0 +1,22 @@
++package org.generation.italy.examples.interfaces.zoo;
++
++import org.generation.italy.esempiCorso.inheritance.animali.Animale;
++
++import java.util.ArrayList;
++import java.util.List;
++
++public class Zoo {
++    private List<Animali> animali= new ArrayList<>();
++
++    public void aggiungiAnimale(Animali animale) {
++        animali.add(animale);
++    }
++    public void faSuono(){
++        for(Animali animale : animali){
++            System.out.println(animale.nome + animale.emettiSuono());
++        }
++
++
++
++    }
++}
+Index: esempiCorso/streams/ProgrammerRepository.java
+===================================================================
+diff --git a/esempiCorso/streams/ProgrammerRepository.java b/esempiCorso/streams/ProgrammerRepository.java
+new file mode 100644
+--- /dev/null	(date 1729610454912)
++++ b/esempiCorso/streams/ProgrammerRepository.java	(date 1729610454912)
+@@ -0,0 +1,79 @@
++import java.time.LocalDate;
++import java.util.ArrayList;
++import java.util.Comparator;
++import java.util.List;
++import java.util.OptionalDouble;
++
++public class ProgrammerRepository {
++    private List<Programmer> programmers = List.of(
++            new Programmer("Mario", "Felcio", true, LocalDate.of(1980, 12, 18), 1700, List.of("Java", "Pithon", "Javascript")),
++            new Programmer("Gianni", "Londi", true, LocalDate.of(1980, 12, 18), 1700, List.of("Java", "Pithon", "Javascript")),
++            new Programmer("Marta", "Lendi", false, LocalDate.of(1985, 12, 18), 1500, List.of("Java", "Pithon", "Javascript")),
++            new Programmer("Gina", "Bondi", false, LocalDate.of(1981, 12, 18), 1450, List.of("Java", "Pithon", "Javascript")),
++            new Programmer("Marco", "dina", true, LocalDate.of(1986, 12, 18), 1300, List.of("Java", "Pithon", "Javascript"))
++    );
++
++    public List<Programmer> findIsFemale() {
++        List<Programmer> femaleProgrammers = new ArrayList<>();
++        for (Programmer p : programmers) {
++            if (!p.isMale()) {
++                femaleProgrammers.add(p);
++            }
++        }
++        return femaleProgrammers;
++    }
++
++    public List<Programmer> findIsFemaleWithStreams() {
++//        var ps = programmers.stream();
++//        //ProgrammerFilterBySex pFs = new ProgrammerFilterBySex();
++//        //filter operatore intermedio
++//        var z = ps.filter(p-> !p.isMale());
++//        var result = z.toList(); // result adesso è una List<Programmer>
++//        return result;
++        return programmers.stream().filter(Programmer::isFemale).toList();
++
++    }
++
++    public List<Programmer> findBySalaryGreaterThen(double salary) {
++        return programmers.stream().filter(p -> p.getSalary() > salary).toList();
++    }
++
++    public List<Programmer> findByAgeThan(int age) {
++        return programmers.stream().filter(p -> p.getAge() > age).toList();
++    }
++
++    public double findTotalMenSalary() {
++       return programmers.stream().filter(Programmer::isMale).mapToDouble(Programmer::getSalary).sum();
++
++        //matToDouble per lavorare con valori double e per avere metodi come sum
++        //sto trasformando un oggetto in una primitiva double
++
++    }
++
++    public List<String> findManeSurnames(){
++       return programmers.stream().filter(Programmer::isMale)
++                                  .map(Programmer:: getSurname)
++                                  .distinct()
++                                  .toList();
++    }
++    public boolean findMaxSalaryIsMinusSalaryMen(){
++//        var optM =  programmers.stream().filter(Programmer::isMale).min((p1,p2) -> Double.compare(p1.getSalary(),p2.getSalary()));
++//        var optF = programmers.stream().filter(Programmer::isFemale).max(p1,p2) -> Double.compare(p1.getSalary(), p2.getSalary()));
++//        if(optM.isPresent() && optF.isPresent()) { //non si usa or con optional!!
++//            return optM.get().getSalary() > optF.get().getSalary();
++//        }
++//        return false;
++//
++//        }
++        OptionalDouble OptM= programmers.stream().filter(Programmer::isMale).mapToDouble(Programmer::getSalary).min();
++        OptionalDouble OptF = programmers.stream().filter(Programmer::isFemale).mapToDouble(Programmer::getSalary).max();
++        if(OptM.isPresent()&& OptF.isPresent()){
++            return OptM.getAsDouble() > OptF.getAsDouble();
++        }
++        return false;
++
++    }
++    public void stampProgrammersLanguages(){
++        programmers.stream().sorted((p1,p2) -> p1.numLanguages() - p2.numLanguages()).forEach(System.out::println);
++    }
++}
+\ No newline at end of file
+Index: esempiCorso/streams/Programmer.java
+===================================================================
+diff --git a/esempiCorso/streams/Programmer.java b/esempiCorso/streams/Programmer.java
+new file mode 100644
+--- /dev/null	(date 1729610569433)
++++ b/esempiCorso/streams/Programmer.java	(date 1729610569433)
+@@ -0,0 +1,68 @@
++import java.time.LocalDate;
++import java.util.ArrayList;
++import java.util.List;
++
++public class Programmer {
++    private String name,surname;
++    private boolean male;
++    private LocalDate birthdate;
++    private double salary;
++    private List<String> languages;
++
++    public Programmer(String name, String surname, boolean male, LocalDate birthdate, double salary, List<String> languages) {
++        this.name = name;
++        this.surname = surname;
++        this.male = male;
++        this.birthdate = birthdate;
++        this.salary = salary;
++        this.languages = new ArrayList<>(languages);
++    }
++
++
++
++    public int getAge(){
++        return birthdate.until(LocalDate.now()).getYears();
++    }
++    public int numLanguages(){
++        return languages.size();
++    }
++
++    public List<String> getLanguages() {
++        return languages;
++    }
++
++    public String getSurname() {
++        return surname;
++    }
++
++    public double getSalary() {
++        return salary;
++    }
++    public boolean findMaxSal(double salary){
++        return this.salary >= 1500;
++        }
++
++    public boolean isFemale(){
++        return !isMale();
++    }
++
++    public boolean isMale() {
++        return male;
++    }
++
++    public LocalDate getBirthdate() {
++        return birthdate;
++    }
++
++    @Override
++    public String toString() {
++        return "Programmer{" +
++                "name='" + name + '\'' +
++                ", surname='" + surname + '\'' +
++                ", male=" + male +
++                ", birthdate=" + birthdate +
++                ", salary=" + salary +
++                ", languages=" + languages +
++                '}';
++    }
++}
+Index: esempiCorso/streams/Start.java
+===================================================================
+diff --git a/esempiCorso/streams/Start.java b/esempiCorso/streams/Start.java
+new file mode 100644
+--- /dev/null	(date 1729610348830)
++++ b/esempiCorso/streams/Start.java	(date 1729610348830)
+@@ -0,0 +1,6 @@
++public class Start {
++    public static void main(String[] args) {
++        var pr = new ProgrammerRepository();
++        pr.stampProgrammersLanguages();
++    }
++}
+Index: eserciziLeetCode/.idea/vcs.xml
+===================================================================
+diff --git a/eserciziLeetCode/.idea/vcs.xml b/eserciziLeetCode/.idea/vcs.xml
+new file mode 100644
+--- /dev/null	(date 1729261199361)
++++ b/eserciziLeetCode/.idea/vcs.xml	(date 1729261199361)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$/../../../../../../.." vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: eserciziLeetCode/.idea/.gitignore
+===================================================================
+diff --git a/eserciziLeetCode/.idea/.gitignore b/eserciziLeetCode/.idea/.gitignore
+new file mode 100644
+--- /dev/null	(date 1729261106530)
++++ b/eserciziLeetCode/.idea/.gitignore	(date 1729261106530)
+@@ -0,0 +1,3 @@
++# Default ignored files
++/shelf/
++/workspace.xml
+Index: eserciziLeetCode/sommaDue/Start.java
+===================================================================
+diff --git a/eserciziLeetCode/sommaDue/Start.java b/eserciziLeetCode/sommaDue/Start.java
+new file mode 100644
+--- /dev/null	(date 1729266980087)
++++ b/eserciziLeetCode/sommaDue/Start.java	(date 1729266980087)
+@@ -0,0 +1,23 @@
++package sommaDue;
++
++import java.sql.SQLOutput;
++import java.util.Scanner;
++
++//Dato un array di numeri interi nums e un numero intero target,
++// restituisci gli indici dei due numeri in modo che la loro somma siatarget .
++//
++//Si può supporre che ogni input abbia esattamente una soluzione e non si può utilizzare lo stesso elemento due volte.
++//
++//Puoi restituire la risposta in qualsiasi ordine.
++public class Start extends RegistrazioneImpl{
++    public static void main(String[] args) {
++
++        Scanner scanner = new Scanner(System.in);
++        System.out.println("Benvenuto in questo evento, prego inserire la tua età");
++        RegistrazioneImpl user = new RegistrazioneImpl();
++        user.inserisciDati();
++
++
++
++    }
++}
+\ No newline at end of file

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="fd1aa5a0-a633-4fa2-b9d0-708bd0ed90f0" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libri/Book.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libri/Library.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libri/LibraryImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Libri/Start.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sommaDue/Registrazione.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sommaDue/RegistrazioneImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sommaDue/Start.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../esempiCorso/exceptions/Examples.java" beforeDir="false" afterPath="$PROJECT_DIR$/../esempiCorso/exceptions/Examples.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../../../../../.." />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "GianlucaPricopie"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Lollolewa/EsempiCorso",
+    "accountId": "8bb392e0-7d94-453a-8dbd-091313d12785"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 6
+}]]></component>
+  <component name="ProjectId" id="2nc8eonNYoGBMiPuSMNzU22lCZA" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Libri.Start.executor": "Run",
+    "Application.Start.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "GianlucaPricopie",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Dev/Java/Projects/EsempiCorso/src/main/java/org/generation/italy/eserciziLeetCode"
+  }
+}]]></component>
+  <component name="RunManager" selected="Application.Libri.Start">
+    <configuration name="Libri.Start" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Libri.Start" />
+      <module name="eserciziLeetCode" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Libri.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Start" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="sommaDue.Start" />
+      <module name="eserciziLeetCode" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sommaDue.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Libri.Start" />
+        <item itemvalue="Application.Start" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fd1aa5a0-a633-4fa2-b9d0-708bd0ed90f0" name="Changes" comment="" />
+      <created>1729261101413</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1729261101413</updated>
+    </task>
+    <servers />
+  </component>
+</project>

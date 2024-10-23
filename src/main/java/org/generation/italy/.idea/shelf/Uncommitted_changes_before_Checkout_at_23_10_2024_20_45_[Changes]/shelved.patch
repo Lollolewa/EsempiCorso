@@ -1,0 +1,30 @@
+Index: esempiCorso/inheritance/contatto/Rubrica.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.generation.italy.esempiCorso.inheritance.contatto;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\nimport java.util.Optional;\r\n\r\npublic class Rubrica {\r\n    //Liste -> insieme di elementi di dimensione variabile,\r\n    //Set -> insieme di elementi non ordinati e non ammette duplicati\r\n    List<Contatto> contatti = new ArrayList<>();\r\n\r\n    public void aggiungiContatto(String nome,String cognome,String numeroTelefono){\r\n        //Contatto c = new Contatto(nome,cognome,numeroTelefono);\r\n        contatti.add(new Contatto(nome,cognome,numeroTelefono));\r\n    }\r\n\r\n    public void rimuoviContatto(String nome,String cognome){\r\n        //trovare contatto\r\n        //rimuoverlo\r\n        for(Contatto contatto : contatti) {\r\n            if (contatto.getNome().equals(nome) && contatto.getCognome().equals(cognome)) {\r\n                contatti.remove(contatto);\r\n            }\r\n        }\r\n    }\r\n    public String cercaContatto(String nome,String cognome){\r\n        String nt = null;\r\n        for (Contatto contatto : contatti){\r\n            if(contatto.getNome().equals(nome) && contatto.getCognome().equals(cognome)){\r\n                nt=  contatto.getNumeroTelefono();\r\n                break;\r\n            }\r\n        }\r\n        return nt;\r\n    }\r\n    public Optional<String> cercaContattoOptional(String nome,String cognome){\r\n\r\n        for (Contatto c: contatti){\r\n            if (c.getNome().equals(nome) && c.getCognome().equals(cognome)){\r\n                return Optional.of(c.getNumeroTelefono()); //ritorno optional farcito\r\n            }\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public String toString() {\r\n        String res = \"Rubrica\\n\";\r\n        res+= \"--------------------\\n\";\r\n        for (Contatto c : contatti) {\r\n            res += c.toString() + \"\\n\";\r\n        }\r\n        return res;\r\n\r\n        }\r\n}\r\n\r\n\r\n\r\n
+===================================================================
+diff --git a/esempiCorso/inheritance/contatto/Rubrica.java b/esempiCorso/inheritance/contatto/Rubrica.java
+--- a/esempiCorso/inheritance/contatto/Rubrica.java	(revision 5b39bf6b679e4cc7bb493bea92df03bc89cbcb2d)
++++ b/esempiCorso/inheritance/contatto/Rubrica.java	(date 1729454352100)
+@@ -40,16 +40,17 @@
+                 return Optional.of(c.getNumeroTelefono()); //ritorno optional farcito
+             }
+         }
++        return Optional.empty();
+     }
+ 
+     @Override
+     public String toString() {
+-        String res = "Rubrica\n";
+-        res+= "--------------------\n";
++        StringBuilder res = new StringBuilder("Rubrica\n");
++        res.append("--------------------\n");
+         for (Contatto c : contatti) {
+-            res += c.toString() + "\n";
++            res.append(c.toString()).append("\n");
+         }
+-        return res;
++        return res.toString();
+ 
+         }
+ }
