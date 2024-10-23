@@ -35,11 +35,12 @@ public class BookRepository {
         //un metodo che restituisca la lista di tutti i libri che hanno piu'di un autore, ordinati per numero di autori decrescente
         return libri.stream().filter(b->b.getAutori().size()>1).sorted(Comparator.comparingInt((Book b)-> b.getAutori().size()).reversed()).toList();
     }
-    //public List<Book> findAuthorByCategory(List<Autore> a, Category c) {
+    public List<Autore> findAuthorByCategory(Category c) {
         //un metodo che resituisca la lista di tutti gli autori che hanno mai scritto libri in una data categoria.
         // Gli autori devono essere ordinati per cognome e nome alfabetico e devono apparire nella lista una sola volta.
-        //return libri.stream().filter(b->b.getCategoria().equals(c)).map(Book::getAutori).distinct().sorted(Comparator.comparing(Autore::getNome)).toList();
+        return libri.stream().filter(b->b.getCategoria().equals(c)).flatMap(b ->b.getAutori().stream())
+                             .sorted(Comparator.comparing(Autore::getCognome).thenComparing(Autore::getNome)).distinct().toList();
 
-    //}
+    }
 
 }
