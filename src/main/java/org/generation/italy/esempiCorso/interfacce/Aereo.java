@@ -1,4 +1,4 @@
-package interfacce;
+package org.generation.italy.esempiCorso.interfacce;
 
 public class Aereo implements CanFly{
     @Override

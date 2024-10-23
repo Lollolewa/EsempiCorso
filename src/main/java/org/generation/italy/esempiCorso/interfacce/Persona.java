@@ -1,4 +1,4 @@
-package interfacce;
+package org.generation.italy.esempiCorso.interfacce;
 
 public class Persona {
     public String name, surname;

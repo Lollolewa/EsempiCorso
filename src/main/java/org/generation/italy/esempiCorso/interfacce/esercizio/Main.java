@@ -1,4 +1,4 @@
-package interfacce.esercizio;
+package org.generation.italy.esempiCorso.interfacce.esercizio;
 
 import org.generation.italy.esempiCorso.griffindor.eserciziCollection.arte.OperaDArte;
 
@@ -18,4 +18,4 @@ public class Main {
 
 // classe start lista di opere darte con possiblita di usare i metodi di Gestione quadri
 
-// Le collezione sono una raccolata di interfacce e classi
+// Le collezione sono una raccolata di org.generation.italy.esempiCorso.interfacce e classi

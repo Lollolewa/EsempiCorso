@@ -1,4 +1,4 @@
-package interfacce;
+package org.generation.italy.esempiCorso.interfacce;
 
 public interface CanFly { // obbliga chi la implementa a scrivere il metodo fly().
     boolean fly(); // di base sono public e abstract.

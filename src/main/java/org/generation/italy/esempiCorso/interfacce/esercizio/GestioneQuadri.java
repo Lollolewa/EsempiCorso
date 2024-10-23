@@ -1,4 +1,4 @@
-package interfacce.esercizio;
+package org.generation.italy.esempiCorso.interfacce.esercizio;
 
 import org.generation.italy.esempiCorso.griffindor.eserciziCollection.arte.OperaDArte;
 

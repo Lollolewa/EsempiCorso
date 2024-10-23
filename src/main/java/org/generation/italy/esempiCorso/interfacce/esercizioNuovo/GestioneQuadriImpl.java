@@ -1,4 +1,4 @@
-package interfacce.esercizioNuovo;
+package org.generation.italy.esempiCorso.interfacce.esercizioNuovo;
 
 public class GestioneQuadriImpl implements GestioneQuadri{
 

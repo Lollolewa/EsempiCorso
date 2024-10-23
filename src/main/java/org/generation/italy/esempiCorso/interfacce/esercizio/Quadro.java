@@ -1,4 +1,4 @@
-package interfacce.esercizio;
+package org.generation.italy.esempiCorso.interfacce.esercizio;
 
 public class Quadro extends OpereDArte{
     boolean corniceCostosa;

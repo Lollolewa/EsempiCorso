@@ -1,4 +1,4 @@
-package interfacce.esercizioNuovo;
+package org.generation.italy.esempiCorso.interfacce.esercizioNuovo;
 
 public abstract class OperaDArte {
     private String name;
