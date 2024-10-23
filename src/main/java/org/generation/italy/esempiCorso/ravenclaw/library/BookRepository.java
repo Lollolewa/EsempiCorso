@@ -47,6 +47,10 @@ public class BookRepository {
                                 .distinct()
                                 .toList();
     }
+
+    //Dammi il numero totale di pagine che sono state scritte dall' autore con un certo ID
+    //Dammi il numero totale di pagine che sono state scritte per una certa categoria di libri
+    //Dammi il valore medio del prezzo dei libri scritti da un autore che parla la lingua francese
 }
 
 
