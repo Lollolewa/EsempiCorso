@@ -1,17 +1,16 @@
 package org.generation.italy.esempiCorso.interfaces;
 
-public class SuperHero extends Eater implements HumanBeing, FlyObject {
-             //prima le classi, poi interfacce
+public class SuperHero implements HumanBeing{
+
     @Override
     public void speak() {
 
     }
 
     @Override
-    public void vola() {
+    public void eat() {
 
     }
-
 
     @Override
     public void work(int hours) {
