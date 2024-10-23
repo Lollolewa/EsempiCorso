@@ -1,6 +1,7 @@
 package org.generation.italy.esempiCorso.griffindor.eserciziCollection.travelAgency;
 
 import java.util.Comparator;
+import java.util.List;
 
 public class VoyageComparatorByDestination implements Comparator<Voyage> {
 
@@ -9,3 +10,5 @@ public class VoyageComparatorByDestination implements Comparator<Voyage> {
         return o1.getDestinations().size()-o2.getDestinations().size();
     }
 }
+
+
