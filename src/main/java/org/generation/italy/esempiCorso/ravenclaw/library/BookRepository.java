@@ -51,6 +51,21 @@ public class BookRepository {
     //Dammi il numero totale di pagine che sono state scritte dall' autore con un certo ID
     //Dammi il numero totale di pagine che sono state scritte per una certa categoria di libri
     //Dammi il valore medio del prezzo dei libri scritti da un autore che parla la lingua francese
+    //Dammi l'autore che ha scritto piu libri, in caso di pareggio uno a casa va bene
+
+    public int findPagesByAuthor(int id){
+        return bookList.stream().filter(b -> b.isWrittenBy(id)).mapToInt(Book::getnPages).sum();
+    }
+    public int findPageByCategory(Category c){
+        return bookList.stream().filter(b-> b.getCategory().equals(c)).mapToInt(Book::getnPages).sum();
+    }
+    public double averageCostByFrenchLanguage(){
+        return bookList.stream().filter(b-> b.getAuthors().stream()
+                                .anyMatch(author -> author.getAuthorLanguages().contains("Francese")))
+                                .mapToDouble(Book::getCost).average().orElse(0);
+    }
+
+
 }
 
 

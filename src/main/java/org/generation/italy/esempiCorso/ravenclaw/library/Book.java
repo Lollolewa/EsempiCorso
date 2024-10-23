@@ -45,6 +45,10 @@ public class Book {
         return start.minusDays(1).isBefore(publicationDate) && end.isAfter(publicationDate);
     }
 
+    public int getnPages(){
+        return nPages;
+    }
+
     public boolean titleContains(String word){
         return title.contains(word);
     }

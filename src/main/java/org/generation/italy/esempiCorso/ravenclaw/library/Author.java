@@ -31,6 +31,10 @@ public class Author {
         return surname;
     }
 
+    public List<String> getAuthorLanguages(){
+        return authorLanguages;
+    }
+
     @Override
     public String toString() {
         return String.format(
