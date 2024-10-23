@@ -62,4 +62,8 @@ public class Book {
         return lingua;
     }
 
+    public boolean isWrittenBy(int authorId){
+        return autori.stream().anyMatch(author -> author.getIdNumerico()==authorId);
+    }
+
 }

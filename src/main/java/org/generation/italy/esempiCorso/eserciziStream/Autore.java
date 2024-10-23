@@ -9,7 +9,9 @@ public class Autore {
     private LocalDate dataDiNascita;
     private String nazionalita;
     private String lingua;
+    public Autore(){
 
+    }
     public Autore(int idNumerico, String nome, String cognome, LocalDate dataDiNascita, String nazionalita, String lingua) {
         this.idNumerico = idNumerico;
         this.nome = nome;
@@ -42,4 +44,21 @@ public class Autore {
     public int getIdNumerico() {
         return idNumerico;
     }
+
+    @Override
+    public boolean equals(Object o){
+        if(this==o){
+            return true;
+        }
+        if(o==null || this.getClass()!=o.getClass()){
+            return false;
+        }
+        Autore other=(Autore)o;
+        return this.idNumerico==other.idNumerico;
+    }
+    @Override
+    public int hashCode(){
+        return idNumerico;
+    }
+
 }
