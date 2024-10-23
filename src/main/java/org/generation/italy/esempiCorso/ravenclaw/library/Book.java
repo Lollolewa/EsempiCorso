@@ -24,68 +24,21 @@ public class Book {
         this.authors = authors;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public int getWeight() {
-        return weight;
-    }
-
-    public void setWeight(int weight) {
-        this.weight = weight;
-    }
-
-    public int getnPages() {
-        return nPages;
-    }
-
-    public void setnPages(int nPages) {
-        this.nPages = nPages;
-    }
-
     public double getCost() {
         return cost;
-    }
-
-    public void setCost(double cost) {
-        this.cost = cost;
-    }
-
-    public LocalDate getPublicationDate() {
-        return publicationDate;
-    }
-
-    public void setPublicationDate(LocalDate publicationDate) {
-        this.publicationDate = publicationDate;
     }
 
     public Category getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
-    }
 
     public List<String> getBookLanguages() {
         return bookLanguages;
     }
 
-    public void setBookLanguages(List<String> bookLanguages) {
-        this.bookLanguages = bookLanguages;
-    }
-
     public List<Author> getAuthors() {
         return authors;
-    }
-
-    public void setAuthors(List<Author> authors) {
-        this.authors = authors;
     }
 
     public boolean isPublishedBetween(LocalDate start, LocalDate end){
@@ -96,21 +49,17 @@ public class Book {
         return title.contains(word);
     }
 
-
-
     @Override
     public String toString() {
         return String.format(
-                "\nBook{" +
-                        "Title: '%s'\n" +
-                        "Number of Pages: %d\n" +
-                        "Cost: %.2f\n" +
-                        "Publication Date: %s\n" +
-                        "Category: %s\n" +
-                        "Languages: %s\n" +
-                        "Authors: %s\n" +
-                        '}',
-                title, nPages, cost, publicationDate, category, bookLanguages, authors
+                        "%n%nTitle: %s%n" +
+                        "Number of Pages: %d%n" +
+                        "Cost: $%.2f%n" +
+                        "Publication Date: %s%n" +
+                        "Category: %s%n" +
+                        "Languages: %s%n" +
+                        "Author: %s%n",
+                         title, nPages, cost, publicationDate, category, bookLanguages, authors
         );
     }
 

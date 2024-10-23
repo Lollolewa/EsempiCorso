@@ -46,14 +46,13 @@ public class Author {
     @Override
     public String toString() {
         return String.format(
-                "\nAuthor: \n" +
-                        "Author ID: %d\n" +
-                        "Name: %s\n" +
-                        "Surname: %s\n" +
-                        "Nationality: %s\n" +
-                        "Birth Date: %s\n" +
-                        "Languages: %s\n",
-                authorId, name, surname, nationality, birthDate, authorLanguages
+                        "ID: %d, " +
+                        "Name: %s, " +
+                        "Surname: %s, " +
+                        "Nationality: %s, " +
+                        "Birth Date: %s, " +
+                        "Languages: %s",
+                         authorId, name, surname, nationality, birthDate, authorLanguages
         );
     }
 
