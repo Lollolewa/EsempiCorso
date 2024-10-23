@@ -9,17 +9,13 @@ public class BookRepository {
 
     private List<Book> bookList = new ArrayList<>();
 
-    public BookRepository() {
-
-        Author a1 = new Author(1234, "Bobson", "Rocketto", "Africa", LocalDate.of(1923, 12, 12), List.of("Italian", "English", "Dutch"));
-
-        Book b1 = new Book("La vita di Bobby Rocket", 34, 300, 34, LocalDate.of(2020, 12, 3), Category.ADVENTURE, List.of("Italian", "English", "Dutch"), List.of(a1));
-        Book b2 = new Book("La vita di Michale Rock", 300, 432, 70, LocalDate.of(1989, 3, 5), Category.HORROR, List.of("Italian", "English", "Dutch"), List.of(a1));
-
-        bookList.add(b1);
-        bookList.add(b2);
+    public void add(Book b) {
+        bookList.add(b);
     }
 
+    public List<Book> printBookList(){
+        return bookList;
+    }
 
     public List<Book> bookListByCategory(Category x) {
         return bookList.stream().filter(book -> book.getCategory().equals(x)).toList();
@@ -27,23 +23,64 @@ public class BookRepository {
 
     public List<Book> findBookTrio(String word, LocalDate startRange, LocalDate endRange) {
         return bookList.stream().filter(b -> b.titleContains(word) && b.isPublishedBetween(startRange, endRange))
-                .sorted(Comparator.comparingDouble(Book::getCost).reversed()).toList();
+                                .sorted(Comparator.comparingDouble(Book::getCost).reversed()).toList();
     }
 
-    public double findAvgCostByLanguage(String language){
+    public double findAvgCostByLanguage(String language) {
         return bookList.stream().filter(book -> book.getBookLanguages().contains(language)).mapToDouble(Book::getCost)
-                       .average().orElse(0);
+                                .average().orElse(0);
+    }
+
+    public List<Book> findByAuthorId(int id) {
+        return bookList.stream().filter(book -> book.isWrittenBy(id)).toList();
+    }
+
+    public List<Book> findByAuthorNumber(){
+        return bookList.stream().filter(book -> book.getAuthors().size()>1)
+                                .sorted(Comparator.comparingInt(Book::getAuthorCount).reversed()).toList();
+    }
+
+    public List<Author> findAuthorsByCategory(Category category){
+        return bookList.stream().filter(book -> book.getCategory().equals(category))
+                                .flatMap(a -> a.getAuthors().stream())
+                                .sorted(Comparator.comparing(Author::getSurname).thenComparing(Author::getName))
+                                .distinct()
+                                .toList();
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    public double findAvgCostByLanguage(String language){
+//        return bookList.stream().filter(book -> book.getBookLanguages().contains(language)).mapToDouble(Book::getCost)
+//                .average();
 
 //        if (r.isPresent()){
 //            return r.getAsDouble();
 //        }
 //        return 0;
-    }
-
-    public List<Book> findByAuthorId(int id){
-        return bookList.stream().filter(book -> book.getAuthors().stream().anyMatch(a -> a.getAuthorId() == id)).toList();
-    }
-
+//    }
 
 
 //public List<Book> findBookTrio (String word, LocalDate startRange, LocalDate endRange){
@@ -63,4 +100,4 @@ public class BookRepository {
 //
 //    }
 
-}
+
