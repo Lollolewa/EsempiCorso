@@ -1,41 +1,76 @@
 package org.generation.italy.esempiCorso.generics;
 
-import com.sun.jdi.IntegerValue;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Start {
     public static void main(String[] args) {
-        // generics sono state aggiunte in seguito//🚀🚀
-        // classi generics 90% sono strutture dati
+        //generics sono nuove, sono strutture dati nel 90% dei casi.
         List names = new ArrayList();
-        names.add("pippo");
+        names.add("Pippo");
         names.add(Integer.valueOf(4));
-        names.add(4); //Integer.valueOf automaticamente
-        doSomethingWithList(names);
+        names.add(4);
+        doSomethingWithGenericList(names);
 
         List<String> words = new ArrayList<>();
-        words.add("topolino");
-        //words.add(Integer.valueOf(2));
+        words.add("Topolino");
+        words.add("Minne");
+        words.add("Pippo");
+        words.add("Zombie Rocket");
+
         String y = words.get(0);
-        doSomethingWithList(words);
-        Pair<String,Integer> pair1 = new Pair<>("rocket",3);
-        Pair<Integer, String> pair2 = new Pair<>(3,"rocket");
+        doSomethingWithGenericList(words);
+        Pair<String, Integer> pair1 = new Pair<>("Rocket", 4);
+        Pair<Integer, String> pair2 = new Pair<>(4, "Rocket");
         System.out.println(pair1.equals(pair2));
         System.out.println(pair1.getFirst());
         System.out.println(pair2.getFirst());
+
+        Analyzer<String> analyzer = new Analyzer<>(words);
+        String max = analyzer.getMaxElement();
+        System.out.println(max);
+
+        analyzer.sort();
+        System.out.println(analyzer.getElements());
+
+        List<Integer> numbers = new ArrayList<>();
+        numbers.add(2);
+        numbers.add(1);
+        numbers.add(3);
+        Analyzer<Integer> analyzerNumbers = new Analyzer<>(numbers);
+        int maxNumber = analyzerNumbers.getMaxElement();
+        System.out.println(maxNumber);
+        analyzerNumbers.sort();
+        System.out.println(analyzerNumbers.getElements());
+
+        int [] ns = {1, 3, 2, 42, 5};
+        MaxMin<Integer> minAndMax = getMinAndMax(ns);
+        System.out.println("Minimo: " + minAndMax.getMin() + ", massimo: " + minAndMax.getMax());
     }
-    public static void doSomethingWithList(List x){
-        x.add("ciccio");
+    public static MaxMin<Integer> getMinAndMax (int[] numbers){
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+        for (int number : numbers) {
+            if (number < min) {
+                min = number;
+            }
+            if (number > max) {
+                max = number;
+            }
+        }
+        return new MaxMin<>(max, min);
+    }
+    public static void doSomethingWithList(List x) {
+        // x è una lista di qualsiasi tipo
+        x.add("Ciccio");
         Object z = x.get(0);
         System.out.println(z);
         String s = (String) x.get(0);
-        //x.add(new StringBuilder());
     }
     public static void doSomethingWithGenericList(List<String> x){
-        x.add("rocket");
+        x.add("Rocket");
         String result = x.get(0);
-        //x.add(Integer.valueOf(2));
+        //x.add(new Integer(2)); questo non compila perché non è possibile aggiungere un Integer a una lista di String
     }
 }

@@ -1,6 +1,7 @@
 package org.generation.italy.esempiCorso.interfaces;
 
 public class Circle {
+
     private double radius;
     //variabile statica = dipende dalla classe, non dagli oggetti,
     //.esiste una sola variabile radius
@@ -41,5 +42,9 @@ public class Circle {
         System.out.println(c1.radius);
         System.out.println(c1.calculatePerimeter());
 
+        Circle circle = new Circle(20);
+        circle.radius = 10;
+
+        System.out.println(circle.calculatePerimeter());
     }
 }
