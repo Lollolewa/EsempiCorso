@@ -24,12 +24,18 @@ public class BookRepository {
     }
 
     public List<Book> findByAuthorId(int id) {
-        return bookList.stream().filter(book -> book.getAuthors().stream().anyMatch(a -> a.getAuthorId() == id)).toList();
+        return bookList.stream().filter(book -> book.isWrittenBy(id)).toList();
+    }
+
+    public List<Book> findByAuthorNumber(){
+        return bookList.stream().filter(book -> book.getAuthors().size()>1)
+                                 .sorted(Comparator.comparingInt((Book b) -> b.getAuthors().size()).reversed()).toList();
     }
 
     public void add(Book b) {
         bookList.add(b);
     }
+
 }
 
 

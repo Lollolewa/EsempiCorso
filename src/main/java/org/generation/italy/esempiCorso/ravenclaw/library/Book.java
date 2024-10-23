@@ -45,8 +45,19 @@ public class Book {
         return start.minusDays(1).isBefore(publicationDate) && end.isAfter(publicationDate);
     }
 
-    public boolean titleContains (String word){
+    public boolean titleContains(String word){
         return title.contains(word);
+    }
+
+    public boolean isWrittenBy(int authorId){
+        return authors.stream().anyMatch(author -> author.getAuthorId()==authorId);
+        //        return authors.stream().filter(author -> author.getAuthorId() == authorId).count()==1;
+//        for(Author a : authors){
+//            if(a.getAuthorId()==authorId){
+//                return true;
+//            }
+//        }
+//        return false;
     }
 
     @Override
