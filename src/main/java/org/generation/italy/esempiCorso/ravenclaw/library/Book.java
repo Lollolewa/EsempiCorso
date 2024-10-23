@@ -51,19 +51,12 @@ public class Book {
 
     public boolean isWrittenBy(int authorId){
         return authors.stream().anyMatch(author -> author.getAuthorId()==authorId);
-        //        return authors.stream().filter(author -> author.getAuthorId() == authorId).count()==1;
-//        for(Author a : authors){
-//            if(a.getAuthorId()==authorId){
-//                return true;
-//            }
-//        }
-//        return false;
     }
 
     @Override
     public String toString() {
         return String.format(
-                        "%n%nTitle: %s%n" +
+                        "%nTitle: %s%n" +
                         "Number of Pages: %d%n" +
                         "Cost: $%.2f%n" +
                         "Publication Date: %s%n" +
@@ -73,5 +66,4 @@ public class Book {
                          title, nPages, cost, publicationDate, category, bookLanguages, authors
         );
     }
-
 }

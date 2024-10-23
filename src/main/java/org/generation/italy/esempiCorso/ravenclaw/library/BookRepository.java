@@ -9,6 +9,14 @@ public class BookRepository {
 
     private List<Book> bookList = new ArrayList<>();
 
+    public void add(Book b) {
+        bookList.add(b);
+    }
+
+    public List<Book> printBookList(){
+        return bookList;
+    }
+
     public List<Book> bookListByCategory(Category x) {
         return bookList.stream().filter(book -> book.getCategory().equals(x)).toList();
     }
@@ -30,10 +38,6 @@ public class BookRepository {
     public List<Book> findByAuthorNumber(){
         return bookList.stream().filter(book -> book.getAuthors().size()>1)
                                  .sorted(Comparator.comparingInt((Book b) -> b.getAuthors().size()).reversed()).toList();
-    }
-
-    public void add(Book b) {
-        bookList.add(b);
     }
 
 }
