@@ -72,5 +72,8 @@ public class UserInterface {
         bookList.findBookTrio("Dune", LocalDate.of(1952, 12, 3), LocalDate.of(2023, 12, 3)).forEach(System.out::println);
         System.out.println("-----------------------");
         bookList.findByAuthorNumber().forEach(System.out::println);
+        System.out.println("-----------------------");
+        bookList.findAuthorsByCategory(Category.ADVENTURE).forEach(System.out::println);
+
     }
 }

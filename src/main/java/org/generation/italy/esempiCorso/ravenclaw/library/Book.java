@@ -53,6 +53,10 @@ public class Book {
         return authors.stream().anyMatch(author -> author.getAuthorId()==authorId);
     }
 
+    public int getAuthorCount(){
+        return authors.size();
+    }
+
     @Override
     public String toString() {
         return String.format(
