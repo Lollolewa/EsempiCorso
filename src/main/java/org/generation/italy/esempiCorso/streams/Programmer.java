@@ -17,9 +17,14 @@ public class Programmer {
         this.male = male;
         this.birthdate = birthdate;
         this.salary = salary;
-        this.languages = new ArrayList<>();
+        this.languages = new ArrayList<>(languages);
+        //this.languages = languages;
     }
 
+    public String getSurname() {
+        return surname;
+    }
+    public int getNumLanguages(){return languages.size();}
     public boolean isMale() {
         return male;
     }
@@ -34,6 +39,12 @@ public class Programmer {
     }
     public boolean isSalaryBiggerThan(double salary) {
         return this.salary >=salary;
+    }
+    public int getAge(){
+        return this.birthdate.until(LocalDate.now()).getYears();
+    }
+    public void addLanguage(String language){
+        languages.add(language);
     }
 
     @Override
