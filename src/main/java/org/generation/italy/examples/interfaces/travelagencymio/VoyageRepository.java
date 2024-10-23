@@ -63,42 +63,6 @@ public class VoyageRepository implements AbstractVoyageRepository {
 
     @Override
     public Collection<Voyage> findByCategoriesAndDuration(Category c,int duration) {
-//        System.out.println("Scegli una categoria di viaggio!Inserisci:\n1)Luxury\n2)Comfort\n3)Budget\n4)Backpacker");
-//        Category c = null;
-//        Scanner sc= new Scanner(System.in);
-//        int s=0;
-//        do {
-//            s=sc.nextInt();
-//            sc.nextLine();
-//            switch (s){
-//                case 1,6: //è possibile dare più valori per ogni caso
-            //      case 5:
-//                    c = Category.LUXURY;
-//                    break;
-//
-//                case 2:
-//                    c = Category.COMFORT;
-//                    break;
-//
-//                case 3:
-//                    c = Category.BUDGET;
-//                    break;
-//
-//                case 4:
-//                    c = Category.BACKPACKER;
-//                    break;
-//
-//                default:
-//                    System.out.println("Scelta non valida");
-//                }
-//            Category x = switch (s){ //switch expression
-//                case 1 -> Category.LUXURY;
-//                case 2 -> Category.COMFORT;
-//                case 3 -> Category.BUDGET;
-//                case 4 -> Category.BACKPACKER;
-//                default -> null;
-////            }
-//        }while(s>=0);
         Collection<Voyage> lv = new ArrayList<>();
         for(Voyage v : voyages){
             if(v.getCategory().equals(c) && v.getDuration() == duration){
