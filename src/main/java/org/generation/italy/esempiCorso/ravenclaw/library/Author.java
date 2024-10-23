@@ -31,18 +31,6 @@ public class Author {
         return surname;
     }
 
-    public String getNationality() {
-        return nationality;
-    }
-
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
-
-    public List<String> getAuthorLanguages() {
-        return authorLanguages;
-    }
-
     @Override
     public String toString() {
         return String.format(
@@ -55,5 +43,4 @@ public class Author {
                          authorId, name, surname, nationality, birthDate, authorLanguages
         );
     }
-
 }
