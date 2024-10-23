@@ -48,9 +48,15 @@ public class BookRepository {
                                 .toList();
     }
 
+    public double numPagesWrittenByAuthorId(int id ) {
+        var z = bookList.stream().filter(book -> book.getNumPages);
+    }
+
+
     //Dammi il numero totale di pagine che sono state scritte dall' autore con un certo ID
     //Dammi il numero totale di pagine che sono state scritte per una certa categoria di libri
     //Dammi il valore medio del prezzo dei libri scritti da un autore che parla la lingua francese
+    //Dammi una funzione che mi da l'autore che ha scritto più libri, se ci fosse un parimerito dammene uno dei due a caso
 }
 
 
