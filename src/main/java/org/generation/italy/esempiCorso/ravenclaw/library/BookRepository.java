@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.OptionalDouble;
 
 public class BookRepository {
 
@@ -48,9 +49,28 @@ public class BookRepository {
                                 .toList();
     }
 
+    public int totalPagesWrittenBy(int id){
+        return bookList.stream().filter(book -> book.isWrittenBy(id)).mapToInt(Book::getnPages).sum();
+    }
+
+    public int totalPagesByCategory(Category category){
+        return bookList.stream().filter(book -> book.getCategory().equals(category)).mapToInt(Book::getnPages).sum();
+    }
+
+    public double avgBaguetteBookPrice(){
+        return bookList.stream().filter(book -> book.getBookLanguages().contains("French")).mapToDouble(Book::getCost).average().orElse(0);
+    }
+
+    // public Author findAuthorWithMostBooks(){
+    //     return bookList.stream().filter(book -> book.getAuthors().stream().sorted(Comparator.comparing())
+//
+    // }
+
+
     //Dammi il numero totale di pagine che sono state scritte dall' autore con un certo ID
     //Dammi il numero totale di pagine che sono state scritte per una certa categoria di libri
     //Dammi il valore medio del prezzo dei libri scritti da un autore che parla la lingua francese
+    // Dammi autore che ha scritto più libri e se ce ne dovesse essere più di uno, ne basta uno solo
 }
 
 

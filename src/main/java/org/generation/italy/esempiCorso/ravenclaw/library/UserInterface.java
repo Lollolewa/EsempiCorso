@@ -61,19 +61,23 @@ public class UserInterface {
         bookList.add(new Book("La strada", 10, 287, 10.99, LocalDate.of(2006, 9, 26), Category.NARRATIVE, List.of("English"), List.of(cormacMcCarthy)));
 
         //IMPLEMENTS METHODS
-        bookList.printBookList().forEach(System.out::println);
-        System.out.println("-----------------------");
-        System.out.println(bookList.findAvgCostByLanguage("English"));
-        System.out.println("-----------------------");
-        bookList.bookListByCategory(Category.HORROR).forEach(System.out::println);
-        System.out.println("-----------------------");
-        bookList.findByAuthorId(4).forEach(System.out::println);
-        System.out.println("-----------------------");
-        bookList.findBookTrio("Dune", LocalDate.of(1952, 12, 3), LocalDate.of(2023, 12, 3)).forEach(System.out::println);
-        System.out.println("-----------------------");
-        bookList.findByAuthorNumber().forEach(System.out::println);
-        System.out.println("-----------------------");
-        bookList.findAuthorsByCategory(Category.ADVENTURE).forEach(System.out::println);
+        // bookList.printBookList().forEach(System.out::println);
+        // System.out.println("-----------------------");
+        // System.out.println(bookList.findAvgCostByLanguage("English"));
+        // System.out.println("-----------------------");
+        // bookList.bookListByCategory(Category.HORROR).forEach(System.out::println);
+        // System.out.println("-----------------------");
+        // bookList.findByAuthorId(4).forEach(System.out::println);
+        // System.out.println("-----------------------");
+        // bookList.findBookTrio("Dune", LocalDate.of(1952, 12, 3), LocalDate.of(2023, 12, 3)).forEach(System.out::println);
+        // System.out.println("-----------------------");
+        // bookList.findByAuthorNumber().forEach(System.out::println);
+        // System.out.println("-----------------------");
+        // bookList.findAuthorsByCategory(Category.ADVENTURE).forEach(System.out::println);
+        // System.out.println("-----------------------");
+        System.out.println(bookList.totalPagesWrittenBy(3));
+        System.out.println(bookList.totalPagesByCategory(Category.HORROR));
+        System.out.println(bookList.avgBaguetteBookPrice());
 
     }
 }

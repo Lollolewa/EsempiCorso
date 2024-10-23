@@ -57,6 +57,10 @@ public class Book {
         return authors.size();
     }
 
+    public int getnPages(){
+        return nPages;
+    }
+
     @Override
     public String toString() {
         return String.format(
