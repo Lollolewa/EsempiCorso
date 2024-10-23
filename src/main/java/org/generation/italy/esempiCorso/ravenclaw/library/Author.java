@@ -27,6 +27,8 @@ public class Author {
         return name;
     }
 
+    public List<String> getAuthorLanguages() {return authorLanguages;}
+
     public String getSurname() {
         return surname;
     }
@@ -43,4 +45,6 @@ public class Author {
                          authorId, name, surname, nationality, birthDate, authorLanguages
         );
     }
+
+
 }

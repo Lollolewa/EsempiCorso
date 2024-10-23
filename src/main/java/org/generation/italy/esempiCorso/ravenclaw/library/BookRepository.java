@@ -47,10 +47,23 @@ public class BookRepository {
                                 .distinct()
                                 .toList();
     }
-
+    public int findTotalPagesByIdAuthors(int id){
+        return bookList.stream().filter(book->book.getAuthors().stream().anyMatch(author-> author.getAuthorId()==id)).mapToInt(Book::getnPages).sum();
+    }
+    public int findTotalPagesOfCathegory(Category category){
+        return bookList.stream().filter(book ->book.getCategory().equals(category)).mapToInt(Book::getnPages).sum();
+    }
+    public double findAvgCostByAuthorsSpeakFrancese(){
+        return bookList.stream().filter(book -> book.getAuthors().stream().anyMatch(author -> author.getAuthorLanguages().stream().anyMatch(language-> language.equals("French")))).
+                          mapToDouble(Book::getCost).average().orElse(0);
+    }
+//    public Author findAuthorWithMostBooks(){
+//        var z = bookList.stream().filter(book -> book.getAuthors().stream().)
+//    }
     //Dammi il numero totale di pagine che sono state scritte dall' autore con un certo ID
     //Dammi il numero totale di pagine che sono state scritte per una certa categoria di libri
     //Dammi il valore medio del prezzo dei libri scritti da un autore che parla la lingua francese
+    //Dammi l'autore che ha scritto più libri in caso di parimerito scegli l'uomo
 }
 
 
