@@ -2,15 +2,32 @@ package org.generation.italy.esempiCorso.griffindor.eserciziCollection.Libreria;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.OptionalDouble;
 import java.util.stream.Collectors;
 
 public class BookRepository {
-    private List<Book> books;
-
-    public BookRepository(List<Book> books) {
-        this.books = books;
-    }
+    private List<Book> books = List.of(
+            new Book(1, "La Fame", 3.5, 1600, 25.00, LocalDate.of(1955, 06, 12), Category.HORROR,
+                    List.of(new Author(1, "Marco", "Falconetti", LocalDate.of(1920, 8, 4), "Italiana", "Bene")), "discreto"),
+            new Book(2, "La morte", 1.5, 100, 50.00, LocalDate.of(1975, 06, 12), Category.NARRATIVE,
+                    List.of(new Author(2, "Carlotta", "Pisano", LocalDate.of(1950, 8, 4), "Italiana", "Tedesco")), "Tedesco"),
+            new Book(3, "Il giardino segreto", 4.2, 300, 30.50, LocalDate.of(1911, 03, 15), Category.SCIENCE_FICTION,
+                    List.of(new Author(3, "Frances", "Hodgson Burnett", LocalDate.of(1849, 11, 24), "Inglese", "Inglese")), "Inglese"),
+            new Book(4, "1984", 4.7, 328, 22.90, LocalDate.of(1949, 06, 8), Category.SCIENCE_FICTION,
+                    List.of(new Author(4, "George", "Orwell", LocalDate.of(1903, 06, 25), "Inglese", "Inglese")), "Inglese"),
+            new Book(5, "Il nome della rosa", 4.3, 512, 35.00, LocalDate.of(1980, 9, 01), Category.SCIENCE_FICTION,
+                    List.of(new Author(5, "Umberto", "Eco", LocalDate.of(1932, 01, 05), "Italiana", "Italiano")), "Italiano"),
+            new Book(6, "Cent'anni di solitudine", 4.5, 432, 28.50, LocalDate.of(1967, 05, 30), Category.CLASSICS,
+                    List.of(new Author(6, "Gabriel", "García Márquez", LocalDate.of(1927, 03, 06), "Colombiana", "Spagnolo")), "Spagnolo"),
+            new Book(7, "Il piccolo principe", 4.8, 96, 15.00, LocalDate.of(1943, 04, 06), Category.CLASSICS,
+                    List.of(new Author(7, "Antoine", "de Saint-Exupéry", LocalDate.of(1900, 06, 29), "Francese", "Francese")), "Francese"),
+            new Book(8, "Orgoglio e pregiudizio", 4.6, 432, 20.00, LocalDate.of(1813, 01, 28), Category.CLASSICS,
+                    List.of(new Author(8, "Jane", "Austen", LocalDate.of(1775, 12, 16), "Inglese", "Inglese")), "Inglese"),
+            new Book(9, "Il signore degli anelli", 4.9, 1178, 45.00, LocalDate.of(1954, 07, 29), Category.ADVENTURE,
+                    List.of(new Author(9, "J.R.R.", "Tolkien", LocalDate.of(1892, 01, 03), "Inglese", "Inglese")), "Inglese"),
+            new Book(10, "Cronache del ghiaccio e del fuoco", 4.4, 694, 38.00, LocalDate.of(1996, 8, 06), Category.ADVENTURE,
+                    List.of(new Author(10, "George R.R.", "Martin", LocalDate.of(1948, 9, 20), "Americana", "Inglese")), "Inglese"));
 
     // Returns all books of a given category
     public List<Book> findByCategory(Category target) {
@@ -64,5 +81,42 @@ public class BookRepository {
                 })
                 .collect(Collectors.toList());
     }
+    // Returns the total number of pages written by an author with a given ID
+    public int findTotalPagesByAuthorId(int id) {
+        return books.stream()
+                .filter(book -> book.getAuthors().stream().anyMatch(author -> author.getId() == id))
+                .mapToInt(Book::getPageCount) // Summing up pages
+                .sum();
+    }
+
+    // Returns the total number of pages for books in a given category
+    public int findTotalPagesByCategory(Category category) {
+        return books.stream()
+                .filter(book -> book.getCategory().equals(category))
+                .mapToInt(Book::getPageCount) // Summing up pages
+                .sum();
+    }
+
+    // Returns the average price of books written by authors who speak French
+    public double findAvgCostByFrenchSpeakingAuthors() {
+        OptionalDouble avgCost = books.stream()
+                .filter(book -> book.getAuthors().stream()
+                        .anyMatch(author -> author.getLanguage().equals("French")))
+                .mapToDouble(Book::getCost)
+                .average();
+        return avgCost.orElse(0.0); // Return 0 if no books are found
+    }
+
+    // Returns the author who has written the most books; if there are multiple, returns just one
+    public Author findAuthorWithMostBooks() {
+        return books.stream()
+                .flatMap(book -> book.getAuthors().stream()) // Extract authors
+                .collect(Collectors.groupingBy(author -> author, Collectors.counting())) // Count books by author
+                .entrySet().stream()
+                .max((entry1, entry2) -> Long.compare(entry1.getValue(), entry2.getValue())) // Find author with the most books
+                .map(Map.Entry::getKey)
+                .orElse(null); // Return null if no author is found
+    }
 }
+
 
