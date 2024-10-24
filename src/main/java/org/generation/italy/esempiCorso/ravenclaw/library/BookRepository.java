@@ -51,6 +51,12 @@ public class BookRepository {
     //Dammi il numero totale di pagine che sono state scritte dall' autore con un certo ID
     //Dammi il numero totale di pagine che sono state scritte per una certa categoria di libri
     //Dammi il valore medio del prezzo dei libri scritti da un autore che parla la lingua francese
+
+//    public int getTotalPagesByAuthorId(int authorId){
+//        return bookList.stream().filter(book -> book.isWrittenBy(authorId))
+//                                .mapToInt(book::get.nPages())
+//                                .sum;
+//    }
 }
 
 

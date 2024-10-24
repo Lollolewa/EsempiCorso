@@ -13,7 +13,7 @@ public class Supereroe extends Persona implements CanFly {
     @Override
     public boolean fly() {
         System.out.println("Supereroe vola!");
-        doAcrobatics();
+//        doAcrobatics();
         return false;
     }
 }
