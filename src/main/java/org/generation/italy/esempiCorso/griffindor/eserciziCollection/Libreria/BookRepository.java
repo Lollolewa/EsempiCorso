@@ -8,26 +8,26 @@ import java.util.stream.Collectors;
 
 public class BookRepository {
     private List<Book> books = List.of(
-            new Book(1, "La Fame", 3.5, 1600, 25.00, LocalDate.of(1955, 06, 12), Category.HORROR,
-                    List.of(new Author(1, "Marco", "Falconetti", LocalDate.of(1920, 8, 4), "Italiana", "Bene")), "discreto"),
-            new Book(2, "La morte", 1.5, 100, 50.00, LocalDate.of(1975, 06, 12), Category.NARRATIVE,
-                    List.of(new Author(2, "Carlotta", "Pisano", LocalDate.of(1950, 8, 4), "Italiana", "Tedesco")), "Tedesco"),
-            new Book(3, "Il giardino segreto", 4.2, 300, 30.50, LocalDate.of(1911, 03, 15), Category.SCIENCE_FICTION,
-                    List.of(new Author(3, "Frances", "Hodgson Burnett", LocalDate.of(1849, 11, 24), "Inglese", "Inglese")), "Inglese"),
+            new Book(1, "The Hunger", 3.5, 1600, 25.00, LocalDate.of(1955, 06, 12), Category.HORROR,
+                    List.of(new Author(1, "George", "Orwell", LocalDate.of(1920, 8, 4), "Italian", "Italian")), "Italian"),
+            new Book(2, "The Death", 1.5, 100, 50.00, LocalDate.of(1975, 06, 12), Category.NARRATIVE,
+                    List.of(new Author(2, "Carlotta", "Pisano", LocalDate.of(1950, 8, 4), "Italian", "German")), "German"),
+            new Book(3, "The Secret Garden", 4.2, 300, 30.50, LocalDate.of(1911, 03, 15), Category.SCIENCE_FICTION,
+                    List.of(new Author(3, "Frances", "Hodgson Burnett", LocalDate.of(1849, 11, 24), "English", "English")), "English"),
             new Book(4, "1984", 4.7, 328, 22.90, LocalDate.of(1949, 06, 8), Category.SCIENCE_FICTION,
-                    List.of(new Author(4, "George", "Orwell", LocalDate.of(1903, 06, 25), "Inglese", "Inglese")), "Inglese"),
-            new Book(5, "Il nome della rosa", 4.3, 512, 35.00, LocalDate.of(1980, 9, 01), Category.SCIENCE_FICTION,
-                    List.of(new Author(5, "Umberto", "Eco", LocalDate.of(1932, 01, 05), "Italiana", "Italiano")), "Italiano"),
-            new Book(6, "Cent'anni di solitudine", 4.5, 432, 28.50, LocalDate.of(1967, 05, 30), Category.CLASSICS,
-                    List.of(new Author(6, "Gabriel", "García Márquez", LocalDate.of(1927, 03, 06), "Colombiana", "Spagnolo")), "Spagnolo"),
-            new Book(7, "Il piccolo principe", 4.8, 96, 15.00, LocalDate.of(1943, 04, 06), Category.CLASSICS,
-                    List.of(new Author(7, "Antoine", "de Saint-Exupéry", LocalDate.of(1900, 06, 29), "Francese", "Francese")), "Francese"),
-            new Book(8, "Orgoglio e pregiudizio", 4.6, 432, 20.00, LocalDate.of(1813, 01, 28), Category.CLASSICS,
-                    List.of(new Author(8, "Jane", "Austen", LocalDate.of(1775, 12, 16), "Inglese", "Inglese")), "Inglese"),
-            new Book(9, "Il signore degli anelli", 4.9, 1178, 45.00, LocalDate.of(1954, 07, 29), Category.ADVENTURE,
-                    List.of(new Author(9, "J.R.R.", "Tolkien", LocalDate.of(1892, 01, 03), "Inglese", "Inglese")), "Inglese"),
-            new Book(10, "Cronache del ghiaccio e del fuoco", 4.4, 694, 38.00, LocalDate.of(1996, 8, 06), Category.ADVENTURE,
-                    List.of(new Author(10, "George R.R.", "Martin", LocalDate.of(1948, 9, 20), "Americana", "Inglese")), "Inglese"));
+                    List.of(new Author(4, "George", "Orwell", LocalDate.of(1903, 06, 25), "English", "English")), "English"),
+            new Book(5, "The Name of the Rose", 4.3, 512, 35.00, LocalDate.of(1980, 9, 01), Category.SCIENCE_FICTION,
+                    List.of(new Author(5, "Umberto", "Eco", LocalDate.of(1932, 01, 05), "Italian", "Italian")), "Italian"),
+            new Book(6, "One Hundred Years of Solitude", 4.5, 432, 28.50, LocalDate.of(1967, 05, 30), Category.CLASSICS,
+                    List.of(new Author(6, "Gabriel", "García Márquez", LocalDate.of(1927, 03, 06), "Colombian", "Spanish")), "Spanish"),
+            new Book(7, "The Little Prince", 4.8, 96, 15.00, LocalDate.of(1943, 04, 06), Category.CLASSICS,
+                    List.of(new Author(7, "Antoine", "de Saint-Exupéry", LocalDate.of(1900, 06, 29), "French", "French")), "French"),
+            new Book(8, "Pride and Prejudice", 4.6, 432, 20.00, LocalDate.of(1813, 01, 28), Category.CLASSICS,
+                    List.of(new Author(8, "Jane", "Austen", LocalDate.of(1775, 12, 16), "English", "English")), "English"),
+            new Book(9, "The Lord of the Rings", 4.9, 1178, 45.00, LocalDate.of(1954, 07, 29), Category.ADVENTURE,
+                    List.of(new Author(9, "J.R.R.", "Tolkien", LocalDate.of(1892, 01, 03), "English", "English")), "English"),
+            new Book(10, "A Song of Ice and Fire", 4.4, 694, 38.00, LocalDate.of(1996, 8, 06), Category.ADVENTURE,
+                    List.of(new Author(10, "George R.R.", "Martin", LocalDate.of(1948, 9, 20), "American", "English")), "English"));
 
     // Returns all books of a given category
     public List<Book> findByCategory(Category target) {
