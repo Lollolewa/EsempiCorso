@@ -27,5 +27,4 @@ public class Analyzer<E extends Comparable<E>> {
         Collections.sort(elements);
     }
 
-
 }
