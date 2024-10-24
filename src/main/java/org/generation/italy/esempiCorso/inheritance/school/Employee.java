@@ -1,16 +1,24 @@
 package org.generation.italy.esempiCorso.inheritance.school;
+//non voglio creare oggetti impiegato
+public abstract class Employee extends Person{
+    protected double monthlySalary;
+    protected int nMonths;
 
-public abstract class Employee extends Person {
-
-    protected int monthlySalary, nMonth;
-
-    public Employee(String name, String surname, int age, int monthlySalary, int nMonth) {
-        super(name, surname, age);
+    public Employee (String name, String surname, int age, double monthlySalary, int nMonths) {
+        super(name,surname,age);
         this.monthlySalary = monthlySalary;
-        this.nMonth = nMonth;
+        this.nMonths = nMonths;
     }
-    public int getAnnualSalary(){
-        return monthlySalary*nMonth;
+    public double getMonthlySalary() {
+        return monthlySalary;
     }
-    public abstract void doWork(int hours);//metodo generale polimorfico astratto
+    public int getnMonths() {
+        return nMonths;
+    }
+    public double getAnnualSalary () {
+        return monthlySalary * (double)nMonths;
+    }
+
+    //metodo astratto per inizializzare un metodo che verrà implementato dalle sottoclassi
+    public abstract void doWork(int hours);
 }
