@@ -1,7 +1,5 @@
 package org.generation.italy.esempiCorso.eserciziStream;
 
-import org.generation.italy.esempiCorso.eserciziAI.Veicoli.Auto;
-
 import java.time.LocalDate;
 import java.util.*;
 import java.util.function.Function;
