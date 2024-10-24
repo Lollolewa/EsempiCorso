@@ -2,10 +2,15 @@ package org.generation.italy.esempiCorso.streams;
 
 import java.util.function.Predicate;
 
-public class ProgrammerFilterbySex implements Predicate<Programmer> {
+public class ProgrammerFilterBySex implements Predicate<Programmer> {
 
     @Override
-    public boolean test (Programmer programmer){
-        return programmer.isMale();
+    public boolean test(Programmer programmer) {
+//        if (programmer.isMale()){
+//            return false;
+//        } else {
+//            return true;
+//        }
+        return !programmer.isMale();
     }
 }
