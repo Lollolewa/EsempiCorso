@@ -200,10 +200,14 @@ public class UserInterfaces {
         System.out.println("Inserisci il prezzo del pacchetto");
         double price = sc.nextDouble();
         sc.nextLine();
-        System.out.println("Inserisci la data di partenza (Formato yyyy-mm-dd");
-        LocalDate startDate =
-
+        System.out.println("Inserisci la data di partenza (Formato YYYY-MM-DD");
+        LocalDate startDate = LocalDate.of(sc.nextInt(), sc.nextInt(), sc.nextInt());
+        System.out.println("Inserisci la data di rientro (sempre formato YYYY-MM-DD");
+        LocalDate endDate = LocalDate.of(sc.nextInt(), sc.nextInt(), sc.nextInt());
+        System.out.println("Inserisci la categoria del pacchetto tra queste:\nLUXURY, COMFORT, BUDGET, BACKPACKER");
+        Category category = Category.valueOf(sc.nextLine().toUpperCase());
         Voyage v = new Voyage(id, price, startDate, endDate, category, destinations);
+
 
 
 
