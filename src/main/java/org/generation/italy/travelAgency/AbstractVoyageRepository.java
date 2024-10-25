@@ -14,4 +14,5 @@ public interface AbstractVoyageRepository {
 
 
     List<Integer> findVoyagesById(int id);
+    List<Integer> showAllID();
 }

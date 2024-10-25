@@ -8,7 +8,6 @@ import java.util.List;
 
 public class VoyageRepository implements AbstractVoyageRepository{
     private List<Voyage> voyages;
-    private static int id = 1;
 
     public VoyageRepository() {
         this.voyages = new ArrayList<>();
@@ -18,8 +17,8 @@ public class VoyageRepository implements AbstractVoyageRepository{
         Destination d2 = new Destination("Venezia", "spero che ti piaccia l'umido",
                 "Hotel Marea", 7, List.of("Visita Murano", "Giro in gondola"),
                 List.of("Alta Marea", "Bassa Marea"));
-        Voyage v1 = new Voyage(id++, 300, LocalDate.of(2024, 10, 20),
-                LocalDate.of(2024,11,01), Category.COMFORT, List.of(d1,d2));
+        Voyage v1 = new Voyage(1, 300, LocalDate.of(2025, 10, 20),
+                LocalDate.of(2025,11,01), Category.COMFORT, List.of(d1,d2));
 
 
         Destination d3 = new Destination("New York", "viaggio nella città delle opportunità",
@@ -28,15 +27,13 @@ public class VoyageRepository implements AbstractVoyageRepository{
         Destination d4 = new Destination("Las Vegas", "preparati a perdere i soldi",
                 "Caesars Palace", 7, List.of("Roulette", "BlackJack"),
                 List.of("Scommessona", "HaiPerso"));
-        Voyage v2 = new Voyage(id++, 899.99, LocalDate.of(2025, 03, 01),
+        Voyage v2 = new Voyage(2, 899.99, LocalDate.of(2025, 03, 01),
                 LocalDate.of(2025,03,16), Category.LUXURY, List.of(d3,d4));
 
         this.voyages.add(v1);
         this.voyages.add(v2);
-        this.voyages.add(v1);
 
     }
-
 
     @Override
     public void create(Voyage v) {
@@ -67,16 +64,16 @@ public class VoyageRepository implements AbstractVoyageRepository{
 
     @Override
     public Collection<Voyage> findActiveVoyages() {
-//        Collection<Voyage> activeVoyages = voyages.stream().filter(v -> v.getStartDate().isAfter(LocalDate.now())).toList();
-//        return activeVoyages;
-
-        Collection<Voyage> activeVoyages = new ArrayList<>();
-        for(Voyage voyage : voyages) {
-            if(voyage.getStartDate().isAfter(LocalDate.now()) || voyage.getStartDate().isEqual(LocalDate.now())) {
-                activeVoyages.add(voyage);
-            }
-        }
+        Collection<Voyage> activeVoyages = voyages.stream().filter(v -> v.getStartDate().isAfter(LocalDate.now())).toList();
         return activeVoyages;
+
+//        Collection<Voyage> activeVoyages = new ArrayList<>();
+//        for(Voyage voyage : voyages) {
+//            if(voyage.getStartDate().isAfter(LocalDate.now()) || voyage.getStartDate().isEqual(LocalDate.now())) {
+//                activeVoyages.add(voyage);
+//            }
+//        }
+//        return activeVoyages;
     }
     //ok
 
@@ -101,11 +98,11 @@ public class VoyageRepository implements AbstractVoyageRepository{
         for (Voyage voyage : voyages) {
             for (Destination d : voyage.getDestination())
                 if      (d.getName().toLowerCase().contains(word.toLowerCase())         ||
-                         d.getDescription().toLowerCase().contains(word.toLowerCase())  ||
-                         d.getHotelName().toLowerCase().contains(word.toLowerCase())    ||
-                         d.getAdvisedActivities().contains(word)                        ||
-                         d.getAdvisedResturants().contains(word)                         ) {
-                             activeVoyagesW.add(voyage);
+                        d.getDescription().toLowerCase().contains(word.toLowerCase())  ||
+                        d.getHotelName().toLowerCase().contains(word.toLowerCase())    ||
+                        d.getAdvisedActivities().contains(word)                        ||
+                        d.getAdvisedResturants().contains(word)                         ) {
+                    activeVoyagesW.add(voyage);
                 }
         }
         return activeVoyagesW;
@@ -135,4 +132,14 @@ public class VoyageRepository implements AbstractVoyageRepository{
         return voyagesIds;
     }
     //ok
+
+    @Override
+    public List<Integer> showAllID() {
+        List<Integer> idList = new ArrayList<>();
+        for(Voyage voyage : voyages) {
+            idList.add(voyage.getId());
+        }
+        return idList;
+    }
 }
+
