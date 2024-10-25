@@ -1,4 +1,5 @@
 package org.generation.italy.travelAgency;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -46,7 +47,7 @@ public class UserInterfaces {
 
                     if (adminAnswer == 1) {
                         creatingOffer();
-                        System.out.println(repository.showAllID());
+
 
                     } else if (adminAnswer == 2) {
                         deletingOffer();
@@ -149,45 +150,63 @@ public class UserInterfaces {
         }
     }
 
-    public void creatingOffer() {
-        System.out.println("Crea il viaggio da inserire nell'offerta");
-        creatingDestination();
 
-    }
-    public void creatingDestination() {
+    public Destination creatingDestination() {
         boolean canContinue = false;
-        do {
-            System.out.println("Scegli il nome della destinazione");
-            String name = sc.nextLine();
-            System.out.println("Inserisci una descrizione riassuntiva del viaggio");
-            String description = sc.nextLine();
-            System.out.println("Inserisci il nome dell'hotel");
-            String hotelName = sc.nextLine();
-            System.out.println("Inserisci il numero di giorni di soggiorno");
-            int daysSpent = sc.nextInt();
-            sc.nextLine();
-            System.out.println("Vuoi aggiungere delle attività da consigliare? Rispondi si o no");
-            String answ = sc.nextLine();
-            List<String> suggestedActivities = new ArrayList<>();
-            if (answ.equalsIgnoreCase("si")) {
-                takeSuggestedActivities(suggestedActivities);
-            }
-            System.out.println("Vuoi aggiungere dei ristoranti da consigliare? Rispondi si o no");
-            String answ1 = sc.nextLine();
-            List<String> suggestedRestaurants = new ArrayList<>();
-            if (answ.equalsIgnoreCase("si")) {
-                takeSuggestedRestaurants(suggestedRestaurants);
-            }
-            System.out.println("Inserisci una serie di ristoranti consigliati");
-            Destination d = new Destination(name, description, hotelName, daysSpent, suggestedActivities,
-                    suggestedRestaurants);
 
-            System.out.println("Vuoi creare un'altra destinazione?");
-            String yesOrNot = sc.nextLine();
-            if(yesOrNot.equalsIgnoreCase("no")) {
-                canContinue = true;
+        System.out.println("Scegli il nome della destinazione");
+        String name = sc.nextLine();
+        System.out.println("Inserisci una descrizione riassuntiva del viaggio");
+        String description = sc.nextLine();
+        System.out.println("Inserisci il nome dell'hotel");
+        String hotelName = sc.nextLine();
+        System.out.println("Inserisci il numero di giorni di soggiorno");
+        int daysSpent = sc.nextInt();
+        sc.nextLine();
+        System.out.println("Vuoi aggiungere delle attività da consigliare? Rispondi si o no");
+        String answ = sc.nextLine();
+        List<String> suggestedActivities = new ArrayList<>();
+        if (answ.equalsIgnoreCase("si")) {
+            takeSuggestedActivities(suggestedActivities);
+        }
+        System.out.println("Vuoi aggiungere dei ristoranti da consigliare? Rispondi si o no");
+        String answ1 = sc.nextLine();
+        List<String> suggestedRestaurants = new ArrayList<>();
+        if (answ.equalsIgnoreCase("si")) {
+            takeSuggestedRestaurants(suggestedRestaurants);
+        }
+        Destination d = new Destination(name, description, hotelName, daysSpent, suggestedActivities,
+                suggestedRestaurants);
+        System.out.println("Il tuo viaggio è pronto, ecco un riepilogo\n\n" + d.toString());
+        return d;
+    }
+    public void creatingOffer() {
+        boolean condition = false;
+        List<Destination> destinations = new ArrayList<>();
+        do {
+            System.out.println("Crea il viaggio da inserire nel pacchetto");
+            destinations.add(creatingDestination());
+            System.out.println("Vuoi creare un altro viaggio? Rispondi si o no");
+            String answer = sc.nextLine();
+            if(answer.equalsIgnoreCase("no")) {
+                condition = true;
             }
-        } while (!canContinue);
+        } while (!condition);
+        System.out.println("Prepariamo il pacchetto di viaggi");
+        System.out.println("Inserisci l'id del pacchetto\nTieni presente gli id già presenti, eccoteli!");
+        System.out.println(repository.showAllID());
+        int id = sc.nextInt();
+        sc.nextLine();
+        System.out.println("Inserisci il prezzo del pacchetto");
+        double price = sc.nextDouble();
+        sc.nextLine();
+        System.out.println("Inserisci la data di partenza (Formato yyyy-mm-dd");
+        LocalDate startDate =
+
+        Voyage v = new Voyage(id, price, startDate, endDate, category, destinations);
+
+
+
     }
 
     public void takeSuggestedActivities(List<String> suggestedActivities) {
