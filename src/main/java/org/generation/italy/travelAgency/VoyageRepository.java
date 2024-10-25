@@ -1,10 +1,7 @@
 package org.generation.italy.travelAgency;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 public class VoyageRepository implements AbstractVoyageRepository{
     private List<Voyage> voyages;
@@ -129,6 +126,7 @@ public class VoyageRepository implements AbstractVoyageRepository{
                 voyagesIds.add(id);
             }
         }
+
         return voyagesIds;
     }
     //ok

@@ -47,8 +47,6 @@ public class UserInterfaces {
 
                     if (adminAnswer == 1) {
                         creatingOffer();
-
-
                     } else if (adminAnswer == 2) {
                         deletingOffer();
                     }
@@ -172,7 +170,7 @@ public class UserInterfaces {
         System.out.println("Vuoi aggiungere dei ristoranti da consigliare? Rispondi si o no");
         String answ1 = sc.nextLine();
         List<String> suggestedRestaurants = new ArrayList<>();
-        if (answ.equalsIgnoreCase("si")) {
+        if (answ1.equalsIgnoreCase("si")) {
             takeSuggestedRestaurants(suggestedRestaurants);
         }
         Destination d = new Destination(name, description, hotelName, daysSpent, suggestedActivities,
@@ -204,58 +202,61 @@ public class UserInterfaces {
         LocalDate startDate = LocalDate.of(sc.nextInt(), sc.nextInt(), sc.nextInt());
         System.out.println("Inserisci la data di rientro (sempre formato YYYY-MM-DD");
         LocalDate endDate = LocalDate.of(sc.nextInt(), sc.nextInt(), sc.nextInt());
+        sc.nextLine();
         System.out.println("Inserisci la categoria del pacchetto tra queste:\nLUXURY, COMFORT, BUDGET, BACKPACKER");
         Category category = Category.valueOf(sc.nextLine().toUpperCase());
         Voyage v = new Voyage(id, price, startDate, endDate, category, destinations);
 
-
-
-
+        System.out.println("Perfetto, il pacchetto è pronto!");
+        System.out.println(v.toString());
+        repository.create(v);
     }
 
     public void takeSuggestedActivities(List<String> suggestedActivities) {
         boolean condition2 = false;
-        while (!condition2) {
+label:      do {
             System.out.println("Inserisci un'attività consigliata");
             String activity = "";
             activity = sc.nextLine();
             suggestedActivities.add(activity);
-            System.out.println("Attività aggiunta.\nVuoi aggiungere un'altra attività? Rispondi si o no");
+            System.out.println("Attività aggiunta alle consigliate");
             boolean condition3 = false;
             do {
+                System.out.println("Vuoi aggiungere un'altra attività? Rispondi si o no");
                 String yorn = sc.nextLine();
                 if (yorn.equalsIgnoreCase("no")) {
-                    condition2 = true;
+                    break label;
                 } else if (yorn.equalsIgnoreCase("si")) {
                     condition3 = true;
                 } else {
-                    System.out.println("Risposta non valida.\nVuoi aggiungere un'altra attività? Rispondi si o no\" ");
+                    System.out.println("Risposta non valida.");
 
                 }
             } while(!condition3);
-        }
+        } while (!condition2);
     }
 
     public void takeSuggestedRestaurants(List<String> suggestedRestaurants) {
         boolean condition2 = false;
-        while (!condition2) {
+label:      do {
             System.out.println("Inserisci un ristorante consigliato");
             String activity = "";
             activity = sc.nextLine();
             suggestedRestaurants.add(activity);
-            System.out.println("Attività aggiunta.\nVuoi aggiungere un altro ristorante? Rispondi si o no");
+            System.out.println("Ristorante aggiunto ai consigliati");
             boolean condition3 = false;
             do {
+                System.out.println("Vuoi aggiungere un altro ristorante? Rispondi si o no");
                 String yorn = sc.nextLine();
                 if (yorn.equalsIgnoreCase("no")) {
-                    condition2 = true;
+                    break label;
                 } else if (yorn.equalsIgnoreCase("si")) {
                     condition3 = true;
                 } else {
-                    System.out.println("Risposta non valida.\nVuoi aggiungere un altro ristorante? Rispondi si o no\" ");
+                    System.out.println("Risposta non valida.");
 
                 }
             } while(!condition3);
-        }
+        } while (!condition2);
     }
 }
