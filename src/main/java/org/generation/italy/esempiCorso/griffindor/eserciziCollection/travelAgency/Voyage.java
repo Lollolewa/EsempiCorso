@@ -3,7 +3,7 @@ package org.generation.italy.esempiCorso.griffindor.eserciziCollection.travelAge
 import java.time.LocalDate;
 import java.util.List;
 
-public class Voyage {
+public class Voyage implements Comparable<Voyage> {
     //list di destination
     private List<Destination> destinations;
     private int id;
@@ -83,5 +83,18 @@ public class Voyage {
                 ", endDate=" + endDate +
                 ", category=" + category +
                 '}';
+    }
+// Se scrivo int z = a1.compareTo(a2) ritorna un intero z
+// Se z è negativo significa che a1 è minore di a2 (minore = viene prima)
+// se è positivo significa che a1 è maggiore di a2 (maggiore = viene dopo)
+// se è zero significa che a1 è uguale a2 (l'ordinamento è uguale)
+
+    @Override
+    public int compareTo(Voyage o) { // ordinamento naturale.
+        return o.id-this.id; // return  per il contrario.
+    }
+
+    public int getDestinationsSize(){
+        return this.destinations.size();
     }
 }
