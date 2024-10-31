@@ -31,30 +31,16 @@ public class Author {
         return surname;
     }
 
-    public String getNationality() {
-        return nationality;
-    }
-
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
-
-    public List<String> getAuthorLanguages() {
-        return authorLanguages;
-    }
-
     @Override
     public String toString() {
         return String.format(
-                "\nAuthor: \n" +
-                        "Author ID: %d\n" +
-                        "Name: %s\n" +
-                        "Surname: %s\n" +
-                        "Nationality: %s\n" +
-                        "Birth Date: %s\n" +
-                        "Languages: %s\n",
-                authorId, name, surname, nationality, birthDate, authorLanguages
+                        "ID: %d, " +
+                        "Name: %s, " +
+                        "Surname: %s, " +
+                        "Nationality: %s, " +
+                        "Birth Date: %s, " +
+                        "Languages: %s",
+                         authorId, name, surname, nationality, birthDate, authorLanguages
         );
     }
-
 }
