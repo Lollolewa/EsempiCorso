@@ -14,18 +14,16 @@ public class Start {
             System.out.println("Problema nella creazione della connessione.");
             return;
         }
-
         try(Connection connection = optCon.get()){
             BookDaoJdbc bookDao = new BookDaoJdbc(connection);
             Optional<Book> b = bookDao.getBookById(8);
-            if(ob.isPresent()){
-                System.out.println(ob.get());
+            if(b.isPresent()){
+                System.out.println(b.get());
             }else {
                 System.out.println("Book not found");
             }
             System.out.println(b);
-        }
-        catch (DaoException e){
+        } catch (DaoException | SQLException e){
             e.printStackTrace();
         }
     }
