@@ -5,7 +5,7 @@ import org.generation.italy.esempiCorso.sql.model.Book;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Optional;
-
+//branch nuova
 public class Start {
     public static void main(String[] args) {
         Optional<Connection> optCon = DatabaseConnection.getConnection();
