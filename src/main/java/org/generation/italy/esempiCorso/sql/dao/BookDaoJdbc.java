@@ -70,10 +70,8 @@ public class BookDaoJdbc implements BookDao{
                 return listBook;
             }
 
-
         }catch (SQLException e){
             throw new DaoException(e.getMessage(), e);
-
         }
     }
 
