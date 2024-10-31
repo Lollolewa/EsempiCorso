@@ -13,7 +13,6 @@ public class Book {
         this.weight = weight;
         this.title = title;
         this.category = category;
-
     }
 
     public String getTitle() {
