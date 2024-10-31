@@ -10,24 +10,19 @@ public class DatabaseConnection {
 
     //CONNECTION TO DATABASE
     public static Optional<Connection> getConnection(){
-        String jdbcUrl = "jdbc:postgresql://localhost:5432/library";
+        String jdbcUrl = "jdbc:postgresql://localhost:5432/library"; //la versione più bruttina
         String username = "postgresMaster";
         String password = "goPostgresGo";
 
-        Connection optCon = DriverManager.getConnection(jdbcUrl, username, password);
-
-        if(optCon.isEmpty()){
-            System.out.println("Problema nella creazione della connessione");
-            return;
+        try{
+            Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
+            return Optional.of(connection);
         }
-        try(Connection connection = optCon.get()){
-
-           return Optional.of(connection);
-        }
-        catch (SQLException e){
+        catch(SQLException e){
             e.printStackTrace();
-            System.out.println("Cannot create connection to DB");
+            System.out.println("Cannot create connection to DB"); //per db si intende database
             return Optional.empty();
         }
     }
 }
+
