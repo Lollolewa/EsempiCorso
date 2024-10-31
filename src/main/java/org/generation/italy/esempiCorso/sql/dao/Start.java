@@ -11,7 +11,7 @@ public class Start {
 
         try(Connection connection = DatabaseConnection.getConnection()){
             BookDaoJdbc bookDao = new BookDaoJdbc(connection);
-            Book b = bookDao.getBookById(1);
+            Book b = bookDao.getBookById(8);
             System.out.println(b);
         }
         catch (SQLException e){
