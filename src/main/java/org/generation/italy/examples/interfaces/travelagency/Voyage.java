@@ -1,12 +1,11 @@
 package org.generation.italy.examples.interfaces.travelagency;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 public class Voyage {
     private List<Destination> destinations;
-    private Category  categories; //inizializzazione enum dentro un oggetto;
+    private Category category; //inizializzazione enum dentro un oggetto;
     private int id, price,duration;
     private LocalDate startingDate;
     private LocalDate endingDate;
@@ -16,15 +15,11 @@ public class Voyage {
         return duration;
     }
 
-    public void setDuration(int duration) {
-        this.duration = duration;
-    }
-
-    public Voyage(List<Destination> destinations, Category categories, int id, int price, LocalDate startingDate, LocalDate endingDate, String description, int duration) {
+    public Voyage(List<Destination> destinations, Category category, int id, int price, LocalDate startingDate, LocalDate endingDate, String description, int duration) {
         this.destinations = destinations;
-        this.categories = categories;
+        this.category = category;
         this.id = id;
-        this.price = price;
+        this.price = calcolaPrezzoTotale();
         this.startingDate = startingDate;
         this.endingDate = endingDate;
         this.description = description;
@@ -35,24 +30,16 @@ public class Voyage {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public LocalDate getStartingDate() {
+        return startingDate;
     }
 
     public List<Destination> getDestinations() {
         return destinations;
     }
 
-    public void setDestinations(List<Destination> destinations) {
-        this.destinations = destinations;
-    }
-
-    public Category getCategories() {
-        return categories;
-    }
-
-    public void setCategories(Category categories) {
-        this.categories = categories;
+    public Category getCategory() {
+        return category;
     }
 
     public int getId() {
@@ -66,30 +53,28 @@ public class Voyage {
     public int getPrice() {
         return price;
     }
-
-    public void setPrice(int price) {
-        this.price = price;
+    public int getLength() {
+        return destinations.size();
     }
-
-    public LocalDate getStartingDate() {
-        return startingDate;
+    private int calcolaPrezzoTotale() {
+        int totale = 0;
+        for (Destination destination : destinations) {
+            totale += destination.getPrezzo();
+        }
+        return totale;
     }
-
-    public void setStartingDate(LocalDate startingDate) {
-        this.startingDate = startingDate;
-    }
-
-    public LocalDate getEndingDate() {
-        return endingDate;
-    }
-
-    public void setEndingDate(LocalDate endingDate) {
-        this.endingDate = endingDate;
-    }
-
-
-    public Destination[] getsuggestedActivities() {
-        return getsuggestedActivities();
+    public boolean anyDestinationContains(String word){
+//        int x = 3;
+//        var y = 3;
+//        int z;
+        // var w; //var va sempre inizializzato
+        //var r = new HashSet<List<String>>();
+        for(var d: destinations){
+            if(d.getAttractionName().contains(word)){
+                return true;
+            }
+        }
+        return false;
     }
 }
 

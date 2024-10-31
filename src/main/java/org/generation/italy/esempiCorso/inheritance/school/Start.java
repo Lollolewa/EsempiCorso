@@ -1,4 +1,8 @@
-package org.generation.italy.esempiCorso.inheritance.school;
+package org.generation.italy.esempiCorso.inheritance;
+
+import org.generation.italy.esempiCorso.inheritance.school.Person;
+import org.generation.italy.esempiCorso.inheritance.school.Personnel;
+import org.generation.italy.esempiCorso.inheritance.school.Teacher;
 
 import java.util.Arrays;
 
@@ -11,6 +15,7 @@ public class Start {
         System.out.println(teacher.toString());
         System.out.println("\n");
         System.out.println(bidello.toString());
+        Person x = new Teacher("Michael", "Johnson", 35,"Math",11, 2500, 14);
 
         System.out.println("\n\n");
 

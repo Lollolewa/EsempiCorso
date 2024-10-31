@@ -30,10 +30,5 @@ public class Iteriamo {
         List<Prodotto> listLint = new LinkedList<>(); //utile quando vogliamo aggiungere velocemente elementi in coda o in testa -- usata molto poco
         listLint.add(new Prodotto("Pane",1)); //ogni argomento che aggiungiamo a linked list viene chiamato nodo - Il prodotto viene wrappato all interno di un altro oggetto che avra il prodotto e il riferimento al prodotto precedente e al successivo, come una catena.
 
-
-
-
-
-
     }
 }
