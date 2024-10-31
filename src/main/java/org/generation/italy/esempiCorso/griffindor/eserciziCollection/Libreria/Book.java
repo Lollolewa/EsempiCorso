@@ -63,5 +63,20 @@ public class Book {
     public String getTitle() {
         return title;
     }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", weight=" + weight +
+                ", pageCount=" + pageCount +
+                ", cost=" + cost +
+                ", publicationDate=" + publicationDate +
+                ", category=" + category +
+                ", authors=" + authors +
+                ", language='" + language + '\'' +
+                '}';
+    }
 }
 

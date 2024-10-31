@@ -43,5 +43,17 @@ public class Author {
     public String getLanguage() {
         return language;
     }
+
+    @Override
+    public String toString() {
+        return "Author{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", birthDate=" + birthDate +
+                ", nationality='" + nationality + '\'' +
+                ", language='" + language + '\'' +
+                '}';
+    }
 }
 

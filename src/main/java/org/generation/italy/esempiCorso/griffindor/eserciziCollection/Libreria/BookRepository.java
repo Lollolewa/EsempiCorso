@@ -113,9 +113,16 @@ public class BookRepository {
                 .flatMap(book -> book.getAuthors().stream()) // Extract authors
                 .collect(Collectors.groupingBy(author -> author, Collectors.counting())) // Count books by author
                 .entrySet().stream()
-                .max((entry1, entry2) -> Long.compare(entry1.getValue(), entry2.getValue())) // Find author with the most books
+                .max(Map.Entry.comparingByValue()) // Find author with the maximum count most books
                 .map(Map.Entry::getKey)
                 .orElse(null); // Return null if no author is found
+    }
+
+    @Override
+    public String toString() {
+        return "BookRepository{" +
+                "books=" + books +
+                '}';
     }
 }
 
