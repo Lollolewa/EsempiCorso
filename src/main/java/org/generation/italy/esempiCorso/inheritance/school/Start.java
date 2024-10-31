@@ -1,14 +1,25 @@
 package org.generation.italy.esempiCorso.inheritance.school;
 
+import org.generation.italy.esempiCorso.inheritance.school.Person;
+import org.generation.italy.esempiCorso.inheritance.school.Personnel;
+import org.generation.italy.esempiCorso.inheritance.school.Teacher;
+
+import java.util.Arrays;
+
 public class Start {
-    public static void main(String[] args){
-        //System.out.println("testing github");
-        //System.out.println("Aggiunto da Alessia");
-        //System.out.println("Branch di mirko");
-        Teacher teacher = new Teacher("Riccardo", "Audano", 18, "Programmazione", 18, 100, 10);
-        //teacher.toString()  //tutti gli oggetti che creiamo derivano da una SUPERCLASSEMADRESUPREMA che deriva dalla classe Object.
-                            // tutti gli oggetti è come se avessero quindi extends Object
+    public static void main(String[] args) {
+
+        Teacher teacher = new Teacher("Michael", "Johnson", 35, "Math", 11, 2500, 14);
+        Personnel bidello = new Personnel("Bobby", "Rocket", 67, 1500, 14, "Bidello",200 );
 
         System.out.println(teacher.toString());
+        System.out.println("\n");
+        System.out.println(bidello.toString());
+        Person x = new Teacher("Michael", "Johnson", 35,"Math",11, 2500, 14);
+
+        System.out.println("\n\n");
+
+        String[] arrayDiRocket = {"\uD83D\uDE80,\uD83D\uDE80,\uD83D\uDE80,\uD83D\uDE80,\uD83D\uDE80,\uD83D\uDE80,\uD83D\uDE80,\uD83D\uDE80,\uD83D\uDE80,\uD83D\uDE80"};
+        System.out.println(Arrays.toString(arrayDiRocket));
     }
 }
