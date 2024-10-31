@@ -19,8 +19,10 @@ public class Main {
             Optional<Book> b = bookDao.getBookById(1);
             System.out.println(b);
         }
-        catch (SQLException | DaoException e) {
+        catch (SQLException e) {
             e.printStackTrace();
-        }
+        } catch (DaoException e) {
+        throw new RuntimeException(e);
+    }
     }
 }

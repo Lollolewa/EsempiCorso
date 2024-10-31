@@ -46,4 +46,28 @@ public class Book {
             ps.setString(5, title);
             ps.executeUpdate();
         } viola il principio open close*/
+
+    public int getId() {
+        return id;
+    }
+
+    public int getNum_pages() {
+        return num_pages;
+    }
+
+    public int getPublisher_id() {
+        return publisher_id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
 }

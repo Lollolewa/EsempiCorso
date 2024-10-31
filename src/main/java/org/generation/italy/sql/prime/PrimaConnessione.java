@@ -8,11 +8,12 @@ import java.util.Optional;
 public class PrimaConnessione {
     public static void main(String[]args){
         Optional<Connection> connection = DatabaseConnection.getConnection();
-        if (connection != null) {
-            System.out.println("connessione riuscita :");
+        if (connection.isPresent())    {
+            Connection conn = connection.get();
+            System.out.println("Connessione riuscita!");
             System.out.println(connection.getClass().getName());
-        }else {
-            System.out.println("connessione fallita :");
+        } else {
+            System.out.println("Connessione fallita!");
         }
     }
 }
