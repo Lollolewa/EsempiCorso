@@ -13,6 +13,7 @@ import java.util.Optional;
 public class BookDaoJdbc implements BookDao {
     // Connessione al database
     Connection connection;
+    String query = "UPDATE books SET title =?, num_pages =?, weight =?, category =?, publisher_id =? WHERE id =?";
 
     // Costruttore della classe che riceve la connessione al database
     public BookDaoJdbc(Connection connection) {
@@ -43,25 +44,49 @@ public class BookDaoJdbc implements BookDao {
             throw new DaoException(e.getMessage(), e);
         }
     }
-
-    @Override
-    // Metodo che dovrebbe restituire tutti i libri dal database
-    public List<Book> getAllBook() throws DaoException{
-        return List.of();
-    }
-
     @Override
     public Book addBook(Book book) throws DaoException {
-        return null;
+        String query = "INSERT INTO books (title, num_pages, weight, category, publisher_id) VALUES (?,?,?,?,?)";
+        try(PreparedStatement ps = connection.prepareStatement(query)){
+            ps.setString(1, book.getTitle());
+            ps.setInt(2, book.getNum_pages());
+            ps.setDouble(3, book.getWeight());
+            ps.setString(4, book.getCategory());
+            ps.setInt(5, book.getPublisher_id());
+            ps.executeUpdate(); // Esegue la query
+        } catch (SQLException e) {
+            throw new DaoException(e.getMessage(), e);
+        }
+        return book;
     }
-
-    @Override
-    public boolean deleteById(int id) throws DaoException {
-        return false;
-    }
-
     @Override
     public boolean updateBook(Book book) throws DaoException {
+        try(PreparedStatement ps = connection.prepareStatement(query)){
+            ps.setString(1, book.getTitle());
+            ps.setInt(2, book.getNum_pages());
+            ps.setDouble(3, book.getWeight());
+            ps.setString(4, book.getCategory());
+            ps.setInt(5, book.getPublisher_id());
+            ps.setInt(6, book.getId());
+            int n = ps.executeUpdate();
+            return n==1;
+        } catch (SQLException e) {
+            throw new DaoException(e.getMessage(), e);
+        }
+    }
+    @Override
+    public boolean deleteById(int id) throws DaoException {
+        String query = "DELETE FROM books WHERE id =?";
+        try(PreparedStatement ps = connection.prepareStatement(query)){
+            ps.setInt(1, id);
+            ps.executeUpdate(); // Esegue la query
+        } catch (SQLException e) {
+            throw new DaoException(e.getMessage(), e);
+        }
         return false;
+    }
+    @Override
+    public List<Book> getAllBook() throws DaoException{
+        return List.of();
     }
 }
