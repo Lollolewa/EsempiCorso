@@ -39,6 +39,7 @@ public class UserInterfaces {
                 System.out.println("Inserisci il codice per identificarti");
                 String code = sc.nextLine();
                 if (code.equals(admin)) {
+                    
                     System.out.println("Ti sei identificato. Cosa vuoi fare?\n" +
                                         "1)Creare una nuova offerta\n" +
                                         "2)Cancellare un'offerta");
