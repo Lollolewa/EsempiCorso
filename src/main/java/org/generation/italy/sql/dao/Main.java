@@ -9,17 +9,17 @@ import java.util.Optional;
 
 public class Main {
     public static void main(String[]args){
-        Optional<Connection> connection = DatabaseConnection.getConnection();
-        if(optConn.isempty()){
+        Optional<Connection> optConn = DatabaseConnection.getConnection();
+        if(optConn.isEmpty()){
             System.out.println("impossibile connettersi al databse");
             return;
         }
         try(Connection conn = optConn.get()){
             BookDaoJdbc bookDao = new BookDaoJdbc(conn);
-            Book b = bookDao.getBookById(1);
+            Optional<Book> b = bookDao.getBookById(1);
             System.out.println(b);
         }
-        catch (SQLException e) {
+        catch (SQLException | DaoException e) {
             e.printStackTrace();
         }
     }
