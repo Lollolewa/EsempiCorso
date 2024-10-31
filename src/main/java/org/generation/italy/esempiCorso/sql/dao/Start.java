@@ -1,5 +1,5 @@
 package org.generation.italy.esempiCorso.sql.dao;
-
+// Aggiunto per il primo commit sulla mia branch
 import org.generation.italy.esempiCorso.sql.DatabaseConnection;
 import org.generation.italy.esempiCorso.sql.model.Book;
 import java.sql.Connection;
