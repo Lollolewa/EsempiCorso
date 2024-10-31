@@ -10,6 +10,10 @@ import java.util.Optional;
 
 public class BookDaoJdbc implements BookDao{
     Connection connection;
+    private static final String UPDATE_SQL = """
+            update books set num_pages=?, publisher_id=?, title=?, category=?, weight=?
+            where id=?
+            """;
     public BookDaoJdbc(Connection connection) {
         this.connection = connection;
     }
@@ -54,6 +58,21 @@ public class BookDaoJdbc implements BookDao{
 
     @Override
     public boolean update(Book b) throws DaoException {
-        return false;
+        try(PreparedStatement ps = connection.prepareStatement(UPDATE_SQL)){
+
+            ps.setInt(1,b.getNum_pages());
+            ps.setInt(2,b.getPublisher_id());
+            ps.setString(3,b.getTitle());
+            ps.setString(4,b.getCategory());
+            ps.setDouble(5,b.getWeight());
+            ps.setInt(6,b.getId());
+
+            int n = ps.executeUpdate(); //non esegue query ma update
+            //n=numero di righe modificate dall'istruzione
+            return n==1;
+            //se do id che non esiste non da errore, non fa nulla
+        }catch (SQLException e) {
+            throw new DaoException(e.getMessage(),e);
+        }
     }
 }
