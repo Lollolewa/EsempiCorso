@@ -5,11 +5,16 @@ import org.generation.italy.esempiCorso.sql.DatabaseConnection;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Optional;
 
 public class PrimaLettura {
     public static void main(String[] args) {
         // Stabilisce una connessione al database
-        try(Connection conn = DatabaseConnection.getConnection()){
+        Optional<Connection> optConn = DatabaseConnection.getConnection();
+        if (optConn.isEmpty()){
+            return;
+        }
+        try(Connection conn = optConn.get()){
             // Query SQL per selezionare tutti i libri
             String query = "select * from books";
             // Crea uno statement per eseguire la query

@@ -17,11 +17,13 @@ public class Main {
         }
         try (Connection conn = optConn.get()){
             BookDaoJdbc bookDao = new BookDaoJdbc(conn);
-            Book b = bookDao.getBookById(1);
-            System.out.println("Libro trovato: " + b); // Stampa il libro trovato
+            Optional <Book> ob = bookDao.getBookById(1);
+            System.out.println("Libro trovato: " + ob); // Stampa il libro trovato
 
         } catch (SQLException e) {
             e.printStackTrace(); // Stampa l'eccezione se si verifica un errore
+        } catch (DaoException e) {
+            throw new RuntimeException(e);
         }
     }
 }

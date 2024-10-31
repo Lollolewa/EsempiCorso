@@ -5,13 +5,18 @@ import org.generation.italy.esempiCorso.sql.DatabaseConnection;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Optional;
 
 public class QueryParametrizzataBrutta {
     public static void main(String[]args){
         String mioTitolo = "il signore degli anelli";
-        try(Connection connection = DatabaseConnection.getConnection()){
+        Optional<Connection> optConn = DatabaseConnection.getConnection();
+        if (optConn.isEmpty()) {
+            return;
+        }
+        try(Connection conn = optConn.get()){
             String query = "select * from books where title = '" + mioTitolo + "'";
-            Statement statement = connection.createStatement();
+            Statement statement = conn.createStatement();
             ResultSet righeLette = statement.executeQuery(query);
             while(righeLette.next()){
                 int id = righeLette.getInt("id");
