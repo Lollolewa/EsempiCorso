@@ -15,10 +15,16 @@ public class Start {
         }
         try (Connection connection = optCon.get()) {
             BookDao bookDao = new BookDaoJdbc(connection);
-            Book b = bookDao.getBookById(1);
-            System.out.println(b);
-        } catch (SQLException e) {
+            Optional<Book> ob = bookDao.getBookById(1);
+            if(ob.isPresent()){
+                System.out.println(ob.get());
+            } else{
+                System.out.println("Libro non trovato");
+            }
+
+        } catch (DaoException | SQLException e) {
             e.printStackTrace();
         }
+
     }
 }
