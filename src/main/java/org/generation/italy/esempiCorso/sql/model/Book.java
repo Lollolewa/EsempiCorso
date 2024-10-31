@@ -34,7 +34,32 @@ public class Book {
                 ", weight=" + weight +
                 '}';
     }
-//    public void insert() throws SQLException{
+
+    public int getId() {
+        return id;
+    }
+
+    public int getNum_pages() {
+        return num_pages;
+    }
+
+    public int getPublisher_id() {
+        return publisher_id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    //    public void insert() throws SQLException{
 //        try(Connection c = DatabaseConnection.getConnection()){
 //            PreparedStatement ps = c.prepareStatement(INSERT_SQL);
 //            ps.setInt(1, id);
@@ -45,4 +70,5 @@ public class Book {
 //            ps.executeUpdate();
 //        }
 //    } NOOOOOOOOOO VIOLAZIONE DEL PRINCIPIO DI RESPONSABILITÀ SINGOLAAAA NOOOOOOOOOOO
+
 }
