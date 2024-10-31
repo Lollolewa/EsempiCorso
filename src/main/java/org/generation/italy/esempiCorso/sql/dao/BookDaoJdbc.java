@@ -13,6 +13,10 @@ public class BookDaoJdbc implements BookDao{
 
     Connection connection;
 
+    private static final String UPDATE_SQL = """
+            update books set num_pages = ?, publisher_id = ?, title= = ?, category = ?, weight = ?, id = ?
+            where id = ?
+            """;
     public BookDaoJdbc(Connection connection) {
         this.connection = connection;
     }
@@ -58,6 +62,17 @@ public class BookDaoJdbc implements BookDao{
 
     @Override
     public boolean update(Book book) throws DaoException {
-        return false;
+        try(PreparedStatement ps = connection.prepareStatement(UPDATE_SQL)){
+            ps.setInt(1,book.getNum_pages());
+            ps.setInt(2,book.getPublisher_id());
+            ps.setString(3,book.getTitle());
+            ps.setString(4,book.getCategory());
+            ps.setDouble(5,book.getWeight());
+            ps.setInt(6,book.getId());
+            int n = ps.executeUpdate();
+            return n == 1;
+        }catch (SQLException e){
+            throw new DaoException(e.getMessage(),e);
+        }
     }
 }

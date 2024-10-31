@@ -16,6 +16,30 @@ public class Book {
 
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public int getNum_pages() {
+        return num_pages;
+    }
+
+    public int getPublisher_id() {
+        return publisher_id;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
     @Override
     public String toString() {
         return "Book{" +
