@@ -6,31 +6,29 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Optional;
 
-public class QueryParametrizzataBrutta {
+public class QueryParametrizzataBrutta { //le query sono tutte belle ma questa è brutta
     public static void main(String[] args) {
-
-//        String myTitle = "Il Signore Degli Anelli ' or title = 'Shining' --";
-        String myTitle = "Il Signore Degli Anelli; alter table books rename column title to titolo--";
-
-        try(Connection connection = DatabaseConnection.getConnection()) {
-            String query = "SELECT * FROM BOOKS WHERE TITLE = '"+ myTitle+"'";
+        //String mioTitolo = "Narnia' or title = 'Dune' --";
+        String mioTitolo = "Narnia'; alter table books rename column title to titolo--";
+        Optional<Connection> optCon = DatabaseConnection.getConnection();
+        if(optCon.isEmpty()){
+            return;
+        }
+        try(Connection connection = optCon.get()) {
+            String query = "select * from books where title = '" + mioTitolo + "'"; //È pericoloso aiuto
             Statement statement = connection.createStatement();
-            ResultSet rows = statement.executeQuery(query); //executeQuery lo usiamo per le letture
-            while (rows.next()){
-                int id = rows.getInt("id");
-                String title = rows.getString("title");
-                System.out.printf("Book ID: %d%nTitle: %s%n%n",id,title);
+            ResultSet righeLette = statement.executeQuery(query); //executeQuery lo usiamo per le letture, quindi proprio query nel senso stretto
+            while (righeLette.next()) {
+                int id = righeLette.getInt("id");
+                String title = righeLette.getString("title");
+                System.out.println(title.length());
+                System.out.println("Libro con id: " + id + " e titolo: " + title);
             }
         }
-        catch (SQLException e){
+        catch(SQLException e){
             e.printStackTrace();
         }
-
-
-
-
-
-
     }
 }
