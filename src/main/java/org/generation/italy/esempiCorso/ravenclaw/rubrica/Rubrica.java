@@ -4,39 +4,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Rubrica {
-
     List<Contatto> contatti = new ArrayList<>();
 
-    public void aggiugniContatto(String nome, String cognome, String telefono){
-        contatti.add(new Contatto(nome, cognome, telefono));
+    public void aggiungiContatto(String nome, String cognome, String numeroTelefono) {
+        contatti.add(new Contatto(nome, cognome, numeroTelefono));
     }
-
-    public void rimuoviContatto(String nome, String cognome){
-        for(Contatto c : contatti){
-            if (c.getNome().equals(nome) && c.getCognome().equals(cognome)){
-                contatti.remove(c);
+    public void rimuoviContatto(String nome, String cognome, String numeroTelefono) {
+        //   File      nome      Lista  quindi prende il file Contatto, gli do un nome contatto (o quello che voglio) e poi gli do la lista creata sopra
+        for (Contatto contatto : contatti) {
+            if (contatto.getNome().equals(nome) && contatto.getCognome().equals(cognome)) {
+                contatti.remove(contatto);
+            }
+        }
+    }
+    public String cercaContatto(String nome, String cognome, String numeroTelefono) {
+        String numT = "";
+        for (Contatto contatto : contatti) {
+            if (contatto.getNome().equals(nome) && contatto.getCognome().equals(cognome)) {
+                numT = contatto.getNumeroTelefono();
                 break;
             }
         }
+        return numT;
     }
-
-    public String cercaContatto(String nome, String cognome){
-        String nT = null;
-        for(Contatto c : contatti){
-            if (c.getNome().equals(nome) && c.getCognome().equals(cognome)){
-                 nT = c.getnTelefono();
-                 break;
-            }
-        }
-        return nT;
-    }
-
+    @Override
     public String toString(){
-        String res = "Rubrica\n";
-        res+="====================================\n";
-        for(Contatto c : contatti){
-            res+= c.toString()+"\n";
-        }
-        return res;
+        String res = "Rubrica";
+        res += "================";
+            for (Contatto contatto : contatti);
+            return res;
     }
 }
