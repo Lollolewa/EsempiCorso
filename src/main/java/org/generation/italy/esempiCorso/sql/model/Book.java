@@ -45,4 +45,28 @@ public class Book {
 //            ps.executeUpdate();
 //        }
 //    } NOOOOOOOOOO VIOLAZIONE DEL PRINCIPIO DI RESPONSABILITÀ SINGOLAAAA NOOOOOOOOOOO
+
+    public int getId() {
+        return id;
+    }
+
+    public int getNum_pages() {
+        return num_pages;
+    }
+
+    public int getPublisher_id() {
+        return publisher_id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
 }
