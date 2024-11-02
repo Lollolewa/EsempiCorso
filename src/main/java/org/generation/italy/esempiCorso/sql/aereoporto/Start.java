@@ -16,9 +16,18 @@ public class Start {
         }
         try (Connection connection = optCon.get()) {
             AirportDaoJbdc airportDao = new AirportDaoJbdc(connection);
+            Optional<Ticket> ot = airportDao.findTicket("ricominsemo");
+            if(ot.isPresent()){
+                System.out.println(ot.get());
+            }
+            else {
+                System.out.println("Ticket non trovato."); // Stampa il ticket trovato
+            }
 
         } catch (DaoException | SQLException e) {
             e.printStackTrace(); // Stampa l'eccezione se si verifica un errore
         }
+
+
     }
 }
