@@ -10,6 +10,7 @@ import java.util.Optional;
 
 public class QueryParametrizzataBella{
     public static void main(String[] args) {
+
         Optional<Connection> optCon = DatabaseConnection.getConnection();
         if(optCon.isEmpty()){
             return;
@@ -17,7 +18,7 @@ public class QueryParametrizzataBella{
         try(Connection connection = optCon.get()){
             String query = "select * from books where title = ?";
             PreparedStatement ps = connection.prepareStatement(query);
-            ps.setString(1, "Narnia"); //questo serve per cambiare il ? con Narnia
+            ps.setString(1, "Shining"); //questo serve per cambiare il ? con Narnia
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 int id = rs.getInt("id");
