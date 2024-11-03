@@ -2,7 +2,6 @@ package org.generation.italy.esempiCorso.sql.prime;
 
 import org.generation.italy.esempiCorso.sql.DatabaseConnection;
 
-import javax.xml.crypto.Data;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

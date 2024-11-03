@@ -1,15 +1,14 @@
-package org.generation.italy.esempiCorso.sql;
+package org.generation.italy.esempiCorso.ravenclaw.sql;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Optional;
 
-public class DatabaseConnection {
-
+public class DBconnection {
     //CONNECTION TO DATABASE
     public static Optional<Connection> getConnection(){
-        String jdbcUrl = "jdbc:postgresql://localhost:5432/library"; //la versione più bruttina
+        String jdbcUrl = "jdbc:postgresql://localhost:5432/airportmanagement"; //la versione più bruttina
         String username = "postgresMaster";
         String password = "goPostgresGo";
 
@@ -24,4 +23,3 @@ public class DatabaseConnection {
         }
     }
 }
-
