@@ -1,4 +1,4 @@
-package org.generation.italy.esempiCorso.ravenclaw.sql.model;
+package org.generation.italy.esempiCorso.ravenclaw.sql.airport.model;
 
 public class Ticket {
     private String code;

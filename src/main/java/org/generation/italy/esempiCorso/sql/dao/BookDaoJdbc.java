@@ -52,7 +52,7 @@ public class BookDaoJdbc implements BookDao{
 
     }
     @Override
-    public List<Book> getAllBook() throws DaoException{
+    public List<Book> getAllBooks() throws DaoException{
         String query = "select * from books";
         List<Book> listBook = new ArrayList<>();
         try(PreparedStatement ps = connection.prepareStatement(query)){

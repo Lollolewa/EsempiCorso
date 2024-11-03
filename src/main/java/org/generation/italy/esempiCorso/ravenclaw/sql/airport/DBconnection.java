@@ -1,4 +1,4 @@
-package org.generation.italy.esempiCorso.ravenclaw.sql;
+package org.generation.italy.esempiCorso.ravenclaw.sql.airport;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
