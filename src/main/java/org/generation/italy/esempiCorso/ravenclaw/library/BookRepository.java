@@ -4,6 +4,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class BookRepository {
 
@@ -51,6 +54,13 @@ public class BookRepository {
     //Dammi il numero totale di pagine che sono state scritte dall' autore con un certo ID
     //Dammi il numero totale di pagine che sono state scritte per una certa categoria di libri
     //Dammi il valore medio del prezzo dei libri scritti da un autore che parla la lingua francese
+
+
+    public Author findMostProlific() {
+        var z = bookList.stream().flatMap(b -> b.getAuthors().stream()).collect(Collectors.groupingBy(Function.identity(),Collectors.counting()));
+        return z.entrySet().stream().max(Comparator.comparingLong(Map.Entry::getValue)).map(Map.Entry::getKey).orElse(null);
+    }
+
 }
 
 
