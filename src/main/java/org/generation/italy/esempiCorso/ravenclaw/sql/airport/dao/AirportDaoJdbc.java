@@ -59,7 +59,8 @@ public class AirportDaoJdbc implements AirportDao{
     @Override
     public List<Ticket> getAllTicketsByPassengersId(int id) throws DaoException {
         List<Ticket> tickets = new ArrayList<>();
-        try(PreparedStatement ps = connection.prepareStatement(GETTICKET_SQL)){
+        try(PreparedStatement ps = connection.prepareStatement(GETALLTICKETS_SQL)){
+            ps.setInt(1,id);
          try(ResultSet rs = ps.executeQuery()){
              while(rs.next()){
                  Ticket ticket = new Ticket(
