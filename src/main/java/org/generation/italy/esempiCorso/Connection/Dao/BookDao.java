@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface BookDao {
     Optional <Book> getBookById(int id) throws DaoException;
     List<Book> getAllBooks() throws DaoException;
-    void insertBook(Book book) throws DaoException;
+    Book insertBook(Book book) throws DaoException;
     boolean deleteBook(int id) throws DaoException;
     boolean updateBook(Book b) throws DaoException;
 

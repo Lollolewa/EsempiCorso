@@ -38,6 +38,54 @@ public class Book {
                 ", publisherId=" + publisherId +
                 '}';
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public int getNum_page() {
+        return num_page;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setNum_page(int num_page) {
+        this.num_page = num_page;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
+    public void setPublisherId(int publisherId) {
+        this.publisherId = publisherId;
+    }
+
+    public int getPublisherId() {
+        return publisherId;
+    }
 //    public void insert() throws SQLException { NON SI FAAAAA , VIOLA IL PRINCIPIO DI RESPONSABILITA SINGOLAAAA
 //        try(Connection c = DataBaseConnection.getConnection();
 //            PreparedStatement ps = c.prepareStatement(INSERT_SQL)){
