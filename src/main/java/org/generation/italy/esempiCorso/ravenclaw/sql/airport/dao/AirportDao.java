@@ -1,7 +1,7 @@
-package org.generation.italy.esempiCorso.ravenclaw.sql.dao;
+package org.generation.italy.esempiCorso.ravenclaw.sql.airport.dao;
 
-import org.generation.italy.esempiCorso.ravenclaw.sql.model.Passenger;
-import org.generation.italy.esempiCorso.ravenclaw.sql.model.Ticket;
+import org.generation.italy.esempiCorso.ravenclaw.sql.airport.model.Passenger;
+import org.generation.italy.esempiCorso.ravenclaw.sql.airport.model.Ticket;
 
 import java.util.List;
 import java.util.Optional;

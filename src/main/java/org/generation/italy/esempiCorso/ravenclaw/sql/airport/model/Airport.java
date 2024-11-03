@@ -1,4 +1,4 @@
-package org.generation.italy.esempiCorso.ravenclaw.sql.model;
+package org.generation.italy.esempiCorso.ravenclaw.sql.airport.model;
 
 import java.util.List;
 
