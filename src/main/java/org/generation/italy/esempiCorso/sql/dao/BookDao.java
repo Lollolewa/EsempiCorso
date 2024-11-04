@@ -1,6 +1,7 @@
 package org.generation.italy.esempiCorso.sql.dao;
+
 import org.generation.italy.esempiCorso.sql.model.Book;
-import java.sql.SQLException;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -9,5 +10,5 @@ public interface BookDao {
     List<Book> getAllBook() throws DaoException;
     Book addBook(Book b) throws DaoException;
     boolean deleteById(int id) throws DaoException;
-    boolean updateBook(Book b) throws DaoException;
+    boolean update(Book b) throws DaoException;
 }
