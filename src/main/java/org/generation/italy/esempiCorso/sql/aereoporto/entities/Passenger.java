@@ -1,16 +1,17 @@
-package org.generation.italy.esempiCorso.sql.aereoporto;
+package org.generation.italy.esempiCorso.sql.aereoporto.entities;
 
 import java.util.List;
 
 public class Passenger {
-    private int id,nearestAirportID;
+    private int id;
     private String name;
     private List<Ticket> tickets;
+    private Airport nearestAirport;
 
-    public Passenger(int id, String name, int nearestAirportID, List<Ticket> tickets) {
+    public Passenger(int id, String name, Airport nearestAirport, List<Ticket> tickets) {
         this.id = id;
         this.name = name;
-        this.nearestAirportID = nearestAirportID;
+        this.nearestAirport = nearestAirport;
         this.tickets=tickets;
     }
 
@@ -30,12 +31,12 @@ public class Passenger {
         this.name = name;
     }
 
-    public int getNearestAirportID() {
-        return nearestAirportID;
+    public Airport getNearestAirport() {
+        return nearestAirport;
     }
 
-    public void setNearestAirportID(int nearestAirportID) {
-        this.nearestAirportID = nearestAirportID;
+    public void setNearestAirport(Airport nearestAirport) {
+        this.nearestAirport = nearestAirport;
     }
 
     public List<Ticket> getTickets() {
@@ -50,7 +51,7 @@ public class Passenger {
     public String toString() {
         return "Passenger{" +
                 "id=" + id +
-                ", nearestAirportID=" + nearestAirportID +
+                ", nearestAirport=" + nearestAirport.getName() +
                 ", name='" + name + '\'' +
                 ", tickets=" + tickets +
                 '}';

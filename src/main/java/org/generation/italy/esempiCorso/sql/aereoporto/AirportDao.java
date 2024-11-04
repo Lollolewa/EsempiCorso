@@ -7,9 +7,9 @@ import java.util.Optional;
 
 public interface AirportDao {
 
-    Optional<Ticket> findTicket(String code);
-    List<Ticket> findTicketByIdPassenger(int id);
-    Optional<Ticket> createTicket(Ticket t);
-    List<Passenger> showNumTicketsForPassenger();
-    void deletePassenger(int id) throws DaoException;
+
+
+
+    //noi per ogni entity di cui vogliamo gestire
+    //un repository per entity pd e pm
 }

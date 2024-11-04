@@ -1,4 +1,4 @@
-package org.generation.italy.esempiCorso.sql.aereoporto;
+package org.generation.italy.esempiCorso.sql.aereoporto.entities;
 
 import java.util.List;
 
@@ -42,7 +42,6 @@ public class Airport {
         return "Airport{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", passengers=" + passengers +
                 '}';
     }
 }

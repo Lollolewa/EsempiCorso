@@ -1,14 +1,14 @@
-package org.generation.italy.esempiCorso.sql.aereoporto;
+package org.generation.italy.esempiCorso.sql.aereoporto.entities;
 
 public class Ticket {
     private int id;
     private String code;
-    private int passeggero_id;
+    private Passenger passenger;
 
-    public Ticket(int id, String code, int passeggero_id) {
+    public Ticket(int id, String code, Passenger passenger) {
         this.id = id;
         this.code = code;
-        this.passeggero_id=passeggero_id;
+        this.passenger=passenger;
     }
 
     public int getId() {
@@ -27,12 +27,12 @@ public class Ticket {
         this.code = code;
     }
 
-    public int getPasseggero_id() {
-        return passeggero_id;
+    public Passenger getPassenger() {
+        return passenger;
     }
 
-    public void setPasseggero_id(int passeggero_id) {
-        this.passeggero_id = passeggero_id;
+    public void setPassenger(Passenger passenger) {
+        this.passenger = passenger;
     }
 
     @Override
