@@ -7,7 +7,7 @@ public class Main {
         Casa c3 = new Villa(170,5,false);
         Casa c4 = new Villa(250,10,true);
 
-        Archivio archivio = new Archivio();
+        //Archivio archivio = new Archivio();
 
 
 
