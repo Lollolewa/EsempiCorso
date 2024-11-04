@@ -8,15 +8,15 @@ import java.sql.SQLException;
 public class DatabaseConnection {
     public static Connection getConnection() {
         String jdbcUrl = "jdbc:postgresql://localhost:5432/library"; // versione più rudimentale
-        // la stringa dice mi collego tramite jdbc:databaseNome:portadatabase/nomedatab
-        // mancano stringhe che dico username e pass
+        // la stringa dice mi collego tramite jdbc:databaseNome://localhost:portaDB/nomeDB
+        // Aggiungo che stringhe che danno l'username e la pasword
         String username = "postgresMaster";
         String password = "goPostgresGo";
 
-        Connection connection = null; //tubo
+        Connection connection = null; //tubo che collega il codice al database, dentro scorrono query e righe delle tabelle
 
         try {
-            connection = DriverManager.getConnection(jdbcUrl, username, password); // ha sql exception
+            connection = DriverManager.getConnection(jdbcUrl, username, password); // lancia eccezione se la connessione non riesce
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Non mi posso collegare al db");

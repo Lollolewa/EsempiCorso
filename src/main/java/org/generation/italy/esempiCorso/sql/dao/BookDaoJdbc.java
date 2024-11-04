@@ -9,30 +9,32 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-// tutti gli ordini sono straniiii
 public class BookDaoJdbc implements BookDao{
     Connection connection;
-    //rivedi
-    private static final String UPDATE_SQL = """
-            update books set
-            title = ?, num_pages = ?, weight = ?, category = ?, publisher_id = ? 
+    private static final String SELECT_ID_SQL = """
+            select * from books
             where id = ?;
             """;
-
-    private static final String INSERT_SQL = """
-            insert into books(id, title, num_pages, category, weight)
-            values(?, ?, ?, ?, ?);
-            """;
-
     private static final String SELECT_SQL = """
             select * from books;
             """;
-
+//    private final static String INSERT_SQL = """
+//            insert into books(id, title, num_pages, weight, category, publisher_id)
+//            values(?, ?, ?, ?, ?, ?);
+//            """;
+    private final static String INSERT_SQL = """
+            insert into books(title, num_pages, weight, category, publisher_id)
+            values (?, ?, ?, ?, ?);
+            """;
     private static final String DELETE_SQL = """
             delete from books
             where id = ?;
             """;
-
+    private final static String UPDATE_SQL = """
+            UPDATE books
+            SET title = ?, num_pages = ?, weight = ?, category = ?, publisher_id = ?
+            WHERE id = ?;
+            """;
 
     public BookDaoJdbc(Connection connection) {
         this.connection = connection;
@@ -40,11 +42,10 @@ public class BookDaoJdbc implements BookDao{
 
     @Override
     public Optional<Book> getBookById(int id) throws DaoException{
-        String query = "select * from books where id = ?";
-        try(PreparedStatement ps = connection.prepareStatement(query)){
-            ps.setInt(1, id); //sostituisce il ?
-            try(ResultSet rs = ps.executeQuery()){ //esegue la query che contiene il ps e invia al database
-                if(rs.next()) {
+        try (PreparedStatement ps = connection.prepareStatement(SELECT_ID_SQL)) {
+            ps.setInt(1, id); // sostituisce il ?
+            try (ResultSet rs = ps.executeQuery()){ //esegue la query che contiene il ps e invia al database; rs può essere vuoto -> try (una sola riga -> try with res)
+                if (rs.next()) {
                     Book book = new Book(
                             rs.getInt("id"),
                             rs.getInt("num_pages"),
@@ -57,7 +58,7 @@ public class BookDaoJdbc implements BookDao{
                 }
                 return Optional.empty();
             }
-        } catch(SQLException e){
+        } catch (SQLException e){
             throw new DaoException(e.getMessage(), e);
         }
     }
@@ -66,16 +67,18 @@ public class BookDaoJdbc implements BookDao{
     public List<Book> getAllBook() throws DaoException{
         List<Book> books = new ArrayList<>();
         try (PreparedStatement ps = connection.prepareStatement(SELECT_SQL);
-             ResultSet rs = ps.executeQuery()) {
+             ResultSet rs = ps.executeQuery()) { // Risorse utilizzate per brevi porzioni di logica possono essere chiuse separatamente (come sopra)
+            // Risorse utilizzate fino alla fine del metodo (ad es. cicli su molti risultati):
+            // è possibile includerle in un unico blocco try-with-resources esterno (questo caso)
             while (rs.next()) {
-                int id = rs.getInt("id");
-                String title = rs.getString("title");
-                int num_pages = rs.getInt("num_pages");
-                double weight = rs.getDouble("weight");
-                String category = rs.getString("category");
-                int publisher_id = rs.getInt("publisher_id");
-
-                Book b = new Book(id, num_pages, publisher_id, title, category, weight);
+                Book b = new Book(
+                        rs.getInt("id"),
+                        rs.getInt("num_pages"),
+                        rs.getInt("publisher_id"),
+                        rs.getString("title"),
+                        rs.getString("category"),
+                        rs.getDouble("weight")
+                );
                 books.add(b);
             }
             return books;
@@ -84,16 +87,41 @@ public class BookDaoJdbc implements BookDao{
         }
     }
 
+//    @Override
+//    public Book addBook(Book b) throws DaoException {
+//        try (PreparedStatement ps = connection.prepareStatement(INSERT_SQL)) {
+//            ps.setInt(1, b.getId());
+//            ps.setString(2, b.getTitle());
+//            ps.setInt(3, b.getNum_pages());
+//            ps.setString(4, b.getCategory());
+//            ps.setDouble(5, b.getWeight());
+//            ps.executeUpdate();
+//            return b;
+//        } catch (SQLException e) {
+//            throw new DaoException(e.getMessage(), e);
+//        }
+//    }
+
     @Override
     public Book addBook(Book b) throws DaoException {
         try (PreparedStatement ps = connection.prepareStatement(INSERT_SQL)) {
-            ps.setInt(1, b.getId()); // se non fosser stato autogenerato, dovevo metterlo in book e ritornare l'id
-            ps.setString(2, b.getTitle());
-            ps.setInt(3, b.getNum_pages());
+            ps.setString(1, b.getTitle());
+            ps.setInt(2, b.getNum_pages());
+            ps.setDouble(3, b.getWeight());
             ps.setString(4, b.getCategory());
-            ps.setDouble(5, b.getWeight());
-            // id di books non è autogenerato
-            ps.executeUpdate();
+            ps.setInt(5, b.getPublisher_id());
+            int n = ps.executeUpdate();
+            if (n == 0) {
+                throw new DaoException("Creating book failed");
+            }
+            try (ResultSet generatedKeys = ps.getGeneratedKeys()) { // se ps ha generato una chiave questa è restituita
+                if (generatedKeys.next()) {
+                    int id = generatedKeys.getInt(1); // prima key
+                    b.setId(id);
+                } else {
+                    throw new DaoException("no ID obtained.");
+                }
+            }
             return b;
         } catch (SQLException e) {
             throw new DaoException(e.getMessage(), e);
@@ -104,8 +132,7 @@ public class BookDaoJdbc implements BookDao{
     public boolean deleteById(int id) throws DaoException {
         try (PreparedStatement ps = connection.prepareStatement(DELETE_SQL)) {
             ps.setInt(1, id);
-            int n = ps.executeUpdate();
-            return n == 1;
+            return ps.executeUpdate() == 1;
         } catch (SQLException e) {
             throw new DaoException(e.getMessage(), e);
         }

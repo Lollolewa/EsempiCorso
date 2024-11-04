@@ -8,18 +8,13 @@ public class Book {
     private String category;
     private int publisher_id;
 
-    private final static String INSERT_SQL = """
-           insert into books(id, title, category, weight, publisher_id) // def publ_id = 1
-           values(?, ?, ?, ?, ?);
-           """;
-
-    public Book(int id, int publisher_id, String category, double weight, int num_pages, String title) {
+    public Book(int id, String title, int num_pages, double weight, String category, int publisher_id) {
         this.id = id;
-        this.publisher_id = publisher_id;
-        this.category = category;
-        this.weight = weight;
-        this.num_pages = num_pages;
         this.title = title;
+        this.num_pages = num_pages;
+        this.weight = weight;
+        this.category = category;
+        this.publisher_id = publisher_id;
     }
 
     @Override
@@ -33,6 +28,14 @@ public class Book {
                 ", publisher_id=" + publisher_id +
                 '}';
     }
+}
+
+
+//private final static String INSERT_SQL = """
+//            insert into books(id, title, num_pages, weight, category, publisher_id)
+//            values(?, ?, ?, ?, ?, ?);
+//            """;
+
 
 
 //    // VIOLAZIONE PRINCICPIO RESP SINGOLAA: sembra comodo metterlo qui ma diventa pasticcio
@@ -49,4 +52,4 @@ public class Book {
 //        }
 //    }
 
-}
+

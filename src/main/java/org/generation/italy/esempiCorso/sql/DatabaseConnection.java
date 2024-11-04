@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 public class DatabaseConnection{
-    //finalmente JJAAAAVAA🚀
     public static Optional<Connection> getConnection(){
         String jdbcUrl = "jdbc:postgresql://localhost:5432/library"; //la versione più bruttina
         String username = "postgresMaster";

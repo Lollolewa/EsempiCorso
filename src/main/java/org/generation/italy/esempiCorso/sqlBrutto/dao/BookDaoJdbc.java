@@ -6,11 +6,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
-public class BookDaoJdbc implements BookDao{
-    // oggetto di tipo connessione
-    Connection connection;
+public class BookDaoJdbc implements BookDao {
+    Connection connection; // oggetto di tipo connection
 
     public BookDaoJdbc(Connection connection) {
         this.connection = connection; // da passare al main
@@ -28,22 +26,15 @@ public class BookDaoJdbc implements BookDao{
         // scompongo res set in books
         ResultSet rs = ps.executeQuery(); // esegue query e restituisce righe lette e ci creo oggetto
         if (rs.next()) { // anziché while
-            book = new Book(
+            book = new Book( // copio il book a cui corrisponde l'id cercato
                     rs.getInt("id"),
-                    rs.getInt("publisher_id"),
-                    rs.getString("category"),
-                    rs.getDouble("weight"),
+                    rs.getString("title"),
                     rs.getInt("num_pages"),
-                    rs.getString("title")
+                    rs.getDouble("weight"),
+                    rs.getString("category"),
+                    rs.getInt("publisher_id")
             );
         }
         return book;
     }
-
-    @Override
-    public List<Book> getAllBook() {
-        return List.of();
-    }
-
-
 }

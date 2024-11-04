@@ -9,7 +9,7 @@ import java.sql.SQLException;
 public class Start {
     public static void main(String[] args) {
         try (Connection connection = DatabaseConnection.getConnection()){
-            BookDaoJdbc bookdao = new BookDaoJdbc(connection); // vuole conncetion
+            BookDaoJdbc bookdao = new BookDaoJdbc(connection); // vuole connection
             Book b = bookdao.getBookById(1); // throws exception
             System.out.println(b);
         } catch (SQLException e) {

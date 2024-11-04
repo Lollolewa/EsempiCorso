@@ -14,7 +14,7 @@ public class QueryParametrizzataBrutta {
     public static void main(String[] args) {
         String mioTitolo = "narnia";
         // mette due libri
-        //String mioTitolo = "narnia' or title = 'dune' --commenti";
+        //String mioTitolo = "narnia' or title = 'dune' --commenta quello che c'è dopo(';)";
         // l'utente rompe titolo perché lo rinomina: attacco tramite query!!!!
         //String mioTitolo = "narnia'; alter table books rename column title to titolo--";
         try (Connection connection = DatabaseConnection.getConnection()) {
@@ -26,8 +26,8 @@ public class QueryParametrizzataBrutta {
                 String title = righeLette.getString("title");
                 System.out.println("libro con id: " + id + " dal titolo " + title);
             }
-        } catch(SQLException e){
-                e.printStackTrace();
+        } catch(SQLException e) {
+            e.printStackTrace();
         }
     }
 }
