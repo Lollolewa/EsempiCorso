@@ -1,5 +1,4 @@
 package org.generation.italy.esempiCorso.sql.aereoporto;
-
 import org.generation.italy.esempiCorso.sql.DatabaseConnection;
 import org.generation.italy.esempiCorso.sql.aereoporto.entities.Ticket;
 import org.generation.italy.esempiCorso.sql.dao.DaoException;
@@ -17,7 +16,7 @@ public class Start {
         }
         try (Connection connection = optCon.get()) {
             AirportDaoJbdc airportDao = new AirportDaoJbdc(connection);
-            Optional<Ticket> ot = airportDao.findTicket("ricominsemo");
+            Optional<Ticket> ot = airportDao.findTickets("ricominsemo");
             if(ot.isPresent()){
                 System.out.println(ot.get());
             }

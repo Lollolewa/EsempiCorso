@@ -1,6 +1,6 @@
 package org.generation.italy.esempiCorso.inheritance.hufflePuff.eserciziCollection;
 
-public abstract class Casa {
+public class Casa {
     protected double superficie;
     protected int numeroStanze;
 
