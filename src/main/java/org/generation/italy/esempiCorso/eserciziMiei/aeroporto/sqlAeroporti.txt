@@ -1,0 +1,25 @@
+create table airports(
+	id bigint generated always as identity primary key,
+	name varchar(24) not null
+);
+create table passengers(
+	id bigint generated always as identity primary key,
+	name varchar(24) not null,
+	surname varchar(24) not null,
+	airport_id bigint,
+	foreign key(airport_id) references airports(id)
+);
+create table tickets(
+	id bigint generated always as identity primary key,
+	code varchar(48) not null,
+	passenger_id bigint,
+	foreign key(passenger_id) references passengers(id)
+);
+insert into airports
+(name)
+values
+('Fiumicino');
+insert into passengers
+(name, surname, airport_id)
+values
+('Samuele', 'Celletti', 1);

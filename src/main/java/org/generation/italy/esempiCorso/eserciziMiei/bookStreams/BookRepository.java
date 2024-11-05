@@ -1,6 +1,7 @@
 package org.generation.italy.esempiCorso.eserciziMiei.bookStreams;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
@@ -51,4 +52,9 @@ public class BookRepository {
                 .sorted(Comparator.comparing(Author :: getSurname).thenComparing(Author::getName))
                 .toList();
     }
+
+    //Dammi il numero totale di pagine che sono state scritte dall' autore con un certo ID
+    //Dammi il numero totale di pagine che sono state scritte per una certa categoria di libri
+    //Dammi il valore medio del prezzo dei libri scritti da un autore che parla la lingua francese
+    // Dammi autore che ha scritto più libri e se ce ne dovesse essere più di uno, ne basta uno solo
 }
