@@ -1,4 +1,4 @@
-package org.generation.italy.esempiCorso.airportManagement.model;
+package org.generation.italy.esempiCorso.airportManagement.entity;
 
 import java.util.ArrayList;
 import java.util.List;

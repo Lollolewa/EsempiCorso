@@ -1,7 +1,7 @@
 package org.generation.italy.esempiCorso.airportManagement.dao;
 
 import org.generation.italy.esempiCorso.airportManagement.DatabaseConnection;
-import org.generation.italy.esempiCorso.airportManagement.model.Passenger;
+import org.generation.italy.esempiCorso.airportManagement.entity.Passenger;
 
 import java.sql.Connection;
 import java.util.List;

@@ -1,11 +1,8 @@
 package org.generation.italy.esempiCorso.sql.aereoporto;
 
-import org.generation.italy.esempiCorso.sql.aereoporto.daos.DaoException;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Optional;
 
 public class DatabaseConnection {
 
@@ -16,7 +13,5 @@ public class DatabaseConnection {
     public static Connection getConnection() throws SQLException{
         Connection connection = DriverManager.getConnection(jdbcUrl,username,password);
         return connection;
-
     }
-
 }

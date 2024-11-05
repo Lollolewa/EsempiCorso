@@ -52,7 +52,7 @@ public class TicketDaoJbdc implements TicketDao{
                 return Optional.empty();
             }
         } catch (SQLException e) {
-            throw new org.generation.italy.esempiCorso.sql.dao.DaoException(e.getMessage(), e);
+            throw new DaoException(e.getMessage(), e);
         }
     }
 
@@ -64,16 +64,20 @@ public class TicketDaoJbdc implements TicketDao{
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     Ticket t = new Ticket(
-                            rs.getInt("id"),
-                            rs.getString("code"),
-                            rs.getInt("passeggero_id")
+                            rs.getInt("ticket_id"),
+                            rs.getString("ticket_code"),
+                            new Passenger(rs.getInt("passenger_id"),rs.getString("passenger_name"),
+                                    new Airport(rs.getInt("airport_id"),
+                                            rs.getString("airport_name"),
+                                            new ArrayList<Passenger>()),
+                                    new ArrayList<Ticket>())
                     );
                     tickets.add(t);
                 }
                 return tickets;
             }
         } catch (SQLException e) {
-            throw new org.generation.italy.esempiCorso.sql.dao.DaoException(e.getMessage(), e);
+            throw new DaoException(e.getMessage(), e);
         }
     }
 
@@ -88,16 +92,15 @@ public class TicketDaoJbdc implements TicketDao{
 
             ps.executeUpdate();
 
-            try(ResultSet genKeys = ps.getGeneratedKeys()){
-                if(genKeys.next()){
+            try (ResultSet genKeys = ps.getGeneratedKeys()){
+                if (genKeys.next()){
                     int id = genKeys.getInt(1);
                     t.setId(id);
-;               }
+                }
             }
             return t;
-
         } catch (SQLException e) {
-            throw new org.generation.italy.esempiCorso.sql.dao.DaoException(e.getMessage(), e);
+            throw new DaoException(e.getMessage(), e);
         }
     }
 }

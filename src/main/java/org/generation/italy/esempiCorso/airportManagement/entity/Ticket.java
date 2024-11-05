@@ -1,4 +1,4 @@
-package org.generation.italy.esempiCorso.airportManagement.model;
+package org.generation.italy.esempiCorso.airportManagement.entity;
 
 public class Ticket {
     private int tickid;
@@ -28,7 +28,6 @@ public class Ticket {
         return "Ticket{" +
                 "tickid=" + tickid +
                 ", code=" + code +
-                ", psgid=" + psgid +
                 '}';
     }
 }

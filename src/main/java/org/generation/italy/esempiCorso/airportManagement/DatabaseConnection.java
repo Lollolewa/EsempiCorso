@@ -1,11 +1,8 @@
 package org.generation.italy.esempiCorso.airportManagement;
 
-import org.generation.italy.esempiCorso.airportManagement.dao.DaoException;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Optional;
 
 public class DatabaseConnection{
     final static String jdbcUrl = "jdbc:postgresql://localhost:5432/Airport";

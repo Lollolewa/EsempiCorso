@@ -1,6 +1,6 @@
 package org.generation.italy.esempiCorso.airportManagement.dao;
 
-import org.generation.italy.esempiCorso.airportManagement.model.Ticket;
+import org.generation.italy.esempiCorso.airportManagement.entity.Ticket;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
