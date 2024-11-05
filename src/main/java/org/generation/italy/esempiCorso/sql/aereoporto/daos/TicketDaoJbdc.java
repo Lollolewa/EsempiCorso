@@ -1,5 +1,6 @@
 package org.generation.italy.esempiCorso.sql.aereoporto.daos;
 
+import org.generation.italy.esempiCorso.sql.aereoporto.daos.templates.JdbcTemplate;
 import org.generation.italy.esempiCorso.sql.aereoporto.entities.Airport;
 import org.generation.italy.esempiCorso.sql.aereoporto.entities.Passenger;
 import org.generation.italy.esempiCorso.sql.aereoporto.entities.Ticket;
@@ -14,18 +15,36 @@ import java.util.Optional;
 
 public class TicketDaoJbdc implements TicketDao{
 
-    private static final String CREATE_NEW_TICKET = "INSERT INTO tickets (codice, passeggero_id) values(?,?)";
-    private static final String FIND_TICKET_BY_CODE = """
+    public static final String CREATE_NEW_TICKET = "INSERT INTO ticket (codice, passeggero_id) values(?,?)";
+    public static final String FIND_TICKET_BY_CODE = """
                                                     SELECT t.id AS ticket_id,t.codice AS ticket_code, p.id AS passenger_id,
-                                                           a.id AS airport_id, a.nome AS airport_name
+                                                           p.nome as passenger_name, a.id AS airport_id, a.nome AS airport_name
                                                     FROM ticket AS t
                                                     JOIN passeggero AS p
                                                     ON t.passeggero_id=p.id
                                                     JOIN aeroporto AS a
-                                                    ON a.id = p.aereoporto_id
-                                                    WHERE code=?
+                                                    ON a.id = p.aeroporto_id
+                                                    WHERE codice = ?;
                                                     """;
-    private static final String FIND_TICKETS_FOR_PASSENGER = "SELECT id, FROM ticket WHERE passeggero_id = ?";
+    public static final String FIND_TICKETS_FOR_PASSENGER = """
+                                                    SELECT t.id as ticket_id, t.codice as ticket_code, p.id as passenger_id,
+                                                        p.nome as passenger_name, a.id as airport_id, a.nome as airport_name
+                                                    FROM ticket as t
+                                                    join passeggero as p
+                                                    on t.passeggero_id = p.id
+                                                    join aeroporto as a
+                                                    on a.id = p.aeroporto_id
+                                                    where t.passeggero_id = ?
+                                                    """;
+    public static final String FIND_TICKET_BY_ID = """
+            SELECT t.id as ticket_id, t.codice as ticket_code, p.id as passenger_id, p.nome as passenger_name,
+            a.id as airport_id, a.nome as airport_name
+            FROM ticket as t JOIN passeggero as p
+            ON t.passeggero_id = p.id
+            JOIN aeroporto as a
+            ON a.id = p.aeroporto_id
+            WHERE t.id = ?;
+            """;
     private Connection connection;
 
     public TicketDaoJbdc(Connection connection) {
@@ -37,23 +56,28 @@ public class TicketDaoJbdc implements TicketDao{
         try (PreparedStatement ps = connection.prepareStatement(FIND_TICKET_BY_CODE)) {
             ps.setString(1, code);
             try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    Ticket t = new Ticket(
-                            rs.getInt("ticket_id"),
-                            rs.getString("ticket_code"),
-                            new Passenger(rs.getInt("passenger_id"),rs.getString("passenger_name"),
-                                    new Airport(rs.getInt("airport_id"),
-                                                rs.getString("airport_name"),
-                                                new ArrayList<Passenger>()),
-                                    new ArrayList<Ticket>())
-                    );
-                    return Optional.of(t);
+                if(rs.next()){
+                    return Optional.of(fromResultSet(rs));
+                }else{
+                    return Optional.empty();
                 }
-                return Optional.empty();
             }
         } catch (SQLException e) {
-            throw new DaoException(e.getMessage(), e);
+            throw new org.generation.italy.esempiCorso.sql.dao.DaoException(e.getMessage(), e);
         }
+    }
+
+    static Ticket fromResultSet (ResultSet rs) throws SQLException{
+            Ticket t = new Ticket(
+                    rs.getInt("ticket_id"),
+                    rs.getString("ticket_code"),
+                    new Passenger(rs.getInt("passenger_id"), rs.getString("passenger_name"),
+                            new Airport(rs.getInt("airport_id"),
+                                rs.getString("airport_name"),
+                                new ArrayList<Passenger>()),
+                            new ArrayList<Ticket>())
+                    );
+            return t;
     }
 
     @Override
@@ -63,21 +87,13 @@ public class TicketDaoJbdc implements TicketDao{
             ps.setInt(1, id);
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
-                    Ticket t = new Ticket(
-                            rs.getInt("ticket_id"),
-                            rs.getString("ticket_code"),
-                            new Passenger(rs.getInt("passenger_id"),rs.getString("passenger_name"),
-                                    new Airport(rs.getInt("airport_id"),
-                                            rs.getString("airport_name"),
-                                            new ArrayList<Passenger>()),
-                                    new ArrayList<Ticket>())
-                    );
+                    Ticket t = fromResultSet(rs);
                     tickets.add(t);
                 }
                 return tickets;
             }
         } catch (SQLException e) {
-            throw new DaoException(e.getMessage(), e);
+            throw new org.generation.italy.esempiCorso.sql.dao.DaoException(e.getMessage(), e);
         }
     }
 
@@ -92,15 +108,37 @@ public class TicketDaoJbdc implements TicketDao{
 
             ps.executeUpdate();
 
-            try (ResultSet genKeys = ps.getGeneratedKeys()){
-                if (genKeys.next()){
+            try(ResultSet genKeys = ps.getGeneratedKeys()){
+                if(genKeys.next()){
                     int id = genKeys.getInt(1);
                     t.setId(id);
-                }
+;               }
             }
             return t;
+
+        } catch (SQLException e) {
+            throw new org.generation.italy.esempiCorso.sql.dao.DaoException(e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public Optional<Ticket> findById(int id) throws DaoException {
+        JdbcTemplate template = new JdbcTemplate(connection);
+        try {
+            return template.findById(FIND_TICKET_BY_ID, TicketDaoJbdc::fromResultSet, id);
         } catch (SQLException e) {
             throw new DaoException(e.getMessage(), e);
         }
+
     }
+//    //somma due numeri se glie li passo negativi diventano positivi e li somma lo stesso
+//    public int sum (int x, int y){
+////        if (x < 0){
+////            x = -x;
+////        }
+//        if(y < 0){
+//            y = -y;
+//        }
+//        return x + y;
+//    }
 }

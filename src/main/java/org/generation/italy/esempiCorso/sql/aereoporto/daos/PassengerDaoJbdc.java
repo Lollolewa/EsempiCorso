@@ -1,5 +1,6 @@
 package org.generation.italy.esempiCorso.sql.aereoporto.daos;
 
+import org.generation.italy.esempiCorso.sql.aereoporto.daos.templates.JdbcTemplate;
 import org.generation.italy.esempiCorso.sql.aereoporto.entities.Airport;
 import org.generation.italy.esempiCorso.sql.aereoporto.entities.Passenger;
 import org.generation.italy.esempiCorso.sql.aereoporto.entities.Ticket;
@@ -12,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class PassengerDaoJbdc implements PassengerDao{
 
@@ -34,6 +36,13 @@ public class PassengerDaoJbdc implements PassengerDao{
             ORDER BY num_tickets DESC
             """;
     private static final String DELETE_PASSENGER = "DELETE FROM passeggero WHERE ID =?";
+    public static final String FIND_BY_ID = """
+            SELECT p.id as passenger_id, p.nome as passenger_name, a.id as airport_id
+            FROM passeggero as p
+            JOIN aeroporto as a
+            ON a.id = p.aeroporto_id
+            WHERE p.id = ?
+            """;
 
 
     @Override
@@ -67,7 +76,9 @@ public class PassengerDaoJbdc implements PassengerDao{
             throw new DaoException(e.getMessage(),e);
         }
     }
-
+    static Passenger fromResultSet (ResultSet rs) {
+        return null;
+    }
     @Override
     public boolean deletePassengerById(int id) throws DaoException {
         try (PreparedStatement ps = connection.prepareStatement(DELETE_PASSENGER)) {
@@ -76,6 +87,16 @@ public class PassengerDaoJbdc implements PassengerDao{
             return n==1;
         } catch (SQLException e) {
             throw new DaoException(e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public Optional<Passenger> findById(int id) throws DaoException {
+        JdbcTemplate template = new JdbcTemplate(connection);
+        try {
+            return template.findById(FIND_BY_ID, PassengerDaoJbdc::fromResultSet, id);
+        } catch (SQLException e) {
+            throw new DaoException(e.getMessage(),e);
         }
     }
 }
