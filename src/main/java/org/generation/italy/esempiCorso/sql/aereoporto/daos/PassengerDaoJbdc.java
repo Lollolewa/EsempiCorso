@@ -37,7 +37,7 @@ public class PassengerDaoJbdc implements PassengerDao{
             """;
     private static final String DELETE_PASSENGER = "DELETE FROM passeggero WHERE ID =?";
     public static final String FIND_BY_ID = """
-            SELECT p.id as passenger_id, p.nome as passenger_name, a.id as airport_id
+            SELECT p.id as passenger_id, p.nome as passenger_name, a.id as airport_id, a.nome as airport_name
             FROM passeggero as p
             JOIN aeroporto as a
             ON a.id = p.aeroporto_id
@@ -76,9 +76,16 @@ public class PassengerDaoJbdc implements PassengerDao{
             throw new DaoException(e.getMessage(),e);
         }
     }
-    static Passenger fromResultSet (ResultSet rs) {
-        return null;
+
+    static Passenger fromResultSet (ResultSet rs) throws SQLException {
+        //SELECT p.id as passenger_id, p.nome as passenger_name, a.id as airport_id, a.nome as airport_name
+        Passenger p = new Passenger(rs.getInt("passenger_id"), rs.getString("passenger_name"),
+                new Airport(rs.getInt("airport_id"), rs.getString("airport_name")));
+        return p;
     }
+
+
+
     @Override
     public boolean deletePassengerById(int id) throws DaoException {
         try (PreparedStatement ps = connection.prepareStatement(DELETE_PASSENGER)) {
