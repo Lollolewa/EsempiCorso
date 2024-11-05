@@ -85,6 +85,7 @@ public class BookDaoJdbc implements BookDao{
             ps.setString(4,b.getCategory());
             ps.setDouble(5, b.getWeight());
             ps.setInt(6, b.getId());
+            ps.executeUpdate();
             return b;
         }catch (SQLException e){
             throw new DaoException(e.getMessage(), e);
