@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class DatabaseConnectionFactoryForTest {
 
-    final static String jdbcUrl = "jdbc:postgresql://localhost:5432/airport";
+    final static String jdbcUrl = "jdbc:postgresql://localhost:5432/aeroporto";
     final static String username = "postgresMaster";
     final static String password = "goPostgresGo";
 
