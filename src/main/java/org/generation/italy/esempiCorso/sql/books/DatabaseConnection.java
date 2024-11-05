@@ -1,4 +1,4 @@
-package org.generation.italy.esempiCorso.sql;
+package org.generation.italy.esempiCorso.sql.books;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -1,6 +1,6 @@
-package org.generation.italy.esempiCorso.sql.prime;
+package org.generation.italy.esempiCorso.sql.books.prime;
 
-import org.generation.italy.esempiCorso.sql.DatabaseConnection;
+import org.generation.italy.esempiCorso.sql.books.DatabaseConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

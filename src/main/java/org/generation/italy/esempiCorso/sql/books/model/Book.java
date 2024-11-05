@@ -1,10 +1,4 @@
-package org.generation.italy.esempiCorso.sql.model;
-
-import org.generation.italy.esempiCorso.sql.DatabaseConnection;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+package org.generation.italy.esempiCorso.sql.books.model;
 
 public class Book {
     private int id; // Identificatore del libro

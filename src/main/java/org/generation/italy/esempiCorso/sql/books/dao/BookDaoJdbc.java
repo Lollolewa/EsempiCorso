@@ -1,6 +1,6 @@
-package org.generation.italy.esempiCorso.sql.dao;
+package org.generation.italy.esempiCorso.sql.books.dao;
 
-import org.generation.italy.esempiCorso.sql.model.Book;
+import org.generation.italy.esempiCorso.sql.books.model.Book;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
