@@ -25,7 +25,16 @@ public class TicketDaoJbdc implements TicketDao{
                                                     ON a.id = p.aereoporto_id
                                                     WHERE code=?
                                                     """;
-    private static final String FIND_TICKETS_FOR_PASSENGER = "SELECT id, FROM ticket WHERE passeggero_id = ?";
+    private static final String FIND_TICKETS_FOR_PASSENGER = """
+                                                    SELECT t.id as ticket_id, t.codice as ticket_code, p.id as passenger_id,
+                                                    a.id as airport_id, a.nome as airport_name
+                                                    FROM ticket as t
+                                                    join passeggero as p
+                                                    on t.passeggero_id = p.id
+                                                    join aeroporto as a
+                                                    on a.id = p.aereporto_id
+                                                    where t.passeggero_id = ?
+                                                    """;
     private Connection connection;
 
     public TicketDaoJbdc(Connection connection) {
@@ -37,23 +46,28 @@ public class TicketDaoJbdc implements TicketDao{
         try (PreparedStatement ps = connection.prepareStatement(FIND_TICKET_BY_CODE)) {
             ps.setString(1, code);
             try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    Ticket t = new Ticket(
-                            rs.getInt("ticket_id"),
-                            rs.getString("ticket_code"),
-                            new Passenger(rs.getInt("passenger_id"),rs.getString("passenger_name"),
-                                    new Airport(rs.getInt("airport_id"),
-                                                rs.getString("airport_name"),
-                                                new ArrayList<Passenger>()),
-                                    new ArrayList<Ticket>())
-                    );
-                    return Optional.of(t);
+                if(rs.next()){
+                    return Optional.of(fromResultSet(rs));
+                }else{
+                    return Optional.empty();
                 }
-                return Optional.empty();
             }
         } catch (SQLException e) {
             throw new org.generation.italy.esempiCorso.sql.dao.DaoException(e.getMessage(), e);
         }
+    }
+
+    private Ticket fromResultSet (ResultSet rs) throws SQLException{
+            Ticket t = new Ticket(
+                    rs.getInt("ticket_id"),
+                    rs.getString("ticket_code"),
+                    new Passenger(rs.getInt("passenger_id"), rs.getString("passenger_name"),
+                            new Airport(rs.getInt("airport_id"),
+                                rs.getString("airport_name"),
+                                new ArrayList<Passenger>()),
+                            new ArrayList<Ticket>())
+                    );
+            return t;
     }
 
     @Override
@@ -63,11 +77,7 @@ public class TicketDaoJbdc implements TicketDao{
             ps.setInt(1, id);
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
-                    Ticket t = new Ticket(
-                            rs.getInt("id"),
-                            rs.getString("code"),
-                            rs.getInt("passeggero_id")
-                    );
+                    Ticket t = fromResultSet(rs);
                     tickets.add(t);
                 }
                 return tickets;
@@ -100,4 +110,14 @@ public class TicketDaoJbdc implements TicketDao{
             throw new org.generation.italy.esempiCorso.sql.dao.DaoException(e.getMessage(), e);
         }
     }
+//    //somma due numeri se glie li passo negativi diventano positivi e li somma lo stesso
+//    public int sum (int x, int y){
+////        if (x < 0){
+////            x = -x;
+////        }
+//        if(y < 0){
+//            y = -y;
+//        }
+//        return x + y;
+//    }
 }
