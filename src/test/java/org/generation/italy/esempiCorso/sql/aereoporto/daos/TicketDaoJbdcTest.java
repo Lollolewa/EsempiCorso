@@ -9,6 +9,7 @@ import org.junit.jupiter.api.*;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 class TicketDaoJbdcTest {
@@ -32,8 +33,10 @@ class TicketDaoJbdcTest {
         try {
             con = DatabaseConnectionFactoryForTest.getConnection();
             con.setAutoCommit(false);
-            template = new JdbcTemplate<Airport>(con);
-            Airport a1Id = template.insert(INSERT_AIRPORT, a1, a1.getName());
+            template = new JdbcTemplate(con);
+            a1 = template.insert(INSERT_AIRPORT, a1, a1.getName());
+            p1 = template.insert(INSERT_PASSENGER, p1, p1.getName(), a1.getId());
+            t1 = template.insert(INSERT_TICKET, t1, t1.getCode(), p1.getId());
         } catch (SQLException e) {
             fail(e.getMessage());
         }
@@ -61,7 +64,25 @@ class TicketDaoJbdcTest {
 //        assertEquals(8, result);
 //    }
     @Test
-    void findByCode() {
+    void findByCode_should_find_whit_existing_code() {
+        var dao = new TicketDaoJbdc(con);
+        try {
+            Optional<Ticket> ot = dao.findByCode(t1.getCode());
+            assertTrue(ot.isPresent());
+            assertEquals(t1.getId(), ot.get().getId());
+        } catch (DaoException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @Test
+    void findByCode_shouldnt_find_without_existing_code(){
+        var dao = new TicketDaoJbdc(con);
+        try {
+            Optional<Ticket> ot = dao.findByCode("non esisto");
+            assertTrue(ot.isEmpty());
+        } catch (DaoException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 

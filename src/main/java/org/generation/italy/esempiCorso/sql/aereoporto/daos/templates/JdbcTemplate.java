@@ -2,7 +2,7 @@ package org.generation.italy.esempiCorso.sql.aereoporto.daos.templates;
 
 import java.sql.*;
 
-public class JdbcTemplate<T extends WithId> {  //con i tipi Generici, si usa extends sia sulle classi che sulle interfacce
+public class JdbcTemplate {  //con i tipi Generici, si usa extends sia sulle classi che sulle interfacce
    private Connection connection;
 
     public JdbcTemplate(Connection connection) {
@@ -15,7 +15,7 @@ public class JdbcTemplate<T extends WithId> {  //con i tipi Generici, si usa ext
             return ps.executeUpdate();
         }
     }
-    public T insert(String sql, T entity, Object... params) throws SQLException{
+    public  <T extends WithId> T insert(String sql, T entity, Object... params) throws SQLException{
         try(PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
             setParameters(ps, params);
             ps.executeUpdate();
