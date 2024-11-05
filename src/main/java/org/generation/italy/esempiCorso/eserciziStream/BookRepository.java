@@ -77,45 +77,41 @@ public class BookRepository {
     }
 
     //Dammi l'autore che ha scritto piu libri, in caso di pareggio uno a casa va bene
-    public Optional<Autore> hasWrittenMoreBooks(){
+    public Optional<Autore> hasWrittenMoreBooks() {
         //è una struttura dati di coppie chiavi valori uniche, le chiavi sono un set, l'hashmap usa un hashset per tenere le sue chiavi
-        Map<String,Integer> map = new HashMap<>(); //creazione di un hashMap
+        Map<String, Integer> map = new HashMap<>(); //creazione di un hashMap
         //il primo valore è una chiave, il secondo indica il valore associato alla chiave
 
-        map.put("Mario Rossi",1);
-        map.put("Giulio Verdi",12);
-        map.put("Raffaella Gialli",8);
+        map.put("Mario Rossi", 1);
+        map.put("Giulio Verdi", 12);
+        map.put("Raffaella Gialli", 8);
         int c = map.get("Giulio Verdi"); //c vale 12
         //le mappe sono costruite per registrare chiavi in modo che siano facilmente accessibili
-        for(String s: map.keySet()) { // ci da il set di chiavi su cui possiamo fare il forEach per scorrere tutte le chiavi della mappa
+        for (String s : map.keySet()) { // ci da il set di chiavi su cui possiamo fare il forEach per scorrere tutte le chiavi della mappa
             System.out.println(s); //stampi tutte le chiavi
             System.out.println(map.get(s)); //stampi tutti i valori associati alle chiavi
         }
-        for(int i : map.values()){ //sto ciclando tutti i valori della mappa
+        for (int i : map.values()) { //sto ciclando tutti i valori della mappa
             //key set da la colonna delle chiavi // values da la colonna dei valori
             System.out.println(i); //stampa in ordine non prevedibile, in ordine di hashCode
         }
         //il modo più carino per ciclare è ciclare sulle coppie chiave/valore ->entries della mappa
-        for(Map.Entry<String,Integer> kv : map.entrySet()) {//l'insieme delle entries è un set perchè le chiavi sono uniche
+        for (Map.Entry<String, Integer> kv : map.entrySet()) {//l'insieme delle entries è un set perchè le chiavi sono uniche
             //Entry è un interfaccia definitita dentro l'interfaccia Map perchè è relativa soltanto alle mappe
             System.out.println(kv.getKey() + ":" + kv.getValue()); //stampa le coppie
         }
 
 
-
-
-        Optional<Autore> opzAutore = libri.stream().flatMap(b->b.getAutori().stream())
-                .collect(Collectors.groupingBy(a->a, Collectors.counting()))//estrazione della chiave dall'autore a all'autore a(Function.identity(),
-                                                                            // raggruppa per autore e conta i libri, il valore corrispondente è il numero di volte che viene contato
+        Optional<Autore> opzAutore = libri.stream().flatMap(b -> b.getAutori().stream())
+                .collect(Collectors.groupingBy(a -> a, Collectors.counting()))//estrazione della chiave dall'autore a all'autore a(Function.identity(),
+                // raggruppa per autore e conta i libri, il valore corrispondente è il numero di volte che viene contato
                 .entrySet().stream() // Stream delle entries (la chiave è l'autore, il valore è il numero di volte in cui l'autore è contato
                 .max(Map.Entry.comparingByValue()) // comparatore che paragona i valori, Trova l'autore con il numero massimo di libri
                 //.max((kv1,kv2)->kv1.getValue().intValue()-kv2.getValue().intValue())//stiamo lavorando con le generics, estraggo la privitiva int dalla Long
                 //.max(Comparator.comparingInt(kv->kv.getValue().intValue())) //estrae automaticamente il valore
                 .map(Map.Entry::getKey); // estraggo la chiave dalla coppia, ottenendo l'autore (spoiler è un optional, spoiler cambio il tipo di ritorno)
-                //orElse deve dare un valore di default dello stesso tipo dell'optional, tornare un autore di default è una porcheria
+        //orElse deve dare un valore di default dello stesso tipo dell'optional, tornare un autore di default è una porcheria
 
         return opzAutore;
     }
-
-
 }
