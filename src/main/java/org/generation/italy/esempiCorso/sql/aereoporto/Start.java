@@ -2,6 +2,10 @@ package org.generation.italy.esempiCorso.sql.aereoporto;
 
 import org.generation.italy.esempiCorso.sql.DatabaseConnection;
 import org.generation.italy.esempiCorso.sql.aereoporto.entities.Ticket;
+import org.generation.italy.esempiCorso.sql.aereoporto.services.AbstractReservationService;
+import org.generation.italy.esempiCorso.sql.aereoporto.services.InMemoryReservationService;
+import org.generation.italy.esempiCorso.sql.aereoporto.services.JdbcReservationService;
+import org.generation.italy.esempiCorso.sql.aereoporto.ui.UserInterface;
 import org.generation.italy.esempiCorso.sql.dao.DaoException;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -9,6 +13,8 @@ import java.util.Optional;
 
 public class Start {
     public static void main(String[] args) {
+        AbstractReservationService ars = new JdbcReservationService();
+        UserInterface ui = new UserInterface(ars);
 //        Optional<Connection> optCon = DatabaseConnection.getConnection();
 //        if (optCon.isEmpty()) {
 //            System.out.println("Impossibile connettersi al database");
@@ -30,5 +36,6 @@ public class Start {
 //        }
 //
 //
+        ui.setService(new InMemoryReservationService());
    }
 }

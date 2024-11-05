@@ -10,4 +10,5 @@ public interface TicketDao {
     Optional<Ticket> findByCode(String code) throws DaoException;
     List<Ticket> findByPassengerId(int id) throws DaoException;
     Ticket createTicket(Ticket t) throws DaoException;
+    Optional<Ticket> findById(int id) throws DaoException;
 }
