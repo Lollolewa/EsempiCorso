@@ -56,7 +56,13 @@ public class VoyageRepository implements AbstractVoyageRepository {
             }
         }
         Comparator<Voyage> cv = new VoyageComparatorByDestination();
-        Collections.sort(voyagesByDestination, cv);
+//        Collections.sort(voyagesByDestination, cv);
+//        il secondo parametro del metodo sort sarà comunque un oggette di una classe che implementa l'interfaccia Comparator<Voyage>
+//        Collections.sort(voyagesByDestination, (v1, v2) -> v1.getDestinations().size() - v2.getDestinations().size()); // lambda expression
+//        Collections.sort(voyagesByDestination, Comparator.comparingInt(v -> v.getDestinations().size()));
+//        Collections.sort(voyagesByDestination, Comparator.comparingInt(v -> v.getDestinationsSize()));
+        voyagesByDestination.sort(Comparator.comparingInt(Voyage::getDestinationsSize)); // method reference
+        voyagesByDestination.sort(VoyageRepository::compareStatic);
         return voyagesByDestination;
     }
 
@@ -96,5 +102,13 @@ public class VoyageRepository implements AbstractVoyageRepository {
         return "VoyageRepository{" +
                 "voyages=" + voyages +
                 '}';
+    }
+
+    public int compare(Voyage v1, Voyage v2) {
+        return v1.getDestinationsSize() - v2.getDestinationsSize();
+    }
+
+    public static int compareStatic(Voyage v1, Voyage v2){
+        return v1.getDestinationsSize() - v2.getDestinationsSize();
     }
 }

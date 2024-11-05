@@ -1,19 +1,18 @@
 package org.generation.italy.esempiCorso.inheritance.geometria;
 
-public class Triangolo extends Forma {
-
-    public Triangolo(int base, int altezza) {
-        super(base, altezza);
+public class Triangolo extends Forma{
+    private String name;
+    private int nLati;
+    public Triangolo(int base, int altezza, String name, int nLati){
+        super(base,altezza);
+        this.name=name;
+        this.nLati=nLati;
     }
-
-    @Override
-    public int calcolaArea() {
-        return (int) ((base * altezza) / 2.0);
+    public String getName(){
+        return name;
     }
-
     @Override
-    public String toString() {
-        return String.format("Il triangolo con base: %d e altezza: %d %nHa un'area di: %.2f", base, altezza, calcolaArea());
+    public int calculateArea(){
+        return base*altezza/2;
     }
 }
-

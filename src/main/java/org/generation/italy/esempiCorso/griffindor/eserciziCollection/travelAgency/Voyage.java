@@ -93,4 +93,8 @@ public class Voyage implements Comparable<Voyage> {
     public int compareTo(Voyage o) { // ordinamento naturale.
         return o.id-this.id; // return  per il contrario.
     }
+
+    public int getDestinationsSize(){
+        return this.destinations.size();
+    }
 }
