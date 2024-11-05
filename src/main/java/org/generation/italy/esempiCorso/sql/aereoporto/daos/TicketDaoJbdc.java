@@ -1,5 +1,6 @@
 package org.generation.italy.esempiCorso.sql.aereoporto.daos;
 
+import org.generation.italy.esempiCorso.sql.aereoporto.daos.templates.JdbcTemplate;
 import org.generation.italy.esempiCorso.sql.aereoporto.entities.Airport;
 import org.generation.italy.esempiCorso.sql.aereoporto.entities.Passenger;
 import org.generation.italy.esempiCorso.sql.aereoporto.entities.Ticket;
@@ -118,6 +119,17 @@ public class TicketDaoJbdc implements TicketDao{
         } catch (SQLException e) {
             throw new org.generation.italy.esempiCorso.sql.dao.DaoException(e.getMessage(), e);
         }
+    }
+
+    @Override
+    public Optional<Ticket> findById(int id) throws DaoException {
+        JdbcTemplate template = new JdbcTemplate(connection);
+        try {
+            return template.findById(FIND_TICKET_BY_ID, TicketDaoJbdc::fromResultSet, id);
+        } catch (SQLException e) {
+            throw new DaoException(e.getMessage(), e);
+        }
+
     }
 //    //somma due numeri se glie li passo negativi diventano positivi e li somma lo stesso
 //    public int sum (int x, int y){
