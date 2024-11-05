@@ -54,26 +54,7 @@ public class AirportDaoJbdc implements AirportDao {
 //        }
 //    }
 
-//    @Override
-//    public List<Ticket> findTicketByIdPassenger(int id) {
-//        List<Ticket> tickets = new ArrayList<>();
-//        try (PreparedStatement ps = connection.prepareStatement(FIND_TICKETS_FOR_PASSENGER)) {
-//            ps.setInt(1, id);
-//            try (ResultSet rs = ps.executeQuery()) {
-//                while (rs.next()) {
-//                    Ticket t = new Ticket(
-//                            rs.getInt("id"),
-//                            rs.getString("code"),
-//                            rs.getInt("passeggero_id")
-//                    );
-//                    tickets.add(t);
-//                }
-//                return tickets;
-//            }
-//        } catch (SQLException e) {
-//            throw new DaoException(e.getMessage(), e);
-//        }
-//    }
+//    m
 
 //    @Override
 //    public Optional<Ticket> createTicket(Ticket t) {

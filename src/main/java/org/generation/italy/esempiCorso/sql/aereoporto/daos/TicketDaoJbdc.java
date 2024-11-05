@@ -25,7 +25,7 @@ public class TicketDaoJbdc implements TicketDao{
                                                     ON a.id = p.aereoporto_id
                                                     WHERE code=?
                                                     """;
-    private static final String FIND_TICKETS_FOR_PASSENGER = "SELECT id, FROM ticket WHERE passeggero_id = ?";
+    private static final String FIND_TICKETS_FOR_PASSENGER_ID = "SELECT id, FROM ticket WHERE passeggero_id = ?";
     private Connection connection;
 
     public TicketDaoJbdc(Connection connection) {
@@ -59,7 +59,7 @@ public class TicketDaoJbdc implements TicketDao{
     @Override
     public List<Ticket> findByPassengerId(int id) throws DaoException {
         List<Ticket> tickets = new ArrayList<>();
-        try (PreparedStatement ps = connection.prepareStatement(FIND_TICKETS_FOR_PASSENGER)) {
+        try (PreparedStatement ps = connection.prepareStatement(FIND_TICKETS_FOR_PASSENGER_ID)) {
             ps.setInt(1, id);
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
