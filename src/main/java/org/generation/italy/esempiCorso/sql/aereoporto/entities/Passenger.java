@@ -1,12 +1,19 @@
 package org.generation.italy.esempiCorso.sql.aereoporto.entities;
 
+import org.generation.italy.esempiCorso.sql.aereoporto.daos.templates.WithId;
+
+import java.util.ArrayList;
 import java.util.List;
 
-public class Passenger {
+public class Passenger implements WithId {
     private int id;
     private String name;
     private List<Ticket> tickets;
     private Airport nearestAirport;
+
+    public Passenger(int id, String name, Airport nearestAirport) {
+       this(id, name, nearestAirport, new ArrayList<>());
+    }
 
     public Passenger(int id, String name, Airport nearestAirport, List<Ticket> tickets) {
         this.id = id;
