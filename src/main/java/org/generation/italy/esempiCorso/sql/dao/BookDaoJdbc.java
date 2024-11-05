@@ -14,6 +14,10 @@ public class BookDaoJdbc implements BookDao{
             update books set num_pages=?, publisher_id=?, title=?, category=?, weight=?
             where id=?
             """;
+
+    private static final String INSERT_SQL =  "INSERT INTO books (title, num_pages, weight, category, publisher_id) VALUES (?,?,?,?,?)";
+    private static final String DELETE_SQL =  "DELETE FROM books WHERE id =?";
+
     public BookDaoJdbc(Connection connection) {
         this.connection = connection;
     }
@@ -48,11 +52,29 @@ public class BookDaoJdbc implements BookDao{
 
     @Override
     public Book addBook(Book b) throws DaoException {
-        return null;
+        try(PreparedStatement ps = connection.prepareStatement(INSERT_SQL)){
+            ps.setString(1, b.getTitle());
+            ps.setInt(2, b.getNum_pages());
+            ps.setDouble(3, b.getWeight());
+            ps.setString(4, b.getCategory());
+            ps.setInt(5, b.getPublisher_id());
+            ps.executeUpdate();
+        }
+        catch(SQLException e){
+            throw new DaoException(e.getMessage(),e);
+        }
+        return b;
     }
 
     @Override
     public boolean deleteById(int id) throws DaoException {
+        try(PreparedStatement ps = connection.prepareStatement(DELETE_SQL)){
+            ps.setInt(1,id);
+            ps.executeUpdate();
+        }
+        catch(SQLException e){
+            throw new DaoException(e.getMessage(),e);
+        }
         return false;
     }
 
