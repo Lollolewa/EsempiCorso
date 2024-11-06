@@ -9,22 +9,22 @@ import java.util.Optional;
 public class Start {
     public static void main(String[] args) {
         Optional<Connection> optCon = DatabaseConnection.getConnection();
-        if(optCon.isEmpty()) {
-            System.out.println("Problema nella creazione della connessione.");
-            return;
+        if (optCon.isEmpty()) {
+            System.out.println("Impossibile connettersi al database");
+            return; // Se non si può connettersi, esce dal main
+
         }
         try (Connection connection = optCon.get()) {
-            BookDao bookDao = new BookDaoJdbc(connection);
+            BookDaoJdbc bookDao = new BookDaoJdbc(connection);
             Optional<Book> ob = bookDao.getBookById(1);
             if(ob.isPresent()){
                 System.out.println(ob.get());
-            } else{
-                System.out.println("Libro non trovato");
             }
-
+            else {
+                System.out.println("Libro non trovato."); // Stampa il libro trovato
+            }
         } catch (DaoException | SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(); // Stampa l'eccezione se si verifica un errore
         }
-
     }
 }

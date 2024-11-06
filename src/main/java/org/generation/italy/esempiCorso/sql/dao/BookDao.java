@@ -1,6 +1,7 @@
 package org.generation.italy.esempiCorso.sql.dao;
+
 import org.generation.italy.esempiCorso.sql.model.Book;
-import java.sql.SQLException;
+
 import java.util.List;
 import java.util.Optional;
 

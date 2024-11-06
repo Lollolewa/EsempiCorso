@@ -2,75 +2,53 @@ package org.generation.italy.esempiCorso.generics;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class Start {
-    public static void main(String[] args) {
-        //generics sono nuove, sono strutture dati nel 90% dei casi.
-        List names = new ArrayList();
-        names.add("Pippo");
+    public static void main(String[]args) {
+        //generics sono state aggiunte in seguito
+        //classi generics sono al 90% strutture dati
+        List names = new ArrayList(); //questa era la sintassi pre java4
+        names.add("pippo");
         names.add(Integer.valueOf(4));
-        names.add(4);
-        doSomethingWithGenericList(names);
+        names.add(4); //non passo la primitiva 4, sarà castato a Integer.valueof(4)
+        //add vuole una variabile di classe object, non posso passargli una primitiva
+        //motivo per cui non si possono inserire le primitive in nessuna struttura dati ad eccezione dell'Array
+        //motivo per cui esistono ancora gli Array, posso inserire le primitive e non solo gli oggetti che occupano più memoria
+        doSomethingWithList(names);
 
         List<String> words = new ArrayList<>();
-        words.add("Topolino");
-        words.add("Minne");
-        words.add("Pippo");
-        words.add("Zombie Rocket");
+        //ilcompilatore controlla che nella lista inserisco solo stringhe
+        words.add("topolino");
+        //words.add(Integer.valueOf(2)); non compila perchè non accetta interi
+        String y = words.get(0); //non c'è bisogno di castare a stringa perchè il compilatore sa già che non ci tipi diversi da stringa nella lista
+        doSomethingWithList(words); //passo una lista generics a un metodo che si aspetta una lista oldSchool
+        //List<> e List sono la stessa classe, il simbolo <> è un avvertimento per il compilatore (type erasure)
+        //completa compatibilità tra List<> e List
+        //la Virtual Machine non sa che esistono List<> ma solo List
 
-        String y = words.get(0);
-        doSomethingWithGenericList(words);
-        Pair<String, Integer> pair1 = new Pair<>("Rocket", 4);
-        Pair<Integer, String> pair2 = new Pair<>(4, "Rocket");
-        System.out.println(pair1.equals(pair2));
-        System.out.println(pair1.getFirst());
-        System.out.println(pair2.getFirst());
+        Pair <String, Integer> p1 = new Pair<>("rocket",4);
+        Pair <Integer, String> p2 = new Pair<>(4,"rocket");
+        System.out.println(p1.equals(p2));
+        System.out.println(p1.getFirst());
+        System.out.println(p2.getFirst());
 
-        Analyzer<String> analyzer = new Analyzer<>(words);
-        String max = analyzer.getMaxElement();
-        System.out.println(max);
-
-        analyzer.sort();
-        System.out.println(analyzer.getElements());
-
-        List<Integer> numbers = new ArrayList<>();
-        numbers.add(2);
-        numbers.add(1);
-        numbers.add(3);
-        Analyzer<Integer> analyzerNumbers = new Analyzer<>(numbers);
-        int maxNumber = analyzerNumbers.getMaxElement();
-        System.out.println(maxNumber);
-        analyzerNumbers.sort();
-        System.out.println(analyzerNumbers.getElements());
-
-        int [] ns = {1, 3, 2, 42, 5};
-        MaxMin<Integer> minAndMax = getMinAndMax(ns);
-        System.out.println("Minimo: " + minAndMax.getMin() + ", massimo: " + minAndMax.getMax());
     }
-    public static MaxMin<Integer> getMinAndMax (int[] numbers){
-        int min = Integer.MAX_VALUE;
-        int max = Integer.MIN_VALUE;
-        for (int number : numbers) {
-            if (number < min) {
-                min = number;
-            }
-            if (number > max) {
-                max = number;
-            }
-        }
-        return new MaxMin<>(max, min);
-    }
-    public static void doSomethingWithList(List x) {
-        // x è una lista di qualsiasi tipo
-        x.add("Ciccio");
+    public static void doSomethingWithList(List x){
+        x.add("ciccio");
         Object z = x.get(0);
         System.out.println(z);
-        String s = (String) x.get(0);
+        String s = (String) x.get(0); //pippo è sempre stato una stringa
+        //fare polimorfismo su object è stupido
+        //non ha senso avere reference di tipo object perchè non puoi fare niente se non stampare
+        //2 soluzioni:
+        // 1.sfanculiamo le attuali collection e facciamone una nuova che si focalizzano su un solo tipo in maniera esplicita
+        //   le web application sono decennali, mettendo nuove collection non si potrebbero usare su progetti già esistenti ma solo su nuovi
+        // 2.aggiungiamo nuove regole al compilatore, in modo che quando creiamo le liste si può specificare il tipo
+        x.add(new StringBuilder()); // è una lista normale in cui puoi mettere qualsiasi cosa
     }
     public static void doSomethingWithGenericList(List<String> x){
-        x.add("Rocket");
-        String result = x.get(0);
-        //x.add(new Integer(2)); questo non compila perché non è possibile aggiungere un Integer a una lista di String
+        x.add("rocket");
+        String resunt = x.get(0);
+        //x.dd(Integer.valueOf(2));
     }
 }
