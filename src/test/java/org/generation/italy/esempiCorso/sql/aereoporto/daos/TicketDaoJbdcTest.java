@@ -32,6 +32,7 @@ class TicketDaoJbdcTest {
     private Ticket t3 = new Ticket(2, "31", p2);
     private Connection con;
     private JdbcTemplate template;
+
     @BeforeEach
     void setUp()  {
         try {

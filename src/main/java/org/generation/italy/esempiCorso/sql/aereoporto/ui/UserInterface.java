@@ -11,11 +11,13 @@ public class UserInterface {
     public void setService(AbstractReservationService service) {
         this.service = service;
     }
-    // iniezione della dipendenza AbstractReservationService
-    // inversione del controllo (sinonimo)
+
+    /// iniezione della dipendenza AbstractReservationService
+    /// inversione del controllo (sinonimo)
     public UserInterface(AbstractReservationService s){
         this.service = s;
     }
+
     public void findPassenger(){
         String code = "abc";
         String passengerName = "Ciccio";

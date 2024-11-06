@@ -51,12 +51,12 @@ public class PassengerDaoJbdc implements PassengerDao{
         //io mi drogo ma riccardo di piu
         //per ogni passeggero -> vedere numero biglietti
         List<PassengerData> passengers = new ArrayList<>();
-        try(PreparedStatement ps = connection.prepareStatement(FIND_TICKETS_EVER_BOUGHT);
+        try (PreparedStatement ps = connection.prepareStatement(FIND_TICKETS_EVER_BOUGHT);
             ResultSet rs = ps.executeQuery()){
             //non sono obbligata a usare Prepared, basta Statement perchè non devo settare parametri
             //resulset dentro il primo try
             //dentro il try solo creazioni di risorse autoclosable, quante ne voglio
-            while(rs.next()) {
+            while (rs.next()) {
                 Passenger p = new Passenger(
                         rs.getInt("passenger_id"),
                         rs.getString("passenger_name"),
@@ -76,9 +76,12 @@ public class PassengerDaoJbdc implements PassengerDao{
             throw new DaoException(e.getMessage(),e);
         }
     }
+
+    /// Prende una riga e restituisce un Passenger
     static Passenger fromResultSet (ResultSet rs) {
         return null;
     }
+
     @Override
     public boolean deletePassengerById(int id) throws DaoException {
         try (PreparedStatement ps = connection.prepareStatement(DELETE_PASSENGER)) {
