@@ -25,7 +25,15 @@ public class TicketDaoJbdc implements TicketDao{
                                                     ON a.id = p.aereoporto_id
                                                     WHERE code=?
                                                     """;
-    private static final String FIND_TICKETS_FOR_PASSENGER = "SELECT id, FROM ticket WHERE passeggero_id = ?";
+    private static final String FIND_TICKETS_FOR_PASSENGER = """
+                                                    SELECT t.id as ticket_id, t.code as code, p.id as passenger_id, p.nome as passenger_name,
+                                                    a.id AS airport_id, a.nome AS airport_name
+                                                    FROM ticket JOIN passeggero AS p
+                                                    ON t.passeggero_id=p.id
+                                                    JOIN aeroporto AS a
+                                                    ON a.id = p.aereoporto_id
+                                                    WHERE passeggero_id = ?
+                                                    """;
     private Connection connection;
 
     public TicketDaoJbdc(Connection connection) {
@@ -64,10 +72,13 @@ public class TicketDaoJbdc implements TicketDao{
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     Ticket t = new Ticket(
-                            rs.getInt("id"),
+                            rs.getInt("ticket_id"),
                             rs.getString("code"),
-                            rs.getInt("passeggero_id")
-                    );
+                            new Passenger(rs.getInt("passenger_id"),
+                                    rs.getString("passenger_name"),
+                                    new Airport(rs.getInt("airport_id"),
+                                            rs.getString("airport_name"),
+                                            new ArrayList<Passenger>()), new ArrayList<>()));
                     tickets.add(t);
                 }
                 return tickets;
@@ -78,26 +89,14 @@ public class TicketDaoJbdc implements TicketDao{
     }
 
     @Override
-    public Ticket createTicket(Ticket t) throws DaoException {
-
-        try (PreparedStatement ps = connection.prepareStatement(CREATE_NEW_TICKET,
-             PreparedStatement.RETURN_GENERATED_KEYS)) {
-
-            ps.setString(1, t.getCode());
-            ps.setInt(2, t.getPassenger().getId());
-
+    public Ticket createNewPassengerTicket(Ticket ticket) throws SQLException {
+        try (PreparedStatement ps = connection.prepareStatement(CREATE_NEW_TICKET)) {
+            ps.setString(1, ticket.getCode());
+            ps.setInt(2, ticket.getPassenger().getId());
             ps.executeUpdate();
-
-            try(ResultSet genKeys = ps.getGeneratedKeys()){
-                if(genKeys.next()){
-                    int id = genKeys.getInt(1);
-                    t.setId(id);
-;               }
-            }
-            return t;
-
+            return ticket;
         } catch (SQLException e) {
-            throw new org.generation.italy.esempiCorso.sql.dao.DaoException(e.getMessage(), e);
+            throw new SQLException(e.getMessage(), e);
         }
     }
 }

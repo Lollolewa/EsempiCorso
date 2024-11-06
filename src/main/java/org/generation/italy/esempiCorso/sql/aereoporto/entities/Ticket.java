@@ -5,7 +5,7 @@ public class Ticket {
     private String code;
     private Passenger passenger;
 
-    public Ticket(int id, String code, Passenger passenger) {
+    public Ticket(int id,String code, Passenger passenger) {
         this.id = id;
         this.code = code;
         this.passenger=passenger;
