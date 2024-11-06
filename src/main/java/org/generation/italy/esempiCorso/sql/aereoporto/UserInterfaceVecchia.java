@@ -2,7 +2,7 @@ package org.generation.italy.esempiCorso.sql.aereoporto;
 
 import java.sql.Connection;
 import java.util.*;
-import org.apache.commons.lang3.RandomStringUtils;
+//import org.apache.commons.lang3.RandomStringUtils;
 import org.generation.italy.esempiCorso.sql.aereoporto.daos.PassengerDao;
 import org.generation.italy.esempiCorso.sql.aereoporto.daos.TicketDao;
 import org.generation.italy.esempiCorso.sql.aereoporto.entities.Ticket;
