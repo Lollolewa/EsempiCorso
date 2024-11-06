@@ -38,7 +38,7 @@ class TicketDaoJbdcTest {
             con = DatabaseConnectionFactoryForTest.getConnection();
             con.setAutoCommit(false);
             template = new JdbcTemplate(con);
-            a1 = template.insert(INSERT_AIRPORT, a1, a1.getName());
+            a1 = template.insert(INSERT_AIRPORT, a1, a1.getName(), a1.getId());
             p1 = template.insert(INSERT_PASSENGER, p1, p1.getName(), a1.getId());
             p2 = template.insert(INSERT_PASSENGER, p2, p2.getName(), a1.getId());
             t1 = template.insert(INSERT_TICKET, t1, t1.getCode(), p1.getId());
