@@ -1,5 +1,6 @@
 package org.generation.italy.esempiCorso.sql.aereoporto.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Passenger {
@@ -7,6 +8,10 @@ public class Passenger {
     private String name;
     private List<Ticket> tickets;
     private Airport nearestAirport;
+
+    public Passenger(int id, String name, Airport nearestAirport) {
+        this(id, name, nearestAirport, new ArrayList<>());
+    }
 
     public Passenger(int id, String name, Airport nearestAirport, List<Ticket> tickets) {
         this.id = id;
