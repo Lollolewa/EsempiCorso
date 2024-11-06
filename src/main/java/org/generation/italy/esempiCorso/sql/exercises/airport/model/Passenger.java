@@ -11,11 +11,14 @@ public class Passenger {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private long id;
+
     @Column (name = "nome")
     private String name;
+
     @ManyToOne
     @JoinColumn( name = "aeroporto_id") //specica la foreign key
     private Airport airport;
+
     @OneToMany(mappedBy = "passenger")
     private List<Ticket> tickets = new ArrayList<>();
 
@@ -26,11 +29,9 @@ public class Passenger {
         this.name = name;
     }
 
-
     public List<Ticket> getTickets() {
         return Collections.unmodifiableList(tickets);
     }
-
     public void addTicket(Ticket ticket) {
         tickets.add(ticket);
     }
