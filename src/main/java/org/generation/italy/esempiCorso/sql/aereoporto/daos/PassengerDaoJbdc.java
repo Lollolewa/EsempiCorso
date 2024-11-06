@@ -44,9 +44,12 @@ public class PassengerDaoJbdc implements PassengerDao{
             WHERE p.id = ?
             """;
 
-
     @Override
-    public List<PassengerData> findAllOrderedByNumTickets() throws DaoException {
+    public List<PassengerData> findAllOrderedByNumTickets() throws DaoException{
+        return null; //da implementare in maniera elegante
+    }
+
+    public List<PassengerData> badFindAllOrderedByNumTickets() throws DaoException {
         //ogni passeggero ha il suo aereporto ma la lista dei biglietti è vuota
         //io mi drogo ma riccardo di piu
         //per ogni passeggero -> vedere numero biglietti
