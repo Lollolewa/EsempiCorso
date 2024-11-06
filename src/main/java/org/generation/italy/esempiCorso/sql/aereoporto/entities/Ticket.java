@@ -1,6 +1,8 @@
 package org.generation.italy.esempiCorso.sql.aereoporto.entities;
 
-public class Ticket {
+import org.generation.italy.esempiCorso.sql.aereoporto.daos.templates.WithId;
+
+public class Ticket implements WithId {
     private int id;
     private String code;
     private Passenger passenger;
