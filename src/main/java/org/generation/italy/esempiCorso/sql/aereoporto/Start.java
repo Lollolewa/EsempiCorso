@@ -1,5 +1,8 @@
 package org.generation.italy.esempiCorso.sql.aereoporto;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import org.generation.italy.esempiCorso.sql.DatabaseConnection;
 import org.generation.italy.esempiCorso.sql.aereoporto.entities.Ticket;
 import org.generation.italy.esempiCorso.sql.aereoporto.services.AbstractReservationService;
@@ -13,8 +16,8 @@ import java.util.Optional;
 
 public class Start {
     public static void main(String[] args) {
-        AbstractReservationService ars = new JdbcReservationService();
-        UserInterface ui = new UserInterface(ars);
+        // AbstractReservationService ars = new JdbcReservationService();
+        // UserInterface ui = new UserInterface(ars);
 //        Optional<Connection> optCon = DatabaseConnection.getConnection();
 //        if (optCon.isEmpty()) {
 //            System.out.println("Impossibile connettersi al database");
@@ -36,6 +39,8 @@ public class Start {
 //        }
 //
 //
-        ui.setService(new InMemoryReservationService());
-   }
+        // ui.setService(new InMemoryReservationService());
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("hibernatefundamentals");
+        EntityManager em = emf.createEntityManager();
+    }
 }
