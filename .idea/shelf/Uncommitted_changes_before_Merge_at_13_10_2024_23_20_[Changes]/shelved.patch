@@ -1,0 +1,36 @@
+Index: src/main/java/org/generation/italy/esempiCorso/inheritance/game/characters/bots/PaladinBot.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.generation.italy.esempiCorso.inheritance.game.characters.bots;\r\n\r\nimport org.generation.italy.esempiCorso.inheritance.game.Character;\r\nimport org.generation.italy.esempiCorso.inheritance.game.characters.Paladin;\r\n\r\nimport java.time.LocalDate;\r\n\r\npublic class PaladinBot extends Paladin {\r\n\r\n    public PaladinBot() {\r\n        //SET PALADIN STATS\r\n        setHp(200);\r\n        setStr(13);\r\n        setDex(13);\r\n        setIntel(11);\r\n        setChr(17);\r\n    }\r\n\r\n    //PALADIN ULTIMATE - HEAL\r\n    @Override\r\n    public int ultimate(org.generation.italy.esempiCorso.inheritance.game.Character y) {\r\n        int hp = getHp();\r\n        hp += (int) ((getChr()+getIntel())*0.7);\r\n        setHp(hp);\r\n        return getHp();\r\n    }\r\n\r\n    //BASE ACTIONS\r\n    @Override\r\n    public String getCharacterClass() {\r\n        return \"You are a paladin!\";\r\n    }\r\n\r\n    @Override\r\n    public int attack(org.generation.italy.esempiCorso.inheritance.game.Character x) {\r\n        return getStr()+getChr()/2;\r\n    }\r\n\r\n    @Override\r\n    public int defend(Character x) {\r\n        int hp = getHp();\r\n        int dmgTaken = ((attack(x)-getDex())/2);\r\n        setHp(hp-dmgTaken);\r\n        return getHp();\r\n    }\r\n\r\n    @Override\r\n    public boolean flee() {\r\n        int randomIntInRange = (int) (Math.random() * .5);\r\n        if(getHp()<=10 && randomIntInRange == 0){\r\n            System.out.println(\"You're lucky, you managed to flee with only \"+getHp()+\"HP.\");\r\n            return true;\r\n\r\n        }else {\r\n            System.out.println(\"You chose to keep fighting until death!\");\r\n            return false;\r\n        }\r\n    }\r\n\r\n}\r\n\r\n
+===================================================================
+diff --git a/src/main/java/org/generation/italy/esempiCorso/inheritance/game/characters/bots/PaladinBot.java b/src/main/java/org/generation/italy/esempiCorso/inheritance/game/characters/bots/PaladinBot.java
+--- a/src/main/java/org/generation/italy/esempiCorso/inheritance/game/characters/bots/PaladinBot.java	(revision baeb9fb92a68f2e0efbfb8483fda2148169291ce)
++++ b/src/main/java/org/generation/italy/esempiCorso/inheritance/game/characters/bots/PaladinBot.java	(date 1728854408669)
+@@ -56,6 +56,9 @@
+             return false;
+         }
+     }
+-
++    @Override
++    public String getName(){
++        return "il paladino nemico";
++    }
+ }
+ 
+Index: src/main/java/org/generation/italy/esempiCorso/inheritance/game/characters/bots/MageBot.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.generation.italy.esempiCorso.inheritance.game.characters.bots;\r\n\r\nimport org.generation.italy.esempiCorso.inheritance.game.Character;\r\nimport org.generation.italy.esempiCorso.inheritance.game.characters.Mage;\r\n\r\nimport java.time.LocalDate;\r\n\r\npublic class MageBot extends Mage{\r\n\r\n    public MageBot() {\r\n        //SET MAGE BOT STATS\r\n        setHp(100);\r\n        setStr(8);\r\n        setDex(9);\r\n        setIntel(20);\r\n        setChr(10);\r\n    }\r\n\r\n    //MAGE ULTIMATE - FIREBALL\r\n    @Override\r\n    public int ultimate(org.generation.italy.esempiCorso.inheritance.game.Character x) {\r\n        int hp = x.getHp();\r\n        hp -= getIntel()*4;\r\n        int dmg = x.getHp()-hp;\r\n        x.setHp(hp);\r\n        return dmg;\r\n    }\r\n\r\n    //BASE ACTIONS\r\n    @Override\r\n    public String getCharacterClass() {\r\n        return \"You are a bot mage!\";\r\n    }\r\n\r\n    @Override\r\n    public int attack(Character x) {\r\n        return getIntel()+getChr()/2;\r\n    }\r\n\r\n    @Override\r\n    public int defend(Character x) {\r\n        int hp = getHp();\r\n        int dmgTaken = ((attack(x)-getDex())/2);\r\n        setHp(hp-dmgTaken);\r\n        return getHp();\r\n    }\r\n\r\n    @Override\r\n    public boolean flee() {\r\n        int randomIntInRange = (int) (Math.random() * .7);\r\n        if(getHp()<=10 && randomIntInRange == 0){\r\n            System.out.println(\"You're lucky, you managed to flee with only \"+getHp()+\"HP.\");\r\n            return true;\r\n\r\n        }else {\r\n            System.out.println(\"You chose to keep fighting until death!\");\r\n            return false;\r\n        }\r\n    }\r\n}\r\n
+===================================================================
+diff --git a/src/main/java/org/generation/italy/esempiCorso/inheritance/game/characters/bots/MageBot.java b/src/main/java/org/generation/italy/esempiCorso/inheritance/game/characters/bots/MageBot.java
+--- a/src/main/java/org/generation/italy/esempiCorso/inheritance/game/characters/bots/MageBot.java	(revision baeb9fb92a68f2e0efbfb8483fda2148169291ce)
++++ b/src/main/java/org/generation/italy/esempiCorso/inheritance/game/characters/bots/MageBot.java	(date 1728854408669)
+@@ -57,4 +57,8 @@
+             return false;
+         }
+     }
++    @Override
++    public String getName(){
++        return "il Mago nemico";
++    }
+ }
