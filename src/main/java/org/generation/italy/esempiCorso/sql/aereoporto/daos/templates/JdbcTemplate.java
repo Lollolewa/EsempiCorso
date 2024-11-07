@@ -50,6 +50,7 @@ public class JdbcTemplate {  //con i tipi Generici, si usa extends sia sulle cla
             }
         }
     }
+
     public <T> List<T> queryForObjects (String sql, SqlRowMapper<T> rowMapper, Object... params) throws SQLException{
         List<T> resultList = new ArrayList<>();
         try(PreparedStatement ps = connection.prepareStatement(sql)){

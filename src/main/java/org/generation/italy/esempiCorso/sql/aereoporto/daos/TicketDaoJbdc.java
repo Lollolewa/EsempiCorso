@@ -85,7 +85,7 @@ public class TicketDaoJbdc implements TicketDao{
                 }
             }
         } catch (SQLException e) {
-            throw new org.generation.italy.esempiCorso.sql.dao.DaoException(e.getMessage(), e);
+            throw new DaoException(e.getMessage(), e);
         }
     }
 
@@ -115,13 +115,12 @@ public class TicketDaoJbdc implements TicketDao{
                 return tickets;
             }
         } catch (SQLException e) {
-            throw new org.generation.italy.esempiCorso.sql.dao.DaoException(e.getMessage(), e);
+            throw new DaoException(e.getMessage(), e);
         }
     }
 
     @Override
     public Ticket createTicket(Ticket t) throws DaoException {
-
         try (PreparedStatement ps = connection.prepareStatement(CREATE_NEW_TICKET,
              PreparedStatement.RETURN_GENERATED_KEYS)) {
 
@@ -139,7 +138,7 @@ public class TicketDaoJbdc implements TicketDao{
             return t;
 
         } catch (SQLException e) {
-            throw new org.generation.italy.esempiCorso.sql.dao.DaoException(e.getMessage(), e);
+            throw new DaoException(e.getMessage(), e);
         }
     }
 
@@ -167,9 +166,9 @@ public class TicketDaoJbdc implements TicketDao{
     @Override
     public List<Ticket> findByAirportId(int airportId) throws DaoException {
         JdbcTemplate template = new JdbcTemplate(connection);
-        try{
+        try {
             return template.queryForObjects(FIND_BY_AIRPORT_ID, TicketDaoJbdc::fromResultSet, airportId);
-        }catch(SQLException e){
+        } catch(SQLException e){
             throw new DaoException(e.getMessage(), e);
         }
     }
