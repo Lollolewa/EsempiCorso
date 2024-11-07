@@ -9,4 +9,5 @@ public interface HumanBeing {
     void eat();
     void work();
 
+    void work(int hours);
 }

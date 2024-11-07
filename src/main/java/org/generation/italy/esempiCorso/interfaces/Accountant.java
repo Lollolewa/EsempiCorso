@@ -17,4 +17,9 @@ public class Accountant implements HumanBeing{
 
     }
 
+    @Override
+    public void work(int hours) {
+
+    }
+
 }

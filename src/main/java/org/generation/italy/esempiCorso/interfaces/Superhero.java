@@ -12,6 +12,11 @@ public class Superhero implements HumanBeing{
     }
 
     @Override
+    public void work() {
+
+    }
+
+    @Override
     public void work(int hours) {
 
     }
