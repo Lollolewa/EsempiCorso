@@ -34,10 +34,6 @@ public class Airport {
         passengers.add(passenger);
     }
 
-    public int getId() {
-        return id;
-    }
-
     public String getName() {
         return name;
     }

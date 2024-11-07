@@ -6,8 +6,8 @@ public class Start {
         hb.speak();
         Accountant ac = new Accountant();
         inviteForDinner(ac);
-        Superhero sh = new Superhero();
-        inviteForDinner(sh);
+        //Superhero sh = new Superhero();
+        //inviteForDinner(sh);
     }
     public static void inviteForDinner(HumanBeing h){
         h.speak();
