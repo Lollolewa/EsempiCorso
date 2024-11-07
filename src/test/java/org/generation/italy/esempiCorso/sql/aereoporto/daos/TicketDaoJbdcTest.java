@@ -60,22 +60,7 @@ class TicketDaoJbdcTest {
             fail(e.getMessage());
         }
     }
-//    @Test
-//    void sum_should_sum_positive_numbers(){  // <-- dice in dettaglio cosa vado a sommare
-//        int x = 3;
-//        int y = 5;
-//        TicketDaoJbdc dao = new TicketDaoJbdc(null);
-//        int result = dao.sum(x, y);
-//        assertEquals(8, result);
-//    }
-//    @Test
-//    void sum_should_invert_one_negative_number(){
-//        int x = -3;
-//        int y = 5;
-//        TicketDaoJbdc dao = new TicketDaoJbdc(null);
-//        int result = dao.sum(x, y);
-//        assertEquals(8, result);
-//    }
+
     @Test
     void findByCode_should_find_with_existing_code() {
         var dao = new TicketDaoJbdc(con);
@@ -148,7 +133,7 @@ class TicketDaoJbdcTest {
 
     @BeforeAll
     static void setUpBeforeAll(){
-        System.out.println("setUpBeforeAll()");
+
     }
     @AfterAll
     static void tearDownAfterAll(){
