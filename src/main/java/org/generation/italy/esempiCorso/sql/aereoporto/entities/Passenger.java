@@ -1,18 +1,37 @@
 package org.generation.italy.esempiCorso.sql.aereoporto.entities;
 
+import jakarta.persistence.*;
 import org.generation.italy.esempiCorso.sql.aereoporto.daos.templates.WithId;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-
+@Entity
+@Table( name = "passeggero")
 public class Passenger implements WithId {
+    @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column (name = "nome")
     private String name;
-    private List<Ticket> tickets;
+
+    @ManyToOne
+    @JoinColumn( name = "aeroporto_id") //specica la foreign key
     private Airport nearestAirport;
 
+
+    @OneToMany(mappedBy = "passenger")
+    private List<Ticket> tickets = new ArrayList<>();
+
+    public Passenger(){
+    }
+    public Passenger(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
     public Passenger(int id, String name, Airport nearestAirport) {
-       this(id, name, nearestAirport, new ArrayList<>());
+        this(id, name, nearestAirport, new ArrayList<>());
     }
 
     public Passenger(int id, String name, Airport nearestAirport, List<Ticket> tickets) {
@@ -22,45 +41,27 @@ public class Passenger implements WithId {
         this.tickets=tickets;
     }
 
-    public int getId() {
-        return id;
+    public List<Ticket> getTickets() {
+        return Collections.unmodifiableList(tickets);
+    }
+    public void addTicket(Ticket ticket) {
+        tickets.add(ticket);
     }
 
+    public int getId() {
+        return this.id;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    @Override
     public void setId(int id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Airport getNearestAirport() {
-        return nearestAirport;
-    }
-
-    public void setNearestAirport(Airport nearestAirport) {
-        this.nearestAirport = nearestAirport;
-    }
-
-    public List<Ticket> getTickets() {
-        return tickets;
-    }
-
-    public void setTickets(List<Ticket> tickets) {
-        this.tickets = tickets;
-    }
-
-    @Override
-    public String toString() {
-        return "Passenger{" +
-                "id=" + id +
-                ", nearestAirport=" + nearestAirport.getName() +
-                ", name='" + name + '\'' +
-                ", tickets=" + tickets +
-                '}';
+        return this.nearestAirport;
     }
 }
