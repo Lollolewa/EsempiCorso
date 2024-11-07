@@ -1,16 +1,6 @@
 package org.generation.italy.esempiCorso.sql.aereoporto;
 
-import org.generation.italy.esempiCorso.sql.aereoporto.entities.Passenger;
-import org.generation.italy.esempiCorso.sql.aereoporto.entities.Ticket;
-import org.generation.italy.esempiCorso.sql.dao.DaoException;
-
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 public class AirportDaoJbdc implements AirportDao {
     Connection connection;
