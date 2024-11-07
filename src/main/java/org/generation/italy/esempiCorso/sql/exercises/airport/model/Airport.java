@@ -27,6 +27,10 @@ public class Airport {
         this.name = name;
     }
 
+    public String getName() {
+        return name;
+    }
+
     public List<Passenger> getPassengers() {
         return Collections.unmodifiableList(passengers);
     }
