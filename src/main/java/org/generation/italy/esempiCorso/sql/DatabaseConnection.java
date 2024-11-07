@@ -6,20 +6,22 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 public class DatabaseConnection {
+
+    //CONNECTION TO DATABASE
     public static Optional<Connection> getConnection(){
-        String jdbcUrl = "jdbc:postgresql://localhost:5432/library";
+        String jdbcUrl = "jdbc:postgresql://localhost:5432/library"; //la versione più bruttina
         String username = "postgresMaster";
         String password = "goPostgresGo";
 
-        try {
+        try{
             Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
-            System.out.println("Connected to the PostgreSQL server successfully.");
             return Optional.of(connection);
         }
         catch(SQLException e){
             e.printStackTrace();
-            System.out.println("non mi posso collegare al db");
+            System.out.println("Cannot create connection to DB"); //per db si intende database
+            return Optional.empty();
         }
-        return Optional.empty();
     }
 }
+
