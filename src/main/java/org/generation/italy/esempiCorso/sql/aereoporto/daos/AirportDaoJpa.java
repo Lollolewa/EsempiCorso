@@ -5,7 +5,7 @@ import org.generation.italy.esempiCorso.sql.aereoporto.entities.Airport;
 import java.util.List;
 import java.util.Optional;
 
-public class AirportDaoJdbc implements AirportDao {
+public class AirportDaoJpa implements AirportDao{
     @Override
     public Airport create(Airport toSave) throws DaoException {
         return null;
