@@ -21,8 +21,21 @@ public class Start {
         if(found != null) {
             System.out.println(found.getName());
         }
+        em.getTransaction().commit();
+
         Airport other = new Airport(0,"Linate");
-        Class<Airport> x = Airport.class; // Oggetto di tipo (class) che descrive la struttura della classe.
-        Class<Airport> y = (Class<Airport>) found.getClass(); // La stessa cosa di sopra solo piu specifico.
+//        Class<Airport> x = Airport.class; // Oggetto di tipo (class) che descrive la struttura della classe.
+//        Class<Airport> y = (Class<Airport>) found.getClass(); // La stessa cosa di sopra solo piu specifico.
+        em.getTransaction().begin();
+        em.merge(other);
+        em.getTransaction().commit();
+        System.out.println("Sto per cancellare l'aeroporto");
+
+        em.getTransaction().begin();
+        Airport a = em.find(Airport.class, 1);
+        if (a  != null){
+            em.remove(a);
+        }
+        em.getTransaction().commit();
     }
 }
