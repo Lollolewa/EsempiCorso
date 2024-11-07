@@ -1,54 +1,51 @@
 package org.generation.italy.esempiCorso.sql.aereoporto.entities;
 
+import jakarta.persistence.*;
 import org.generation.italy.esempiCorso.sql.aereoporto.daos.templates.WithId;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-
+@Table( name = "aeroporto")
+@Entity //classe gestita da hibernate
 public class Airport implements WithId {
-    private int id;
-    private String name;
-    private List<Passenger> passengers;
-    //quando facciamo più di un costruttore, possiamo richiamarli, senza dover ripetere codice
-    public Airport(int id, String name) {
-      this(id, name, new ArrayList<>());  //this() invochiamo un altro costruttore
-    }
 
-    public Airport(int id, String name, List<Passenger> passengers) {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) //ID autogenerato
+    private int id;
+    @Column(name = "nome")
+    private String name;
+    public Airport(){ //costruttore di default
+
+    }
+    @OneToMany(mappedBy = "nearestAirport")// airport e' il nome della variabile che sta dall'altra parte della relazione
+    // in base al tipo di relazione
+    private List<Passenger> passengers = new ArrayList<>();
+
+    public Airport(int id, String name) {
         this.id = id;
         this.name = name;
-        this.passengers = passengers;
     }
 
-    public int getId() {
-        return id;
+    public List<Passenger> getPassengers() {
+        return Collections.unmodifiableList(passengers);
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void addPassenger(Passenger passenger) {
+        passengers.add(passenger);
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<Passenger> getPassengers() {
-        return passengers;
-    }
-
-    public void setPassengers(List<Passenger> passengers) {
-        this.passengers = passengers;
+    public int getId() {
+        return this.id;
     }
 
     @Override
-    public String toString() {
-        return "Airport{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+    public void setId(int id) {
+        this.id = id;
     }
 }
+
