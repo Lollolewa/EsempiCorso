@@ -4,31 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="07366b87-da3e-4005-8310-3b6eb015fb4e" name="Changes" comment="Ora siamo agli ArrayList e famiglia bella;">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/sql/exercises/airport/utils/Start.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/inheritance/Start.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/inheritance/examples/interfaces/Circle.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/inheritance/examples/interfaces/HumanBeing.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/inheritance/exercise/Fight.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/inheritance/game/Arcade.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/inheritance/geometria/Forma.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/inheritance/geometria/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/inheritance/geometria/Rettangolo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/inheritance/geometria/Triangolo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/inheritance/geometry/Forma.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/inheritance/interfacce/Aereo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/inheritance/interfacce/CanFly.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/inheritance/interfacce/Persona.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/inheritance/interfacce/Start.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/inheritance/interfacce/Supereroe.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/inheritance/school/Teacher.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/ravenclaw/library/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/ravenclaw/library/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/ravenclaw/library/BookRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/ravenclaw/library/BookRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/sql/dao/BookDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/sql/dao/BookDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/sql/dao/BookDaoJdbc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/sql/dao/BookDaoJdbc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/sql/exercises/airport/model/Airport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/sql/exercises/airport/model/Airport.java" afterDir="false" />
-    </list>
+    <list default="true" id="07366b87-da3e-4005-8310-3b6eb015fb4e" name="Changes" comment="Ora siamo agli ArrayList e famiglia bella;" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -45,7 +21,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="JoshuaCastellani" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -73,17 +49,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Arcade.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Start.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;JoshuaCastellani&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Arcade.executor": "Run",
+    "Application.Start.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -141,7 +117,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730926801764</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Ora siamo agli ArrayList e famiglia bella;">
+      <option name="closed" value="true" />
+      <created>1730980707599</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1730980707599</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
