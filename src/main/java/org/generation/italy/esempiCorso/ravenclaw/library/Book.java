@@ -1,5 +1,7 @@
 package org.generation.italy.esempiCorso.ravenclaw.library;
 
+import org.generation.italy.esempiCorso.eserciziStream.Category;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +34,7 @@ public class Book {
         return category;
     }
 
+    public int getnPages() {return nPages;}
 
     public List<String> getBookLanguages() {
         return bookLanguages;
@@ -40,6 +43,7 @@ public class Book {
     public List<Author> getAuthors() {
         return authors;
     }
+
 
     public boolean isPublishedBetween(LocalDate start, LocalDate end){
         return start.minusDays(1).isBefore(publicationDate) && end.isAfter(publicationDate);
@@ -70,4 +74,6 @@ public class Book {
                          title, nPages, cost, publicationDate, category, bookLanguages, authors
         );
     }
+
+
 }
