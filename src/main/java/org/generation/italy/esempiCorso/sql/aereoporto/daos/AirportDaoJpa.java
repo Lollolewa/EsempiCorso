@@ -78,7 +78,7 @@ public class AirportDaoJpa implements AirportDao{
             return true;
         } catch (PersistenceException pe) {
             em.getTransaction().rollback();
-            throw new DaoException(pe.getMessage(), pe)
+            throw new DaoException(pe.getMessage(), pe);
         }
     }
 
