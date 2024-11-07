@@ -6,27 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="07366b87-da3e-4005-8310-3b6eb015fb4e" name="Changes" comment="Ora siamo agli ArrayList e famiglia bella;">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/sql/aereoporto/AirportDaoJbdc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/sql/aereoporto/AirportDaoJbdc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/sql/aereoporto/Start.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/sql/aereoporto/Start.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/sql/aereoporto/daos/PassengerDaoJbdc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/sql/aereoporto/daos/PassengerDaoJbdc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/sql/aereoporto/daos/TicketDaoJbdc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/sql/aereoporto/daos/TicketDaoJbdc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/sql/aereoporto/entities/Airport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/sql/aereoporto/entities/Airport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/sql/aereoporto/entities/Passenger.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/sql/aereoporto/entities/Passenger.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/sql/aereoporto/entities/Ticket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/sql/aereoporto/entities/Ticket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/sql/aereoporto/ui/UserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/sql/aereoporto/ui/UserInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/sql/exercises/airport/Start.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/sql/exercises/airport/model/Airport.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/sql/exercises/airport/model/Passenger.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/sql/exercises/airport/model/Ticket.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/sql/exercises/airport/repositories/JdbcPassengerRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/sql/exercises/airport/repositories/JdbcTicketRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/sql/exercises/airport/repositories/PassengerRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/sql/exercises/airport/repositories/TicketRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/sql/exercises/airport/utils/DataException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/sql/exercises/airport/utils/JdbcConnectionUtils.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/sql/exercises/airport/utils/Start.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/generation/italy/esempiCorso/sql/aereoporto/daos/TicketDaoJbdcTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/generation/italy/esempiCorso/sql/aereoporto/daos/TicketDaoJbdcTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/sql/aereoporto/daos/AirportDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/sql/aereoporto/daos/AirportDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/sql/aereoporto/daos/AirportDaoJdbc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/generation/italy/esempiCorso/sql/aereoporto/daos/AirportDaoJdbc.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,8 +17,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -55,12 +36,40 @@
     &quot;assignee&quot;: &quot;Josh-Sasua&quot;
   }
 }</component>
+  <component name="GitToolBoxStore">
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="MarcoFalconetti" />
+                    <option name="lastUsedInstant" value="1730990012" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="master" />
+                    <option name="lastUsedInstant" value="1730989989" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
+  </component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Lollolewa/EsempiCorso.git&quot;,
     &quot;accountId&quot;: &quot;1866b205-5ec6-44fa-a138-e3b507b05eec&quot;
   }
 }</component>
+  <component name="JpbToolWindowState">
+    <option name="isToolWindowVisible" value="false" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -77,12 +86,80 @@
     "Application.Arcade.executor": "Run",
     "Application.Start.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "MarcoFalconetti",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="org.generation.italy.esempiCorso.sql.aereoporto.daos" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.esempiCorso.griffindor.eserciziCollection.MagicHatObj.Main" />
+      <module name="EsempiCorso" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.generation.italy.esempiCorso.griffindor.eserciziCollection.MagicHatObj.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Persona" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.esempiCorso.exceptions.Persona" />
+      <module name="EsempiCorso" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.generation.italy.esempiCorso.exceptions.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Start" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.esempiCorso.generics.Start" />
+      <module name="EsempiCorso" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.generation.italy.esempiCorso.generics.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="org.generation.italy.esempiCorso.griffindor.eserciziCollection.travelAgency.Start" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.generation.italy.esempiCorso.griffindor.eserciziCollection.travelAgency.Start" />
+      <module name="EsempiCorso" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.generation.italy.esempiCorso.griffindor.eserciziCollection.travelAgency.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Start" />
+        <item itemvalue="Application.Persona" />
+        <item itemvalue="Application.org.generation.italy.esempiCorso.griffindor.eserciziCollection.travelAgency.Start" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Start" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

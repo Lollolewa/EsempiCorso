@@ -11,9 +11,21 @@ import java.util.Optional;
 
 public class AirportDaoJdbc implements AirportDao {
     private Connection connection;
-    public final static String FIND_BY_ID = """
-                                            SELECT id,nome FROM aeroporto WHERE id=?
-                                            """;
+    public static final String CREATE_AIRPORT = """
+            INSERT INTO aeroporto (nome) VALUES (?)
+             """;
+    public static final String FIND_BY_ID = """
+            SELECT id, nome FROM aeroporto WHERE id =?
+             """;
+    public static final String UPDATE_AIRPORT = """
+            UPDATE aeroporto SET nome = ? WHERE id = ?
+             """;
+    public static final String DELETE_AIRPORT = """ 
+            DELETE FROM aeroporto WHERE id =?
+             """;
+    public static final String FIND_ALL_AIRPORT = """
+            SELECT id, nome FROM aeroporto
+             """;
 
     public AirportDaoJdbc(Connection connection) {
         this.connection = connection;
@@ -21,35 +33,57 @@ public class AirportDaoJdbc implements AirportDao {
 
     @Override
     public Airport create(Airport toSave) throws DaoException {
-        return null;
+        JdbcTemplate template = new JdbcTemplate(connection);
+        try {
+           return template.insert(CREATE_AIRPORT, toSave, toSave.getName());
+        }catch (SQLException e) {
+            throw new DaoException(e.getMessage(), e);
+        }
     }
 
     @Override
     public Optional<Airport> findById(int id) throws DaoException {
         JdbcTemplate template = new JdbcTemplate(connection);
         try {
-            return template.findById(FIND_BY_ID,AirportDaoJdbc::fromResultSet,id);
+            return template.findById(FIND_BY_ID, AirportDaoJdbc::fromResultSet, id);
         } catch (SQLException e) {
-            throw new DaoException(e.getMessage(),e);
+            throw new DaoException(e.getMessage(), e);
         }
     }
 
     @Override
     public boolean update(Airport newAirport) throws DaoException {
-        return false;
+        JdbcTemplate template = new JdbcTemplate(connection);
+        try {
+            int n = template.update(UPDATE_AIRPORT, newAirport.getName(), newAirport.getId());
+            return n != 0;
+        } catch (SQLException e) {
+            throw new DaoException(e.getMessage(), e);
+        }
     }
 
     @Override
     public boolean delete(int airportID) throws DaoException {
-        return false;
+        JdbcTemplate template = new JdbcTemplate(connection);
+        try {
+            int n = template.update(DELETE_AIRPORT, airportID);
+            return n == 1;
+        } catch (SQLException e) {
+            throw new DaoException(e.getMessage(), e);
+        }
     }
 
     @Override
     public List<Airport> findAll() throws DaoException {
-        return List.of();
+        JdbcTemplate template = new JdbcTemplate(connection);
+        try {
+            return template.queryForObjects(FIND_ALL_AIRPORT, AirportDaoJdbc::fromResultSet);
+        } catch (SQLException e) {
+            throw new DaoException(e.getMessage(), e);
+        }
     }
 
-    static Airport fromResultSet(ResultSet rs) throws SQLException{
-        return new Airport(rs.getInt("id"), rs.getString("nome"));
+    private static Airport fromResultSet(ResultSet rs) throws SQLException { // Funzione che mappa resultSet in aeroporto
+        return new Airport(rs.getInt("id"), rs.getString("name"));
     }
 }
