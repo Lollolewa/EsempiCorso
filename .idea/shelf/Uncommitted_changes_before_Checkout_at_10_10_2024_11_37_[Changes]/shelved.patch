@@ -1,0 +1,85 @@
+Index: src/main/java/org/generation/italy/esempiCorso/inheritance/school/Person.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.generation.italy.esempiCorso.inheritance.school;\r\n//le classi servono per creare oggetti e altre classi\r\npublic class Person {\r\n\r\n    //protected è la keyword per far accedere le sottoclassi alla variabile\r\n    //ha anche visibilità di package\r\n    protected String name, surname;\r\n    protected int age;\r\n\r\n    public Person(String name, String surname, int age){\r\n        this.name=name;\r\n        this.surname=surname;\r\n        this.age=age;\r\n    }\r\n    public String toString(){\r\n        return \"ciao sono \" + name + \" \" + surname + \" ed ho \" + age + \" anni.\";\r\n    }\r\n    //insegnanti, studenti, amministrazione sono persone che hanno proprietà diverse\r\n    //posso creare nuove classi a partire da una classe base (in questo caso Person)\r\n\r\n}\r\n
+===================================================================
+diff --git a/src/main/java/org/generation/italy/esempiCorso/inheritance/school/Person.java b/src/main/java/org/generation/italy/esempiCorso/inheritance/school/Person.java
+--- a/src/main/java/org/generation/italy/esempiCorso/inheritance/school/Person.java	(revision 344f9bb7d959550b804044b3853f4f9337584afb)
++++ b/src/main/java/org/generation/italy/esempiCorso/inheritance/school/Person.java	(date 1728552921356)
+@@ -1,21 +1,16 @@
+ package org.generation.italy.esempiCorso.inheritance.school;
+-//le classi servono per creare oggetti e altre classi
++
+ public class Person {
+-
+-    //protected è la keyword per far accedere le sottoclassi alla variabile
+-    //ha anche visibilità di package
+     protected String name, surname;
+     protected int age;
+-
+-    public Person(String name, String surname, int age){
+-        this.name=name;
+-        this.surname=surname;
+-        this.age=age;
++//con protected le classi figlie possono vedere le variabili ed è come se fossero private per tutto il resto;
++    public Person(String name, String surname, int age) {
++        this.name = name;
++        this.surname = surname;
++        this.age = age;
+     }
+-    public String toString(){
+-        return "ciao sono " + name + " " + surname + " ed ho " + age + " anni.";
++    //posso creare una classe partendo da una classe gia esistente;
++    public String toString (){
++        return "ciao sono " + name + " " + surname + " e ho " + age + " anni";
+     }
+-    //insegnanti, studenti, amministrazione sono persone che hanno proprietà diverse
+-    //posso creare nuove classi a partire da una classe base (in questo caso Person)
+-
+ }
+Index: src/main/java/org/generation/italy/esempiCorso/inheritance/school/Teacher.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.generation.italy.esempiCorso.inheritance.school;\r\n//ereditarietà e' il rapporto piu' stretto tra classi (is_a è la domanda per capire se ha senso l'ereditarieta')\r\npublic class Teacher extends Person{\r\n    //teacher è una sottoclasse/sottotipo di person (supertipo/superclasse)\r\n    //la sottoclasse eredita le proprietà e i metodi della superclasse ma non accede direttamente alle variabili private\r\n    //keyword che mantiene la variabile privata ma la rende visibile alle sottoclassi\r\n    private String subject;\r\n    private int yearOfService;\r\n\r\n    public Teacher(String name, String surname, int age, String subject, int yearOfService){\r\n        //this non funziona, si utilizza un altra keyword -> super(una superclasse per ogni classe)\r\n        super(name, surname, age); //richiami il costruttore della superclasse, ho creato una person\r\n        this.subject=subject;\r\n        this.yearOfService=yearOfService;\r\n    }\r\n\r\n\r\n    @Override //riprende il metodo della superclasse e lo sovrascrive, non necessario\r\n    //non commento ma @ per obbligare il compilatore a verificare se esiste realmente la funzione nella superclasse\r\n    //in altri linguaggi la keyword override si scrive nel metodo dopo public\r\n    public String toString(){\r\n        return super.toString() + \" Insegno \" + subject + \" da \" + yearOfService + \" anni.\";\r\n    }\r\n}\r\n
+===================================================================
+diff --git a/src/main/java/org/generation/italy/esempiCorso/inheritance/school/Teacher.java b/src/main/java/org/generation/italy/esempiCorso/inheritance/school/Teacher.java
+--- a/src/main/java/org/generation/italy/esempiCorso/inheritance/school/Teacher.java	(revision 344f9bb7d959550b804044b3853f4f9337584afb)
++++ b/src/main/java/org/generation/italy/esempiCorso/inheritance/school/Teacher.java	(date 1728552921360)
+@@ -1,24 +1,20 @@
+ package org.generation.italy.esempiCorso.inheritance.school;
+-//ereditarietà e' il rapporto piu' stretto tra classi (is_a è la domanda per capire se ha senso l'ereditarieta')
+-public class Teacher extends Person{
+-    //teacher è una sottoclasse/sottotipo di person (supertipo/superclasse)
+-    //la sottoclasse eredita le proprietà e i metodi della superclasse ma non accede direttamente alle variabili private
+-    //keyword che mantiene la variabile privata ma la rende visibile alle sottoclassi
++//l'ereditarietà è il rapporto più stretto fra classi (Is_a, teacher is a person? si!);
++public class Teacher extends Person {
++    //teacher è la sottoclasse di Person, mentre Person è la sua super tipo/super classe; Le variabili se private, nelle sottoclassi rimangono tali e ci si deve accedere tramite una funzione.
++    //ovviamente esiste una Key word che ci permette di vedere le variabili private, a discrezione del programmatore (protected);
+     private String subject;
+-    private int yearOfService;
++    private int yearsOfService;
+ 
+-    public Teacher(String name, String surname, int age, String subject, int yearOfService){
+-        //this non funziona, si utilizza un altra keyword -> super(una superclasse per ogni classe)
+-        super(name, surname, age); //richiami il costruttore della superclasse, ho creato una person
+-        this.subject=subject;
+-        this.yearOfService=yearOfService;
++    public Teacher(String name, String surname, int age, String subject, int yearsOfService) {
++        super(name, surname, age); //sa che il super si riferisce alla superclasse che sto estendendo non posso usare this. per i parametri della superclasse; Richiamo il costruttore della super classe per generare questi parametri;
++        this.subject = subject;
++        this.yearsOfService = yearsOfService;
+     }
+ 
+-
+-    @Override //riprende il metodo della superclasse e lo sovrascrive, non necessario
+-    //non commento ma @ per obbligare il compilatore a verificare se esiste realmente la funzione nella superclasse
+-    //in altri linguaggi la keyword override si scrive nel metodo dopo public
+-    public String toString(){
+-        return super.toString() + " Insegno " + subject + " da " + yearOfService + " anni.";
++    //stesso identico metodo della classe padre, semplicemente lo vado a riprendere con la @; Non obbligatorio da fare:
++    @Override
++    public String toString() {
++        return super.toString() + " e insegno " +subject+ " da "+ yearsOfService + " anni";
+     }
+ }

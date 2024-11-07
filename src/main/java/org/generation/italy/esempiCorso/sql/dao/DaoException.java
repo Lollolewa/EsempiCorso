@@ -5,3 +5,4 @@ public class DaoException extends RuntimeException {
         super(message,cause);
     }
 }
+// aggiunto per testare una merge in git!!

@@ -8,13 +8,12 @@ import org.junit.jupiter.api.*;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 class TicketDaoJbdcTest {
-    //tripla AAA, arrange, act e assert
+//tripla AAA, arrange, act e assert
     private final static String INSERT_AIRPORT = """
                                                  insert into aeroporto (nome) values (?);
                                                  """;
@@ -38,7 +37,7 @@ class TicketDaoJbdcTest {
             con = DatabaseConnectionFactoryForTest.getConnection();
             con.setAutoCommit(false);
             template = new JdbcTemplate(con);
-            a1 = template.insert(INSERT_AIRPORT, a1, a1.getName(), a1.getId());
+            a1 = template.insert(INSERT_AIRPORT, a1, a1.getName());
             p1 = template.insert(INSERT_PASSENGER, p1, p1.getName(), a1.getId());
             p2 = template.insert(INSERT_PASSENGER, p2, p2.getName(), a1.getId());
             t1 = template.insert(INSERT_TICKET, t1, t1.getCode(), p1.getId());
@@ -60,7 +59,7 @@ class TicketDaoJbdcTest {
             fail(e.getMessage());
         }
     }
-    //    @Test
+//    @Test
 //    void sum_should_sum_positive_numbers(){  // <-- dice in dettaglio cosa vado a sommare
 //        int x = 3;
 //        int y = 5;

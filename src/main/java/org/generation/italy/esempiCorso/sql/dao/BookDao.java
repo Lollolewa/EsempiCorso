@@ -6,9 +6,17 @@ import java.util.List;
 import java.util.Optional;
 
 public interface BookDao {
+
     Optional<Book> getBookById(int id) throws DaoException;
+
+    List<Book> getAllBooks() throws DaoException;
+
     List<Book> getAllBook() throws DaoException;
-    Book addBook(Book b) throws DaoException;
+
+    Book addBook(Book book) throws DaoException;
+
     boolean deleteById(int id) throws DaoException;
-    boolean update(Book b) throws DaoException;
+
+    boolean update(Book book) throws DaoException;
 }
+
