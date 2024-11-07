@@ -12,12 +12,11 @@ public class Airport {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //ID autogenerato
     private int id;
-
     @Column(name = "nome")
     private String name;
     public Airport(){ //costruttore di default
-    }
 
+    }
     @OneToMany(mappedBy = "airport")// airport e' il nome della variabile che sta dall'altra parte della relazione
     // in base al tipo di relazione
     private List<Passenger> passengers = new ArrayList<>();
@@ -35,7 +34,7 @@ public class Airport {
         passengers.add(passenger);
     }
 
-    public String  getName() {
+    public String getName() {
         return name;
     }
 }
