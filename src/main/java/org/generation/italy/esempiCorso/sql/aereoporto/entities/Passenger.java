@@ -1,9 +1,12 @@
 package org.generation.italy.esempiCorso.sql.aereoporto.entities;
 
-import org.generation.italy.esempiCorso.sql.aereoporto.daos.templates.WithId;
+import jakarta.persistence.*;
 
+import org.generation.italy.esempiCorso.sql.aereoporto.daos.templates.WithId;
 import java.util.ArrayList;
 import java.util.List;
+@Table
+@Entity
 
 public class Passenger implements WithId {
     private int id;

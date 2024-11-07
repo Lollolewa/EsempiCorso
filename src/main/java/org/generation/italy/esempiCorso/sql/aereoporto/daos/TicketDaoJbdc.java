@@ -45,6 +45,30 @@ public class TicketDaoJbdc implements TicketDao{
             ON a.id = p.aeroporto_id
             WHERE t.id = ?;
             """;
+
+    public static final String FIND_BY_CODE_LIKE = """
+                                                   
+                                                   SELECT t.id as ticket_id, t.codice as ticket_code,p.id as passenger_id,
+                                                   p.nome as passenger_name,
+                                                   a.id as airport_id, a.nome as airport_name
+                                                   FROM ticket as t
+                                                   JOIN passeggero as p
+                                                   ON t.passeggero_id = p.id
+                                                   JOIN aeroporto as a
+                                                   ON a.id = p.aeroporto_id
+                                                   WHERE t.codice LIKE ?
+                                                   """;
+    public static final String FIND_BY_AIRPORT_ID = """
+                                                   SELECT t.id as ticket_id, t.codice as ticket_code,p.id as passenger_id,
+                                                   p.nome as passenger_name,
+                                                   a.id as airport_id, a.nome as airport_name
+                                                   FROM ticket as t
+                                                   JOIN passeggero as p
+                                                   ON t.passeggero_id = p.id
+                                                   JOIN aeroporto as a
+                                                   ON a.id = p.aeroporto_id
+                                                   WHERE a.id = ?
+                                                   """;
     private Connection connection;
 
     public TicketDaoJbdc(Connection connection) {
@@ -130,6 +154,27 @@ public class TicketDaoJbdc implements TicketDao{
             throw new DaoException(e.getMessage(), e);
         }
 
+    }
+
+    @Override
+    public List<Ticket> findByCodeLike(String code) throws DaoException {
+       JdbcTemplate template = new JdbcTemplate(connection);
+       try {
+           return template.queryForObjects(FIND_BY_CODE_LIKE, TicketDaoJbdc::fromResultSet, code);
+       }catch (SQLException e){
+           throw new DaoException(e.getMessage(),e);
+       }
+
+    }
+
+    @Override
+    public List<Ticket> findByAirportId(int airportId) throws DaoException {
+        JdbcTemplate template = new JdbcTemplate(connection);
+        try {
+            return template.queryForObjects(FIND_BY_AIRPORT_ID, TicketDaoJbdc::fromResultSet, airportId);
+        }catch (SQLException e){
+            throw new DaoException(e.getMessage(),e);
+        }
     }
 //    //somma due numeri se glie li passo negativi diventano positivi e li somma lo stesso
 //    public int sum (int x, int y){

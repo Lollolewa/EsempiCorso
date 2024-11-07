@@ -1,6 +1,9 @@
 package org.generation.italy.esempiCorso.sql.aereoporto.daos.templates;
 
+import java.lang.management.ThreadInfo;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
@@ -47,6 +50,20 @@ public class JdbcTemplate {  //con i tipi Generici, si usa extends sia sulle cla
                 }
             }
         }
+    }
+
+    public  <T> List<T> queryForObjects(String sql, SqlRowMapper<T> rowMapper, Object...params) throws SQLException{
+        List<T> resultList = new ArrayList<>();
+        try(PreparedStatement ps = connection.prepareStatement(sql)){
+            setParameters(ps, params);
+            try(ResultSet rs = ps.executeQuery()) {
+                while(rs.next()){
+                    T result = rowMapper.fromResultSet(rs);
+                    resultList.add(result);
+                }
+            }
+        }
+        return resultList;
     }
     private void setParameters(PreparedStatement ps, Object... params) throws SQLException{
         for(int i = 0; i < params.length; i++){
