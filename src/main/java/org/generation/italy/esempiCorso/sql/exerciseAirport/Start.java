@@ -19,10 +19,25 @@ public class Start {
         if(found!= null){
             System.out.println(found.getName());
         }
+        em.getTransaction().commit();
 
         Airport other = new Airport(0,"linate");
-        Class<Airport> x = Airport.class;
-        x = (Class<Airport>) found.getClass(); // cast esplicito
-        //oggetto di tipo Class ch
+        //Class<Airport> x = Airport.class;
+        //x = (Class<Airport>) found.getClass(); // cast esplicito
+        //oggetto di tipo Class -> tipo speciale che rappresenta le informazioni di tipo di una classe,
+        // cioè una rappresentazione in fase di esecuzione (runtime) di una classe, di una interfaccia o di un array.
+        // In altre parole, una classe in Java è trattata come un oggetto di tipo Class al momento dell'esecuzione,
+        // e puoi utilizzarla per ottenere informazioni sul tipo di una classe o per creare oggetti dinamicamente.
+
+        em.getTransaction().begin();
+        em.merge(other);
+        em.getTransaction().commit();
+
+        em.getTransaction().begin();
+        Airport a = em.find(Airport.class,1);
+        if(a!=null){
+            em.remove(a);
+        }
+        em.getTransaction().commit();
     }
 }
