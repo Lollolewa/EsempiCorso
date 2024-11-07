@@ -9,3 +9,4 @@ public class DaoException extends Exception {
         super(message, cause); // la causa della DaoException è SQLException
     }
 }
+// aggiunto per testare una merge in git!!

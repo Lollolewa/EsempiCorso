@@ -1,0 +1,92 @@
+Index: src/main/java/org/generation/italy/esempiCorso/interfaces/SuperHero.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.generation.italy.esempiCorso.interfaces;\r\n\r\npublic class SuperHero extends Eater implements HumanBeing, FlyObject {\r\n             //prima le classi, poi interfacce\r\n    @Override\r\n    public void speak() {\r\n\r\n    }\r\n\r\n    @Override\r\n    public void vola() {\r\n\r\n    }\r\n\r\n\r\n    @Override\r\n    public void work(int hours) {\r\n\r\n    }\r\n}\r\n
+===================================================================
+diff --git a/src/main/java/org/generation/italy/esempiCorso/interfaces/SuperHero.java b/src/main/java/org/generation/italy/esempiCorso/interfaces/SuperHero.java
+--- a/src/main/java/org/generation/italy/esempiCorso/interfaces/SuperHero.java	(revision 860ab83df6740db3d15817e4437af88d96b50ddc)
++++ b/src/main/java/org/generation/italy/esempiCorso/interfaces/SuperHero.java	(date 1729062624935)
+@@ -1,17 +1,16 @@
+ package org.generation.italy.esempiCorso.interfaces;
+ 
+-public class SuperHero extends Eater implements HumanBeing, FlyObject {
+-             //prima le classi, poi interfacce
++public class SuperHero implements HumanBeing{
++
+     @Override
+     public void speak() {
+ 
+     }
+ 
+     @Override
+-    public void vola() {
++    public void eat() {
+ 
+     }
+-
+ 
+     @Override
+     public void work(int hours) {
+Index: src/main/java/org/generation/italy/esempiCorso/interfaces/HumanBeing.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.generation.italy.esempiCorso.interfaces;\r\n\r\n interface  HumanBeing {\r\n  public static final int maxAge = 120;\r\n   //default public static final\r\n    //final = costante\r\n    //static =\r\n    public abstract void speak();\r\n     //visibilita' sempre public_ sottotinteso, idem abstract\r\n    //no metodi privati\r\n\r\n    public abstract void eat();\r\n    public abstract void work(int hours);\r\n\r\n}\r\n
+===================================================================
+diff --git a/src/main/java/org/generation/italy/esempiCorso/interfaces/HumanBeing.java b/src/main/java/org/generation/italy/esempiCorso/interfaces/HumanBeing.java
+--- a/src/main/java/org/generation/italy/esempiCorso/interfaces/HumanBeing.java	(revision 860ab83df6740db3d15817e4437af88d96b50ddc)
++++ b/src/main/java/org/generation/italy/esempiCorso/interfaces/HumanBeing.java	(date 1729062624935)
+@@ -1,15 +1,18 @@
+ package org.generation.italy.esempiCorso.interfaces;
+ 
+- interface  HumanBeing {
+-  public static final int maxAge = 120;
+-   //default public static final
+-    //final = costante
+-    //static =
+-    public abstract void speak();
+-     //visibilita' sempre public_ sottotinteso, idem abstract
+-    //no metodi privati
++public interface HumanBeing {
++
++    //AN INTERFACE IS A NEW DATA TYPE THAT HOLDS STATIC VARIABLES AND METHODS
++
++    int maxAge = 120; //static final as default
++
++    //public abstract as default
++    void speak();
++
++    void eat();
+ 
+-    public abstract void eat();
+-    public abstract void work(int hours);
++    void work(int hours);
++
++
+ 
+ }
+Index: src/main/java/org/generation/italy/esempiCorso/interfaces/Circle.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.generation.italy.esempiCorso.interfaces;\r\n\r\npublic class Circle {\r\n    private double radius;\r\n    //variabile statica = dipende dalla classe, non dagli oggetti,\r\n    //.esiste una sola variabile radius\r\n     private final static double maxRadius=1000;\r\n     private static int counter = 0;\r\n\r\n    public Circle(double radius) {\r\n        if(radius>1000){\r\n            this.radius = maxRadius;\r\n        }else {\r\n            this.radius = radius;\r\n        }\r\n        counter++;\r\n    }\r\n\r\n    public Circle(){\r\n        this.radius = Math.random()*maxRadius;\r\n       // Math m1 = new Math();\r\n       // Math m2 = new Math();\r\n       // double r = m1.sin(10);\r\n       // double r2 = m2.sin(10);\r\n        double x = Math.sin(20);\r\n    }\r\n\r\n\r\n    public double calculatePerimeter(){\r\n        return 2*radius*Math.PI;\r\n    }\r\n\r\n    public static void main (String[] args){\r\n        //Circle c = new Circle(10);\r\n        //c.radius = 20;\r\n        //System.out.println(c.calculatePerimeter());\r\n        //Circle.radius = 10; //nomeClasse.nomeVariabile\r\n        //calculatePerimeter();\r\n        Circle c1 = new Circle(50);\r\n        Circle c2 = new Circle(100);\r\n        System.out.println(c1.radius);\r\n        System.out.println(c1.calculatePerimeter());\r\n\r\n    }\r\n}\r\n
+===================================================================
+diff --git a/src/main/java/org/generation/italy/esempiCorso/interfaces/Circle.java b/src/main/java/org/generation/italy/esempiCorso/interfaces/Circle.java
+--- a/src/main/java/org/generation/italy/esempiCorso/interfaces/Circle.java	(revision 860ab83df6740db3d15817e4437af88d96b50ddc)
++++ b/src/main/java/org/generation/italy/esempiCorso/interfaces/Circle.java	(date 1729062624934)
+@@ -1,6 +1,7 @@
+ package org.generation.italy.esempiCorso.interfaces;
+ 
+ public class Circle {
++
+     private double radius;
+     //variabile statica = dipende dalla classe, non dagli oggetti,
+     //.esiste una sola variabile radius
+@@ -41,5 +42,9 @@
+         System.out.println(c1.radius);
+         System.out.println(c1.calculatePerimeter());
+ 
++        Circle circle = new Circle(20);
++        circle.radius = 10;
++
++        System.out.println(circle.calculatePerimeter());
+     }
+ }

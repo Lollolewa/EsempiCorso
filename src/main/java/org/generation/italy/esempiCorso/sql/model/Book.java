@@ -22,6 +22,11 @@ public class Book {
         this.title = title;
         this.category = category;
         this.weight = weight;
+
+
+
+
+
     }
     @Override
     public String toString() {
@@ -34,6 +39,17 @@ public class Book {
                 ", weight=" + weight +
                 '}';
     }
+//    public void insert() throws SQLException{
+//        try(Connection c = DatabaseConnection.getConnection()){
+//            PreparedStatement ps = c.prepareStatement(INSERT_SQL);
+//            ps.setInt(1, id);
+//            ps.setString(2, title);
+//            ps.setInt(3, num_pages);
+//            ps.setString(4, category);
+//            ps.setDouble(5, weight);
+//            ps.executeUpdate();
+//        }
+//    } NOOOOOOOOOO VIOLAZIONE DEL PRINCIPIO DI RESPONSABILITÀ SINGOLAAAA NOOOOOOOOOOO
 
     public int getId() {
         return id;
@@ -57,13 +73,5 @@ public class Book {
 
     public double getWeight() {
         return weight;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 }

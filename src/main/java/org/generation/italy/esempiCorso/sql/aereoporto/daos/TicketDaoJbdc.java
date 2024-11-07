@@ -1,7 +1,6 @@
 package org.generation.italy.esempiCorso.sql.aereoporto.daos;
 
 import org.generation.italy.esempiCorso.sql.aereoporto.daos.templates.JdbcTemplate;
-import org.generation.italy.esempiCorso.sql.aereoporto.daos.templates.SqlRowMapper;
 import org.generation.italy.esempiCorso.sql.aereoporto.entities.Airport;
 import org.generation.italy.esempiCorso.sql.aereoporto.entities.Passenger;
 import org.generation.italy.esempiCorso.sql.aereoporto.entities.Ticket;
@@ -95,10 +94,8 @@ public class TicketDaoJbdc implements TicketDao{
                     rs.getString("ticket_code"),
                     new Passenger(rs.getInt("passenger_id"), rs.getString("passenger_name"),
                             new Airport(rs.getInt("airport_id"),
-                                rs.getString("airport_name"),
-                                new ArrayList<Passenger>()),
-                            new ArrayList<Ticket>())
-                    );
+                                rs.getString("airport_name")
+                    )));
             return t;
     }
 
