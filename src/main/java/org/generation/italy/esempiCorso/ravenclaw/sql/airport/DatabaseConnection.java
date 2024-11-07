@@ -1,4 +1,4 @@
-package org.generation.italy.esempiCorso.sql;
+package org.generation.italy.esempiCorso.ravenclaw.sql.airport;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,10 +6,8 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 public class DatabaseConnection {
-
-    //CONNECTION TO DATABASE
     public static Optional<Connection> getConnection(){
-        String jdbcUrl = "jdbc:postgresql://localhost:5432/library"; //la versione più bruttina
+        String jdbcUrl = "jdbc:postgresql://localhost:5432/airport"; //la versione più bruttina
         String username = "postgresMaster";
         String password = "goPostgresGo";
 
@@ -19,9 +17,8 @@ public class DatabaseConnection {
         }
         catch(SQLException e){
             e.printStackTrace();
-            System.out.println("Cannot create connection to DB"); //per db si intende database
+            System.out.println("Non mi posso collegare al db :("); //per db si intende database
             return Optional.empty();
         }
     }
 }
-
