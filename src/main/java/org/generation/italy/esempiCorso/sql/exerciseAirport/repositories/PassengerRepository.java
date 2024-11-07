@@ -1,6 +1,6 @@
-package org.generation.italy.esempiCorso.sql.exercises.airport.repositories;
+package org.generation.italy.esempiCorso.sql.exerciseAirport.repositories;
 
-import org.generation.italy.esempiCorso.sql.exercises.airport.model.Passenger;
+import org.generation.italy.esempiCorso.sql.exerciseAirport.model.Passenger;
 
 import java.util.List;
 

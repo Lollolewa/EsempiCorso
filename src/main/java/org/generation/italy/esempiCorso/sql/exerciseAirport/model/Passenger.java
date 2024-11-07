@@ -1,9 +1,6 @@
-package org.generation.italy.esempiCorso.sql.exercises.airport.model;
+package org.generation.italy.esempiCorso.sql.exerciseAirport.model;
 
 import jakarta.persistence.*;
-import org.generation.italy.esempiCorso.sql.aereoporto.entities.Ticket;
-import org.generation.italy.esempiCorso.sql.exerciseAirport.model.Airport;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

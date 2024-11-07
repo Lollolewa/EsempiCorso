@@ -12,7 +12,7 @@ public class Ticket {
     private String code;
     @ManyToOne
     @JoinColumn(name = "passeggero_id")
-    private org.generation.italy.esempiCorso.sql.exercises.airport.model.Passenger passenger;
+    private Passenger passenger;
     public Ticket(){
 
     }
