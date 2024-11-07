@@ -16,7 +16,7 @@ public class Start {
 //        em.getTransaction().begin();
 //        em.persist(airport);
 //        em.getTransaction().commit();
-
+//a
         em.getTransaction().begin();
         Airport found = em.find(Airport.class,2);
 //        Airport found2 = em.<Airport>find(1);
