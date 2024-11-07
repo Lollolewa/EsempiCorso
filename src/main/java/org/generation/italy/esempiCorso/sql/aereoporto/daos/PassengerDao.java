@@ -11,5 +11,6 @@ public interface PassengerDao {
 
     List<PassengerData> findAllOrderedByNumTickets() throws DaoException;
     boolean deletePassengerById(int id) throws DaoException;
-    Optional<Passenger>
+    Optional<Passenger> findById(int id) throws DaoException;
+
 }
