@@ -4,6 +4,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import org.generation.italy.esempiCorso.sql.DatabaseConnection;
+import org.generation.italy.esempiCorso.sql.aereoporto.entities.Airport;
 import org.generation.italy.esempiCorso.sql.aereoporto.entities.Ticket;
 import org.generation.italy.esempiCorso.sql.aereoporto.services.AbstractReservationService;
 import org.generation.italy.esempiCorso.sql.aereoporto.services.InMemoryReservationService;
@@ -40,7 +41,6 @@ public class Start {
 //
 //
         // ui.setService(new InMemoryReservationService());
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("hibernatefundamentals");
-        EntityManager em = emf.createEntityManager();
+
     }
 }
