@@ -46,7 +46,13 @@ public class PassengerDaoJbdc implements PassengerDao{
 
     @Override
     public List<PassengerData> findAllOrderedByNumTickets() throws DaoException{
-        return null; //da implementare in maniera elegante
+        JdbcTemplate template = new JdbcTemplate(connection);
+        try {
+            return template.queryForObjects(FIND_TICKETS_EVER_BOUGHT, PassengerDaoJbdc::fromResultSetData);
+
+        } catch (SQLException e) {
+            throw new DaoException(e.getMessage(),e);
+        }
     }
 
     public List<PassengerData> badFindAllOrderedByNumTickets() throws DaoException {
@@ -87,7 +93,12 @@ public class PassengerDaoJbdc implements PassengerDao{
         return p;
     }
 
-
+    static PassengerData fromResultSetData (ResultSet rs) throws SQLException {
+        Passenger p = new Passenger(rs.getInt("passenger_id"), rs.getString("passenger_name"),
+                new Airport(rs.getInt("airport_id"), rs.getString("airport_name")));
+        PassengerData pd = new PassengerData(p, rs.getInt("num_tickets"));
+        return pd;
+    }
 
     @Override
     public boolean deletePassengerById(int id) throws DaoException {
