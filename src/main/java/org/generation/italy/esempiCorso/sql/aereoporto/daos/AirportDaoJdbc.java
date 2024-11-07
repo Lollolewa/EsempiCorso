@@ -10,22 +10,40 @@ import java.util.List;
 import java.util.Optional;
 
 public class AirportDaoJdbc implements AirportDao {
-
     private Connection connection;
+
+    public static final String FIND_BY_ID = """
+                                            SELECT id,nome FROM aeroporto WHERE id=?
+                                            """;
+    public static final String INSERT_SQL = """
+                                            INSERT in to aeroporto (id,name)
+                                            value(?,?)
+                                            """;
+    public static final String UPDATE_SQL = """
+                                            UPDATE aeroporto
+                                            SET nome=?
+                                            WHERE id=?
+                                            """;
+    public static final String DELETE_SQL = """
+                                            DELETE FROM aeroporto
+                                            WHERE id=?
+                                            """;
+    public static final String SELECT_ALL_SQL = """
+                                                SELECT id,nome
+                                                FROM aeroporto
+                                                """;
     public AirportDaoJdbc(Connection connection) {
         this.connection = connection;
     }
 
-    public static final String CREATE_NEW = "INSERT INTO aeroporto (id, nome) values(?,?)";
-    public static final String FIND_BY_ID = """
-                                            SELECT id, nome
-                                            FROM aeroporto
-                                            WHERE id = ?;
-                                            """;
-
     @Override
     public Airport create(Airport toSave) throws DaoException {
-        return null;
+        JdbcTemplate template = new JdbcTemplate(connection);
+        try{
+            return template.insert(INSERT_SQL,toSave,toSave.getId(),toSave.getName());
+        } catch (SQLException e) {
+            throw new DaoException(e.getMessage(), e);
+        }
     }
 
     @Override
@@ -40,21 +58,34 @@ public class AirportDaoJdbc implements AirportDao {
 
     @Override
     public boolean update(Airport newAirport) throws DaoException {
-        return false;
+        JdbcTemplate template = new JdbcTemplate(connection);
+        try {
+            return template.update(UPDATE_SQL,newAirport.getName(),newAirport.getId()) ==1;
+        } catch (SQLException e) {
+            throw new DaoException(e.getMessage(), e);
+        }
     }
 
     @Override
     public boolean delete(int airportID) throws DaoException {
-        return false;
+        JdbcTemplate template = new JdbcTemplate(connection);
+        try {
+            return template.update(DELETE_SQL,airportID) ==1;
+        } catch (SQLException e) {
+            throw new DaoException(e.getMessage(), e);
+        }
     }
 
     @Override
     public List<Airport> findAll() throws DaoException {
-        return List.of();
+        JdbcTemplate template = new JdbcTemplate(connection);
+        try {
+            return template.queryForObjects(SELECT_ALL_SQL,AirportDaoJdbc::fromResultSet);
+        } catch (SQLException e) {
+            throw new DaoException(e.getMessage(), e);
+        }
     }
-
-    //funzione di mappatura
-    static Airport fromResultSet(ResultSet rs) throws SQLException {
-        return new Airport(rs.getInt("id"), rs.getString("nome"));
+    static Airport fromResultSet(ResultSet rs) throws SQLException{
+        return new Airport(rs.getInt("id"),rs.getString("nome"));
     }
 }
