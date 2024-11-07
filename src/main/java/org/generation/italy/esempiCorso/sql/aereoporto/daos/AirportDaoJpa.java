@@ -1,13 +1,22 @@
 package org.generation.italy.esempiCorso.sql.aereoporto.daos;
 
+import jakarta.persistence.EntityManager;
 import org.generation.italy.esempiCorso.sql.aereoporto.entities.Airport;
 
 import java.util.List;
 import java.util.Optional;
 
 public class AirportDaoJpa implements AirportDao{
+    private EntityManager em;
+
+    public AirportDaoJpa(EntityManager em) {
+        this.em = em;
+    }
+
     @Override
     public Airport create(Airport toSave) throws DaoException {
+        em.getTransaction().begin();
+        em.persist(toSave);
         return null;
     }
 
