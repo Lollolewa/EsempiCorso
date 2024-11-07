@@ -34,5 +34,9 @@ public class Airport {
     public void addPassenger(Passenger passenger) {
         passengers.add(passenger);
     }
+
+    public String  getName() {
+        return name;
+    }
 }
 

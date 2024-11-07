@@ -48,6 +48,12 @@ public class BookDaoJdbc implements BookDao{
         }
 
     }
+
+    @Override
+    public List<Book> getAllBooks() throws DaoException {
+        return List.of();
+    }
+
     @Override
     public List<Book> getAllBook() throws DaoException{
         String query = "select * from books";
