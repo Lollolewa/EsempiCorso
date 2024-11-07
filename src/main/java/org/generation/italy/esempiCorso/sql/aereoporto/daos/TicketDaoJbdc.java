@@ -90,16 +90,16 @@ public class TicketDaoJbdc implements TicketDao{
     }
 
     static Ticket fromResultSet (ResultSet rs) throws SQLException{
-        Ticket t = new Ticket(
-                rs.getInt("ticket_id"),
-                rs.getString("ticket_code"),
-                new Passenger(rs.getInt("passenger_id"), rs.getString("passenger_name"),
-                        new Airport(rs.getInt("airport_id"),
+            Ticket t = new Ticket(
+                    rs.getInt("ticket_id"),
+                    rs.getString("ticket_code"),
+                    new Passenger(rs.getInt("passenger_id"), rs.getString("passenger_name"),
+                            new Airport(rs.getInt("airport_id"),
                                 rs.getString("airport_name"),
                                 new ArrayList<Passenger>()),
-                        new ArrayList<Ticket>())
-        );
-        return t;
+                            new ArrayList<Ticket>())
+                    );
+            return t;
     }
 
     @Override
@@ -123,7 +123,7 @@ public class TicketDaoJbdc implements TicketDao{
     public Ticket createTicket(Ticket t) throws DaoException {
 
         try (PreparedStatement ps = connection.prepareStatement(CREATE_NEW_TICKET,
-                PreparedStatement.RETURN_GENERATED_KEYS)) {
+             PreparedStatement.RETURN_GENERATED_KEYS)) {
 
             ps.setString(1, t.getCode());
             ps.setInt(2, t.getPassenger().getId());
@@ -134,7 +134,7 @@ public class TicketDaoJbdc implements TicketDao{
                 if(genKeys.next()){
                     int id = genKeys.getInt(1);
                     t.setId(id);
-                    ;               }
+;               }
             }
             return t;
 

@@ -12,7 +12,7 @@ public class Passenger implements WithId {
     private Airport nearestAirport;
 
     public Passenger(int id, String name, Airport nearestAirport) {
-        this(id, name, nearestAirport, new ArrayList<>());
+       this(id, name, nearestAirport, new ArrayList<>());
     }
 
     public Passenger(int id, String name, Airport nearestAirport, List<Ticket> tickets) {

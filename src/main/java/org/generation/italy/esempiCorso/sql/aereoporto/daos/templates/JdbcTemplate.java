@@ -7,7 +7,7 @@ import java.util.Optional;
 import java.util.function.Function;
 
 public class JdbcTemplate {  //con i tipi Generici, si usa extends sia sulle classi che sulle interfacce
-    private Connection connection;
+   private Connection connection;
 
     public JdbcTemplate(Connection connection) {
         this.connection = connection;
