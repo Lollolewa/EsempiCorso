@@ -11,6 +11,7 @@ import java.util.Optional;
 
 public class AirportDaoJdbc implements AirportDao {
     Connection connection;
+    private JdbcTemplate template;
     public final static String FIND_BY_ID = """
                                             SELECT id, nome
                                             from aeroporto
@@ -35,6 +36,7 @@ public class AirportDaoJdbc implements AirportDao {
                                               """;
     public AirportDaoJdbc(Connection connection) {
         this.connection = connection;
+        this.template = new JdbcTemplate(connection);
     }
 
     @Override
