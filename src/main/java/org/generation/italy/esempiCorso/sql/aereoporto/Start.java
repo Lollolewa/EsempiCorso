@@ -50,15 +50,15 @@ public class Start {
 //        Class<Airport> x = Airport.class;
 //        Class<Airport> y = (Class<Airport>) found.getClass();
 //        System.out.println(x==y);
-        em.getTransaction().begin();
-        em.merge(other);
-        em.getTransaction().commit();
-        System.out.println("sto per cancella l'aeroporto");
-        em.getTransaction().begin();
-        Airport a = em.find(Airport.class, 2);
-        if ( a != null) {
-            em.remove(a);
-        }
-        em.getTransaction().commit();
+//        em.getTransaction().begin();
+//        em.merge(other);
+//        em.getTransaction().commit();
+//        System.out.println("sto per cancella l'aeroporto");
+//        em.getTransaction().begin();
+//        Airport a = em.find(Airport.class, 2);
+//        if ( a != null) {
+//            em.remove(a);
+//        }
+//        em.getTransaction().commit();
     }
 }

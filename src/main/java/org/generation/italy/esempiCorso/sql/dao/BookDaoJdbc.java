@@ -76,6 +76,11 @@ public class BookDaoJdbc implements BookDao{
     }
 
     @Override
+    public List<Book> getAllBook() throws DaoException {
+        return List.of();
+    }
+
+    @Override
     public Book addBook(Book b) throws DaoException {
         try(PreparedStatement ps = connection.prepareStatement(INSERT_SQL)){
             ps.setInt(1,b.getNum_pages());
