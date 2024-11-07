@@ -33,11 +33,11 @@ public class Start {
         em.merge(other);
         em.getTransaction().commit();
 
-        em.getTransaction().begin();
-        Airport a = em.find(Airport.class,1);
-        if(a!=null){
-            em.remove(a);
-        }
-        em.getTransaction().commit();
+//        em.getTransaction().begin();
+//        Airport a = em.find(Airport.class,1);
+//        if(a!=null){
+//            em.remove(a);
+//        }
+//        em.getTransaction().commit();
     }
 }
