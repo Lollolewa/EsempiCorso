@@ -10,9 +10,9 @@ public class Airport implements WithId {
     private String name;
     private List<Passenger> passengers;
     //quando facciamo più di un costruttore, possiamo richiamarli, senza dover ripetere codice
-    public Airport(int id, String name) {
-      this(id, name, new ArrayList<>());  //this() invochiamo un altro costruttore
-    }
+//   public Airport(int id, String name) {
+//      this(id, name, new ArrayList<>());  //this() invochiamo un altro costruttore
+//    }
 
     //quando facciamo più di un costruttore, possiamo richiamarli, senza dover ripetere codice
     public Airport(int id, String name) {

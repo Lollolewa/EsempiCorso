@@ -30,6 +30,10 @@ public class Airport {
         return Collections.unmodifiableList(passengers);
     }
 
+    public String getName() {
+        return name;
+    }
+
     public void addPassenger(Passenger passenger) {
         passengers.add(passenger);
     }
