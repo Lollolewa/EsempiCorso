@@ -65,8 +65,7 @@ public class PassengerDaoJbdc implements PassengerDao{
                         rs.getString("passenger_name"),
                         new Airport(
                                 rs.getInt("airport_id"),
-                                rs.getString("airport_name"),
-                                new ArrayList<Passenger>()
+                                rs.getString("airport_name")
                         ),
                         new ArrayList<Ticket>()
                 );
