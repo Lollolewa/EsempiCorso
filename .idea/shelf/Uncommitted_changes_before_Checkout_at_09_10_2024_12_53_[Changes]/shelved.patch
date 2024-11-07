@@ -1,0 +1,17 @@
+Index: src/main/java/org/generation/italy/esempiCorso/inheritance/Start.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package org.generation.italy.esempiCorso.inheritance;\r\n\r\npublic class Start {\r\n    public static void main(String[] args){\r\n        System.out.println(\"testing github\");\r\n        System.out.println(\"Aggiunto da Alessia\");\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/org/generation/italy/esempiCorso/inheritance/Start.java b/src/main/java/org/generation/italy/esempiCorso/inheritance/Start.java
+--- a/src/main/java/org/generation/italy/esempiCorso/inheritance/Start.java	(revision b374fb132ef53e6d959bb84727e82a60b2e5c889)
++++ b/src/main/java/org/generation/italy/esempiCorso/inheritance/Start.java	(date 1728470687355)
+@@ -4,5 +4,6 @@
+     public static void main(String[] args){
+         System.out.println("testing github");
+         System.out.println("Aggiunto da Alessia");
++        System.out.println("my name is Jonas");
+     }
+ }

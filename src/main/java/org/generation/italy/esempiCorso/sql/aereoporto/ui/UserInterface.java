@@ -2,8 +2,6 @@ package org.generation.italy.esempiCorso.sql.aereoporto.ui;
 
 import org.generation.italy.esempiCorso.sql.aereoporto.entities.Passenger;
 import org.generation.italy.esempiCorso.sql.aereoporto.services.AbstractReservationService;
-import org.generation.italy.esempiCorso.sql.aereoporto.services.InMemoryReservationService;
-import org.generation.italy.esempiCorso.sql.aereoporto.services.JdbcReservationService;
 
 public class UserInterface {
     private AbstractReservationService service;
