@@ -5,7 +5,6 @@ import org.generation.italy.esempiCorso.sql.aereoporto.entities.Airport;
 import java.util.List;
 import java.util.Optional;
 
-
 public interface AirportDao {
     Airport create (Airport toSave) throws DaoException;
     Optional<Airport> findById(int id) throws DaoException;
