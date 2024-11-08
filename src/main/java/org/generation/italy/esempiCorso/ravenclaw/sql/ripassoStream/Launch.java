@@ -59,5 +59,4 @@ public class Launch {
                       .flatMap(Nation::getMissileStream)
                               .mapToInt(Missile::getAoe).sum();
     }
-
 }
