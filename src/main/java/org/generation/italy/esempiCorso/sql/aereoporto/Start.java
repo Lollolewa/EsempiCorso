@@ -32,6 +32,7 @@ public class Start {
 //
         // ui.setService(new InMemoryReservationService());
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("hibernatefundamentals");
+        //classe la cui responsabilità è costruire gli entity manager
         EntityManager em = emf.createEntityManager();
 //        Airport airport = new Airport(0,"Malpensa");
 //        em.getTransaction().begin();
