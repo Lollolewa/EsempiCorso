@@ -5,6 +5,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.PersistenceException;
 import jakarta.transaction.Transaction;
+import org.checkerframework.checker.units.qual.A;
 import org.generation.italy.esempiCorso.sql.aereoporto.entities.Airport;
 import org.junit.jupiter.api.*;
 
@@ -20,6 +21,7 @@ class AirportDaoJpaTest {
     Airport a2 = new Airport(0, "Mimmo");
     Airport newA = new Airport(1, "Malpensa");
     AirportDaoJpa airportDaoJpa = new AirportDaoJpa();
+
     @BeforeAll
     public static void setUpBeforeAll(){
         emf = Persistence.createEntityManagerFactory("hibernatefundamentals");
@@ -49,9 +51,10 @@ class AirportDaoJpaTest {
     @Test
     void findById() {
         try {
-            Airport b = airportDaoJpa.findById(newA.getId()).get();
-            assertNotNull(b);
-            assertEquals(newA.getId(), b.getId());
+            Optional<Airport> comparingAeroporto = airportDaoJpa.findById(newA.getId());
+            assertNotNull(comparingAeroporto);
+            Airport a = comparingAeroporto.get();
+            assertEquals(newA.getId(), a.getId());
         } catch (DaoException e) {
             fail(e.getMessage(), e);
         }
@@ -59,12 +62,11 @@ class AirportDaoJpaTest {
 
     @Test
     void findByIdNotFound() {
-        int id = 5;
         try {
-            Airport b = airportDaoJpa.findById(newA.getId()).get();
+            Optional<Airport> b = airportDaoJpa.findById(newA.getId());
             assertNotNull(b);
-
-
+            Airport b2 = b.get();
+            assertTrue(b2.getId() != newA.getId());
         } catch (DaoException e) {
             fail(e.getMessage(), e);
         }
@@ -84,7 +86,7 @@ class AirportDaoJpaTest {
     void updateDoesNotFindAirport() {
         try {
             boolean didUpdate = airportDaoJpa.update(a2);
-            assertTrue(!didUpdate);
+            assertFalse(didUpdate);
         } catch (DaoException e) {
             fail(e.getMessage(), e);
         }
@@ -92,11 +94,24 @@ class AirportDaoJpaTest {
 
     @Test
     void delete() {
-//        try {
-//
-//        } catch (DaoException e) {
-//            fail(e.getMessage(), e);
-//        }
+        int id = 6;
+        try {
+            boolean didDelete = airportDaoJpa.delete(id);
+            assertTrue(didDelete);
+        } catch (DaoException e) {
+            fail(e.getMessage(), e);
+        }
+    }
+
+    @Test
+    void deleteDidNotFindId() {
+        int id = 8;
+        try {
+            boolean didDelete = airportDaoJpa.delete(id);
+            assertFalse(didDelete);
+        } catch (DaoException e) {
+            fail(e.getMessage(), e);
+        }
     }
 
     @Test
@@ -106,14 +121,42 @@ class AirportDaoJpaTest {
 
     @Test
     void findByName() {
+        String name = "Malpensa";
+        try {
+            Optional<Airport> a = airportDaoJpa.findByName(name);
+            assertNotNull(a);
+            Airport a0 = a.get();
+            assertEquals(name, a0.getName());
+        } catch (DaoException e) {
+            fail(e.getMessage(), e);
+        }
+    }
+
+    @Test
+    void findByNameNotFound() {
+        String name = "Malpe";
+        try {
+            Optional<Airport> a = airportDaoJpa.findByName(name);
+            assertTrue(a.isEmpty());  //?????????
+        } catch (DaoException e) {
+            fail(e.getMessage(), e);
+        }
     }
 
     @Test
     void getAirportCount() {
+        try {
+            int n = airportDaoJpa.getAirportCount();
+            assertEquals(5, n); //??????
+        }
+        catch (DaoException e) {
+            fail(e.getMessage(), e);
+        }
     }
 
     @Test
     void getByPassengerCountGreater() {
+
     }
 
     @Test
