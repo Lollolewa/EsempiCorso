@@ -1,9 +1,9 @@
-package org.generation.italy.esempiCorso.designPatterns.template;
+package org.generation.italy.esempiCorso.designPatterns.template.withLambdas;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Pizza {
+public class PizzaLambda {
     private List<String> toppings;
     private int cookingTime;
     private String doughType;
@@ -11,11 +11,11 @@ public class Pizza {
     private String cheeseType;
     private boolean hasTomatoSauce;
 
-    public Pizza(){
+    public PizzaLambda(){
         this.toppings=new ArrayList<>();
     }
 
-    public Pizza(int cookingTime, String doughType, String oilType,String cheeseType,boolean hasTomatoSauce) {
+    public PizzaLambda(int cookingTime, String doughType, String oilType, String cheeseType, boolean hasTomatoSauce) {
         this.cookingTime = cookingTime;
         this.doughType = doughType;
         this.oilType = oilType;
