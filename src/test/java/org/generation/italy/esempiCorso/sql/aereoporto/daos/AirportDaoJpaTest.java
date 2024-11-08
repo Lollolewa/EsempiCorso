@@ -90,6 +90,10 @@ class AirportDaoJpaTest {
     @Test
     void findByName() {
         try {
+            Optional<Airport> a = adj.findByName(a1.getName());
+            assertTrue(a.isPresent());
+            Airport found = a.get();
+            assertEquals(a1.getName(), found.getName());
 
         } catch (DaoException de) {
             fail(de.getMessage());
