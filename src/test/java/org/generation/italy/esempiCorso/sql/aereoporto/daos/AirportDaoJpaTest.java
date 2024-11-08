@@ -24,7 +24,9 @@ class AirportDaoJpaTest {
 
     @BeforeAll
     public static void setUpBeforeAll(){
-        emf = Persistence.createEntityManagerFactory("hibernatefundamentals");
+        AirportDaoJpa airportDaoJpa1 = new AirportDaoJpa();
+        EntityManagerFactory emf = airportDaoJpa1.emf;
+        EntityManager em = emf.createEntityManager();
     }
     @BeforeEach
     void setUp() {
