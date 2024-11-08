@@ -11,9 +11,10 @@ import java.util.Optional;
 public class AiportDaoJpa implements AirportDao {
     private EntityManager em; //costruire entity, abbiamo bisogno di una sola classe factory
     //non vogliamo un pool di connessioni, manager si carica il database nella sua cach,
-    public AirportDao(EntityManager em) {
+    public void AirportDaoJpa(EntityManager em) {
         this.em = em;
     }
+
     @Override
     public Airport create(Airport toSave) throws DaoException {
         em.getTransaction().begin();
