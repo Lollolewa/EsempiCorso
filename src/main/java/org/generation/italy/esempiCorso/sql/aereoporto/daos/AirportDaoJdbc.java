@@ -2,6 +2,7 @@ package org.generation.italy.esempiCorso.sql.aereoporto.daos;
 
 import org.generation.italy.esempiCorso.sql.aereoporto.daos.templates.JdbcTemplate;
 import org.generation.italy.esempiCorso.sql.aereoporto.entities.Airport;
+import org.generation.italy.esempiCorso.sql.aereoporto.model.AirportPassengerCount;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -85,6 +86,42 @@ public class AirportDaoJdbc implements AirportDao {
             throw new DaoException(e.getMessage(), e);
         }
     }
+
+    @Override
+    public Optional<Airport> findByName(String name) throws DaoException {
+        return Optional.empty();
+    }
+
+    @Override
+    public int getAirportCount() throws DaoException {
+        return 0;
+    }
+
+    @Override
+    public List<Airport> getByPassengerCountGreater(int size) throws DaoException {
+        return List.of();
+    }
+
+    @Override
+    public List<Airport> findByPassengerName(String passengerName) throws DaoException {
+        return List.of();
+    }
+
+    @Override
+    public List<Object[]> findWithPassengerCount() throws DaoException {
+        return List.of();
+    }
+
+    @Override
+    public List<AirportPassengerCount> betterFindWithPassengerCount() throws DaoException {
+        return List.of();
+    }
+
+    @Override
+    public List<Airport> findWithAvgTicketsPerPassengerAbove(int numTickets) throws DaoException {
+        return List.of();
+    }
+
     static Airport fromResultSet(ResultSet rs) throws SQLException{
         return new Airport(rs.getInt("id"),rs.getString("nome"));
     }

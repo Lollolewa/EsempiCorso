@@ -13,6 +13,7 @@ import java.util.Optional;
 public class AirportDaoJpa implements AirportDao{
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("hibernatefundamentals");
     EntityManager em = emf.createEntityManager();
+
     @Override
     public Airport create(Airport toSave) throws DaoException {
         em.getTransaction().begin();
