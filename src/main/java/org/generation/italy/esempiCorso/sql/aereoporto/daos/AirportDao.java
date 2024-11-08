@@ -14,9 +14,10 @@ public interface AirportDao {
     boolean delete(int airportID) throws DaoException;
     List<Airport> findAll() throws DaoException;
     Optional<Airport> findByName (String name) throws DaoException;
-    int getAirportCount() throws DaoException;
-    List<Airport> getPassengerCountGreater(int size) throws DaoException;
+    int getAirportCount () throws DaoException;
+    List<Airport> getByPassengerCountGreater (int size) throws DaoException;
     List<Airport> findByPassengerName (String passengerName) throws DaoException;
-    List<Object[]> findWithPassengerCount()throws DaoException;
-    List<AirportPassengerCount> betterFindWithPassengerCount() throws DaoException; //versione migliore di quello sopra
+    List<Object[]> findWithPassengerCount () throws DaoException;
+    List<AirportPassengerCount> betterFindWithPassengerCount () throws DaoException;
+    List<Airport> findWithAvgTicketsPerPassengerAbove (int numTickets) throws DaoException;
 }

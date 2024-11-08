@@ -11,22 +11,23 @@ import java.util.Optional;
 
 public class AirportDaoJdbc implements AirportDao {
     private Connection connection;
+
     public static final String FIND_BY_ID = """
-                                           SELECT id,nome FROM aeroporto WHERE id=?
-                                           """;
+                                            SELECT id,nome FROM aeroporto WHERE id=?
+                                            """;
     public static final String INSERT_SQL = """
                                             INSERT in to aeroporto (id,name)
                                             value(?,?)
-            """;
+                                            """;
     public static final String UPDATE_SQL = """
                                             UPDATE aeroporto
                                             SET nome=?
                                             WHERE id=?
                                             """;
     public static final String DELETE_SQL = """
-                                           DELETE FROM aeroporto
-                                           WHERE id=?
-                                           """;
+                                            DELETE FROM aeroporto
+                                            WHERE id=?
+                                            """;
     public static final String SELECT_ALL_SQL = """
                                                 SELECT id,nome
                                                 FROM aeroporto
@@ -43,7 +44,6 @@ public class AirportDaoJdbc implements AirportDao {
         } catch (SQLException e) {
             throw new DaoException(e.getMessage(), e);
         }
-
     }
 
     @Override
@@ -88,5 +88,4 @@ public class AirportDaoJdbc implements AirportDao {
     static Airport fromResultSet(ResultSet rs) throws SQLException{
         return new Airport(rs.getInt("id"),rs.getString("nome"));
     }
-
 }
