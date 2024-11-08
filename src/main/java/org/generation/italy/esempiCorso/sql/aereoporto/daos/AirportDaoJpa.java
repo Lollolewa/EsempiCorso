@@ -5,6 +5,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.PersistenceException;
 import org.generation.italy.esempiCorso.sql.aereoporto.entities.Airport;
+import org.generation.italy.esempiCorso.sql.aereoporto.model.AirportPassengerCount;
 
 import java.util.List;
 import java.util.Optional;
@@ -88,4 +89,90 @@ public class AirportDaoJpa implements AirportDao{
             throw new DaoException(e.getMessage(),e);
         }
     }
+
+    @Override
+    public Optional<Airport> findByName(String name) throws DaoException {
+        try {
+            return Optional.ofNullable(em.createQuery("SELECT A FROM AIRPORT A WHERE A.NAME = :NAME", Airport.class)
+                           .setParameter("name", "name").getSingleResult());
+        }catch (PersistenceException e){
+            em.getTransaction().rollback();
+            throw new DaoException(e.getMessage(),e);
+        }
+    }
+
+    @Override
+    public int getAirportCount() throws DaoException {
+        try {
+            return em.createQuery("SELECT COUNT(A) FROM AIRPORT A", Integer.class)
+                     .getSingleResult();
+        }catch (PersistenceException e){
+            em.getTransaction().rollback();
+            throw new DaoException(e.getMessage(),e);
+        }
+    }
+
+    @Override
+    public List<Airport> getByPassengerCounterGreater(int size) throws DaoException {
+        try {
+            return em.createQuery("SELECT a FROM Airport A WHERE size(a.passenger) > :count", Airport.class)
+                     .getResultList();
+        }catch (PersistenceException e){
+            em.getTransaction().rollback();
+            throw new DaoException(e.getMessage(),e);
+        }
+    }
+
+    @Override
+    public List<Airport> findByPassengerName(String passengerName) throws DaoException {
+        try {
+            return em.createQuery("SELECT a FROM Airport A JOIN a.passengers p WHERE p.name = :name", Airport.class)
+                     .setParameter("name",passengerName).getResultList();
+        }catch (PersistenceException e){
+            em.getTransaction().rollback();
+            throw new DaoException(e.getMessage(),e);
+        }
+    }
+
+    @Override
+    public List<Object[]> findWithPassengerCount() throws DaoException {
+        try {
+            return em.createQuery("SELECT a.id, a.name COUNT(p) FROM Airport A JOIN a.passengers p GROUP BY a.id, a.name",Object[].class)
+                     .getResultList();
+        }catch (PersistenceException e){
+            em.getTransaction().rollback();
+            throw new DaoException(e.getMessage(),e);
+        }
+    }
+
+    @Override
+    public List<AirportPassengerCount> betterFindWithPassengerCount() throws DaoException {
+        try {
+            return em.createQuery("""
+                            SELECT NEW org.generation.italy.esempiCorso.sql.aereoporto.model.AirportPassengerCount
+                            (a.id, a.name COUNT(p))
+                            FROM Airport a join a.passenger p
+                            GROUP BY a.id, a.name
+                            """, AirportPassengerCount.class).getResultList();
+        }catch (PersistenceException e){
+            em.getTransaction().rollback();
+            throw new DaoException(e.getMessage(),e);
+        }
+    }
+
+    @Override
+    public List<Airport> findWithAvgTicketsPerPassengerAbove(int numTickets) throws DaoException {
+        try {
+            return em.createQuery("""
+                            SELECT a FROM Airport a WHERE(
+                            SELECT AVG(SIZE(t.tickets))
+                            FROM passenger p
+                            WHERE p.airport = a) >= :numTickets
+                            """, Airport.class).setParameter("numTickets", numTickets).getResultList();
+        }catch (PersistenceException e){
+            em.getTransaction().rollback();
+            throw new DaoException(e.getMessage(),e);
+        }
+    }
+
 }
