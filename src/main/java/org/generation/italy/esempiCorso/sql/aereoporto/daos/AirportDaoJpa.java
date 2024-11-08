@@ -87,5 +87,16 @@ public class AirportDaoJpa implements AirportDao {
         }
     }
 
-}
+    @Override
+    public Optional<Airport> findByName(String name) throws DaoException {
+        try {
+            return Optional.ofNullable(em.createQuery("SELECT FROM aeroporto a where a.name = :name", Airport.class)
+                    .setParameter("name", name).getSingleResult());
+        } catch (PersistenceException e) {
+            em.getTransaction().rollback();
+            throw new DaoException(e.getMessage(), e);
+        }
 
+
+    }
+}
