@@ -33,7 +33,7 @@ public class AirportDaoJpa implements AirportDao{
         try {
             Airport found = em.find(Airport.class, id);
             em.getTransaction().commit();
-//            return found != null ? Optional.of(found) : Optional.empty(); //stesso metodo di giu
+//            return found != null ? Optional.of(found) : Optional.empty(); //this method does the same thing as line 37
             return Optional.ofNullable(found);
         }catch (PersistenceException e){
             em.getTransaction().rollback();
