@@ -56,8 +56,8 @@ public class Start {
 
 
 
-            Book book4 = new Book(4, 999, 2, "DarkGay", "Erotic", 69);
-            bookDao.addBook(book4);
+//            Book book4 = new Book(4, 999, 2, "DarkGay", "Erotic", 69);
+//            bookDao.addBook(book4);
 
 
 

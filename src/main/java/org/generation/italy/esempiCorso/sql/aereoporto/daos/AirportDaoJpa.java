@@ -125,7 +125,7 @@ public class AirportDaoJpa implements AirportDao {
     public List<Airport> getByPassengerCountGreater(int size) throws DaoException {
         try {
             return em.createQuery("SELECT a FROM Airport a WHERE size(a.passengers) > :count", Airport.class)
-                    .getResultList();
+                    .setParameter("count", size).getResultList();
         } catch (PersistenceException pe) {
             em.getTransaction().rollback();
             throw new DaoException(pe.getMessage(), pe);

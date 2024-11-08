@@ -59,6 +59,10 @@ public class BookDaoJdbc implements BookDao { //dao = data access object, è un 
     public boolean update(Book b) throws DaoException {
         return false;
     }
+
+    public List<Book> getAllBooks() {
+        return null;
+    }
 }
 
 
