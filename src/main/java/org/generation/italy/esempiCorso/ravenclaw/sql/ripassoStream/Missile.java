@@ -15,6 +15,7 @@ public class Missile {
         this.doc = doc;
         this.aoe = aoe;
         this.dol = dol;
+
     }
 
     public String getName() {
