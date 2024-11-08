@@ -4,14 +4,14 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Missile {
-    private String name, location;
+    private String name, target;
     private int aoe;
     private LocalDate doc;
     private LocalDateTime dol;
 
     public Missile(String name, String location, LocalDate doc, int aoe, LocalDateTime dol) {
         this.name = name;
-        this.location = location;
+        this.target = location;
         this.doc = doc;
         this.aoe = aoe;
         this.dol = dol;
@@ -25,12 +25,12 @@ public class Missile {
         this.name = name;
     }
 
-    public String getLocation() {
-        return location;
+    public String getTarget() {
+        return target;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setTarget(String target) {
+        this.target = target;
     }
 
     public LocalDate getDoc() {
