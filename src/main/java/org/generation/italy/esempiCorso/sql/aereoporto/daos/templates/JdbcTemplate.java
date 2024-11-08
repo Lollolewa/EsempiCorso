@@ -73,4 +73,3 @@ public class JdbcTemplate {  //con i tipi Generici, si usa extends sia sulle cla
         }
     }
 }
-
