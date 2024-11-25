@@ -1,4 +1,4 @@
-package org.generation.italy.examples.interfaces.travelagencymio;
+package org.generation.italy.esempiCorso.travelagencymio;
 
 import java.util.Collection;
 

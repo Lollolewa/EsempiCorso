@@ -1,6 +1,6 @@
 package org.generation.italy.esempiCorso.interfacce.esercizio;
 
-import org.generation.italy.esempiCorso.griffindor.eserciziCollection.arte.OperaDArte;
+import org.generation.italy.esempiCorso.interfacce.esercizioNuovo.OperaDArte;
 
 import java.util.ArrayList;
 import java.util.List;
